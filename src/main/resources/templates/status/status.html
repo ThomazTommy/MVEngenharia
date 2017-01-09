@@ -1,0 +1,58 @@
+<div class="row">
+	<div class="col-lg-6">
+
+		<div class="listaStatuss" th:unless="${#lists.isEmpty(allStatuss)}">
+			<h2 th:text="#{titulo.listaStatus}">Lista de Status</h2>
+			<div class="panel-body">
+				<div class="table-responsive">
+					<table class="table table-striped table-bordered table-hover">
+						<thead>
+							<tr>
+								<th th:text="#{status.idStatus}">Id</th>
+								<th th:text="#{status.descStatus}">Descrição</th>
+								<th th:text="#{status.remover}">Remover</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="ass : ${allStatuss}">
+								<td th:text="${ass.idStatus}">1</td>
+								<td th:text="${ass.descStatus}">descStatus</td>
+								<td><a href="#"
+									th:onclick="'executaAjaxGet(\'/status/remover/'+ ${ass.idStatus} + '\',\'page-wrapper\',\'\',\'\');'"><span
+										class="glyphicon glyphicon-remove"></span></a></td>
+
+							</tr>
+						</tbody>
+					</table>
+				</div><!-- table responsive -->
+			</div><!-- panel body -->
+
+		</div><!-- Lista Statuss -->
+		</div><!-- col-lg-6 -->
+		</div><!-- row -->
+		<div class="row">
+	<div class="col-lg-6">
+		<div>
+			<h2 th:text="#{titulo.novoStatus}">Add Novo Status</h2>
+			<form role="form" class="usaAjax" action="#" th:action="@{/status}"
+				th:object="${status}" method="post">
+				<fieldset>
+					<legend th:text="#{status.dados}">Dados do Status</legend>
+					<ul th:if="${#fields.hasErrors('*')}" class="errorlist">
+						<li th:each="err : ${#fields.errors('*')}" th:text="${err}">Dados
+							Incorretos</li>
+					</ul>
+					<div class="form-group">
+						<label for="descStatus"> <span
+							th:text="#{status.descStatus}">descStatus</span>
+						</label> <input class="form-control" type="text" th:field="*{descStatus}"
+							th:errorclass="fieldError" />
+					</div>
+					<button class="btn btn-default" type="submit" name="save" onclick="formSubmitClick(this,'page-wrapper')"
+							th:text="#{status.salvar}">Add Status</button>
+					
+				</fieldset>
+			</form>
+		</div>
+	</div>
+</div>

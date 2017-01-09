@@ -1,0 +1,51 @@
+package br.com.mvengenharia.exception;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.web.ErrorAttributes;
+import org.springframework.boot.autoconfigure.web.ErrorController;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.context.request.RequestAttributes;
+import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.Map;
+
+@RestController
+public class CustomErrorController implements ErrorController {
+
+    private static final String PATH = "/error";
+
+    @Autowired
+    private ErrorAttributes errorAttributes;
+
+    @RequestMapping(value = PATH)
+    ModelAndView error(HttpServletRequest request, HttpServletResponse response) {
+    	Map<String,Object> errorMap = getErrorAttributes(request, true);
+    	
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName(PATH + "/error");
+        mav.addObject("url", errorMap.get("path"));
+        mav.addObject("httpstatus", errorMap.get("status"));
+        mav.addObject("mensagem", errorMap.get("message"));
+        mav.addObject("erro", errorMap.get("error"));
+        mav.addObject("datahora", errorMap.get("timestamp").toString());
+        mav.addObject("stack", errorMap.get("trace"));
+        
+        
+        return mav;
+    }
+
+    @Override
+    public String getErrorPath() {
+        return PATH;
+    }
+
+    private Map<String, Object> getErrorAttributes(HttpServletRequest request, boolean includeStackTrace) {
+        RequestAttributes requestAttributes = new ServletRequestAttributes(request);
+        return errorAttributes.getErrorAttributes(requestAttributes, includeStackTrace);
+    }
+
+}

@@ -1,0 +1,165 @@
+<div class="row">
+	<div class="col-lg-12">
+		<div>
+			<h2 th:text="#{titulo.editarProcessoCPOCPP}">Editar Processo
+				CPOCPP</h2>
+			<form role="form" class='usaAjax' action="#"
+				th:action="@{|/processoCPOCPP/${origem}/${parametroPesquisado}|}"
+				th:object="${processoCPOCPP}" method="post">
+				<fieldset>
+					<legend th:text="#{processoCPOCPP.dados}">Dados</legend>
+					<ul id="erros" th:if="${#fields.hasErrors('*')}" class="errorlist">
+						<li th:each="err : ${#fields.errors('*')}" th:text="${err}">Erro</li>
+					</ul>
+					<div class="form-group">
+						<label for="assunto" th:text="#{processoCPOCPP.assunto}">Assunto</label>
+						<select class="form-control" th:field="*{assunto}">
+							<option th:each="assunto : ${allAssuntos}"
+								th:value="${assunto.idAssunto}" th:text="${assunto.descAssunto}">Assunto</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="Status" th:text="#{processoCPOCPP.status}">Status</label>
+						<select class="form-control" th:field="*{status}">
+							<option th:each="status : ${allStatus}"
+								th:value="${status.idStatus}" th:text="${status.descStatus}">Status</option>
+						</select>
+					</div>
+
+					<div class="form-group">
+						<label for="dtEntradaProcessoCPOCPP"> <span
+							th:text="#{processoCPOCPP.dtEntradaProcessoCPOCPP}">Data
+								Processo</span> (<span th:text="#{date.format}">YYYY/MM/DD</span>)
+						</label> <input class="form-control" type="text"
+							th:field="*{dtEntradaProcessoCPOCPP}" th:errorclass="fieldError" />
+					</div>
+					<div class="form-group">
+						<label for="idSecCom" th:text="#{processoCPOCPP.idSecCom}">idSecCom
+						</label> <input class="form-control" type="text" th:field="*{idSecCom}"
+							th:errorclass="fieldError" />
+					</div>
+
+					<div class="form-group">
+						<label for="observacoes" th:text="#{processoCPOCPP.observacoes}">observacoes
+						</label>
+						<textarea class="form-control" type="text"
+							th:field="*{observacoes}" th:errorclass="fieldError"></textarea>
+					</div>
+
+					<div class="form-group">
+						<label for="sinteseFatoGerador"
+							th:text="#{processoCPOCPP.sinteseFatoGerador}">sinteseFatoGerador
+						</label>
+						<textarea class="form-control" type="text"
+							th:field="*{sinteseFatoGerador}" th:errorclass="fieldError"></textarea>
+					</div>
+					<div id="AddInteressado">
+						<div class="form-group">
+							<button class="btn btn-default" type="submit"
+								name="addInteressado"
+								onclick="formSubmitClick(this,'corpoModal')"
+								th:text="#{interessado.add}">Add Interessado</button>
+						</div>
+
+						<div class="form-group"
+							th:unless="${#lists.isEmpty(processoCPOCPP.interessados)}">
+							<label th:text="#{processoCPOCPP.interessados}">interessados</label>
+							<table>
+								<thead>
+									<tr>
+										<th th:text="#{interessado.reInteressado}">RE</th>
+										<th th:text="#{interessado.nomeInteressado}">Variety</th>
+
+
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="interessado,interessadoStat : *{interessados}">
+										<td><input class="form-control" type="text"
+											th:field="*{interessados[__${interessadoStat.index}__].reInteressado}"
+											th:errorclass="fieldError" /></td>
+										<td><input class="form-control" type="text"
+											th:field="*{interessados[__${interessadoStat.index}__].nomeInteressado}"
+											th:errorclass="fieldError" /></td>
+										<td>
+											<button class="btn btn-default" type="submit"
+												name="removeInteressado" th:value="${interessadoStat.index}"
+												onclick="formSubmitClick(this,'corpoModal')"
+												th:text="#{interessado.remove}">Remove Interessado</button>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+
+					<div id="AddDocumentoRelacionado">
+						<div class="form-group">
+							<button class="btn btn-default" type="submit"
+								name="addDocumentoRelacionado"
+								onclick="formSubmitClick(this,'corpoModal')"
+								th:text="#{documentoRelacionado.add}">Add DocRel</button>
+						</div>
+
+						<div class="form-group"
+							th:unless="${#lists.isEmpty(processoCPOCPP.documentosRelacionados)}">
+							<label th:text="#{processoCPOCPP.documentosRelacionados}">Doc
+								Rels</label>
+							<table>
+								<thead>
+									<tr>
+										<th th:text="#{documentoRelacionado.protocoloPM}">ProtoPM</th>
+										<th th:text="#{documentoRelacionado.nomeDocumentoRelacionado}">NumeroDoc</th>
+										<th th:text="#{documentoRelacionado.descDocumentoRelacionado}">DescDoc</th>
+										<th th:text="#{documentoRelacionado.tipoDocumento}">tipoDoc</th>
+										<th th:text="#{documentoRelacionado.arrayBytes}">Arquivo</th>
+
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="doc,docStat : *{documentosRelacionados}">
+										<td><input class="form-control" type="text"
+											th:field="*{documentosRelacionados[__${docStat.index}__].protocoloPM}"
+											th:errorclass="fieldError" /></td>
+										<td><input class="form-control" type="text"
+											th:field="*{documentosRelacionados[__${docStat.index}__].nomeDocumentoRelacionado}"
+											th:errorclass="fieldError" /></td>
+										<td><input class="form-control" type="text"
+											th:field="*{documentosRelacionados[__${docStat.index}__].descDocumentoRelacionado}"
+											th:errorclass="fieldError" /></td>
+										<td><input class="form-control" type="file" accept=".pdf"
+											th:field="*{documentosRelacionados[__${docStat.index}__].file}"
+											th:errorclass="fieldError" /></td>
+										<td><select class="form-control"
+											th:field="*{documentosRelacionados[__${docStat.index}__].tipoDocumento}">
+												<option th:each="tipoDocumento : ${allTipoDocumentos}"
+													th:value="${tipoDocumento.idTipoDocumento}"
+													th:text="${tipoDocumento.descTipoDocumento}">tipdoc</option>
+										</select></td>
+										<td>
+											<button class="btn btn-default" type="submit"
+												name="removeDocumentoRelacionado"
+												th:value="${docStat.index}"
+												onclick="formSubmitClick(this,'corpoModal')"
+												th:text="#{documentoRelacionado.remove}">Remove Doc</button>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+
+
+
+
+					<div class="submit form-group">
+						<button class="btn btn-default" type="submit" name="save"
+							data-dismiss="modal"
+							onclick="formSubmitClick(this,'page-wrapper')"
+							th:text="#{processoCPOCPP.salvar}">Add ProcessoCPOCPP</button>
+					</div>
+				</fieldset>
+			</form>
+		</div>
+	</div>
+</div>

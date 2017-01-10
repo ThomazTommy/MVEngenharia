@@ -4,9 +4,11 @@ import javax.transaction.Transactional;
 
 import org.springframework.data.repository.CrudRepository;
 
-import br.com.mvengenharia.business.entities.Atividade;
+import br.com.mvengenharia.business.entities.Escritorio;
 
 @Transactional
-public interface AtividadeRepository extends CrudRepository<Atividade, Long> {
-		
+public interface EscritorioRepository extends CrudRepository<Escritorio, Long> {
+	
+	
+	
 }

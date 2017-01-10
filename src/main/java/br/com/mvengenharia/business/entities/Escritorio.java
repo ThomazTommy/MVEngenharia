@@ -20,8 +20,7 @@ public class Escritorio implements Serializable {
 	private String descEscritorio;
 
 	//bi-directional one-to-one association to Endereco
-	@OneToOne
-	@JoinColumn(name="idEndereco")
+	@OneToOne(cascade=CascadeType.ALL)
 	private Endereco endereco;
 
 	public Escritorio() {

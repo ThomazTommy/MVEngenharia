@@ -14,7 +14,7 @@ public class Funcionario implements Serializable {
 	@Id
 	private String cpf;
 
-	private byte ativo;
+	private boolean ativo;
 
 	private String email;
 
@@ -43,7 +43,7 @@ public class Funcionario implements Serializable {
 	public Funcionario() {
 	}
 
-	public byte getAtivo() {
+	public boolean getAtivo() {
 		return this.ativo;
 	}
 
@@ -55,7 +55,7 @@ public class Funcionario implements Serializable {
 		this.permissoes = permissoes;
 	}
 
-	public void setAtivo(byte ativo) {
+	public void setAtivo(boolean ativo) {
 		this.ativo = ativo;
 	}
 

@@ -11,6 +11,8 @@ public interface FuncionarioRepository extends CrudRepository<Funcionario, Long>
 	
 	public Funcionario findByCpf(String cpf);
 	
+	public void deleteByCpf(String cpf);
+	
 	public Funcionario findByNomeFuncionario(String nomeFuncionario);
 	
 }

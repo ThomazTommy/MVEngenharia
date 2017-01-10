@@ -34,8 +34,8 @@ public class FuncionarioService {
         this.funcionarioRepository.save(funcionario);
     }
     
-    public void remove(final Long id){
-    	this.funcionarioRepository.delete(id);
+    public void remove(final String cpf){
+    	this.funcionarioRepository.deleteByCpf(cpf);
     }
     
 }

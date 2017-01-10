@@ -50,7 +50,7 @@ public class HomeController {
 	@RequestMapping(value="/enviaemail", method = RequestMethod.GET)
 	public String enviaemail (HttpServletRequest request, HttpServletResponse response) {
 	    try {
-			smtpMailSender.send("fadossantos@policiamilitar.sp.gov.br", "teste de envio email", "teste de envio de email java");
+			smtpMailSender.send("denizeom@gmail.com", "teste de envio email", "Te amoooooooooooooooooooooooooooooooo");
 		} catch (MessagingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

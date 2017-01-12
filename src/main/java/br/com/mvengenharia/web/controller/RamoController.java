@@ -37,7 +37,7 @@ public class RamoController {
     @RequestMapping(value="/ramo", params={"save"})
     public String saveRamo(final Ramo ramo, final BindingResult bindingResult, final ModelMap model) {
         if (bindingResult.hasErrors()) {
-            return "ramo";
+            return "ramo/ramo";
         }
         this.ramoService.addOrUpdate(ramo);
         model.clear();

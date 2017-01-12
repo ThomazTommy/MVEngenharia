@@ -37,7 +37,7 @@ public class GravidadeController {
     @RequestMapping(value="/gravidade", params={"save"})
     public String saveGravidade(final Gravidade gravidade, final BindingResult bindingResult, final ModelMap model) {
         if (bindingResult.hasErrors()) {
-            return "gravidade";
+            return "gravidade/gravidade";
         }
         this.gravidadeService.addOrUpdate(gravidade);
         model.clear();

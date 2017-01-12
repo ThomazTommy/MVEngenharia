@@ -47,7 +47,7 @@ public class CidadeController {
     @RequestMapping(value="/cidade", params={"save"})
     public String saveCidade(final Cidade cidade, final BindingResult bindingResult, final ModelMap model) {
         if (bindingResult.hasErrors()) {
-            return "cidade";
+            return "cidade/cidade";
         }
         this.cidadeService.addOrUpdate(cidade);
         model.clear();

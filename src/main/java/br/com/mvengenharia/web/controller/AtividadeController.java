@@ -37,7 +37,7 @@ public class AtividadeController {
     @RequestMapping(value="/atividade", params={"save"})
     public String saveAtividade(final Atividade atividade, final BindingResult bindingResult, final ModelMap model) {
         if (bindingResult.hasErrors()) {
-            return "atividade";
+            return "atividade/atividade";
         }
         this.atividadeService.addOrUpdate(atividade);
         model.clear();

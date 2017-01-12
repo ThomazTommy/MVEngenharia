@@ -37,7 +37,7 @@ public class CoberturaController {
     @RequestMapping(value="/cobertura", params={"save"})
     public String saveCobertura(final Cobertura cobertura, final BindingResult bindingResult, final ModelMap model) {
         if (bindingResult.hasErrors()) {
-            return "cobertura";
+            return "cobertura/cobertura";
         }
         this.coberturaService.addOrUpdate(cobertura);
         model.clear();

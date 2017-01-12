@@ -37,7 +37,7 @@ public class PermissoesController {
     @RequestMapping(value="/permissoes", params={"save"})
     public String savePermissoes(final Permissoes permissoes, final BindingResult bindingResult, final ModelMap model) {
         if (bindingResult.hasErrors()) {
-            return "permissoes";
+            return "permissoes/permissoes";
         }
         this.permissoesService.addOrUpdate(permissoes);
         model.clear();

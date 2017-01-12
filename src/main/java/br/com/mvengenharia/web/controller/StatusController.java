@@ -37,7 +37,7 @@ public class StatusController {
     @RequestMapping(value="/status", params={"save"})
     public String saveStatus(final Status status, final BindingResult bindingResult, final ModelMap model) {
         if (bindingResult.hasErrors()) {
-            return "status";
+            return "status/status";
         }
         this.statusService.addOrUpdate(status);
         model.clear();

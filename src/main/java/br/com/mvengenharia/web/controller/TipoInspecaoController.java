@@ -37,7 +37,7 @@ public class TipoInspecaoController {
     @RequestMapping(value="/tipoInspecao", params={"save"})
     public String saveTipoInspecao(final TipoInspecao tipoInspecao, final BindingResult bindingResult, final ModelMap model) {
         if (bindingResult.hasErrors()) {
-            return "tipoInspecao";
+            return "tipoInspecao/tipoInspecao";
         }
         this.tipoInspecaoService.addOrUpdate(tipoInspecao);
         model.clear();

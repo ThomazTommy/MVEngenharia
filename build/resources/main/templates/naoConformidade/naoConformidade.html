@@ -1,0 +1,68 @@
+<div class="row">
+	<div class="col-lg-6">
+
+		<div class="listaNaoConformidades" th:unless="${#lists.isEmpty(allNaoConformidades)}">
+			<h2 th:text="#{titulo.listaNaoConformidades}">Lista de NaoConformidades</h2>
+			<div class="panel-body">
+				<div class="table-responsive">
+					<table class="table table-striped table-bordered table-hover">
+						<thead>
+							<tr>
+								<th th:text="#{naoConformidade.idNaoConformidade}">Id</th>
+								<th th:text="#{naoConformidade.descNaoConformidade}">Descrição</th>
+								<th th:text="#{naoConformidade.gravidade}">Gravidade</th>
+								<th>Remover</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="ass : ${allNaoConformidades}">
+								<td th:text="${ass.idNaoConformidade}">1</td>
+								<td th:text="${ass.descNaoConformidade}">descNaoConformidade</td>
+								<td th:text="${ass.gravidade.descGravidade}">gravidade</td>
+								<td><a href="#"
+									th:onclick="'executaAjaxGet(\'/naoConformidade/remover/'+ ${ass.idNaoConformidade} + '\',\'page-wrapper\',\'\',\'\');'"><span
+										class="glyphicon glyphicon-remove"></span></a></td>
+
+							</tr>
+						</tbody>
+					</table>
+				</div><!-- table responsive -->
+			</div><!-- panel body -->
+
+		</div><!-- Lista NaoConformidades -->
+		</div><!-- col-lg-6 -->
+		</div><!-- row -->
+		<div class="row">
+	<div class="col-lg-6">
+		<div>
+			<h2 th:text="#{titulo.novoNaoConformidade}">Add Novo NaoConformidade</h2>
+			<form role="form" class='usaAjax' action="#" th:action="@{/naoConformidade}"
+				th:object="${naoConformidade}" method="post">
+				<fieldset>
+					<legend th:text="#{naoConformidade.dados}">Dados do NaoConformidade</legend>
+					<ul th:if="${#fields.hasErrors('*')}" class="errorlist">
+						<li th:each="err : ${#fields.errors('*')}" th:text="${err}">Dados
+							Incorretos</li>
+					</ul>
+					<div class="form-group">
+						<label for="nomeNaoConformidade"> <span
+							th:text="#{naoConformidade.descNaoConformidade}">descNaoConformidade</span>
+						</label> <input class="form-control" type="text" th:field="*{descNaoConformidade}"
+							th:errorclass="fieldError" />
+					</div>
+					<div class="form-group">
+						<label for="estado" th:text="#{naoConformidade.gravidade}">Estado</label>
+						<select class="form-control" th:field="*{gravidade}">
+							<option th:each="gravidade : ${allGravidades}"
+								th:value="${gravidade.idGravidade}" th:text="${gravidade.descGravidade}">Gravidade</option>
+						</select>
+					</div>
+					
+						<button class="btn btn-default" type="submit" name="save" onclick="formSubmitClick(this,'page-wrapper')"
+							th:text="#{naoConformidade.salvar}">Add NaoConformidade</button>
+					
+				</fieldset>
+			</form>
+		</div>
+	</div>
+</div>

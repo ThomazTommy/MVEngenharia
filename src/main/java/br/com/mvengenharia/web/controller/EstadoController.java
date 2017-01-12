@@ -36,7 +36,7 @@ public class EstadoController {
     @RequestMapping(value="/estado", params={"save"})
     public String saveEstado(final Estado estado, final BindingResult bindingResult, final ModelMap model) {
         if (bindingResult.hasErrors()) {
-            return "estado";
+            return "estado/estado";
         }
         this.estadoService.addOrUpdate(estado);
         model.clear();

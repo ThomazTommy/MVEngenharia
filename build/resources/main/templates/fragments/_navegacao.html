@@ -1,0 +1,79 @@
+<nav class="navbar navbar-default navbar-static-top" role="navigation"
+	style="margin-bottom: 0">
+	<div class="navbar-header">
+		<button type="button" class="navbar-toggle" data-toggle="collapse"
+			data-target=".navbar-collapse">
+			<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span>
+			<span class="icon-bar"></span> <span class="icon-bar"></span>
+		</button>
+		<a class="navbar-brand" href="/">MVEngenharia</a>
+	</div>
+	<!-- /.navbar-header -->
+
+	<ul class="nav navbar-top-links navbar-right">
+		<li><a href="http://correio.policiamilitar.sp.gov.br"> <i
+				class="fa fa-envelope fa-fw"></i>
+		</a> <!-- /.dropdown-messages --></li>
+		<!-- /.dropdown -->
+		<li class="dropdown"><a class="dropdown-toggle"
+			data-toggle="dropdown" href="#"> <i class="fa fa-user fa-fw"></i>
+				<i class="fa fa-caret-down"></i>
+		</a>
+			<ul class="dropdown-menu dropdown-user">
+				<li><a href="#"><i class="fa fa-user fa-fw"></i> Perfil do
+						Usuario</a></li>
+				<li><a href="#"><i class="fa fa-gear fa-fw"></i>
+						Configuracoes</a></li>
+				<li class="divider"></li>
+				<li><a href="/logout"><i class="fa fa-sign-out fa-fw"></i>
+						Sair</a></li>
+			</ul> <!-- /.dropdown-user --></li>
+		<!-- /.dropdown -->
+	</ul>
+	<div class="navbar-default sidebar" role="navigation">
+		<div class="sidebar-nav navbar-collapse">
+			<ul class="nav" id="side-menu">
+
+				<li sec:authorize="hasRole('ROLE_ADMIN')"><a href="#"><i
+						class="fa fa-edit fa-fw"></i>Administracao<span class="fa arrow"></span></a>
+					<ul class="nav nav-second-level">
+						<li><a href="#" onclick="menuOnClick('/estado')">Estados</a></li>
+						<li><a href="#" onclick="menuOnClick('/cidade')">Cidades</a></li>
+						<li><a href="#" onclick="menuOnClick('/atividade')">Atividades</a></li>
+						<li><a href="#" onclick="menuOnClick('/cobertura')">Coberturas</a></li>
+						<li><a href="#" onclick="menuOnClick('/gravidade')">Gravidade</a></li>
+						<li><a href="#" onclick="menuOnClick('/naoConformidade')">Nao Conformidades</a></li>
+						<li><a href="#" onclick="menuOnClick('/permissoes')">Permissoes</a></li>
+						<li><a href="#" onclick="menuOnClick('/ramo')">Ramos</a></li>
+						<li><a href="#" onclick="menuOnClick('/status')">Status</a></li>
+						<li><a href="#" onclick="menuOnClick('/tipoInspecao')">Tipo de Inspecao</a></li>
+						<li><a href="#" onclick="menuOnClick('/tipoLogradouro')">Tipo de Logradouro</a></li>
+						<li><a href="#" onclick="menuOnClick('/escritorio')">Escritorios</a></li>
+						<li><a href="#" onclick="menuOnClick('/funcionario')">Funcionario</a></li>
+					</ul> <!-- /.nav-second-level --></li>
+
+				<li sec:authorize="hasRole('ROLE_USER')"><a href="#"><i
+						class="fa fa-sitemap fa-fw"></i> Inspecoes Seguros<span
+						class="fa arrow"></span></a>
+					<ul class="nav nav-second-level">
+						<li><a href="#">Nova Inspecao</a></li>
+						<li><a href="#">Consulta<span class="fa arrow"></span></a>
+							<ul class="nav nav-third-level">
+								<li><a href="#" >Por Status</a></li>
+								<li><a href="#">Por Agendamento</a></li>
+								<li><a href="#">Por Numero Cliente</a></li>
+								<li><a href="#">Por Cliente</a></li>
+							</ul> <!-- /.nav-third-level --></li>
+					</ul> <!-- /.nav-second-level --></li>
+			
+				<li><a href="#"><i class="fa fa-edit fa-fw"></i> Publico<span
+						class="fa arrow"></span></a>
+					<ul class="nav nav-second-level">
+						<li><a href="#">Dado 1</a></li>
+						<li><a href="#">Dado 2</a></li>
+					</ul> <!-- /.nav-second-level --></li>
+			</ul>
+		</div>
+		<!-- /.sidebar-collapse -->
+	</div>
+</nav>

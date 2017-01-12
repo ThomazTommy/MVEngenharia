@@ -69,7 +69,7 @@ public class EscritorioController {
     @RequestMapping(value="/escritorio", params={"save"})
     public String saveEscritorio(final Escritorio escritorio, final BindingResult bindingResult, final ModelMap model) {
         if (bindingResult.hasErrors()) {
-            return "escritorio";
+            return "escritorio/escritorio";
         }
         this.escritorioService.addOrUpdate(escritorio);
         model.clear();

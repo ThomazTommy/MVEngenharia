@@ -1,0 +1,59 @@
+<div class="row">
+	<div class="col-lg-6">
+
+		<div class="listaCoberturas" th:unless="${#lists.isEmpty(allCoberturas)}">
+			<h2 th:text="#{titulo.listaCoberturas}">Lista de Coberturas</h2>
+			<div class="panel-body">
+				<div class="table-responsive">
+					<table class="table table-striped table-bordered table-hover">
+						<thead>
+							<tr>
+								<th th:text="#{cobertura.idCobertura}">Id</th>
+								<th th:text="#{cobertura.descCobertura}">Descrição</th>
+								<th>Remover</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="ass : ${allCoberturas}">
+								<td th:text="${ass.idCobertura}">1</td>
+								<td th:text="${ass.descCobertura}">descCobertura</td>
+								<td><a href="#"
+									th:onclick="'executaAjaxGet(\'/cobertura/remover/'+ ${ass.idCobertura} + '\',\'page-wrapper\',\'\',\'\');'"><span
+										class="glyphicon glyphicon-remove"></span></a></td>
+
+							</tr>
+						</tbody>
+					</table>
+				</div><!-- table responsive -->
+			</div><!-- panel body -->
+
+		</div><!-- Lista Coberturas -->
+		</div><!-- col-lg-6 -->
+		</div><!-- row -->
+		<div class="row">
+	<div class="col-lg-6">
+		<div>
+			<h2 th:text="#{titulo.novoCobertura}">Add Novo Cobertura</h2>
+			<form role="form" class='usaAjax' action="#" th:action="@{/cobertura}"
+				th:object="${cobertura}" method="post">
+				<fieldset>
+					<legend th:text="#{cobertura.dados}">Dados do Cobertura</legend>
+					<ul th:if="${#fields.hasErrors('*')}" class="errorlist">
+						<li th:each="err : ${#fields.errors('*')}" th:text="${err}">Dados
+							Incorretos</li>
+					</ul>
+					<div class="form-group">
+						<label for="nomeCobertura"> <span
+							th:text="#{cobertura.descCobertura}">descCobertura</span>
+						</label> <input class="form-control" type="text" th:field="*{descCobertura}"
+							th:errorclass="fieldError" />
+					</div>
+										
+						<button class="btn btn-default" type="submit" name="save" onclick="formSubmitClick(this,'page-wrapper')"
+							th:text="#{cobertura.salvar}">Add Cobertura</button>
+					
+				</fieldset>
+			</form>
+		</div>
+	</div>
+</div>

@@ -20,26 +20,32 @@
 	<div id="wrapper">
 
 		<!-- Navegações -->
-		    <div id="navegacao" th:replace="fragments/_navegacao" />
-			
+		<div id="navegacao" th:replace="fragments/_navegacao" />
 
-	
+
+
 		<div id="page-wrapper">
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-lg-12">
-					<h1 class="page-header">Moraes Velleda</h1>
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-lg-12">
+						<h1 class="page-header">Moraes Velleda</h1>
+					</div>
+					<!-- /.col-lg-12 -->
 				</div>
-				<!-- /.col-lg-12 -->
+				<h1>Moraes Velleda</h1>
 			</div>
-			<h1>Moraes Velleda</h1>
-		</div>
 		</div>
 		<!-- /#page-wrapper -->
 
 	</div>
 	<!-- /#wrapper -->
-
+	<div id="resultLoading" style="display: none">
+		<div>
+			<img src="/static/images/ajax-loader.gif"></img>
+			<div>Carregando</div>
+		</div>
+		<div class="bg"></div>
+	</div>
 
 	<div th:replace="fragments/_scripts" />
 

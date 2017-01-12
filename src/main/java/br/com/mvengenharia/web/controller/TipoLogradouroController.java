@@ -37,7 +37,7 @@ public class TipoLogradouroController {
     @RequestMapping(value="/tipoLogradouro", params={"save"})
     public String saveTipoLogradouro(final TipoLogradouro tipoLogradouro, final BindingResult bindingResult, final ModelMap model) {
         if (bindingResult.hasErrors()) {
-            return "tipoLogradouro";
+            return "tipoLogradouro/tipoLogradouro";
         }
         this.tipoLogradouroService.addOrUpdate(tipoLogradouro);
         model.clear();

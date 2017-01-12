@@ -35,7 +35,7 @@ public class Inspecao implements Serializable {
 
 	private int qtdBlocos;
 
-	private byte roubo;
+	private boolean roubo;
 
 	private BigDecimal telefoneContato;
 
@@ -79,7 +79,7 @@ public class Inspecao implements Serializable {
 	private Ramo ramo;
 
 	//bi-directional many-to-one association to Endereco
-	@ManyToOne
+	@OneToOne
 	@JoinColumn(name="idEndereco")
 	private Endereco endereco;
 
@@ -89,7 +89,10 @@ public class Inspecao implements Serializable {
 	private Status status;
 
 	//bi-directional many-to-one association to Segurado
-	@ManyToOne
+	@ManyToOne(cascade={CascadeType.DETACH,
+            CascadeType.MERGE,
+            CascadeType.REFRESH,
+            CascadeType.PERSIST})
 	@JoinColumn(name="idSegurado")
 	private Segurado segurado;
 
@@ -184,11 +187,11 @@ public class Inspecao implements Serializable {
 		this.qtdBlocos = qtdBlocos;
 	}
 
-	public byte getRoubo() {
+	public boolean getRoubo() {
 		return this.roubo;
 	}
 
-	public void setRoubo(byte roubo) {
+	public void setRoubo(boolean roubo) {
 		this.roubo = roubo;
 	}
 

@@ -47,7 +47,7 @@ public class NaoConformidadeController {
     @RequestMapping(value="/naoConformidade", params={"save"})
     public String saveNaoConformidade(final NaoConformidade naoConformidade, final BindingResult bindingResult, final ModelMap model) {
         if (bindingResult.hasErrors()) {
-            return "naoConformidade";
+            return "naoConformidade/naoConformidade";
         }
         this.naoConformidadeService.addOrUpdate(naoConformidade);
         model.clear();

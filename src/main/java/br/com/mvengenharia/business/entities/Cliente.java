@@ -5,10 +5,6 @@ import javax.persistence.*;
 import java.util.List;
 
 
-/**
- * The persistent class for the Cliente database table.
- * 
- */
 @Entity
 @NamedQuery(name="Cliente.findAll", query="SELECT c FROM Cliente c")
 public class Cliente implements Serializable {
@@ -18,12 +14,15 @@ public class Cliente implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long idCliente;
 
-	private String nomeCliente;
+	private String descCliente;
 
 	private int prazoCliente;
 
 	//bi-directional many-to-many association to Ramo
-	@ManyToMany
+	@ManyToMany(cascade={CascadeType.DETACH,
+            CascadeType.MERGE,
+            CascadeType.REFRESH,
+            CascadeType.PERSIST})
 	@JoinTable(
 		name="Cliente_Ramos"
 		, joinColumns={
@@ -36,7 +35,10 @@ public class Cliente implements Serializable {
 	private List<Ramo> ramos;
 
 	//bi-directional many-to-many association to TipoInspecao
-	@ManyToMany
+	@ManyToMany(cascade={CascadeType.DETACH,
+            CascadeType.MERGE,
+            CascadeType.REFRESH,
+            CascadeType.PERSIST})
 	@JoinTable(
 		name="Cliente_TipoInspecao"
 		, joinColumns={
@@ -60,12 +62,12 @@ public class Cliente implements Serializable {
 		this.idCliente = idCliente;
 	}
 
-	public String getNomeCliente() {
-		return this.nomeCliente;
+	public String getDescCliente() {
+		return this.descCliente;
 	}
 
-	public void setNomeCliente(String nomeCliente) {
-		this.nomeCliente = nomeCliente;
+	public void setDescCliente(String descCliente) {
+		this.descCliente = descCliente;
 	}
 
 	public int getPrazoCliente() {

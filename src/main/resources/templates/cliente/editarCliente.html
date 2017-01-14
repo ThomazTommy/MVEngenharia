@@ -1,0 +1,58 @@
+
+<div class="row">
+	<div class="col-lg-6">
+		<div>
+			<h2 th:text="#{titulo.editarCliente}">Add Novo Cliente</h2>
+			<form role="form" class='usaAjax' action="#"
+				th:action="@{/cliente/editar}" th:object="${cliente}" method="post">
+				<fieldset>
+					<input type="hidden" th:field="*{idCliente}" />
+					<legend th:text="#{cliente.dados}">Dados do Cliente</legend>
+					<ul th:if="${#fields.hasErrors('*')}" class="errorlist">
+						<li th:each="err : ${#fields.errors('*')}" th:text="${err}">Dados
+							Incorretos</li>
+					</ul>
+					<div class="form-group">
+						<label for="descCliente"> <span
+							th:text="#{cliente.descCliente}">descCliente</span>
+						</label> <input class="form-control" type="text" th:field="*{descCliente}"
+							th:errorclass="fieldError" />
+					</div>
+					<div class="form-group">
+						<label for="prazoCliente"> <span
+							th:text="#{cliente.prazoCliente}">descCliente</span>
+						</label> <input class="form-control" type="text"
+							th:field="*{prazoCliente}" th:errorclass="fieldError" />
+					</div>
+					<div class="form-group">
+						<label for="ramos"><span th:text="#{cliente.ramos}">Ramos</span></label>
+						<div class="checkbox" th:each="obj : ${allRamos}">
+							<label> <input type="checkbox" th:field="*{ramos}"
+								th:value="${obj.idRamo}" /> <span
+								th:for="${#ids.prev('ramos')}" th:text="${obj.descRamo}">ramos</span></label>
+						</div>
+
+					</div>
+					<div class="form-group">
+						<label for="tipoInspecaos"><span
+							th:text="#{cliente.tipoInspecaos}">Tipos de Inspecao</span></label>
+						<div class="checkbox" th:each="obj : ${allTipoInspecaos}">
+							<label> <input type="checkbox"
+								th:field="*{tipoInspecaos}" th:value="${obj.idTipoInspecao}" />
+								<span th:for="${#ids.prev('tipoInspecaos')}"
+								th:text="${obj.descTipoInspecao}">Tipos de Inspecao</span></label>
+						</div>
+
+					</div>
+
+
+					<button class="btn btn-default" type="submit" name="save"
+						onclick="formSubmitClick(this,'page-wrapper')"
+						th:text="#{cliente.salvar}">Add Cliente</button>
+
+				</fieldset>
+			</form>
+		</div>
+	</div>
+</div>
+<div id="divModal" th:include="fragments/_modal"></div>

@@ -1,5 +1,5 @@
 <div class="row">
-	<div class="col-lg-6">
+	<div class="col-lg-12">
 
 		<div class="listaTipoLogradouros" th:unless="${#lists.isEmpty(allTipoLogradouros)}">
 			<h2 th:text="#{titulo.listaTipoLogradouros}">Lista de TipoLogradouros</h2>
@@ -31,7 +31,7 @@
 		</div><!-- col-lg-6 -->
 		</div><!-- row -->
 		<div class="row">
-	<div class="col-lg-12">
+	<div class="col-lg-6">
 		<div>
 			<h2 th:text="#{titulo.novoTipoLogradouro}">Add Novo TipoLogradouro</h2>
 			<form role="form" class='usaAjax' action="#" th:action="@{/tipoLogradouro}"

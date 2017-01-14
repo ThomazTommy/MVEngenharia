@@ -21,9 +21,9 @@
 		</a>
 			<ul class="dropdown-menu dropdown-user">
 				<li><a href="#"><i class="fa fa-user fa-fw"></i> Perfil do
-						Usuario</a></li>
+						Usuário</a></li>
 				<li><a href="#"><i class="fa fa-gear fa-fw"></i>
-						Configuracoes</a></li>
+						Configurações</a></li>
 				<li class="divider"></li>
 				<li><a href="/logout"><i class="fa fa-sign-out fa-fw"></i>
 						Sair</a></li>
@@ -35,38 +35,40 @@
 			<ul class="nav" id="side-menu">
 
 				<li sec:authorize="hasRole('ROLE_ADMIN')"><a href="#"><i
-						class="fa fa-edit fa-fw"></i>Administracao<span class="fa arrow"></span></a>
+						class="fa fa-edit fa-fw"></i>Administração<span class="fa arrow"></span></a>
 					<ul class="nav nav-second-level">
 						<li><a href="#" onclick="menuOnClick('/estado')">Estados</a></li>
 						<li><a href="#" onclick="menuOnClick('/cidade')">Cidades</a></li>
 						<li><a href="#" onclick="menuOnClick('/atividade')">Atividades</a></li>
 						<li><a href="#" onclick="menuOnClick('/cobertura')">Coberturas</a></li>
 						<li><a href="#" onclick="menuOnClick('/gravidade')">Gravidade</a></li>
-						<li><a href="#" onclick="menuOnClick('/naoConformidade')">Nao Conformidades</a></li>
-						<li><a href="#" onclick="menuOnClick('/permissoes')">Permissoes</a></li>
+						<li><a href="#" onclick="menuOnClick('/naoConformidade')">Não Conformidades</a></li>
+						<li><a href="#" onclick="menuOnClick('/permissoes')">Permissões</a></li>
 						<li><a href="#" onclick="menuOnClick('/ramo')">Ramos</a></li>
 						<li><a href="#" onclick="menuOnClick('/status')">Status</a></li>
-						<li><a href="#" onclick="menuOnClick('/tipoInspecao')">Tipo de Inspecao</a></li>
+						<li><a href="#" onclick="menuOnClick('/tipoInspecao')">Tipo de Inspeção</a></li>
 						<li><a href="#" onclick="menuOnClick('/tipoLogradouro')">Tipo de Logradouro</a></li>
-						<li><a href="#" onclick="menuOnClick('/escritorio')">Escritorios</a></li>
-						<li><a href="#" onclick="menuOnClick('/funcionario')">Funcionario</a></li>
+						<li><a href="#" onclick="menuOnClick('/escritorio')">Escritórios</a></li>
+						<li><a href="#" onclick="menuOnClick('/funcionario')">Funcionários</a></li>
+						<li><a href="#" onclick="menuOnClick('/cliente')">Clientes</a></li>
 					</ul> <!-- /.nav-second-level --></li>
 
-				<li sec:authorize="hasRole('ROLE_USER')"><a href="#"><i
-						class="fa fa-sitemap fa-fw"></i> Inspecoes Seguros<span
+				<li sec:authorize="hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')"><a href="#"><i
+						class="fa fa-sitemap fa-fw"></i> Inspeções de Seguros<span
 						class="fa arrow"></span></a>
 					<ul class="nav nav-second-level">
-						<li><a href="#">Nova Inspecao</a></li>
+						<li><a href="#">Nova Inspeção</a></li>
 						<li><a href="#">Consulta<span class="fa arrow"></span></a>
 							<ul class="nav nav-third-level">
-								<li><a href="#" >Por Status</a></li>
+								<li><a href="#">Por Status</a></li>
 								<li><a href="#">Por Agendamento</a></li>
-								<li><a href="#">Por Numero Cliente</a></li>
+								<li><a href="#">Por Inspeção</a></li>
+								<li><a href="#">Por Número da Proposta</a></li>
 								<li><a href="#">Por Cliente</a></li>
 							</ul> <!-- /.nav-third-level --></li>
 					</ul> <!-- /.nav-second-level --></li>
 			
-				<li><a href="#"><i class="fa fa-edit fa-fw"></i> Publico<span
+				<li><a href="#"><i class="fa fa-edit fa-fw"></i> Público<span
 						class="fa arrow"></span></a>
 					<ul class="nav nav-second-level">
 						<li><a href="#">Dado 1</a></li>

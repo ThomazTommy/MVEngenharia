@@ -1,5 +1,5 @@
 <div class="row">
-	<div class="col-lg-6">
+	<div class="col-lg-12">
 
 		<div class="listaRamos" th:unless="${#lists.isEmpty(allRamos)}">
 			<h2 th:text="#{titulo.listaRamos}">Lista de Ramos</h2>
@@ -31,7 +31,7 @@
 		</div><!-- col-lg-6 -->
 		</div><!-- row -->
 		<div class="row">
-	<div class="col-lg-12">
+	<div class="col-lg-6">
 		<div>
 			<h2 th:text="#{titulo.novoRamo}">Add Novo Ramo</h2>
 			<form role="form" class='usaAjax' action="#" th:action="@{/ramo}"

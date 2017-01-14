@@ -25,6 +25,9 @@ public class FuncionarioService {
     	return this.funcionarioRepository.findByCpf(cpf);
     }
     
+    public Funcionario findOne(String cpf){
+    	return this.funcionarioRepository.findOne(cpf);
+    }
     
     public Funcionario findByNomeFuncionario(String name){
     	return this.funcionarioRepository.findByNomeFuncionario(name);

@@ -1,5 +1,5 @@
 <div class="row">
-	<div class="col-lg-6">
+	<div class="col-lg-12">
 
 		<div class="listaTipoDocumentos" th:unless="${#lists.isEmpty(allTipoDocumento)}">
 			<h2 th:text="#{titulo.listaTipoDocumento}">Lista de TipoDocumento</h2>
@@ -31,7 +31,7 @@
 		</div><!-- col-lg-6 -->
 		</div><!-- row -->
 		<div class="row">
-	<div class="col-lg-12">
+	<div class="col-lg-6">
 		<div>
 			<h2 th:text="#{titulo.novoTipoDocumento}">Add Novo TipoDocumento</h2>
 			<form role="form" class="usaAjax" action="#" th:action="@{/tipoDocumento}"

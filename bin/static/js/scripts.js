@@ -56,6 +56,11 @@ function exibeModalEditaCidade(valor) {
 			.modal());
 }
 
+function exibeModalEditaCliente(valor) {
+	executaAjaxGet("/cliente/editar/" + valor, "corpoModal", "", $("#myModal")
+			.modal());
+}
+
 function exibeModalEditaStatus(valor) {
 	executaAjaxGet("/status/" + valor, "corpoModal", "", $("#myModal").modal());
 }

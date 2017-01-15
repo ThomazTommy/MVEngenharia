@@ -83,8 +83,9 @@
 		<h2 th:text="#{titulo.pesquisaPorStatus}">RE Interessado</h2>
 		<form role="form" class='usaAjax' action="#"
 			th:action="@{/processoCPOCPPPorStatus}" method="post">
-			<select class="form-control" name="parametroPesquisado" >
-				<option th:each="status : ${allStatus}" th:selected="(${status.idStatus} == ${parametroPesquisado})"
+			<select class="form-control" name="parametroPesquisado">
+				<option th:each="status : ${allStatus}"
+					th:selected="(${status.idStatus} == ${parametroPesquisado})"
 					th:value="${status.idStatus}" th:text="${status.descStatus}">Status</option>
 			</select>
 			<button class="btn btn-default" type="submit" name="pesquisaStatus"

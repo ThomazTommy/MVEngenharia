@@ -2,6 +2,9 @@ package br.com.mvengenharia.business.entities;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
@@ -29,6 +32,7 @@ public class Inspecao implements Serializable {
 
 	private int numInspecaoCliente;
 
+	@Min(value = 1, message="Número da Proposta não pode ser 0")
 	private int numPropostaCliente;
 
 	private String observacao;
@@ -64,31 +68,37 @@ public class Inspecao implements Serializable {
 	private List<InsercaoSistema> insercaoSistemas;
 
 	//bi-directional many-to-one association to TipoInspecao
+	@NotNull(message="Campo Tipo de Inspecao não pode ficar vazio")
 	@ManyToOne
 	@JoinColumn(name="idTipoInspecao")
 	private TipoInspecao tipoInspecao;
 
 	//bi-directional many-to-one association to Cliente
+	@NotNull(message="Campo Cliente não pode ficar vazio")
 	@ManyToOne
 	@JoinColumn(name="idCliente")
 	private Cliente cliente;
 
 	//bi-directional many-to-one association to Ramo
+	@NotNull(message="Ramo deve ser preenchido")
 	@ManyToOne
 	@JoinColumn(name="idRamo")
 	private Ramo ramo;
 
 	//bi-directional many-to-one association to Endereco
-	@OneToOne
+
+	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="idEndereco")
 	private Endereco endereco;
 
 	//bi-directional many-to-one association to Status
+	@NotNull(message="Status deve ser preenchido")
 	@ManyToOne
 	@JoinColumn(name="idStatus")
 	private Status status;
 
 	//bi-directional many-to-one association to Segurado
+	@NotNull(message="Dados do Segurado devem ser preenchidos")
 	@ManyToOne(cascade={CascadeType.DETACH,
             CascadeType.MERGE,
             CascadeType.REFRESH,
@@ -121,6 +131,7 @@ public class Inspecao implements Serializable {
 	private List<Vistoria> vistorias;
 
 	public Inspecao() {
+		
 	}
 
 	public long getIdInspecao() {

@@ -28,5 +28,6 @@ public class TipoInspecaoService {
     public void remove(final Long id){
     	this.tipoInspecaoRepository.delete(id);
     }
-    
+
+	
 }

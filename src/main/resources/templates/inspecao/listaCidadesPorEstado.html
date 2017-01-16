@@ -1,0 +1,7 @@
+<label for="endereco.cidade"> <span
+	th:text="#{inspecao.endereco.cidade}">cidade</span>
+</label>
+<select class="form-control" id="endereco.cidade" name="endereco.cidade">
+	<option th:each="cidade : ${listaCidades}"
+		th:value="${cidade.idCidade}" th:text="${cidade.nomeCidade}">Cidade</option>
+</select>

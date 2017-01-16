@@ -15,4 +15,8 @@ ul.errorlist li {
     margin: 3px 0px;
 }
 
+.semBorda {
+	border-style: hidden;
+}
+
 

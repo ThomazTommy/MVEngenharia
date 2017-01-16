@@ -48,6 +48,7 @@ public class Endereco implements Serializable {
 
 	
 	public Endereco() {
+	
 	}
 
 	public long getIdEndereco() {

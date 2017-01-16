@@ -29,4 +29,8 @@ public class InspecaoService {
     	this.inspecaoRepository.delete(id);
     }
     
+    public Inspecao findOne(Long id){
+    	return this.inspecaoRepository.findOne(id);
+    }
+    
 }

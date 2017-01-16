@@ -14,6 +14,7 @@ public class GlobalExceptionHandler {
 
 	@ExceptionHandler(value = Exception.class)
 	public ModelAndView handleException(HttpServletRequest request, Exception e) {
+		System.out.println(e.getMessage());
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("error/error");
 		mav.addObject("status", "500");

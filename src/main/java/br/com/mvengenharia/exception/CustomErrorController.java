@@ -22,9 +22,9 @@ public class CustomErrorController implements ErrorController {
     private ErrorAttributes errorAttributes;
 
     @RequestMapping(value = PATH)
-    ModelAndView error(HttpServletRequest request, HttpServletResponse response) {
-    	Map<String,Object> errorMap = getErrorAttributes(request, true);
-    	
+    ModelAndView error(HttpServletRequest request, HttpServletResponse response, Exception e) {
+    	System.out.println(e.getMessage());
+    	Map<String,Object> errorMap = getErrorAttributes(request, true);    	
         ModelAndView mav = new ModelAndView();
         mav.setViewName(PATH + "/error");
         mav.addObject("url", errorMap.get("path"));

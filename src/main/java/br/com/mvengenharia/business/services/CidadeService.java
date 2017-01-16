@@ -19,7 +19,11 @@ public class CidadeService {
         
     public Iterable<Cidade> findAll() {
         return this.cidadeRepository.findAll();
-    }    
+    }
+       
+    public Iterable<Cidade> findByIdEstado(Long idEstado) {
+        return this.cidadeRepository.findByIdEstado(idEstado);
+    }
       
     public void addOrUpdate(final Cidade cidade) {
         this.cidadeRepository.save(cidade);

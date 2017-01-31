@@ -1,11 +1,14 @@
 package br.com.mvengenharia.business.entities;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
+
 import javax.persistence.*;
+import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
-import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -23,10 +26,9 @@ public class Inspecao implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long idInspecao;
 
+	@NotNull(message="Data não pode ser nula")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dtSolicitacaoInspecao;
-
-	private String nomeContato;
 
 	private String nomeCorretor;
 
@@ -39,13 +41,14 @@ public class Inspecao implements Serializable {
 
 	private int qtdBlocos;
 
+	@NotNull
 	private boolean roubo;
 
-	private BigDecimal telefoneContato;
+	@Pattern(regexp = "\\([1-9]{2}\\) [2-9][0-9]{3,4}\\-[0-9]{4}", message = "O telefone deve estar no seguinte formato: (99) 99999-9999 ou (99) 9999-9999")
+	private String telefoneCorretor;
 
-	private BigDecimal telefoneCorretor;
-
-	private double valorTotalRisco;
+	@NotNull(message="Valor do risco não pode ficar vazio.")
+	private BigDecimal valorTotalRisco;
 
 	//bi-directional many-to-one association to Agendamento
 	@OneToMany(mappedBy="inspecao")
@@ -86,7 +89,7 @@ public class Inspecao implements Serializable {
 	private Ramo ramo;
 
 	//bi-directional many-to-one association to Endereco
-
+	@Valid
 	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="idEndereco")
 	private Endereco endereco;
@@ -98,7 +101,7 @@ public class Inspecao implements Serializable {
 	private Status status;
 
 	//bi-directional many-to-one association to Segurado
-	@NotNull(message="Dados do Segurado devem ser preenchidos")
+	@Valid
 	@ManyToOne(cascade={CascadeType.DETACH,
             CascadeType.MERGE,
             CascadeType.REFRESH,
@@ -150,14 +153,7 @@ public class Inspecao implements Serializable {
 		this.dtSolicitacaoInspecao = dtSolicitacaoInspecao;
 	}
 
-	public String getNomeContato() {
-		return this.nomeContato;
-	}
-
-	public void setNomeContato(String nomeContato) {
-		this.nomeContato = nomeContato;
-	}
-
+	
 	public String getNomeCorretor() {
 		return this.nomeCorretor;
 	}
@@ -206,27 +202,20 @@ public class Inspecao implements Serializable {
 		this.roubo = roubo;
 	}
 
-	public BigDecimal getTelefoneContato() {
-		return this.telefoneContato;
-	}
-
-	public void setTelefoneContato(BigDecimal telefoneContato) {
-		this.telefoneContato = telefoneContato;
-	}
-
-	public BigDecimal getTelefoneCorretor() {
+	
+	public String getTelefoneCorretor() {
 		return this.telefoneCorretor;
 	}
 
-	public void setTelefoneCorretor(BigDecimal telefoneCorretor) {
+	public void setTelefoneCorretor(String telefoneCorretor) {
 		this.telefoneCorretor = telefoneCorretor;
 	}
 
-	public double getValorTotalRisco() {
+	public BigDecimal getValorTotalRisco() {
 		return this.valorTotalRisco;
 	}
 
-	public void setValorTotalRisco(double valorTotalRisco) {
+	public void setValorTotalRisco(BigDecimal valorTotalRisco) {
 		this.valorTotalRisco = valorTotalRisco;
 	}
 

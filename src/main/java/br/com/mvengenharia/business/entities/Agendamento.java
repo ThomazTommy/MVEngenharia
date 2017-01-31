@@ -31,6 +31,30 @@ public class Agendamento implements Serializable {
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dtConfirmacao;
+	
+	private String nomeContato;
+	
+	private String telefoneContato;
+
+	public String getNomeContato() {
+		return nomeContato;
+	}
+
+	public void setNomeContato(String nomeContato) {
+		this.nomeContato = nomeContato;
+	}
+
+	public String getTelefoneContato() {
+		return telefoneContato;
+	}
+
+	public void setTelefoneContato(String telefoneContato) {
+		this.telefoneContato = telefoneContato;
+	}
+
+	public void setIdAgendamento(long idAgendamento) {
+		this.idAgendamento = idAgendamento;
+	}
 
 	//bi-directional many-to-one association to Inspecao
 	@ManyToOne

@@ -2,6 +2,8 @@ package br.com.mvengenharia.business.entities;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 
 /**
@@ -25,6 +27,8 @@ public class Endereco implements Serializable {
 
 	private double latitude;
 
+	@NotNull(message="O logradouro deve ser preenchido")
+	@Size(min = 1, message="O logradouro deve ser preenchido")
 	private String logradouro;
 
 	private double longitude;
@@ -32,11 +36,13 @@ public class Endereco implements Serializable {
 	private String numero;
 
 	//bi-directional many-to-one association to Cidade
+	@NotNull(message="Cidade deve ser preenchida")
 	@ManyToOne
 	@JoinColumn(name="idCidade")
 	private Cidade cidade;
 
 	//bi-directional many-to-one association to Estado
+	@NotNull(message="Estado deve ser preenchido")
 	@ManyToOne
 	@JoinColumn(name="idEstado")
 	private Estado estado;

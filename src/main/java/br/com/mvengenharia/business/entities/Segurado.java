@@ -2,6 +2,10 @@ package br.com.mvengenharia.business.entities;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -19,9 +23,13 @@ public class Segurado implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idSegurado;
 
+	@NotNull(message = "CPF ou CNPJ nos formatos 999.999.999-99 ou 99.999.999/9999-99")
+	@Pattern(regexp="([0-9]{3}\\.[0-9]{3}\\.[0-9]{3}\\-[0-9]{2}|[0-9]{2}\\.[0-9]{3}\\.[0-9]{3}\\/[0-9]{4}\\-[0-9]{2})", message = "CPF ou CNPJ nos formatos 999.999.999-99 ou 99.999.999/9999-99")
 	@Column(name="cpf_cnpj")
-	private BigDecimal cpfCnpj;
+	private String cpfCnpj;
 
+	@NotNull(message = "Nome do Segurado deve ser preenchido")
+	@Size(min = 1, message = "Nome do Segurado deve ser preenchido")
 	private String nomeSegurado;
 
 	//bi-directional many-to-one association to Inspecao
@@ -39,11 +47,11 @@ public class Segurado implements Serializable {
 		this.idSegurado = idSegurado;
 	}
 
-	public BigDecimal getCpfCnpj() {
+	public String getCpfCnpj() {
 		return this.cpfCnpj;
 	}
 
-	public void setCpfCnpj(BigDecimal cpfCnpj) {
+	public void setCpfCnpj(String cpfCnpj) {
 		this.cpfCnpj = cpfCnpj;
 	}
 

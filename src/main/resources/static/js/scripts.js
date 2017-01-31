@@ -161,6 +161,61 @@ function formSubmitClick(e, destino) {
 	return false;
 };
 
+function mascararTelefone(objeto){
+	var v = objeto.value;
+	v = v.replace(/\D/g,""); //Remove tudo o que não é dígito
+	v = v.replace(/^(\d{2})(\d)/g,"($1) $2"); //Coloca parênteses em volta dos dois primeiros dígitos
+	v = v.replace(/(\d)(\d{4})$/,"$1-$2"); //Coloca hífen entre o quarto e o quinto dígitos
+	objeto.value = v;
+}
+
+function mascaraDinheiro(objeto) {
+	var v = objeto.value;
+	v=v.replace(/\D/g,'');
+    v=v.replace(/(\d{1,2})$/, ',$1');  
+    v=v.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');  
+    v = v != ''?'R$ '+v:'';
+    objeto.value = v;
+}
+
+function mascaraCpfCnpj(objeto){
+	 
+	var v = objeto.value;
+    //Remove tudo o que não é dígito
+    v=v.replace(/\D/g,"")
+ 
+    if (v.length <= 11) { //CPF
+ 
+        //Coloca um ponto entre o terceiro e o quarto dígitos
+        v=v.replace(/(\d{3})(\d)/,"$1.$2")
+ 
+        //Coloca um ponto entre o terceiro e o quarto dígitos
+        //de novo (para o segundo bloco de números)
+        v=v.replace(/(\d{3})(\d)/,"$1.$2")
+ 
+        //Coloca um hífen entre o terceiro e o quarto dígitos
+        v=v.replace(/(\d{3})(\d{1,2})$/,"$1-$2")
+ 
+    } else { //CNPJ
+ 
+        //Coloca ponto entre o segundo e o terceiro dígitos
+        v=v.replace(/^(\d{2})(\d)/,"$1.$2")
+ 
+        //Coloca ponto entre o quinto e o sexto dígitos
+        v=v.replace(/^(\d{2})\.(\d{3})(\d)/,"$1.$2.$3")
+ 
+        //Coloca uma barra entre o oitavo e o nono dígitos
+        v=v.replace(/\.(\d{3})(\d)/,".$1/$2")
+ 
+        //Coloca um hífen depois do bloco de quatro dígitos
+        v=v.replace(/(\d{4})(\d)/,"$1-$2")
+ 
+    }
+ 
+    objeto.value=v;
+ 
+}
+
 function somenteNumeros(e) {
 	var tecla = e.charCode;
 	if ((tecla > 47 && tecla < 58))

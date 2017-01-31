@@ -20,7 +20,11 @@ public class Relatorio implements Serializable {
 	private long idRelatorio;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date dataRelatorio;
+	private Date dataInicioRelatorio;
+	
+
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date dataFimRelatorio;
 
 	//bi-directional many-to-one association to Inspecao
 	@ManyToOne
@@ -39,20 +43,28 @@ public class Relatorio implements Serializable {
 	public Relatorio() {
 	}
 
+	public Date getDataInicioRelatorio() {
+		return dataInicioRelatorio;
+	}
+
+	public void setDataInicioRelatorio(Date dataInicioRelatorio) {
+		this.dataInicioRelatorio = dataInicioRelatorio;
+	}
+
+	public Date getDataFimRelatorio() {
+		return dataFimRelatorio;
+	}
+
+	public void setDataFimRelatorio(Date dataFimRelatorio) {
+		this.dataFimRelatorio = dataFimRelatorio;
+	}
+
 	public long getIdRelatorio() {
 		return this.idRelatorio;
 	}
 
 	public void setIdRelatorio(long idRelatorio) {
 		this.idRelatorio = idRelatorio;
-	}
-
-	public Date getDataRelatorio() {
-		return this.dataRelatorio;
-	}
-
-	public void setDataRelatorio(Date dataRelatorio) {
-		this.dataRelatorio = dataRelatorio;
 	}
 
 	public Inspecao getInspecao() {

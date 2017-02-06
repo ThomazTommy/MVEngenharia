@@ -1,5 +1,6 @@
 package br.com.mvengenharia.web.controller;
 
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.validation.Valid;
@@ -102,6 +103,10 @@ public class InspecaoController {
 			System.out.println(bindingResult.toString());
 			return "inspecao/inspecao";
 		}
+		Calendar c = Calendar.getInstance();
+		c.setTime(inspecao.getDtSolicitacaoInspecao());
+		c.add(Calendar.DATE, + this.clienteService.findOne(inspecao.getCliente().getIdCliente()).getPrazoCliente());
+		inspecao.setDtLimite(c.getTime());
 		this.inspecaoService.addOrUpdate(inspecao);
 		model.clear();
 		return "redirect:/inspecao";

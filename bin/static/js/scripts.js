@@ -76,7 +76,8 @@ function exibeModalEditaEstado(valor) {
 
 function atualizaListaCidades(enderecoGet, parametroGet, destino, funcaoAntes,
 		funcaoDepois) {
-	executaAjaxGet(enderecoGet + parametroGet, destino, funcaoAntes, funcaoDepois);
+	executaAjaxGet(enderecoGet + parametroGet, destino, funcaoAntes,
+			funcaoDepois);
 }
 
 function ajaxindicatorstart(text) {
@@ -161,59 +162,61 @@ function formSubmitClick(e, destino) {
 	return false;
 };
 
-function mascararTelefone(objeto){
+function mascararTelefone(objeto) {
 	var v = objeto.value;
-	v = v.replace(/\D/g,""); //Remove tudo o que não é dígito
-	v = v.replace(/^(\d{2})(\d)/g,"($1) $2"); //Coloca parênteses em volta dos dois primeiros dígitos
-	v = v.replace(/(\d)(\d{4})$/,"$1-$2"); //Coloca hífen entre o quarto e o quinto dígitos
+	v = v.replace(/\D/g, ""); // Remove tudo o que não é dígito
+	v = v.replace(/^(\d{2})(\d)/g, "($1) $2"); // Coloca parênteses em volta
+	// dos dois primeiros dígitos
+	v = v.replace(/(\d)(\d{4})$/, "$1-$2"); // Coloca hífen entre o quarto e o
+	// quinto dígitos
 	objeto.value = v;
 }
 
 function mascaraDinheiro(objeto) {
 	var v = objeto.value;
-	v=v.replace(/\D/g,'');
-    v=v.replace(/(\d{1,2})$/, ',$1');  
-    v=v.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');  
-    v = v != ''?'R$ '+v:'';
-    objeto.value = v;
+	v = v.replace(/\D/g, '');
+	v = v.replace(/(\d{1,2})$/, ',$1');
+	v = v.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
+	v = v != '' ? 'R$ ' + v : '';
+	objeto.value = v;
 }
 
-function mascaraCpfCnpj(objeto){
-	 
+function mascaraCpfCnpj(objeto) {
+
 	var v = objeto.value;
-    //Remove tudo o que não é dígito
-    v=v.replace(/\D/g,"")
- 
-    if (v.length <= 11) { //CPF
- 
-        //Coloca um ponto entre o terceiro e o quarto dígitos
-        v=v.replace(/(\d{3})(\d)/,"$1.$2")
- 
-        //Coloca um ponto entre o terceiro e o quarto dígitos
-        //de novo (para o segundo bloco de números)
-        v=v.replace(/(\d{3})(\d)/,"$1.$2")
- 
-        //Coloca um hífen entre o terceiro e o quarto dígitos
-        v=v.replace(/(\d{3})(\d{1,2})$/,"$1-$2")
- 
-    } else { //CNPJ
- 
-        //Coloca ponto entre o segundo e o terceiro dígitos
-        v=v.replace(/^(\d{2})(\d)/,"$1.$2")
- 
-        //Coloca ponto entre o quinto e o sexto dígitos
-        v=v.replace(/^(\d{2})\.(\d{3})(\d)/,"$1.$2.$3")
- 
-        //Coloca uma barra entre o oitavo e o nono dígitos
-        v=v.replace(/\.(\d{3})(\d)/,".$1/$2")
- 
-        //Coloca um hífen depois do bloco de quatro dígitos
-        v=v.replace(/(\d{4})(\d)/,"$1-$2")
- 
-    }
- 
-    objeto.value=v;
- 
+	// Remove tudo o que não é dígito
+	v = v.replace(/\D/g, "")
+
+	if (v.length <= 11) { // CPF
+
+		// Coloca um ponto entre o terceiro e o quarto dígitos
+		v = v.replace(/(\d{3})(\d)/, "$1.$2")
+
+		// Coloca um ponto entre o terceiro e o quarto dígitos
+		// de novo (para o segundo bloco de números)
+		v = v.replace(/(\d{3})(\d)/, "$1.$2")
+
+		// Coloca um hífen entre o terceiro e o quarto dígitos
+		v = v.replace(/(\d{3})(\d{1,2})$/, "$1-$2")
+
+	} else { // CNPJ
+
+		// Coloca ponto entre o segundo e o terceiro dígitos
+		v = v.replace(/^(\d{2})(\d)/, "$1.$2")
+
+		// Coloca ponto entre o quinto e o sexto dígitos
+		v = v.replace(/^(\d{2})\.(\d{3})(\d)/, "$1.$2.$3")
+
+		// Coloca uma barra entre o oitavo e o nono dígitos
+		v = v.replace(/\.(\d{3})(\d)/, ".$1/$2")
+
+		// Coloca um hífen depois do bloco de quatro dígitos
+		v = v.replace(/(\d{4})(\d)/, "$1-$2")
+
+	}
+
+	objeto.value = v;
+
 }
 
 function somenteNumeros(e) {
@@ -226,4 +229,118 @@ function somenteNumeros(e) {
 		else
 			return false;
 	}
+}
+
+function menuListaInspecoes(destino) {
+	$.ajax({
+		type : "GET",
+		url : destino,
+		beforeSend : '',
+
+		success : function(response) {
+			// we have the response
+			var x = document.getElementById('page-wrapper');
+			x.innerHTML = response;
+			loadDataTable();
+		},
+		complete : previnePadrao(),
+		error : function(xhr) {
+			alert("Um erro ocorreu: " + xhr.status + " - " + xhr.statusText);
+		}
+	});
+
+}
+
+function loadDataTable() {
+	var table = $('table#sample')
+			.DataTable(
+					{
+						"language" : {
+							"url" : "/static/js/Portuguese.json"
+						},
+						responsive : true,
+						'ajax' : '/inspecao/dtinspecao',
+						'serverSide' : true,
+						columns : [
+								{
+									data : 'idInspecao'
+								},
+								{
+									data : 'dtSolicitacaoInspecao',
+									render : function(data, type, row) {
+										return new Date(
+												row.dtSolicitacaoInspecao)
+												.toLocaleString();
+									}
+								},
+								{
+									data : 'dtLimite',
+									render : function(data, type, row) {
+										return new Date(row.dtLimite)
+												.toLocaleString();
+									}
+								},
+
+								{
+									data : 'cliente.descCliente'
+								},
+								{
+									data : 'endereco',
+									render : function(data, type, row) {
+										if (row.endereco) {
+											return row.endereco.tipoLogradouro.descTipoLogradouro
+													+ " "
+													+ row.endereco.logradouro
+													+ " "
+													+ row.endereco.numero
+													+ " - "
+													+ row.endereco.cidade.nomeCidade;
+										}
+										return '';
+									}
+								},
+								{
+									data : 'linkscolumn',
+									orderable : false,
+									searchable : false,
+									render : function(data, type, row) {
+										return '<a href="#" onclick = "executaAjaxGet(\'/inspecao/detalhaInspecao/'
+										+ row.idInspecao + '\',\'detalheInspecao\',\'\',\'\')"><span class="glyphicon glyphicon-eye-open"></span></a>'
+										+
+										'<a href="#" onclick = "executaAjaxGet(\'/inspecao/detalhaInspecao/'
+											+ row.idInspecao + '\',\'detalheInspecao\',\'\',\'\')"><span class="glyphicon glyphicon-calendar"></span></a>';
+									}
+								} ],
+						/*"fnDrawCallback" : function() {
+							$('#sample tbody td').on('click', function(e) {
+
+								var INFO_01 = table.row(this).data();
+
+								alert("INFO 1: " + INFO_01.idInspecao);
+
+							});
+						}
+						*/
+					});
+	/*
+	 * $('#sample tbody').on('click', 'tr', function() {
+	 * 
+	 * if ($(this).hasClass('selected')) { $(this).removeClass('selected'); }
+	 * else { table.$('tr.selected').removeClass('selected');
+	 * $(this).addClass('selected'); } table.fnGetData(this)[0]; alert(id);
+	 * 
+	 * });
+	 */
+
+	/*
+	 * $('select#role_selector').change(function() { var filter = '';
+	 * $('select#role_selector option:selected').each(function() { filter +=
+	 * $(this).text() + "+"; }); filter = filter.substring(0, filter.length -
+	 * 1); table.columns(2).search(filter).draw(); });
+	 * 
+	 * $('select#status_selector').change(function() { var filter = '';
+	 * $('select#status_selector option:selected').each(function() { filter +=
+	 * $(this).text() + "+"; }); filter = filter.substring(0, filter.length -
+	 * 1); table.columns(3).search(filter).draw(); });
+	 */
 }

@@ -3,6 +3,8 @@ package br.com.mvengenharia.business.entities;
 import java.io.Serializable;
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 
 /**
  * The persistent class for the CustoInspecao database table.
@@ -24,6 +26,7 @@ public class CustoInspecao implements Serializable {
 	private double valorDeslocamento;
 
 	//bi-directional many-to-one association to Inspecao
+	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name="idInspecao")
 	private Inspecao inspecao;

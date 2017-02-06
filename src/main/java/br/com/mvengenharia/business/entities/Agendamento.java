@@ -2,6 +2,9 @@ package br.com.mvengenharia.business.entities;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -57,6 +60,7 @@ public class Agendamento implements Serializable {
 	}
 
 	//bi-directional many-to-one association to Inspecao
+	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name="idInspecao")
 	private Inspecao inspecao;

@@ -2,6 +2,9 @@ package br.com.mvengenharia.business.entities;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import java.util.Date;
 
 
@@ -25,6 +28,7 @@ public class Designacao implements Serializable {
 	private Date dataDivulgacao;
 
 	//bi-directional many-to-one association to Inspecao
+	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name="idInspecao")
 	private Inspecao inspecao;

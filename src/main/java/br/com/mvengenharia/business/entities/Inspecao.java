@@ -9,6 +9,9 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -29,6 +32,18 @@ public class Inspecao implements Serializable {
 	@NotNull(message="Data não pode ser nula")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dtSolicitacaoInspecao;
+	
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date dtLimite;
+
+	public Date getDtLimite() {
+		return dtLimite;
+	}
+
+	public void setDtLimite(Date dtLimite) {
+		this.dtLimite = dtLimite;
+	}
 
 	private String nomeCorretor;
 
@@ -51,22 +66,27 @@ public class Inspecao implements Serializable {
 	private BigDecimal valorTotalRisco;
 
 	//bi-directional many-to-one association to Agendamento
+	@JsonManagedReference
 	@OneToMany(mappedBy="inspecao")
 	private List<Agendamento> agendamentos;
 
 	//bi-directional many-to-one association to CustoInspecao
+	@JsonManagedReference
 	@OneToMany(mappedBy="inspecao")
 	private List<CustoInspecao> custoInspecaos;
 
 	//bi-directional many-to-one association to Designacao
+	@JsonManagedReference
 	@OneToMany(mappedBy="inspecao")
 	private List<Designacao> designacaos;
 
 	//bi-directional many-to-one association to Honorario
+	@JsonManagedReference
 	@OneToOne(mappedBy="inspecao")
 	private Honorario honorario;
 
 	//bi-directional many-to-one association to InsercaoSistema
+	@JsonManagedReference
 	@OneToMany(mappedBy="inspecao")
 	private List<InsercaoSistema> insercaoSistemas;
 
@@ -101,6 +121,7 @@ public class Inspecao implements Serializable {
 	private Status status;
 
 	//bi-directional many-to-one association to Segurado
+	@JsonManagedReference
 	@Valid
 	@ManyToOne(cascade={CascadeType.DETACH,
             CascadeType.MERGE,
@@ -122,14 +143,17 @@ public class Inspecao implements Serializable {
 	private List<Inspecao_Cobertura> inspecaoCoberturas;
 
 	//bi-directional many-to-one association to Relatorio
+	@JsonManagedReference
 	@OneToMany(mappedBy="inspecao")
 	private List<Relatorio> relatorios;
 
 	//bi-directional many-to-one association to Revisao
+	@JsonManagedReference
 	@OneToMany(mappedBy="inspecao")
 	private List<Revisao> revisaos;
 
 	//bi-directional many-to-one association to Vistoria
+	@JsonManagedReference
 	@OneToMany(mappedBy="inspecao")
 	private List<Vistoria> vistorias;
 
@@ -330,6 +354,7 @@ public class Inspecao implements Serializable {
 
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
+
 	}
 
 	public Ramo getRamo() {

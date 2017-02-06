@@ -3,6 +3,8 @@ package br.com.mvengenharia.business.entities;
 import java.io.Serializable;
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 
 /**
  * The persistent class for the Honorario database table.
@@ -28,6 +30,7 @@ public class Honorario implements Serializable {
 	private double valorHonorarioCalculado;
 
 	//bi-directional many-to-one association to Inspecao
+	@JsonBackReference
 	@OneToOne
 	@JoinColumn(name="idInspecao")
 	private Inspecao inspecao;

@@ -6,6 +6,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -33,6 +35,7 @@ public class Segurado implements Serializable {
 	private String nomeSegurado;
 
 	//bi-directional many-to-one association to Inspecao
+	@JsonBackReference
 	@OneToMany(mappedBy="segurado")
 	private List<Inspecao> inspecaos;
 

@@ -2,6 +2,9 @@ package br.com.mvengenharia.business.entities;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import java.util.Date;
 
 
@@ -27,6 +30,7 @@ public class InsercaoSistema implements Serializable {
 	private Date dataHoraInsercao;
 
 	//bi-directional many-to-one association to Inspecao
+	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name="idInspecao")
 	private Inspecao inspecao;

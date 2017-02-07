@@ -110,7 +110,7 @@ public class Inspecao implements Serializable {
 
 	//bi-directional many-to-one association to Endereco
 	@Valid
-	@OneToOne(cascade=CascadeType.ALL)
+	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn(name="idEndereco")
 	private Endereco endereco;
 

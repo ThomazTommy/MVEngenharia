@@ -1,0 +1,74 @@
+<div class="row">
+	<div class="col-lg-12">
+
+		<div class="listaCidades" th:unless="${#lists.isEmpty(allCidades)}">
+			<h2 th:text="#{titulo.listaCidades}">Lista de Cidades</h2>
+			<div class="panel-body">
+				<div class="table-responsive">
+					<table class="table table-striped table-bordered table-hover">
+						<thead>
+							<tr>
+								<th th:text="#{cidade.idCidade}">Id</th>
+								<th th:text="#{cidade.nomeCidade}">Descrição</th>
+								<th th:text="#{cidade.estado}">NomeEstado</th>
+								<th>Remover</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="ass : ${allCidades}">
+								<td th:text="${ass.idCidade}">1</td>
+								<td th:text="${ass.nomeCidade}">descCidade</td>
+								<td th:text="${ass.estado.nomeEstado}">nomeEstado</td>
+								<td><a href="#"
+									th:onclick="'executaAjaxGet(\'/cidade/remover/'+ ${ass.idCidade} + '\',\'page-wrapper\',\'\',\'\');'"><span
+										class="glyphicon glyphicon-remove"></span></a></td>
+
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<!-- table responsive -->
+			</div>
+			<!-- panel body -->
+
+		</div>
+		<!-- Lista Cidades -->
+	</div>
+	<!-- col-lg-6 -->
+</div>
+<!-- row -->
+<div class="row">
+	<div class="col-lg-6">
+		<div>
+			<h2 th:text="#{titulo.novoCidade}">Add Novo Cidade</h2>
+			<form role="form" class='usaAjax' action="#" th:action="@{/cidade}"
+				th:object="${cidade}" method="post">
+				<fieldset>
+					<legend th:text="#{cidade.dados}">Dados do Cidade</legend>
+					<ul th:if="${#fields.hasErrors('*')}" class="errorlist">
+						<li th:each="err : ${#fields.errors('*')}" th:text="${err}">Dados
+							Incorretos</li>
+					</ul>
+					<div class="form-group">
+						<label for="nomeCidade"> <span
+							th:text="#{cidade.nomeCidade}">descCidade</span>
+						</label> <input class="form-control" type="text" th:field="*{nomeCidade}"
+							th:errorclass="fieldError" />
+					</div>
+					<div class="form-group">
+						<label for="estado" th:text="#{cidade.estado}">Estado</label> <select
+							class="form-control" th:field="*{estado}">
+							<option th:each="estado : ${allEstados}"
+								th:value="${estado.idEstado}" th:text="${estado.nomeEstado}">Estado</option>
+						</select>
+					</div>
+
+					<button class="btn btn-default" type="submit" name="save"
+						onclick="formSubmitClick(this,'page-wrapper')"
+						th:text="#{cidade.salvar}">Add Cidade</button>
+
+				</fieldset>
+			</form>
+		</div>
+	</div>
+</div>

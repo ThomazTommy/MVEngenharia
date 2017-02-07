@@ -1,0 +1,7 @@
+<label for="ramo"> <span
+	th:text="#{inspecao.ramo}">ramo</span>
+</label>
+<select class="form-control" id="ramo" name="ramo">
+	<option th:each="ramo : ${listaRamos}"
+		th:value="${ramo.idRamo}" th:text="${ramo.descRamo}">Ramo</option>
+</select>

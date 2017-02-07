@@ -17,6 +17,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
+        	.csrf()
+        		.ignoringAntMatchers("/dtinspecao/**")
+        		.and()
             .authorizeRequests()
                 .antMatchers("/static/**","/webjars/**","/favicon.ico").permitAll()
                 .anyRequest().authenticated()

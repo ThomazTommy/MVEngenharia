@@ -1,0 +1,58 @@
+<div class="row">
+	<div class="col-lg-12">
+
+		<div class="listaTipoDocumentos" th:unless="${#lists.isEmpty(allTipoDocumento)}">
+			<h2 th:text="#{titulo.listaTipoDocumento}">Lista de TipoDocumento</h2>
+			<div class="panel-body">
+				<div class="table-responsive">
+					<table class="table table-striped table-bordered table-hover">
+						<thead>
+							<tr>
+								<th th:text="#{tipoDocumento.idTipoDocumento}">Id</th>
+								<th th:text="#{tipoDocumento.descTipoDocumento}">Descrição</th>
+								<th th:text="#{tipoDocumento.remover}">Remover</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="ass : ${allTipoDocumento}">
+								<td th:text="${ass.idTipoDocumento}">1</td>
+								<td th:text="${ass.descTipoDocumento}">descTipoDocumento</td>
+								<td><a href="#"
+									th:onclick="'executaAjaxGet(\'/tipoDocumento/remover/'+ ${ass.idTipoDocumento} + '\',\'page-wrapper\',\'\',\'\');'"><span
+										class="glyphicon glyphicon-remove"></span></a></td>
+
+							</tr>
+						</tbody>
+					</table>
+				</div><!-- table responsive -->
+			</div><!-- panel body -->
+
+		</div><!-- Lista TipoDocumentos -->
+		</div><!-- col-lg-6 -->
+		</div><!-- row -->
+		<div class="row">
+	<div class="col-lg-6">
+		<div>
+			<h2 th:text="#{titulo.novoTipoDocumento}">Add Novo TipoDocumento</h2>
+			<form role="form" class="usaAjax" action="#" th:action="@{/tipoDocumento}"
+				th:object="${tipoDocumento}" method="post">
+				<fieldset>
+					<legend th:text="#{tipoDocumento.dados}">Dados do TipoDocumento</legend>
+					<ul th:if="${#fields.hasErrors('*')}" class="errorlist">
+						<li th:each="err : ${#fields.errors('*')}" th:text="${err}">Dados
+							Incorretos</li>
+					</ul>
+					<div class="form-group">
+						<label for="descTipoDocumento"> <span
+							th:text="#{tipoDocumento.descTipoDocumento}">descTipoDocumento</span>
+						</label> <input class="form-control" type="text" th:field="*{descTipoDocumento}"
+							th:errorclass="fieldError" />
+					</div>
+					<button class="btn btn-default" type="submit" name="save" onclick="formSubmitClick(this,'page-wrapper')"
+							th:text="#{tipoDocumento.salvar}">Add TipoDocumento</button>
+					
+				</fieldset>
+			</form>
+		</div>
+	</div>
+</div>

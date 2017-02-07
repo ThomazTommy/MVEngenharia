@@ -242,6 +242,7 @@ function menuListaInspecoes(destino) {
 			var x = document.getElementById('page-wrapper');
 			x.innerHTML = response;
 			loadDataTable();
+			buscarAposEnter();
 		},
 		complete : previnePadrao(),
 		error : function(xhr) {
@@ -258,9 +259,17 @@ function loadDataTable() {
 						"language" : {
 							"url" : "/static/js/Portuguese.json"
 						},
-						responsive : true,
-						'ajax' : '/inspecao/dtinspecao',
+						'ajax' : {
+							'url' : '/dtinspecao/dtinspecao',
+							'contentType' : 'application/json',
+							'type' : 'POST',
+							'data' : function(d) {
+								return JSON.stringify(d);
+							}
+						},
 						'serverSide' : true,
+						responsive : true,
+
 						columns : [
 								{
 									data : 'idInspecao'
@@ -282,10 +291,13 @@ function loadDataTable() {
 								},
 
 								{
-									data : 'cliente.descCliente'
+									data : 'cliente.descCliente',
+
 								},
+
 								{
-									data : 'endereco',
+									data : 'endereco.logradouro',
+
 									render : function(data, type, row) {
 										if (row.endereco) {
 											return row.endereco.tipoLogradouro.descTipoLogradouro
@@ -305,42 +317,35 @@ function loadDataTable() {
 									searchable : false,
 									render : function(data, type, row) {
 										return '<a href="#" onclick = "executaAjaxGet(\'/inspecao/detalhaInspecao/'
-										+ row.idInspecao + '\',\'detalheInspecao\',\'\',\'\')"><span class="glyphicon glyphicon-eye-open"></span></a>'
-										+
-										'<a href="#" onclick = "executaAjaxGet(\'/inspecao/detalhaInspecao/'
-											+ row.idInspecao + '\',\'detalheInspecao\',\'\',\'\')"><span class="glyphicon glyphicon-calendar"></span></a>';
+												+ row.idInspecao
+												+ '\',\'detalheInspecao\',\'\',\'\')"><span class="glyphicon glyphicon-eye-open"> </span></a>'
+												+ '<a href="#" onclick = "executaAjaxGet(\'/inspecao/detalhaInspecao/'
+												+ row.idInspecao
+												+ '\',\'detalheInspecao\',\'\',\'\')"><span class="glyphicon glyphicon-calendar"> </span></a>';
 									}
-								} ],
-						/*"fnDrawCallback" : function() {
-							$('#sample tbody td').on('click', function(e) {
-
-								var INFO_01 = table.row(this).data();
-
-								alert("INFO 1: " + INFO_01.idInspecao);
-
-							});
-						}
-						*/
+								},
+								{
+									data : 'endereco.bairro',
+									visible : false
+								},
+								{
+									data : 'endereco.tipoLogradouro.descTipoLogradouro',
+									visible : false
+								}, {
+									data : 'endereco.cidade.nomeCidade',
+									visible : false
+								},
+								{
+									data : 'status.descStatus',
+									visible : false
+								} ]
 					});
-	/*
-	 * $('#sample tbody').on('click', 'tr', function() {
-	 * 
-	 * if ($(this).hasClass('selected')) { $(this).removeClass('selected'); }
-	 * else { table.$('tr.selected').removeClass('selected');
-	 * $(this).addClass('selected'); } table.fnGetData(this)[0]; alert(id);
-	 * 
-	 * });
-	 */
+}
 
-	/*
-	 * $('select#role_selector').change(function() { var filter = '';
-	 * $('select#role_selector option:selected').each(function() { filter +=
-	 * $(this).text() + "+"; }); filter = filter.substring(0, filter.length -
-	 * 1); table.columns(2).search(filter).draw(); });
-	 * 
-	 * $('select#status_selector').change(function() { var filter = '';
-	 * $('select#status_selector option:selected').each(function() { filter +=
-	 * $(this).text() + "+"; }); filter = filter.substring(0, filter.length -
-	 * 1); table.columns(3).search(filter).draw(); });
-	 */
+function buscarAposEnter() {
+	$("div.dataTables_filter input").keyup(function(e) {
+		if (e.keyCode == 13) {
+			table.fnFilter(this.value);
+		}
+	});
 }

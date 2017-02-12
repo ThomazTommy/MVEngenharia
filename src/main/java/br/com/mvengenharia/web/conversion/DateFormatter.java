@@ -23,6 +23,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+import java.util.TimeZone;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -53,7 +54,8 @@ public class DateFormatter implements Formatter<Date> {
         final String format = this.messageSource.getMessage("date.format", null, locale);
         final SimpleDateFormat dateFormat = new SimpleDateFormat(format);
         dateFormat.setLenient(false);
+        dateFormat.setTimeZone(TimeZone.getTimeZone("America/Sao_Paulo"));
         return dateFormat;
     }
-
+ 
 }

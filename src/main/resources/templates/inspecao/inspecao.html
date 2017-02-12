@@ -45,7 +45,7 @@
 								<td th:text="${ass.observacao}">observacao</td>
 								<td th:text="${ass.cliente.descCliente}">cliente</td>
 								<td
-									th:text="${ass.endereco.tipoLogradouro.descTipoLogradouro} + ' ' + ${ass.endereco.logradouro}">endereco</td>
+									th:text="${ass.endereco.tipoLogradouro.descTipoLogradouro} + ' ' + ${ass.endereco.logradouro} + ' ' + ${ass.endereco.numero} + ' - ' + ${ass.endereco.cidade.nomeCidade}">endereco</td>
 								<td th:text="${ass.ramo.descRamo}">ramo</td>
 								<td th:text="${ass.status.descStatus}">status</td>
 								<td th:text="${ass.tipoInspecao.descTipoInspecao}">tipo
@@ -131,15 +131,6 @@
 										th:field="*{numPropostaCliente}" th:errorclass="fieldError" />
 								</div>
 
-								<div id="listaRamos" class="form-group">
-									<label for="ramo"> <span th:text="#{inspecao.ramo}">ramo</span>
-									</label> <select th:errorclass="fieldError" class="form-control"
-										th:field="*{ramo}">
-										<option th:each="ramo : ${listaRamos}"
-											th:value="${ramo.idRamo}" th:text="${ramo.descRamo}">Ramo</option>
-									</select>
-								</div>
-
 								<div id="listaTipoInspecaos" class="form-group">
 									<label for="tipoInspecao"> <span
 										th:text="#{inspecao.tipoInspecao}">tipoInspecao</span>
@@ -150,9 +141,24 @@
 											th:text="${tipoInspecao.descTipoInspecao}">tipoInspecao</option>
 									</select>
 								</div>
+								<div id="listaRamos" class="form-group">
+									<label for="ramo"> <span th:text="#{inspecao.ramo}">ramo</span>
+									</label> <select th:errorclass="fieldError" class="form-control"
+										th:field="*{ramo}">
+										<option th:each="ramo : ${listaRamos}"
+											th:value="${ramo.idRamo}" th:text="${ramo.descRamo}">Ramo</option>
+									</select>
+								</div>
 
-
-
+								<div id="inspecaoAtividadeInformada" class="form-group">
+									<label for="inspecaoAtividadeInformada"> <span th:text="#{inspecao.inspecaoAtividadeInformada}">inspecaoAtividadeInformada</span>
+									</label><br/> <select th:errorclass="fieldError" class="form-control multipleSelect"
+										th:field="*{inspecaoAtividadeInformada}" multiple="multiple">
+										<option th:each="atividade : ${allAtividades}"
+											th:value="${atividade.idAtividade}" th:text="${atividade.descAtividade}">Atividade</option>
+									</select>
+								</div>
+								
 								<div class="form-group">
 									<label for="nomeCorretor"> <span
 										th:text="#{inspecao.nomeCorretor}">nomeCorretor</span>
@@ -218,6 +224,17 @@
 										th:field="*{segurado.nomeSegurado}" th:errorclass="fieldError" />
 								</div>
 
+								<div class="form-group">
+									<label for="segurado.telefoneSegurado"> <span
+										th:text="#{inspecao.segurado.telefoneSegurado}">telefone
+											segurado</span>
+									</label> <input class="form-control" type="text" maxlength="15"
+										onkeyup="mascararTelefone(this);"
+										onblur="mascararTelefone(this);"
+										th:field="*{segurado.telefoneSegurado}"
+										th:errorclass="fieldError" />
+								</div>
+
 
 								<div class="form-group">
 									<label for="endereco.estado"> <span
@@ -274,8 +291,10 @@
 								<div class="form-group">
 									<label for="endereco.cep"> <span
 										th:text="#{inspecao.endereco.cep}">cep</span>
-									</label> <input class="form-control" type="text"
-										th:field="*{endereco.cep}" th:errorclass="fieldError" />
+									</label> <input class="form-control" type="text" maxlength="9"
+										th:field="*{endereco.cep}" th:errorclass="fieldError" 
+										onkeyup="mascararCep(this);"
+										onblur="mascararCep(this);"/>
 								</div>
 
 

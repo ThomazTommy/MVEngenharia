@@ -3,6 +3,7 @@ package br.com.mvengenharia.business.entities;
 import java.io.Serializable;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 
@@ -20,7 +21,8 @@ public class Endereco implements Serializable {
 	private long idEndereco;
 
 	private String bairro;
-
+	
+	@Pattern(regexp = "\\d{5}[-]\\d{3}")
 	private String cep;
 
 	private String complemento;

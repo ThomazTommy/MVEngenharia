@@ -40,6 +40,7 @@ dependencies {
 	compile('org.webjars:bootstrap:3.3.7-1')
 	compile('org.webjars:datatables:1.10.13')
 	compile('org.webjars.bower:datatables-responsive:2.1.0')
+	compile('org.webjars:bootstrap-multiselect:0.9.13-1')
 	compile('mysql:mysql-connector-java')
 	
 	//teste Biblioteca DataTable

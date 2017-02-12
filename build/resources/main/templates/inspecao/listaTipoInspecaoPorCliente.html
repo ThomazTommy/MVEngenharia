@@ -1,7 +1,0 @@
-<label for="tipoInspecao"> <span
-	th:text="#{inspecao.tipoInspecao}">tipoInspecao</span>
-</label>
-<select class="form-control" id="tipoInspecao" name="tipoInspecao">
-	<option th:each="tipoInspecao : ${listaTipoInspecao}"
-		th:value="${tipoInspecao.idTipoInspecao}" th:text="${tipoInspecao.descTipoInspecao}">tipoInspecao</option>
-</select>

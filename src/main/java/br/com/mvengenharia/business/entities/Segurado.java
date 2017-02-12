@@ -33,6 +33,18 @@ public class Segurado implements Serializable {
 	@NotNull(message = "Nome do Segurado deve ser preenchido")
 	@Size(min = 1, message = "Nome do Segurado deve ser preenchido")
 	private String nomeSegurado;
+	
+	@NotNull(message = "Telefone do Segurado deve ser preenchido")
+	@Pattern(regexp = "\\([1-9]{2}\\) [2-9][0-9]{3,4}\\-[0-9]{4}", message = "O telefone deve estar no seguinte formato: (99) 99999-9999 ou (99) 9999-9999")
+	private String telefoneSegurado;
+
+	public String getTelefoneSegurado() {
+		return telefoneSegurado;
+	}
+
+	public void setTelefoneSegurado(String telefoneSegurado) {
+		this.telefoneSegurado = telefoneSegurado;
+	}
 
 	//bi-directional many-to-one association to Inspecao
 	@JsonBackReference

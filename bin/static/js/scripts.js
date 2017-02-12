@@ -13,7 +13,7 @@ function executaAjaxGet(urlChamada, divDestino, preExecute, posExecute) {
 			var x = document.getElementById(divDestino);
 			x.innerHTML = response;
 		},
-		complete : posExecute,
+		complete : function(){ posExecute; afterReload();},
 		error : function(xhr) {
 			alert("Um erro ocorreu: " + xhr.status + " - " + xhr.statusText);
 		}
@@ -34,7 +34,7 @@ function executaAjaxPost(divDestino, formOrigem, preExecute, posExecute) {
 		success : function(response) {
 			document.getElementById(divDestino).innerHTML = response;
 		},
-		complete : posExecute,
+		complete : function(){posExecute;afterReload();},
 		error : function(xhr) {
 			alert("Um erro ocorreu: " + xhr.status + " - " + xhr.statusText);
 		}
@@ -146,6 +146,7 @@ function previnePadrao() {
 			// alert("Clicaram");
 		}
 	});
+	
 };
 
 function formSubmitClick(e, destino) {
@@ -161,6 +162,16 @@ function formSubmitClick(e, destino) {
 	executaAjaxPost(destino, form, "", previnePadrao());
 	return false;
 };
+
+function afterReload() {
+	$('.multipleSelect').multiselect({
+		buttonWidth: '100%',
+		nonSelectedText: 'Selecione uma Atividade',
+		allSelectedText: 'Todos...',
+		includeSelectAllOption: true,
+		selectAllText: "Todos"
+		});
+}
 
 function mascararTelefone(objeto) {
 	var v = objeto.value;
@@ -215,6 +226,17 @@ function mascaraCpfCnpj(objeto) {
 
 	}
 
+	objeto.value = v;
+
+}
+
+function mascararCep(objeto) {
+
+	var v = objeto.value;
+	// Remove tudo o que não é dígito
+	v = v.replace(/\D/g, "")
+	// Coloca um ponto entre o terceiro e o quarto dígitos
+		v = v.replace(/(\d{5})(\d)/, "$1-$2")
 	objeto.value = v;
 
 }
@@ -334,8 +356,7 @@ function loadDataTable() {
 								}, {
 									data : 'endereco.cidade.nomeCidade',
 									visible : false
-								},
-								{
+								}, {
 									data : 'status.descStatus',
 									visible : false
 								} ]

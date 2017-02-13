@@ -34,7 +34,7 @@ function executaAjaxPost(divDestino, formOrigem, preExecute, posExecute) {
 		success : function(response) {
 			document.getElementById(divDestino).innerHTML = response;
 		},
-		complete : function(){posExecute;afterReload();},
+		complete : function(){posExecute; afterReload();},
 		error : function(xhr) {
 			alert("Um erro ocorreu: " + xhr.status + " - " + xhr.statusText);
 		}
@@ -171,6 +171,10 @@ function afterReload() {
 		includeSelectAllOption: true,
 		selectAllText: "Todos"
 		});
+	$('.usaCalendario').datetimepicker({
+		format:'d/m/Y H:i:s'
+	});
+	$.datetimepicker.setLocale('pt-BR');
 }
 
 function mascararTelefone(objeto) {
@@ -338,10 +342,10 @@ function loadDataTable() {
 									orderable : false,
 									searchable : false,
 									render : function(data, type, row) {
-										return '<a href="#" onclick = "executaAjaxGet(\'/inspecao/detalhaInspecao/'
+										return '<a href="#" onclick = "executaAjaxGet(\'/agendamento/'
 												+ row.idInspecao
 												+ '\',\'detalheInspecao\',\'\',\'\')"><span class="glyphicon glyphicon-eye-open"> </span></a>'
-												+ '<a href="#" onclick = "executaAjaxGet(\'/inspecao/detalhaInspecao/'
+												+ '<a href="#" onclick = "executaAjaxGet(\'/agendamento/'
 												+ row.idInspecao
 												+ '\',\'detalheInspecao\',\'\',\'\')"><span class="glyphicon glyphicon-calendar"> </span></a>';
 									}

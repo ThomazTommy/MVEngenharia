@@ -2,8 +2,12 @@ package br.com.mvengenharia.business.entities;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -23,8 +27,23 @@ public class Agendamento implements Serializable {
 	private long idAgendamento;
 
 	private byte confirmacao;
+	
+	@NotNull(message="Campo CPF Funcionario não pode ficar vazio")
+	@ManyToOne
+	@JoinColumn(name="cpfFuncionario")
+	private Funcionario funcionario;
+	
+	public Funcionario getFuncionarioConfirmacao() {
+		return funcionarioConfirmacao;
+	}
 
-	private BigDecimal cpfAgendador;
+	public void setFuncionarioConfirmacao(Funcionario funcionarioConfirmacao) {
+		this.funcionarioConfirmacao = funcionarioConfirmacao;
+	}
+
+	@ManyToOne
+	@JoinColumn(name="cpfFuncionarioConfirmacao")
+	private Funcionario funcionarioConfirmacao;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dtAgendada;
@@ -35,8 +54,10 @@ public class Agendamento implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dtConfirmacao;
 	
+	@Size(min=1, message="Campo nome Contato não pode ficar vazio")
 	private String nomeContato;
 	
+	@Pattern(regexp = "\\([1-9]{2}\\) [2-9][0-9]{3,4}\\-[0-9]{4}", message = "O telefone deve estar no seguinte formato: (99) 99999-9999 ou (99) 9999-9999")
 	private String telefoneContato;
 
 	public String getNomeContato() {
@@ -84,12 +105,12 @@ public class Agendamento implements Serializable {
 		this.confirmacao = confirmacao;
 	}
 
-	public BigDecimal getCpfAgendador() {
-		return this.cpfAgendador;
+	public Funcionario getFuncionario() {
+		return funcionario;
 	}
 
-	public void setCpfAgendador(BigDecimal cpfAgendador) {
-		this.cpfAgendador = cpfAgendador;
+	public void setFuncionario(Funcionario funcionario) {
+		this.funcionario = funcionario;
 	}
 
 	public Date getDtAgendada() {

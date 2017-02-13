@@ -1,6 +1,7 @@
 eclipse.preferences.version=1
 encoding//src/main/resources/messages.properties=UTF-8
 encoding//src/main/resources/static/js/Portuguese.json=UTF-8
+encoding//src/main/resources/templates/agendamento/agendamento.html=UTF-8
 encoding//src/main/resources/templates/atividade/atividade.html=UTF-8
 encoding//src/main/resources/templates/cidade/cidade.html=UTF-8
 encoding//src/main/resources/templates/cliente/cliente.html=UTF-8

@@ -11,6 +11,7 @@ import javax.validation.constraints.Pattern;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -244,6 +245,10 @@ public class Inspecao implements Serializable {
 	}
 
 	public List<Agendamento> getAgendamentos() {
+		if(this.agendamentos == null)
+		{
+			this.agendamentos = new ArrayList<Agendamento>();
+		}
 		return this.agendamentos;
 	}
 

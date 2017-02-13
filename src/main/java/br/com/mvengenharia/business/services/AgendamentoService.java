@@ -22,7 +22,7 @@ public class AgendamentoService {
     }    
       
     public void addOrUpdate(final Agendamento agendamento) {
-        this.agendamentoRepository.save(agendamento);
+    	this.agendamentoRepository.save(agendamento);
     }
     
     public void remove(final Long id){

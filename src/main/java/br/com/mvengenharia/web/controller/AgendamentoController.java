@@ -1,6 +1,7 @@
 package br.com.mvengenharia.web.controller;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -17,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import br.com.mvengenharia.business.entities.Agendamento;
 import br.com.mvengenharia.business.entities.Funcionario;
+import br.com.mvengenharia.business.entities.Inspecao;
 import br.com.mvengenharia.business.services.AgendamentoService;
 import br.com.mvengenharia.business.services.FuncionarioService;
 import br.com.mvengenharia.business.services.InspecaoService;
@@ -63,10 +65,37 @@ public class AgendamentoController {
             model.addAttribute("inspecao", this.inspecaoService.findOne(idInspecao));         
         	return "agendamento/agendamento";
         }
+        Inspecao insp = this.inspecaoService.findOne(idInspecao);
+        List<Agendamento> listaAgds = insp.getAgendamentos();
+        for(Agendamento agd : listaAgds)
+        {
+        	agd.setUltimo(false);
+        	this.agendamentoService.addOrUpdate(agd);
+        }
+        agendamento.setUltimo(true);
         this.agendamentoService.addOrUpdate(agendamento);
         model.clear();       
         return "redirect:/agendamento/" + idInspecao;
     } 
+    
+    @RequestMapping(value="/agendamento/confirmar/{idInspecao}/{idAgendamento}", method = RequestMethod.GET)
+    public String confirmarAgendamento(@PathVariable long idInspecao, @PathVariable long idAgendamento, final ModelMap model) {
+        Agendamento agenda = this.agendamentoService.findOne(idAgendamento);
+        Inspecao insp = this.inspecaoService.findOne(idInspecao);
+        List<Agendamento> listaAgds = insp.getAgendamentos();
+        for(Agendamento agd : listaAgds)
+        {
+        	agd.setConfirmacao(false);
+        	this.agendamentoService.addOrUpdate(agd);
+        }
+        agenda.setConfirmacao(true);
+        agenda.setDtConfirmacao(new Date());
+        agenda.setFuncionarioConfirmacao(this.funcionarioService.findOne(SecurityContextHolder.getContext().getAuthentication().getName()));
+        this.agendamentoService.addOrUpdate(agenda);
+        model.clear();       
+        return "redirect:/agendamento/" + idInspecao;
+    } 
+    
     
     @RequestMapping(value="/agendamento/remover/{idInspecao}/{idAgendamento}")
     public String saveAgendamento(@PathVariable Long idInspecao, @PathVariable Long idAgendamento) {

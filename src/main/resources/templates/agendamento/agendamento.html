@@ -39,10 +39,15 @@
 												th:text="'Telefone do Contato - ' + ${agenda.telefoneContato}"></dd>
 											<dd
 												th:text="'Data Agendamento - ' + ${{agenda.dtAgendamento}}"></dd>
-											<dd th:if="${agenda.dtConfirmacao} != null"
+											<button th:if="${agenda.confirmacao} == false and ${agenda.ultimo} == true" type="button" class="btn btn-success"
+												th:onClick="'executaAjaxGet(\'/agendamento/confirmar/' + ${inspecao.idInspecao} + '/' + ${agenda.idAgendamento} + '\', \'detalheInspecao\', \'\', \'\')'">
+												<i class="fa fa-check"></i>Confirmar
+											</button>
+											<dd th:if="${agenda.confirmacao} == true"
 												th:text="'Data da Confirmação - ' + ${{agenda.dtConfirmacao}}"></dd>
-											<dd th:if="${agenda.funcionarioConfirmacao} != null"
+											<dd th:if="${agenda.confirmacao} == true"
 												th:text="'Confirmada por ' + ${agenda.funcionarioConfirmacao.nomeFuncionario}"></dd>
+
 											<br />
 										</div>
 									</dl>

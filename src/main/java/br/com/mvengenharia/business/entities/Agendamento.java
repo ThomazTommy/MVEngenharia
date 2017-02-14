@@ -26,8 +26,18 @@ public class Agendamento implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long idAgendamento;
 
-	private byte confirmacao;
+	private boolean confirmacao;
 	
+	private boolean ultimo;
+	
+	public boolean getUltimo() {
+		return ultimo;
+	}
+
+	public void setUltimo(boolean ultimo) {
+		this.ultimo = ultimo;
+	}
+
 	@NotNull(message="Campo CPF Funcionario não pode ficar vazio")
 	@ManyToOne
 	@JoinColumn(name="cpfFuncionario")
@@ -97,12 +107,12 @@ public class Agendamento implements Serializable {
 		this.idAgendamento = idAgendamento;
 	}
 
-	public byte getConfirmacao() {
+	public boolean getConfirmacao() {
 		return this.confirmacao;
 	}
 
-	public void setConfirmacao(byte confirmacao) {
-		this.confirmacao = confirmacao;
+	public void setConfirmacao(boolean b) {
+		this.confirmacao = b;
 	}
 
 	public Funcionario getFuncionario() {

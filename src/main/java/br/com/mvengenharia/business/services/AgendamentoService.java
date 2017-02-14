@@ -21,6 +21,10 @@ public class AgendamentoService {
         return this.agendamentoRepository.findAll();
     }    
       
+    public Agendamento findOne(Long id){
+    	return this.agendamentoRepository.findOne(id);
+    }
+    
     public void addOrUpdate(final Agendamento agendamento) {
     	this.agendamentoRepository.save(agendamento);
     }

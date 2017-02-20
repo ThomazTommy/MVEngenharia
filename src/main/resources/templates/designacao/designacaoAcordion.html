@@ -1,0 +1,62 @@
+<div class="col-lg-6">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h4 class="panel-title">
+				<a data-toggle="collapse" data-parent="#accordion"
+					href="#painelDesignacoes"><span
+					th:text="#{designacao.titulo.novaDesignacao}">Add Novo Inspecao</span></a>
+			</h4>
+		</div>
+		<div id="painelDesignacoes" class="panel-collapse collapse in">
+			<div class="panel-body">
+				<dl>
+					<div th:each="obj, objStat : ${inspecao.designacoes}">
+						<dt th:if="${obj.ultima == false}"
+							th:text="${objStat.count} + 'ª ' + #{designacao}">Primeiro
+							Agendamento</dt>
+						<dt th:if="${obj.ultima == true}" th:text="#{designacao.ultima}">Primeiro
+							Agendamento</dt>
+
+						<dd
+							th:text="'Designado por ' + ${obj.funcionarioDesignador.nomeFuncionario}"></dd>
+						<dd th:text="'Data Designação - ' + ${{obj.dataDesignacao}}"></dd>
+						<dd
+							th:text="'Funcionario Designado - ' + ${obj.funcionarioDesignado.nomeFuncionario}"></dd>
+						<br />
+					</div>
+				</dl>
+				<form role="form" class='usaAjax' action="#"
+					th:action="@{/designacao/} + ${inspecao.idInspecao}"
+					th:object="${designacao}" method="post">
+					<fieldset>
+						<div class="row">
+							<div class="col-lg-12">
+								<ul th:if="${#fields.hasErrors('*')}" class="errorlist">
+									<li th:each="err : ${#fields.errors('*')}" th:text="${err}">Dados
+										Incorretos</li>
+								</ul>
+							</div>
+							<div class="col-lg-12">
+								<input type="hidden" th:field="*{dataDesignacao}" /> <input
+									type="hidden" th:field="*{funcionarioDesignador.cpf}" /> <input
+									type="hidden" th:field="*{inspecao.idInspecao}" />
+								<div class="form-group">
+									<label for="funcionarioDesignado"> <span
+										th:text="#{designacao.funcionarioDesignado}">nomeContato</span>
+									</label> <select class="form-control" th:field="*{funcionarioDesignado}">
+										<option th:each="funcionario : ${allFuncionarios}"
+											th:value="${funcionario.cpf}"
+											th:text="${funcionario.nomeFuncionario}">Funcionario</option>
+									</select>
+								</div>
+							</div>
+						</div>
+						<button class="btn btn-default" type="submit" name="save"
+							onclick="formSubmitClick(this,'detalheInspecao')"
+							th:text="#{designacao.salvar}">Add Inspecao</button>
+					</fieldset>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

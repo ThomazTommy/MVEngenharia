@@ -13,7 +13,10 @@ function executaAjaxGet(urlChamada, divDestino, preExecute, posExecute) {
 			var x = document.getElementById(divDestino);
 			x.innerHTML = response;
 		},
-		complete : function(){ posExecute; afterReload();},
+		complete : function() {
+			posExecute;
+			afterReload();
+		},
 		error : function(xhr) {
 			alert("Um erro ocorreu: " + xhr.status + " - " + xhr.statusText);
 		}
@@ -34,7 +37,10 @@ function executaAjaxPost(divDestino, formOrigem, preExecute, posExecute) {
 		success : function(response) {
 			document.getElementById(divDestino).innerHTML = response;
 		},
-		complete : function(){posExecute; afterReload();},
+		complete : function() {
+			posExecute;
+			afterReload();
+		},
 		error : function(xhr) {
 			alert("Um erro ocorreu: " + xhr.status + " - " + xhr.statusText);
 		}
@@ -146,7 +152,7 @@ function previnePadrao() {
 			// alert("Clicaram");
 		}
 	});
-	
+
 };
 
 function formSubmitClick(e, destino) {
@@ -165,16 +171,17 @@ function formSubmitClick(e, destino) {
 
 function afterReload() {
 	$('.multipleSelect').multiselect({
-		buttonWidth: '100%',
-		nonSelectedText: 'Selecione uma Atividade',
-		allSelectedText: 'Todos...',
-		includeSelectAllOption: true,
-		selectAllText: "Todos"
-		});
+		buttonWidth : '100%',
+		nonSelectedText : 'Selecione uma Atividade',
+		allSelectedText : 'Todos...',
+		includeSelectAllOption : true,
+		selectAllText : "Todos"
+	});
 	$('.usaCalendario').datetimepicker({
-		format:'d/m/Y H:i:s'
+		format : 'd/m/Y H:i:s'
 	});
 	$.datetimepicker.setLocale('pt-BR');
+	$('table#sample').DataTable().ajax.reload();
 }
 
 function mascararTelefone(objeto) {
@@ -240,7 +247,7 @@ function mascararCep(objeto) {
 	// Remove tudo o que não é dígito
 	v = v.replace(/\D/g, "")
 	// Coloca um ponto entre o terceiro e o quarto dígitos
-		v = v.replace(/(\d{5})(\d)/, "$1-$2")
+	v = v.replace(/(\d{5})(\d)/, "$1-$2")
 	objeto.value = v;
 
 }
@@ -257,17 +264,17 @@ function somenteNumeros(e) {
 	}
 }
 
-function menuListaInspecoes(destino) {
+
+function menuListaInspecoesPorFuncionarioDesignado(destino, idTabela) {
 	$.ajax({
 		type : "GET",
 		url : destino,
 		beforeSend : '',
-
 		success : function(response) {
 			// we have the response
 			var x = document.getElementById('page-wrapper');
 			x.innerHTML = response;
-			loadDataTable();
+			loadDataTableStatic(idTabela);
 			buscarAposEnter();
 		},
 		complete : previnePadrao(),
@@ -278,27 +285,68 @@ function menuListaInspecoes(destino) {
 
 }
 
-function loadDataTable() {
+
+function loadDataTableStatic(idTabela) {
+    $('#' + idTabela).DataTable({
+		language : {
+			'url' : '/static/js/Portuguese.json'
+		},
+		responsive : true
+    });
+}
+
+function menuListaInspecoes(destino, urlDestino) {
+	$.ajax({
+		type : "GET",
+		url : destino,
+		beforeSend : '',
+
+		success : function(response) {
+			// we have the response
+			var x = document.getElementById('page-wrapper');
+			x.innerHTML = response;
+			loadDataTable(urlDestino);
+			buscarAposEnter();
+		},
+		complete : previnePadrao(),
+		error : function(xhr) {
+			alert("Um erro ocorreu: " + xhr.status + " - " + xhr.statusText);
+		}
+	});
+
+}
+
+function loadDataTable(urlDestino) {
 	var table = $('table#sample')
 			.DataTable(
 					{
-						"language" : {
-							"url" : "/static/js/Portuguese.json"
+						language : {
+							'url' : '/static/js/Portuguese.json'
 						},
-						'ajax' : {
-							'url' : '/dtinspecao/dtinspecao',
+						ajax : {
+							'url' : urlDestino,
 							'contentType' : 'application/json',
 							'type' : 'POST',
 							'data' : function(d) {
 								return JSON.stringify(d);
 							}
 						},
-						'serverSide' : true,
+						serverSide : true,
 						responsive : true,
 
 						columns : [
 								{
 									data : 'idInspecao'
+								},
+								{
+									data : 'dtAgendada',
+									render : function(data, type, row) {
+										if (row.dtAgendada)
+											return new Date(row.dtAgendada)
+													.toLocaleString();
+										else
+											return 'Não Confirmado';
+									}
 								},
 								{
 									data : 'dtSolicitacaoInspecao',
@@ -343,9 +391,6 @@ function loadDataTable() {
 									searchable : false,
 									render : function(data, type, row) {
 										return '<a href="#" onclick = "executaAjaxGet(\'/agendamento/'
-												+ row.idInspecao
-												+ '\',\'detalheInspecao\',\'\',\'\')"><span class="glyphicon glyphicon-eye-open"> </span></a>'
-												+ '<a href="#" onclick = "executaAjaxGet(\'/agendamento/'
 												+ row.idInspecao
 												+ '\',\'detalheInspecao\',\'\',\'\')"><span class="glyphicon glyphicon-calendar"> </span></a>';
 									}

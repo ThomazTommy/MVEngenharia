@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.mvengenharia.business.entities.Agendamento;
+import br.com.mvengenharia.business.entities.Designacao;
 import br.com.mvengenharia.business.entities.Funcionario;
 import br.com.mvengenharia.business.entities.Inspecao;
 import br.com.mvengenharia.business.services.AgendamentoService;
@@ -45,8 +46,21 @@ public class AgendamentoController {
     public AgendamentoController() {
         super();
     }
-     
+    
     @RequestMapping(value = "/agendamento/{idInspecao}", method = RequestMethod.GET)
+    public ModelAndView showDesignacao(@PathVariable long idInspecao) {
+    	ModelAndView mav = new ModelAndView();
+    	mav.setViewName("inspecao/detalheInspecao");
+    	mav.addObject("inspecao", this.inspecaoService.findOne(idInspecao));
+    	Designacao designacao = new Designacao();
+    	Agendamento agenda = new Agendamento();
+    		mav.addObject("designacao", designacao);
+    	mav.addObject("agendamento", agenda);
+        return mav;
+    }      
+
+     
+    /*@RequestMapping(value = "/agendamento/{idInspecao}", method = RequestMethod.GET)
     public ModelAndView showAgendamento(@PathVariable long idInspecao) {
     	ModelAndView mav = new ModelAndView();
     	mav.setViewName("agendamento/agendamento");
@@ -57,13 +71,14 @@ public class AgendamentoController {
     	agenda.setInspecao(this.inspecaoService.findOne(idInspecao));
     	mav.addObject("agendamento", agenda);
         return mav;
-    }      
+    } */     
     
     @RequestMapping(value="/agendamento/{idInspecao}", params={"save"}, method = RequestMethod.POST)
     public String saveAgendamento(@PathVariable long idInspecao, @Valid Agendamento agendamento, final BindingResult bindingResult, final ModelMap model) {
         if (bindingResult.hasErrors()) {
-            model.addAttribute("inspecao", this.inspecaoService.findOne(idInspecao));         
-        	return "agendamento/agendamento";
+            model.addAttribute("inspecao", this.inspecaoService.findOne(idInspecao)); 
+            model.addAttribute("designacao", new Designacao());
+        	return "inspecao/detalheInspecao";
         }
         Inspecao insp = this.inspecaoService.findOne(idInspecao);
         List<Agendamento> listaAgds = insp.getAgendamentos();
@@ -72,6 +87,9 @@ public class AgendamentoController {
         	agd.setUltimo(false);
         	this.agendamentoService.addOrUpdate(agd);
         }
+        agendamento.setDtAgendamento(new Date());
+    	agendamento.setFuncionario(this.funcionarioService.findOne(SecurityContextHolder.getContext().getAuthentication().getName()));
+    	agendamento.setInspecao(this.inspecaoService.findOne(idInspecao));    
         agendamento.setUltimo(true);
         this.agendamentoService.addOrUpdate(agendamento);
         model.clear();       
@@ -92,6 +110,8 @@ public class AgendamentoController {
         agenda.setDtConfirmacao(new Date());
         agenda.setFuncionarioConfirmacao(this.funcionarioService.findOne(SecurityContextHolder.getContext().getAuthentication().getName()));
         this.agendamentoService.addOrUpdate(agenda);
+        insp.setDtAgendada(agenda.getDtAgendada());
+        this.inspecaoService.addOrUpdate(insp);
         model.clear();       
         return "redirect:/agendamento/" + idInspecao;
     } 

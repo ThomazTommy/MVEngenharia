@@ -7,36 +7,63 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import java.util.Date;
 
-
 /**
  * The persistent class for the Designacao database table.
  * 
  */
 @Entity
-@NamedQuery(name="Designacao.findAll", query="SELECT d FROM Designacao d")
+@NamedQuery(name = "Designacao.findAll", query = "SELECT d FROM Designacao d")
 public class Designacao implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long idDesignacao;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataDesignacao;
 
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date dataDivulgacao;
+	private boolean ultima;
 
-	//bi-directional many-to-one association to Inspecao
+	// bi-directional many-to-one association to Inspecao
 	@JsonBackReference
 	@ManyToOne
-	@JoinColumn(name="idInspecao")
+	@JoinColumn(name = "idInspecao")
 	private Inspecao inspecao;
 
-	//bi-directional many-to-one association to Funcionario
+	// bi-directional many-to-one association to Funcionario
 	@ManyToOne
-	@JoinColumn(name="cpfDesignado")
-	private Funcionario funcionario;
+	@JoinColumn(name = "cpfDesignado")
+	private Funcionario funcionarioDesignado;
+
+	// bi-directional many-to-one association to Funcionario
+	@ManyToOne
+	@JoinColumn(name = "cpfDesignador")
+	private Funcionario funcionarioDesignador;
+
+	public boolean isUltima() {
+		return ultima;
+	}
+
+	public void setUltima(boolean ultima) {
+		this.ultima = ultima;
+	}
+
+	public Funcionario getFuncionarioDesignado() {
+		return funcionarioDesignado;
+	}
+
+	public void setFuncionarioDesignado(Funcionario funcionarioDesignado) {
+		this.funcionarioDesignado = funcionarioDesignado;
+	}
+
+	public Funcionario getFuncionarioDesignador() {
+		return funcionarioDesignador;
+	}
+
+	public void setFuncionarioDesignador(Funcionario funcionarioDesignador) {
+		this.funcionarioDesignador = funcionarioDesignador;
+	}
 
 	public Designacao() {
 	}
@@ -57,28 +84,12 @@ public class Designacao implements Serializable {
 		this.dataDesignacao = dataDesignacao;
 	}
 
-	public Date getDataDivulgacao() {
-		return this.dataDivulgacao;
-	}
-
-	public void setDataDivulgacao(Date dataDivulgacao) {
-		this.dataDivulgacao = dataDivulgacao;
-	}
-
 	public Inspecao getInspecao() {
 		return this.inspecao;
 	}
 
 	public void setInspecao(Inspecao inspecao) {
 		this.inspecao = inspecao;
-	}
-
-	public Funcionario getFuncionario() {
-		return this.funcionario;
-	}
-
-	public void setFuncionario(Funcionario funcionario) {
-		this.funcionario = funcionario;
 	}
 
 }

@@ -30,6 +30,16 @@ public class Agendamento implements Serializable {
 	
 	private boolean ultimo;
 	
+	private String observacoes;
+	
+	public String getObservacoes() {
+		return observacoes;
+	}
+
+	public void setObservacoes(String observacoes) {
+		this.observacoes = observacoes;
+	}
+
 	public boolean getUltimo() {
 		return ultimo;
 	}

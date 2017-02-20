@@ -1,66 +1,96 @@
-<div class="panel-heading">
-	<span
-		th:text="#{agendamento.titulo.detalheInspecao} + ${inspecao.idInspecao}">Add
-		Novo Inspecao</span>
+<br />
+<div class="row">
+	<div class="col-lg-12">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<span
+					th:text="#{inspecao.titulo.detalheInspecao} + ${inspecao.idInspecao}">Add
+					Novo Inspecao</span>
+			</div>
+			<div class="panel-body">
+				<div class="col-lg-4">
+					<dl>
+						<dt th:text="#{inspecao.idInspecao}">Id</dt>
+						<dd th:text="${inspecao.idInspecao}">1</dd>
+						<dt th:text="#{inspecao.dtSolicitacaoInspecao}">DtSolInsp</dt>
+						<dd th:text="${{inspecao.dtSolicitacaoInspecao}}">DtSolInsp</dd>
+						<dt th:text="#{inspecao.nomeCorretor}">nome Corretor</dt>
+						<dd th:text="${inspecao.nomeCorretor}">nome Corretor</dd>
+						<dt th:text="#{inspecao.telefoneCorretor}">telefone corretor</dt>
+						<dd th:text="${inspecao.telefoneCorretor}">telefone corretor</dd>
+						<dt th:text="#{inspecao.numInspecaoCliente}">num insp cliente</dt>
+						<dd th:text="${inspecao.numInspecaoCliente}">num insp cliente</dd>
+						<dt th:text="#{inspecao.numPropostaCliente}">num proposta
+							cliente</dt>
+						<dd th:text="${inspecao.numPropostaCliente}">num proposta
+							cliente</dd>
+					</dl>
+				</div>
+				<div class="col-lg-4">
+					<dl>
+						<dt th:text="#{inspecao.valorTotalRisco}">valor total risco</dt>
+						<dd th:text="${{inspecao.valorTotalRisco}}">valor total risco</dd>
+						<dt th:text="#{inspecao.qtdBlocos}">qtd blococ</dt>
+						<dd th:text="${inspecao.qtdBlocos}">qtd blococ</dd>
+						<dt th:text="#{inspecao.roubo}">roubo</dt>
+						<dd th:text="${inspecao.roubo}? #{bool.true} : #{bool.false}">yes</dd>
+						<dt th:text="#{inspecao.observacao}">observacao</dt>
+						<dd th:text="${inspecao.observacao}">observacao</dd>
+						<dt th:text="#{inspecao.cliente}">cliente</dt>
+						<dd th:text="${inspecao.cliente.descCliente}">cliente</dd>
+						<dt th:text="#{inspecao.endereco}">endereco</dt>
+						<dd
+							th:text="${inspecao.endereco.tipoLogradouro.descTipoLogradouro} + ' ' + ${inspecao.endereco.logradouro} + ' ' + ${inspecao.endereco.numero} + ' - ' + ${inspecao.endereco.cidade.nomeCidade}">endereco</dd>
+
+					</dl>
+				</div>
+				<div class="col-lg-4">
+					<dl>
+
+						<dt th:text="#{inspecao.ramo}">ramo</dt>
+						<dd th:text="${inspecao.ramo.descRamo}">ramo</dd>
+						<dt th:text="#{inspecao.status}">status</dt>
+						<dd th:text="${inspecao.status.descStatus}">status</dd>
+						<dt th:text="#{inspecao.tipoInspecao}">tipo inspecao</dt>
+						<dd th:text="${inspecao.tipoInspecao.descTipoInspecao}">tipo
+							inspecao</dd>
+						<dt th:text="#{inspecao.inspecaoAtividadeInformada}">inspecaoAtividadeInformada</dt>
+						<dd>
+							<span
+								th:each="atividade : ${inspecao.inspecaoAtividadeInformada}"
+								th:text="${atividade.descAtividade} + '; '">atividade</span>
+						</dd>
+						<dt th:text="#{inspecao.segurado.nomeSegurado}">segurado</dt>
+						<dd th:text="${inspecao.segurado.nomeSegurado}">segurado</dd>
+						<dt th:text="#{inspecao.segurado.cpfCnpj}">cpf cnpj segurado</dt>
+						<dd th:text="${inspecao.segurado.cpfCnpj}">cpf cnpj segurado</dd>
+					</dl>
+				</div>
+			</div>
+
+
+
+		</div>
+	</div>
 </div>
-<div class="panel-body">
-	<div class="col-lg-4">
-		<dl>
-			<dt th:text="#{inspecao.idInspecao}">Id</dt>
-			<dd th:text="${inspecao.idInspecao}">1</dd>
-			<dt th:text="#{inspecao.dtSolicitacaoInspecao}">DtSolInsp</dt>
-			<dd th:text="${{inspecao.dtSolicitacaoInspecao}}">DtSolInsp</dd>
-			<dt th:text="#{inspecao.nomeCorretor}">nome Corretor</dt>
-			<dd th:text="${inspecao.nomeCorretor}">nome Corretor</dd>
-			<dt th:text="#{inspecao.telefoneCorretor}">telefone corretor</dt>
-			<dd th:text="${inspecao.telefoneCorretor}">telefone corretor</dd>
-			<dt th:text="#{inspecao.numInspecaoCliente}">num insp cliente</dt>
-			<dd th:text="${inspecao.numInspecaoCliente}">num insp cliente</dd>
-			<dt th:text="#{inspecao.numPropostaCliente}">num proposta
-				cliente</dt>
-			<dd th:text="${inspecao.numPropostaCliente}">num proposta
-				cliente</dd>
-		</dl>
-	</div>
-	<div class="col-lg-4">
-		<dl>
-			<dt th:text="#{inspecao.valorTotalRisco}">valor total risco</dt>
-			<dd th:text="${{inspecao.valorTotalRisco}}">valor total risco</dd>
-			<dt th:text="#{inspecao.qtdBlocos}">qtd blococ</dt>
-			<dd th:text="${inspecao.qtdBlocos}">qtd blococ</dd>
-			<dt th:text="#{inspecao.roubo}">roubo</dt>
-			<dd th:text="${inspecao.roubo}? #{bool.true} : #{bool.false}">yes</dd>
-			<dt th:text="#{inspecao.observacao}">observacao</dt>
-			<dd th:text="${inspecao.observacao}">observacao</dd>
-			<dt th:text="#{inspecao.cliente}">cliente</dt>
-			<dd th:text="${inspecao.cliente.descCliente}">cliente</dd>
-			<dt th:text="#{inspecao.endereco}">endereco</dt>
-			<dd
-				th:text="${inspecao.endereco.tipoLogradouro.descTipoLogradouro} + ' ' + ${inspecao.endereco.logradouro} + ' ' + ${inspecao.endereco.numero} + ' - ' + ${inspecao.endereco.cidade.nomeCidade}">endereco</dd>
 
-		</dl>
-	</div>
-	<div class="col-lg-4">
-		<dl>
 
-			<dt th:text="#{inspecao.ramo}">ramo</dt>
-			<dd th:text="${inspecao.ramo.descRamo}">ramo</dd>
-			<dt th:text="#{inspecao.status}">status</dt>
-			<dd th:text="${inspecao.status.descStatus}">status</dd>
-			<dt th:text="#{inspecao.tipoInspecao}">tipo inspecao</dt>
-			<dd th:text="${inspecao.tipoInspecao.descTipoInspecao}">tipo
-				inspecao</dd>
-			<dt th:text="#{inspecao.inspecaoAtividadeInformada}">inspecaoAtividadeInformada</dt>
-			<dd>
-				<span th:each="atividade : ${inspecao.inspecaoAtividadeInformada}"
-					th:text="${atividade.descAtividade} + '; '">atividade</span>
-			</dd>
-			<dt th:text="#{inspecao.segurado.nomeSegurado}">segurado</dt>
-			<dd th:text="${inspecao.segurado.nomeSegurado}">segurado</dd>
-			<dt th:text="#{inspecao.segurado.cpfCnpj}">cpf cnpj segurado</dt>
-			<dd th:text="${inspecao.segurado.cpfCnpj}">cpf cnpj segurado</dd>
-		</dl>
+<div class="row">
+	<div class="col-lg-12">
+		<div class="panel panel-default">
+
+			<div class="panel-body">
+				<div class="panel-group" id="accordion">
+					<div id="agendamentoAcordion"
+						th:replace="agendamento/agendamentoAcordion"></div>
+					<div id="designacaoAcordion"
+						th:replace="designacao/designacaoAcordion"></div>
+
+				</div>
+			</div>
+			<!-- .panel-body -->
+		</div>
+		<!-- /.panel -->
 	</div>
+	<!-- /.col-lg-12 -->
 </div>
-
-

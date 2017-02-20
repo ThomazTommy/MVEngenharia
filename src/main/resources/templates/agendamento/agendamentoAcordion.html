@@ -1,0 +1,88 @@
+<div class="col-lg-6">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h4 class="panel-title">
+				<a data-toggle="collapse" data-parent="#accordion"
+					href="#collapseOne"><span th:text="#{titulo.novoAgendamento}">Add
+						Novo Inspecao</span></a>
+			</h4>
+		</div>
+		<div id="collapseOne" class="panel-collapse collapse in">
+			<div class="panel-body">
+				<dl>
+					<div th:each="agenda, agendamentoStat : ${inspecao.agendamentos}">
+						<dt th:text="${agendamentoStat.count} + 'º ' + #{agendamento}">Primeiro
+							Agendamento</dt>
+						<dd
+							th:text="'Inspeção agendada por ' + ${agenda.funcionario.nomeFuncionario}"></dd>
+						<dd th:text="'Data Agendada - ' + ${{agenda.dtAgendada}}"></dd>
+						<dd th:text="'Nome do Contato - ' + ${agenda.nomeContato}"></dd>
+						<dd th:text="'Telefone do Contato - ' + ${agenda.telefoneContato}"></dd>
+						<dd th:text="'Data Agendamento - ' + ${{agenda.dtAgendamento}}"></dd>
+						<dd th:text="'Observações - ' + ${{agenda.observacoes}}"></dd>
+						<button
+							th:if="${agenda.confirmacao} == false and ${agenda.ultimo} == true"
+							type="button" class="btn btn-success"
+							th:onClick="'executaAjaxGet(\'/agendamento/confirmar/' + ${inspecao.idInspecao} + '/' + ${agenda.idAgendamento} + '\', \'detalheInspecao\', \'\', \'\')'">
+							<i class="fa fa-check"></i>Confirmar
+						</button>
+						<dd th:if="${agenda.confirmacao} == true"
+							th:text="'Data da Confirmação - ' + ${{agenda.dtConfirmacao}}"></dd>
+						<dd th:if="${agenda.confirmacao} == true"
+							th:text="'Confirmada por ' + ${agenda.funcionarioConfirmacao.nomeFuncionario}"></dd>
+
+						<br />
+					</div>
+				</dl>
+				<form role="form" class='usaAjax' action="#"
+					th:action="@{/agendamento/} + ${inspecao.idInspecao}"
+					th:object="${agendamento}" method="post">
+					<fieldset>
+						<div class="row">
+							<div class="col-lg-12">
+								<ul th:if="${#fields.hasErrors('*')}" class="errorlist">
+									<li th:each="err : ${#fields.errors('*')}" th:text="${err}">Dados
+										Incorretos</li>
+								</ul>
+							</div>
+							<div class="col-lg-12">
+								<input type="hidden" th:field="*{dtAgendamento}" /> <input
+									type="hidden" th:field="*{funcionario.cpf}" /> <input
+									type="hidden" th:field="*{inspecao.idInspecao}" />
+								<div class="form-group">
+									<label for="dtAgendada"> <span
+										th:text="#{agendamento.dtAgendada}">dtAgendada</span>
+									</label> <input class="form-control usaCalendario" type="text"
+										th:field="*{dtAgendada}" th:errorclass="fieldError" />
+								</div>
+								<div class="form-group">
+									<label for="nomeContato"> <span
+										th:text="#{agendamento.nomeContato}">nomeContato</span>
+									</label> <input class="form-control" type="text"
+										th:field="*{nomeContato}" th:errorclass="fieldError" />
+								</div>
+								<div class="form-group">
+									<label for="telefoneContato"> <span
+										th:text="#{agendamento.telefoneContato}">telefoneContato</span>
+									</label> <input class="form-control" type="text" maxlength="15"
+										onkeyup="mascararTelefone(this);"
+										onblur="mascararTelefone(this);" th:field="*{telefoneContato}"
+										th:errorclass="fieldError" />
+								</div>
+								<div class="form-group">
+									<label for="observacoes"> <span
+										th:text="#{agendamento.observacoes}">observacoes</span>
+									</label> <input class="form-control" type="text"
+										th:field="*{observacoes}" th:errorclass="fieldError" />
+								</div>
+							</div>
+						</div>
+						<button class="btn btn-default" type="submit" name="save"
+							onclick="formSubmitClick(this,'detalheInspecao')"
+							th:text="#{agendamento.salvar}">Add Inspecao</button>
+					</fieldset>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

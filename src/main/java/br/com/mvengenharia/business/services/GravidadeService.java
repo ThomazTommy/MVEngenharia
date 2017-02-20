@@ -1,5 +1,7 @@
 package br.com.mvengenharia.business.services;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -7,6 +9,7 @@ import br.com.mvengenharia.business.entities.Gravidade;
 import br.com.mvengenharia.business.entities.repositories.GravidadeRepository;
 
 @Service
+@Transactional
 public class GravidadeService {
     
     @Autowired

@@ -38,14 +38,10 @@ public class Inspecao implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dtLimite;
 
-	public Date getDtLimite() {
-		return dtLimite;
-	}
-
-	public void setDtLimite(Date dtLimite) {
-		this.dtLimite = dtLimite;
-	}
-
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date dtAgendada;
+	
 	private String nomeCorretor;
 
 	private int numInspecaoCliente;
@@ -68,7 +64,7 @@ public class Inspecao implements Serializable {
 
 	//bi-directional many-to-one association to Agendamento
 	@JsonManagedReference
-	@OneToMany(mappedBy="inspecao")
+	@OneToMany(mappedBy="inspecao",  cascade=CascadeType.ALL)
 	private List<Agendamento> agendamentos;
 
 	//bi-directional many-to-one association to CustoInspecao
@@ -78,8 +74,8 @@ public class Inspecao implements Serializable {
 
 	//bi-directional many-to-one association to Designacao
 	@JsonManagedReference
-	@OneToMany(mappedBy="inspecao")
-	private List<Designacao> designacaos;
+	@OneToMany(mappedBy="inspecao", cascade=CascadeType.ALL)
+	private List<Designacao> designacoes;
 
 	//bi-directional many-to-one association to Honorario
 	@JsonManagedReference
@@ -170,6 +166,23 @@ public class Inspecao implements Serializable {
 		this.idInspecao = idInspecao;
 	}
 
+	public Date getDtAgendada() {
+		return dtAgendada;
+	}
+
+	public void setDtAgendada(Date dtAgendada) {
+		this.dtAgendada = dtAgendada;
+	}
+
+	public Date getDtLimite() {
+		return dtLimite;
+	}
+
+	public void setDtLimite(Date dtLimite) {
+		this.dtLimite = dtLimite;
+	}
+
+	
 	public Date getDtSolicitacaoInspecao() {
 		return this.dtSolicitacaoInspecao;
 	}
@@ -292,26 +305,12 @@ public class Inspecao implements Serializable {
 		return custoInspecao;
 	}
 
-	public List<Designacao> getDesignacaos() {
-		return this.designacaos;
+	public List<Designacao> getDesignacoes() {
+		return this.designacoes;
 	}
 
-	public void setDesignacaos(List<Designacao> designacaos) {
-		this.designacaos = designacaos;
-	}
-
-	public Designacao addDesignacao(Designacao designacao) {
-		getDesignacaos().add(designacao);
-		designacao.setInspecao(this);
-
-		return designacao;
-	}
-
-	public Designacao removeDesignacao(Designacao designacao) {
-		getDesignacaos().remove(designacao);
-		designacao.setInspecao(null);
-
-		return designacao;
+	public void setDesignacoes(List<Designacao> designacoes) {
+		this.designacoes = designacoes;
 	}
 
 	public Honorario getHonorario() {

@@ -42,32 +42,38 @@
 						<li><a href="#" onclick="menuOnClick('/atividade')">Atividades</a></li>
 						<li><a href="#" onclick="menuOnClick('/cobertura')">Coberturas</a></li>
 						<li><a href="#" onclick="menuOnClick('/gravidade')">Gravidade</a></li>
-						<li><a href="#" onclick="menuOnClick('/naoConformidade')">Não Conformidades</a></li>
+						<li><a href="#" onclick="menuOnClick('/naoConformidade')">Não
+								Conformidades</a></li>
 						<li><a href="#" onclick="menuOnClick('/permissoes')">Permissões</a></li>
 						<li><a href="#" onclick="menuOnClick('/ramo')">Ramos</a></li>
 						<li><a href="#" onclick="menuOnClick('/status')">Status</a></li>
-						<li><a href="#" onclick="menuOnClick('/tipoInspecao')">Tipo de Inspeção</a></li>
-						<li><a href="#" onclick="menuOnClick('/tipoLogradouro')">Tipo de Logradouro</a></li>
+						<li><a href="#" onclick="menuOnClick('/tipoInspecao')">Tipo
+								de Inspeção</a></li>
+						<li><a href="#" onclick="menuOnClick('/tipoLogradouro')">Tipo
+								de Logradouro</a></li>
 						<li><a href="#" onclick="menuOnClick('/escritorio')">Escritórios</a></li>
 						<li><a href="#" onclick="menuOnClick('/funcionario')">Funcionários</a></li>
 						<li><a href="#" onclick="menuOnClick('/cliente')">Clientes</a></li>
 					</ul> <!-- /.nav-second-level --></li>
 
-				<li sec:authorize="hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')"><a href="#"><i
-						class="fa fa-sitemap fa-fw"></i> Inspeções de Seguros<span
-						class="fa arrow"></span></a>
+				<li sec:authorize="hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')"><a
+					href="#"><i class="fa fa-sitemap fa-fw"></i> Inspeções de
+						Seguros<span class="fa arrow"></span></a>
 					<ul class="nav nav-second-level">
-						<li><a href="#" onclick="menuOnClick('/inspecao')">Nova Inspeção</a></li>
-						<li><a href="#" onclick = "menuListaInspecoes('/dtinspecao/listainspecao')">Lista Inspeções</a></li>
-						<li><a href="#">Consulta</a>
-							<ul class="nav nav-third-level">								
-								<li><a href="#">Por Agendamento</a></li>
-								<li><a href="#">Por Inspeção</a></li>
-								<li><a href="#">Por Número da Proposta</a></li>
-								<li><a href="#">Por Cliente</a></li>
-							</ul> <!-- /.nav-third-level --></li>
+						<li><a href="#" onclick="menuOnClick('/inspecao')">Nova
+								Inspeção</a></li>
+						<li><a href="#"
+							onclick="menuListaInspecoes('/dtinspecao/listainspecao', '/dtinspecao/dtinspecao')">Agendar/Designar</a></li>
+						<li><a href="#"
+							th:onclick="'menuListaInspecoesPorFuncionarioDesignado(\'/dtinspecao/listaInspecaoPorFuncionarioDesignado/'+ ${#httpServletRequest.remoteUser} +'\',\'listaInspecoesPorFuncionarioDesignado\');'">Inspecionar/Informar
+								Custos</a></li>
+						<li><a href="#"
+							onclick="menuListaInspecoes('/dtinspecao/listainspecao')">Relatar/Revisar</a></li>
+						<li><a href="#"
+							onclick="menuListaInspecoes('/dtinspecao/listainspecao')">Marcar
+								Inserção no Sistema do Cliente</a></li>
 					</ul> <!-- /.nav-second-level --></li>
-			
+
 				<li><a href="#"><i class="fa fa-edit fa-fw"></i> Público<span
 						class="fa arrow"></span></a>
 					<ul class="nav nav-second-level">

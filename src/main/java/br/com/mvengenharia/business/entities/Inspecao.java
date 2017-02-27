@@ -141,8 +141,8 @@ public class Inspecao implements Serializable {
 	private List<Atividade> inspecaoAtividadeApurada;
 
 	//bi-directional many-to-one association to Inspecao_Cobertura
-	@OneToMany(mappedBy="inspecao")
-	private List<Inspecao_Cobertura> inspecaoCoberturas;
+	@ManyToMany
+	private List<Cobertura> coberturas;
 
 	//bi-directional many-to-one association to Relatorio
 	@JsonManagedReference
@@ -418,26 +418,12 @@ public class Inspecao implements Serializable {
 		this.inspecaoAtividadeInformada = inspecao_Atividade_Informada;
 	}
 
-	public List<Inspecao_Cobertura> getInspecaoCoberturas() {
-		return this.inspecaoCoberturas;
+	public List<Cobertura> getCoberturas() {
+		return this.coberturas;
 	}
 
-	public void setInspecaoCoberturas(List<Inspecao_Cobertura> inspecaoCoberturas) {
-		this.inspecaoCoberturas = inspecaoCoberturas;
-	}
-
-	public Inspecao_Cobertura addInspecaoCobertura(Inspecao_Cobertura inspecaoCobertura) {
-		getInspecaoCoberturas().add(inspecaoCobertura);
-		inspecaoCobertura.setInspecao(this);
-
-		return inspecaoCobertura;
-	}
-
-	public Inspecao_Cobertura removeInspecaoCobertura(Inspecao_Cobertura inspecaoCobertura) {
-		getInspecaoCoberturas().remove(inspecaoCobertura);
-		inspecaoCobertura.setInspecao(null);
-
-		return inspecaoCobertura;
+	public void setCoberturas(List<Cobertura> coberturas) {
+		this.coberturas = coberturas;
 	}
 
 	public List<Relatorio> getRelatorios() {

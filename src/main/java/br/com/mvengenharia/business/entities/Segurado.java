@@ -8,7 +8,6 @@ import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 

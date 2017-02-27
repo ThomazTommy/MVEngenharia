@@ -1,13 +1,10 @@
-package br.com.mvengenharia.business.entities;
+/*package br.com.mvengenharia.business.entities;
 
 import java.io.Serializable;
 import javax.persistence.*;
 
 
-/**
- * The persistent class for the Inspecao_Cobertura database table.
- * 
- */
+
 @Entity
 @NamedQuery(name="Inspecao_Cobertura.findAll", query="SELECT i FROM Inspecao_Cobertura i")
 public class Inspecao_Cobertura implements Serializable {
@@ -93,4 +90,4 @@ public class Inspecao_Cobertura implements Serializable {
 		this.idInspecaoCobertura = idInspecaoCobertura;
 	}
 
-}
+}*/

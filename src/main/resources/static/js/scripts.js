@@ -170,7 +170,7 @@ function formSubmitClick(e, destino) {
 function afterReload() {
 	$('.multipleSelect').multiselect({
 		buttonWidth : '100%',
-		nonSelectedText : 'Selecione uma Atividade',
+		nonSelectedText : 'Selecione',
 		allSelectedText : 'Todos...',
 		includeSelectAllOption : true,
 		selectAllText : "Todos"

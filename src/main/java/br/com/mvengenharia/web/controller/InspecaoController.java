@@ -13,14 +13,11 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import br.com.mvengenharia.business.entities.Agendamento;
 import br.com.mvengenharia.business.entities.Atividade;
 import br.com.mvengenharia.business.entities.Cliente;
-import br.com.mvengenharia.business.entities.CustoInspecao;
-import br.com.mvengenharia.business.entities.Designacao;
+import br.com.mvengenharia.business.entities.Cobertura;
 import br.com.mvengenharia.business.entities.Estado;
 import br.com.mvengenharia.business.entities.Inspecao;
 import br.com.mvengenharia.business.entities.Status;
@@ -28,8 +25,8 @@ import br.com.mvengenharia.business.entities.TipoLogradouro;
 import br.com.mvengenharia.business.services.AtividadeService;
 import br.com.mvengenharia.business.services.CidadeService;
 import br.com.mvengenharia.business.services.ClienteService;
+import br.com.mvengenharia.business.services.CoberturaService;
 import br.com.mvengenharia.business.services.EstadoService;
-import br.com.mvengenharia.business.services.FuncionarioService;
 import br.com.mvengenharia.business.services.InspecaoService;
 import br.com.mvengenharia.business.services.StatusService;
 import br.com.mvengenharia.business.services.TipoLogradouroService;
@@ -59,10 +56,15 @@ public class InspecaoController {
 	private TipoLogradouroService tipoLogradouroService;
 
 	@Autowired
-	private FuncionarioService funcionarioService;
+	private CoberturaService coberturaService;
 
 	public InspecaoController() {
 		super();
+	}
+	
+	@ModelAttribute("allCoberturas")
+	public Iterable<Cobertura> populateCoberturas() {
+		return this.coberturaService.findAll();
 	}
 
 	@ModelAttribute("allInspecaos")

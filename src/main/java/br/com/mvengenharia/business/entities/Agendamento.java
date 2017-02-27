@@ -7,9 +7,6 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
-import java.math.BigDecimal;
 import java.util.Date;
 
 
@@ -48,7 +45,7 @@ public class Agendamento implements Serializable {
 		this.ultimo = ultimo;
 	}
 
-	@NotNull(message="Campo CPF Funcionario não pode ficar vazio")
+	@NotNull(message="Campo CPF Funcionario nï¿½o pode ficar vazio")
 	@ManyToOne
 	@JoinColumn(name="cpfFuncionario")
 	private Funcionario funcionario;
@@ -74,7 +71,7 @@ public class Agendamento implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dtConfirmacao;
 	
-	@Size(min=1, message="Campo nome Contato não pode ficar vazio")
+	@Size(min=1, message="Campo nome Contato nï¿½o pode ficar vazio")
 	private String nomeContato;
 	
 	@Pattern(regexp = "\\([1-9]{2}\\) [2-9][0-9]{3,4}\\-[0-9]{4}", message = "O telefone deve estar no seguinte formato: (99) 99999-9999 ou (99) 9999-9999")

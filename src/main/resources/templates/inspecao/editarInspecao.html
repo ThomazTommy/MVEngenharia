@@ -82,15 +82,23 @@
 									$('#inspecaoAtividadeInformada')
 											.multiselect();
 								</script>
-								<div class="form-group">
-									<label for="inspecaoAtividadeInformada"> <span
-										th:text="#{inspecao.inspecaoAtividadeInformada}">inspecaoAtividadeInformada</span>
-									</label> <select id="inspecaoAtividadeInformada"
-										th:errorclass="fieldError" class="form-control multipleSelect"
+								<div id="inspecaoAtividadeInformada" class="form-group">
+									<label for="inspecaoAtividadeInformada"> <span th:text="#{inspecao.inspecaoAtividadeInformada}">inspecaoAtividadeInformada</span>
+									</label><br/> <select th:errorclass="fieldError" class="form-control multipleSelect"
 										th:field="*{inspecaoAtividadeInformada}" multiple="multiple">
 										<option th:each="atividade : ${allAtividades}"
-											th:value="${atividade.idAtividade}"
-											th:text="${atividade.descAtividade}">Atividade</option>
+											th:value="${atividade.idAtividade}" th:text="${atividade.descAtividade}">Atividade</option>
+									</select>
+								</div>
+								
+									
+								<div id = "coberturas" class="form-group">
+									<label for="coberturas"> <span th:text="#{inspecao.coberturas}">coberturas</span>
+									</label><br/> <select th:errorclass="fieldError" class="form-control multipleSelect"
+									th:field="*{coberturas}" multiple="multiple" >
+										<option th:each="cobertura : ${allCoberturas}"
+											th:value="${cobertura.idCobertura}"
+											th:text="${cobertura.descCobertura}">Atividade</option>
 									</select>
 								</div>
 

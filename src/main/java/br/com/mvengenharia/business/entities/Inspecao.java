@@ -13,7 +13,6 @@ import javax.validation.constraints.Pattern;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -31,7 +30,7 @@ public class Inspecao implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long idInspecao;
 
-	@NotNull(message="Data n�o pode ser nula")
+	@NotNull(message="Data não pode ser nula")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dtSolicitacaoInspecao;
 	
@@ -90,7 +89,7 @@ public class Inspecao implements Serializable {
 
 	//bi-directional many-to-one association to InsercaoSistema
 	@JsonManagedReference
-	@OneToMany(mappedBy="inspecao")
+	@OneToMany(mappedBy="inspecao",  cascade=CascadeType.ALL)
 	private List<InsercaoSistema> insercaoSistemas;
 
 	//bi-directional many-to-one association to TipoInspecao
@@ -147,12 +146,12 @@ public class Inspecao implements Serializable {
 
 	//bi-directional many-to-one association to Relatorio
 	@JsonManagedReference
-	@OneToMany(mappedBy="inspecao")
+	@OneToMany(mappedBy="inspecao",  cascade=CascadeType.ALL)
 	private List<Relatorio> relatorios;
 
 	//bi-directional many-to-one association to Revisao
 	@JsonManagedReference
-	@OneToMany(mappedBy="inspecao")
+	@OneToMany(mappedBy="inspecao",  cascade=CascadeType.ALL)
 	private List<Revisao> revisaos;
 
 	//bi-directional many-to-one association to Vistoria

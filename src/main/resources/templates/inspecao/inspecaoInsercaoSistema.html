@@ -1,0 +1,95 @@
+<div id="detalheInspecao" th:replace="inspecao/detalheInspecao"></div>
+<div class="row">
+	<div class="col-lg-12">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<span
+					th:text="'Inserções no Sistema Cliente da Inspeção de Protocolo nº ' + ${inspecao.idInspecao}"></span>
+			</div>
+			<div class="panel-body">
+				<div>
+					<ul th:if="${Erro} != null" class="errorlist">
+						<li th:text="${Erro}">Dados Incorretos</li>
+					</ul>
+
+				</div>
+
+				<div th:if="${not #lists.isEmpty(inspecao.insercaoSistemas)}">
+					<div th:each="obj : ${inspecao.insercaoSistemas}">
+						<div class="panel panel-default">
+							<div class="panel-body">
+
+								<div th:if="${obj.dataHoraInsercao} != null">
+
+									<dt th:text="#{insercaoSistema.dataHoraInsercao}"></dt>
+									<dd th:text="${{obj.dataHoraInsercao}}"></dd>
+									<dt th:text="#{insercaoSistema.dataHoraInsercaoSistemaCliente}"></dt>
+									<dd th:text="${{obj.dataHoraInsercaoSistemaCliente}}"></dd>
+									<dt th:text="#{insercaoSistema.funcionarioResponsavelInsercao}"></dt>
+									<dd
+										th:text="${obj.funcionarioResponsavelInsercao.nomeFuncionario}"></dd>
+
+								</div>
+
+
+								<div
+									th:if="${obj.dataHoraInsercao} != null and ${obj.ultimo} == true">
+
+									<button type="button" class="btn btn-success"
+										th:onClick="'executaAjaxGet(\'/insercaoSistema/iniciarNovaInsercaoSistema/' + ${inspecao.idInspecao} + '\', \'detalheInspecao\', \'\', \'\')'">
+										<i class="fa fa-check"></i>Iniciar Nova Inserção
+									</button>
+
+								</div>
+
+								<div
+									th:if="${obj.dataHoraInsercao} == null and ${obj.ultimo} == true">
+									<form role="form" class='usaAjax' action="#"
+										th:action="@{/insercaoSistema/} + ${inspecao.idInspecao}"
+										th:object="${insercaoSistema}" method="post">
+
+										<fieldset>
+											<div class="row">
+												<input type="hidden" id="idInsercaoSistema"
+													name="idInsercaoSistema"
+													th:value="${{obj.idInsercaoSistema}}" />
+												<div class="form-group">
+													<label for="dataHoraInsercaoSistemaCliente"> <span
+														th:text="#{insercaoSistema.dataHoraInsercaoSistemaCliente}">numInspecaoCliente</span>
+													</label> <input class="form-control" type="text"
+														th:field="*{dataHoraInsercaoSistemaCliente}"
+														th:errorclass="fieldError" />
+												</div>
+
+												<button class="btn btn-default" type="submit" name="save"
+													onclick="formSubmitClick(this,'detalheInspecao')"
+													th:text="#{insercaoSistema.salvar}">Add Inspecao</button>
+
+											</div>
+										</fieldset>
+
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div th:if="${#lists.isEmpty(inspecao.insercaoSistemas)}">
+
+					<p>Nenhuma insercao cadastrada</p>
+
+					<button type="button" class="btn btn-success"
+						th:onClick="'executaAjaxGet(\'/insercaoSistema/iniciarNovaInsercaoSistema/' + ${inspecao.idInspecao} + '\', \'detalheInspecao\', \'\', \'\')'">
+						<i class="fa fa-check"></i>Iniciar Nova Inserção
+					</button>
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+
+

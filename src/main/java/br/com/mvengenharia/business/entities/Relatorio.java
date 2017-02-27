@@ -49,10 +49,16 @@ public class Relatorio implements Serializable {
 	private List<NaoConformidade> naoConformidades;
 
 	public Relatorio() {
+	}	
+	
+	public String getObservacao() {
+		return observacao;
 	}
-	
-	
-	
+
+	public void setObservacao(String observacao) {
+		this.observacao = observacao;
+	}
+
 	public boolean getUltimo() {
 		return ultimo;
 	}

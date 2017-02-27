@@ -23,7 +23,14 @@ public class Revisao implements Serializable {
 	private long idRevisao;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date dataRevisao;
+	private Date dataInicioRevisao;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date dataFimRevisao;
+	
+	private boolean ultimo; 
+	
+	private String observacao;
 
 	//bi-directional many-to-one association to Inspecao
 	@JsonBackReference
@@ -34,7 +41,7 @@ public class Revisao implements Serializable {
 	//bi-directional many-to-one association to Funcionario
 	@ManyToOne
 	@JoinColumn(name="cpfRevisor")
-	private Funcionario funcionario;
+	private Funcionario funcionarioRevisor;
 
 	//bi-directional many-to-many association to NaoConformidade
 	@ManyToMany
@@ -42,6 +49,43 @@ public class Revisao implements Serializable {
 
 	public Revisao() {
 	}
+
+	
+	
+	
+	public String getObservacao() {
+		return observacao;
+	}
+
+
+
+
+	public void setObservacao(String observacao) {
+		this.observacao = observacao;
+	}
+
+
+
+
+	public Date getDataFimRevisao() {
+		return dataFimRevisao;
+	}
+
+
+	public void setDataFimRevisao(Date dataFimRevisao) {
+		this.dataFimRevisao = dataFimRevisao;
+	}
+
+
+	public boolean getUltimo() {
+		return ultimo;
+	}
+
+
+	public void setUltimo(boolean ultimo) {
+		this.ultimo = ultimo;
+	}
+
 
 	public long getIdRevisao() {
 		return this.idRevisao;
@@ -51,12 +95,12 @@ public class Revisao implements Serializable {
 		this.idRevisao = idRevisao;
 	}
 
-	public Date getDataRevisao() {
-		return this.dataRevisao;
+	public Date getDataInicioRevisao() {
+		return this.dataInicioRevisao;
 	}
 
-	public void setDataRevisao(Date dataRevisao) {
-		this.dataRevisao = dataRevisao;
+	public void setDataInicioRevisao(Date dataInicioRevisao) {
+		this.dataInicioRevisao = dataInicioRevisao;
 	}
 
 	public Inspecao getInspecao() {
@@ -67,12 +111,12 @@ public class Revisao implements Serializable {
 		this.inspecao = inspecao;
 	}
 
-	public Funcionario getFuncionario() {
-		return this.funcionario;
+	public Funcionario getFuncionarioRevisor() {
+		return this.funcionarioRevisor;
 	}
 
-	public void setFuncionario(Funcionario funcionario) {
-		this.funcionario = funcionario;
+	public void setFuncionarioRevisor(Funcionario funcionarioRevisor) {
+		this.funcionarioRevisor = funcionarioRevisor;
 	}
 
 	public List<NaoConformidade> getNaoConformidades() {

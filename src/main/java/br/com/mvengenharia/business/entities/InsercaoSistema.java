@@ -20,25 +20,20 @@ public class InsercaoSistema implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long idInsercaoSistema;
-
-	private byte aprovacaoSemRessalvas;
-
+	
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date dataHoraAprovacao;
+	private Date dataHoraInsercaoSistemaCliente;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataHoraInsercao;
-
+	
+	boolean ultimo;
+	
 	//bi-directional many-to-one association to Inspecao
 	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name="idInspecao")
 	private Inspecao inspecao;
-
-	//bi-directional many-to-one association to Funcionario
-	@ManyToOne
-	@JoinColumn(name="cpfSupervisor")
-	private Funcionario funcionarioSupervisor;
 
 	//bi-directional many-to-one association to Funcionario
 	@ManyToOne
@@ -48,32 +43,38 @@ public class InsercaoSistema implements Serializable {
 	public InsercaoSistema() {
 	}
 
+	
+	
+	public boolean isUltimo() {
+		return ultimo;
+	}
+
+
+
+	public void setUltimo(boolean ultimo) {
+		this.ultimo = ultimo;
+	}
+
+
+
 	public long getIdInsercaoSistema() {
-		return this.idInsercaoSistema;
+		return idInsercaoSistema;
 	}
 
 	public void setIdInsercaoSistema(long idInsercaoSistema) {
 		this.idInsercaoSistema = idInsercaoSistema;
 	}
 
-	public byte getAprovacaoSemRessalvas() {
-		return this.aprovacaoSemRessalvas;
+	public Date getDataHoraInsercaoSistemaCliente() {
+		return dataHoraInsercaoSistemaCliente;
 	}
 
-	public void setAprovacaoSemRessalvas(byte aprovacaoSemRessalvas) {
-		this.aprovacaoSemRessalvas = aprovacaoSemRessalvas;
-	}
-
-	public Date getDataHoraAprovacao() {
-		return this.dataHoraAprovacao;
-	}
-
-	public void setDataHoraAprovacao(Date dataHoraAprovacao) {
-		this.dataHoraAprovacao = dataHoraAprovacao;
+	public void setDataHoraInsercaoSistemaCliente(Date dataHoraInsercaoSistemaCliente) {
+		this.dataHoraInsercaoSistemaCliente = dataHoraInsercaoSistemaCliente;
 	}
 
 	public Date getDataHoraInsercao() {
-		return this.dataHoraInsercao;
+		return dataHoraInsercao;
 	}
 
 	public void setDataHoraInsercao(Date dataHoraInsercao) {
@@ -81,23 +82,15 @@ public class InsercaoSistema implements Serializable {
 	}
 
 	public Inspecao getInspecao() {
-		return this.inspecao;
+		return inspecao;
 	}
 
 	public void setInspecao(Inspecao inspecao) {
 		this.inspecao = inspecao;
 	}
 
-	public Funcionario getFuncionarioSupervisor() {
-		return this.funcionarioSupervisor;
-	}
-
-	public void setFuncionarioSupervisor(Funcionario funcionarioSupervisor) {
-		this.funcionarioSupervisor = funcionarioSupervisor;
-	}
-
 	public Funcionario getFuncionarioResponsavelInsercao() {
-		return this.funcionarioResponsavelInsercao;
+		return funcionarioResponsavelInsercao;
 	}
 
 	public void setFuncionarioResponsavelInsercao(Funcionario funcionarioResponsavelInsercao) {

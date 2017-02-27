@@ -1,6 +1,4 @@
-/**
- * 
- */
+
 
 function executaAjaxGet(urlChamada, divDestino, preExecute, posExecute) {
 	$.ajax({

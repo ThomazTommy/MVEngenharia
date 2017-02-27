@@ -16,22 +16,26 @@
 							<th>Data Agendamento</th>
 							<th>Data Cadastro</th>
 							<th>Data Limite</th>
-							<th>Cliente</th>
+							<th>Atividade</th>
+							<th>Proponente</th>
+							<th>Nome Contato</th>
 							<th>Endereço</th>
 							<th>Ações</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr th:each="obj, objStat:${listaInspecoes}">
+						<tr th:each="obj, objStat:${listaInspecoes}" th:class="${obj.dtFimInspecao}? 'success':''">
 							<td th:text="${obj.idInspecao}">teste</td>
 							<td th:text="${{obj.dtAgendada}}">teste</td>
 							<td th:text="${{obj.dtSolicitacaoInspecao}}">teste</td>
 							<td th:text="${{obj.dtLimite}}">teste</td>
-							<td th:text="${obj.cliente.descCliente}">teste</td>
+							<td><span th:each="atv : ${obj.inspecaoAtividadeInformada}"  th:text="${atv.descAtividade} + '; '"></span></td>
+							<td th:text="${obj.segurado.nomeSegurado}">teste</td>
+							<td><span th:each="agd : ${obj.agendamentos}" th:text="${agd.ultimo}? ${agd.nomeContato}"></span></td>
 							<td
 								th:text="${obj.endereco.tipoLogradouro.descTipoLogradouro} + ' ' + ${obj.endereco.logradouro} + ' - ' + ${obj.endereco.cidade.nomeCidade} ">teste</td>
 							<td><a href="#"
-								th:onClick="'executaAjaxGet(\'/inspecionar/' + ${obj.idInspecao}+ '\',\'detalheInspecao\',\'\',\'\')'"><span
+								th:onClick="'executaAjaxGet(\'/inspecao/inspecaoInicioFimCustos/' + ${obj.idInspecao}+ '\',\'detalheInspecao\',\'\',\'\')'"><span
 									class="glyphicon glyphicon-calendar"> </span></a> teste</td>
 						</tr>
 					</tbody>

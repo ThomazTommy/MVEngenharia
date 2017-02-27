@@ -1,6 +1,8 @@
 package br.com.mvengenharia.business.entities;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
+
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -23,7 +25,9 @@ public class CustoInspecao implements Serializable {
 
 	private double kmEfetivo;
 
-	private double valorDeslocamento;
+	private BigDecimal valorDeslocamento;
+	
+	private boolean custoInformado;
 
 	//bi-directional many-to-one association to Inspecao
 	@JsonBackReference
@@ -33,6 +37,20 @@ public class CustoInspecao implements Serializable {
 
 	public CustoInspecao() {
 	}
+
+	
+	
+	public boolean getCustoInformado() {
+		return custoInformado;
+	}
+
+
+
+	public void setCustoInformado(boolean custoInformado) {
+		this.custoInformado = custoInformado;
+	}
+
+
 
 	public long getIdCustoInspecao() {
 		return this.idCustoInspecao;
@@ -58,11 +76,11 @@ public class CustoInspecao implements Serializable {
 		this.kmEfetivo = kmEfetivo;
 	}
 
-	public double getValorDeslocamento() {
+	public BigDecimal getValorDeslocamento() {
 		return this.valorDeslocamento;
 	}
 
-	public void setValorDeslocamento(double valorDeslocamento) {
+	public void setValorDeslocamento(BigDecimal valorDeslocamento) {
 		this.valorDeslocamento = valorDeslocamento;
 	}
 

@@ -38,7 +38,7 @@ public class Relatorio implements Serializable {
 	//bi-directional many-to-one association to Funcionario
 	@ManyToOne
 	@JoinColumn(name="cpfRelator")
-	private Funcionario funcionario;
+	private Funcionario funcionarioRelator;
 
 	//bi-directional many-to-many association to NaoConformidade
 	@ManyToMany
@@ -79,12 +79,12 @@ public class Relatorio implements Serializable {
 		this.inspecao = inspecao;
 	}
 
-	public Funcionario getFuncionario() {
-		return this.funcionario;
+	public Funcionario getFuncionarioRelator() {
+		return this.funcionarioRelator;
 	}
 
-	public void setFuncionario(Funcionario funcionario) {
-		this.funcionario = funcionario;
+	public void setFuncionarioRelator(Funcionario funcionario) {
+		this.funcionarioRelator = funcionario;
 	}
 
 	public List<NaoConformidade> getNaoConformidades() {

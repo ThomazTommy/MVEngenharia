@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import br.com.mvengenharia.business.entities.Agendamento;
 import br.com.mvengenharia.business.entities.Atividade;
 import br.com.mvengenharia.business.entities.Cliente;
+import br.com.mvengenharia.business.entities.CustoInspecao;
 import br.com.mvengenharia.business.entities.Designacao;
 import br.com.mvengenharia.business.entities.Estado;
 import br.com.mvengenharia.business.entities.Inspecao;
@@ -197,5 +198,59 @@ public class InspecaoController {
 		model.clear();
 		return "redirect:/inspecao";
 	}
+	
+	@RequestMapping(value = "/inspecao/detalheinspecao/{idInspecao}")
+	public ModelAndView detalheInspecao(@PathVariable Long idInspecao) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("inspecao/detalheInspecao");
+		mav.addObject("inspecao", this.inspecaoService.findOne(idInspecao));
+		return mav;
+	}
+	
+	@RequestMapping(value = "/inspecao/inspecaoInicioFimCustos/{idInspecao}")
+	public ModelAndView inspecaoInicioFimCustos(@PathVariable Long idInspecao) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("inspecao/inspecaoInicioFimCustos");
+		mav.addObject("inspecao", this.inspecaoService.findOne(idInspecao));
+		
+		return mav;
+	}
+	
+	@RequestMapping(value = "/inspecao/informaInicioInspecao/{idInspecao}")
+	public ModelAndView informaIncioInspecao(@PathVariable Long idInspecao) {
+		Inspecao insp = this.inspecaoService.findOne(idInspecao);
+		insp.setDtInicioInspecao(new Date());
+		this.inspecaoService.addOrUpdate(insp);
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("inspecao/inspecaoInicioFimCustos");
+		mav.addObject("inspecao", insp);
+	
+		return mav;
+	}
+	
+	@RequestMapping(value = "/inspecao/informaFimInspecao/{idInspecao}")
+	public ModelAndView informaFimInspecao(@PathVariable Long idInspecao) {
+		Inspecao insp = this.inspecaoService.findOne(idInspecao);
+		Date agora = new Date();
+		if(insp.getDtInicioInspecao()==null||insp.getDtInicioInspecao().after(agora))
+		{
+			ModelAndView mav = new ModelAndView();
+			mav.setViewName("inspecao/inspecaoInicioFimCustos");
+			mav.addObject("inspecao", insp);
+			mav.addObject("Erro", "Data inicio inspe��o n�o informada ou maior que a data fim inspe��o");
+			return mav;
+		}		
+		insp.setDtFimInspecao(new Date());
+		this.inspecaoService.addOrUpdate(insp);
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("redirect:/dtinspecao/listaInspecaoPorFuncionarioDesignado/" + SecurityContextHolder.getContext().getAuthentication().getName());
+		mav.addObject("inspecao", insp);
+		
+		return mav;
+	}
+	
+	
+	
+	
 
 }

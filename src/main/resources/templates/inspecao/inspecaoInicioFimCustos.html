@@ -1,0 +1,136 @@
+<div id="detalheInspecao" th:replace="inspecao/detalheInspecao"></div>
+<div class="row">
+	<div class="col-lg-12">
+		<div class="panel panel-default">
+
+			<div class="panel-body">
+				<div>
+					<ul th:if="${Erro} != null" class="errorlist">
+						<li th:text="${Erro}">Dados Incorretos</li>
+					</ul>
+
+				</div>
+				<div th:if="${inspecao.dtInicioInspecao} == null">
+					<button class="btn btn-default" type="submit" name="save"
+						th:onClick="'executaAjaxGet(\'/inspecao/informaInicioInspecao/' + ${inspecao.idInspecao}+ '\',\'detalheInspecao\',\'\',\'\')'"
+						th:text="#{inspecao.iniciarInspecao}">Add Inspecao</button>
+				</div>
+				<div th:if="${inspecao.dtInicioInspecao} != null">
+					<dt th:text="#{inspecao.dtInicioInspecao}">DtInicioInsp</dt>
+					<dd th:text="${{inspecao.dtInicioInspecao}}">DtInicioInsp</dd>
+				</div>
+
+
+			</div>
+		</div>
+	</div>
+</div>
+<div class="row"
+	th:if="(${inspecao.dtInicioInspecao} != null)">
+	<div class="col-lg-12">
+		<div class="panel panel-default">
+
+			<div class="panel-body">
+				<div th:if="${inspecao.dtFimInspecao} == null">
+					<button class="btn btn-default" type="submit" name="save"
+						th:onClick="'executaAjaxGet(\'/inspecao/informaFimInspecao/' + ${inspecao.idInspecao}+ '\',\'page-wrapper\',\'\',\'\')'"
+						th:text="#{inspecao.finalizarInspecao}">Add Inspecao</button>
+				</div>
+				<div th:if="${inspecao.dtFimInspecao} != null">
+					<dt th:text="#{inspecao.dtFimInspecao}">DtInicioInsp</dt>
+					<dd th:text="${{inspecao.dtFimInspecao}}">DtInicioInsp</dd>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<div class="row"
+	th:if="${inspecao.dtFimInspecao} != null and ${inspecao.custoInspecao} == null">
+	<div class="col-lg-12">
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<form role="form" class='usaAjax'
+					th:action="@{/custoInspecao/} + ${inspecao.idInspecao}"
+					th:object="${inspecao}" method="post">
+					<fieldset>
+						<div class="row">
+							<div class="col-lg-12">
+								<ul th:if="${#fields.hasErrors('*')}" class="errorlist">
+									<li th:each="err : ${#fields.errors('*')}" th:text="${err}">Dados
+										Incorretos</li>
+								</ul>
+							</div>
+							<div class="col-lg-12">
+								<input type="hidden" th:field="*{custoInspecao.inspecao.idInspecao}" />
+								<div class="form-group">
+									<label for="custoAprovado"> <span
+										th:text="#{custoInspecao.custoAprovado}">dtAgendada</span>
+									</label> <input class="form-control" type="text"
+										th:field="*{custoInspecao.custoAprovado}"
+										th:errorclass="fieldError" />
+								</div>
+								<div class="form-group">
+									<label for="kmEfetivo"> <span
+										th:text="#{custoInspecao.kmEfetivo}">nomeContato</span>
+									</label> <input class="form-control" type="text"
+										th:field="*{custoInspecao.kmEfetivo}"
+										th:errorclass="fieldError" />
+								</div>
+								<div class="form-group">
+									<label for="valorDeslocamento"> <span
+										th:text="#{custoInspecao.valorDeslocamento}">telefoneContato</span>
+									</label> <input class="form-control" type="text" maxlength="15"
+										onkeyup="mascaraDinheiro(this);"
+										onblur="mascaraDinheiro(this);"
+										th:field="*{{custoInspecao.valorDeslocamento}}"
+										th:errorclass="fieldError" />
+								</div>
+
+								<div class="form-group">
+									<label for="qtdBlocos"> <span
+										th:text="#{inspecao.qtdBlocos}">nomeContato</span>
+									</label> <input class="form-control" type="number"
+										th:field="*{qtdBlocos}" th:errorclass="fieldError" />
+								</div>
+
+								<div id="inspecaoAtividadeApurada" class="form-group">
+									<label for="inspecaoAtividadeApurada"> <span
+										th:text="#{inspecao.inspecaoAtividadeApurada}">inspecaoAtividadeInformada</span>
+									</label><br /> <select th:errorclass="fieldError"
+										class="form-control multipleSelect"
+										th:field="*{inspecaoAtividadeApurada}" multiple="multiple">
+										<option th:each="atividade : ${allAtividades}"
+											th:value="${atividade.idAtividade}"
+											th:text="${atividade.descAtividade}">Atividade</option>
+									</select>
+								</div>
+
+							</div>
+						</div>
+						<button class="btn btn-default" type="submit" name="save"
+							onclick="formSubmitClick(this,'page-wrapper')"
+							th:text="#{custoInspecao.salvar}">Add Inspecao</button>
+					</fieldset>
+				</form>
+			</div>
+		</div>
+	</div>
+
+</div>
+<div class="row"
+	th:if="(${inspecao.dtInicioInspecao} != null) and (${inspecao.custoInspecao} != null) and (${inspecao.custoInspecao.custoInformado} == true)">
+	<div class="col-lg-12">
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<dt th:text="#{custoInspecao.custoAprovado}"></dt>
+				<dd th:text="${inspecao.custoInspecao.custoAprovado}"></dd>
+				<dt th:text="#{custoInspecao.kmEfetivo}"></dt>
+				<dd th:text="${inspecao.custoInspecao.kmEfetivo}"></dd>
+				<dt th:text="#{custoInspecao.valorDeslocamento}"></dt>
+				<dd th:text="${inspecao.custoInspecao.valorDeslocamento}"></dd>
+			</div>
+		</div>
+	</div>
+</div>

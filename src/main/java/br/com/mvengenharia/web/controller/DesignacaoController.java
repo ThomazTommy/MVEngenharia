@@ -50,7 +50,7 @@ public class DesignacaoController {
     @RequestMapping(value = "/designacao/{idInspecao}", method = RequestMethod.GET)
     public ModelAndView showDesignacao(@PathVariable long idInspecao) {
     	ModelAndView mav = new ModelAndView();
-    	mav.setViewName("inspecao/detalheInspecao");
+    	mav.setViewName("inspecao/inspecaoAgendamentoDesignacao");
     	mav.addObject("inspecao", this.inspecaoService.findOne(idInspecao));
     	Designacao designacao = new Designacao();
     	Agendamento agenda = new Agendamento();
@@ -64,7 +64,7 @@ public class DesignacaoController {
         if (bindingResult.hasErrors()) {
             model.addAttribute("inspecao", this.inspecaoService.findOne(idInspecao));   
             model.addAttribute("agendamento", new Agendamento());
-        	return "inspecao/detalheInspecao";
+        	return "inspecao/inspecaoAgendamentoDesignacao";
         }
         Inspecao insp = this.inspecaoService.findOne(idInspecao);
         List<Designacao> listaDsgs = insp.getDesignacoes();

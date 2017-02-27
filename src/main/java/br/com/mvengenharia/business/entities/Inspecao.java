@@ -30,14 +30,18 @@ public class Inspecao implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long idInspecao;
 
-	@NotNull(message="Data não pode ser nula")
+	@NotNull(message="Data nï¿½o pode ser nula")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dtSolicitacaoInspecao;
 	
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date dtInicioInspecao;
 	
 	@Temporal(TemporalType.TIMESTAMP)
+	private Date dtFimInspecao;
+		
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date dtLimite;
-
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dtAgendada;
@@ -46,12 +50,13 @@ public class Inspecao implements Serializable {
 
 	private int numInspecaoCliente;
 
-	@Min(value = 1, message="Número da Proposta não pode ser 0")
+	@Min(value = 1, message="NÃºmero da Proposta nÃ£o pode ser 0")
 	private int numPropostaCliente;
 
 	private String observacao;
-
-	private int qtdBlocos;
+	
+	@Min(value = 1, message="Quantidade de Blocos nÃ£o pode ser 0")
+	private int qtdBlocos = 1;
 
 	@NotNull
 	private boolean roubo;
@@ -59,7 +64,7 @@ public class Inspecao implements Serializable {
 	@Pattern(regexp = "\\([1-9]{2}\\) [2-9][0-9]{3,4}\\-[0-9]{4}", message = "O telefone deve estar no seguinte formato: (99) 99999-9999 ou (99) 9999-9999")
 	private String telefoneCorretor;
 
-	@NotNull(message="Valor do risco não pode ficar vazio.")
+	@NotNull(message="Valor do risco nï¿½o pode ficar vazio.")
 	private BigDecimal valorTotalRisco;
 
 	//bi-directional many-to-one association to Agendamento
@@ -69,8 +74,8 @@ public class Inspecao implements Serializable {
 
 	//bi-directional many-to-one association to CustoInspecao
 	@JsonManagedReference
-	@OneToMany(mappedBy="inspecao")
-	private List<CustoInspecao> custoInspecaos;
+	@OneToOne(mappedBy="inspecao",  cascade=CascadeType.ALL)
+	private CustoInspecao custoInspecao;
 
 	//bi-directional many-to-one association to Designacao
 	@JsonManagedReference
@@ -88,13 +93,13 @@ public class Inspecao implements Serializable {
 	private List<InsercaoSistema> insercaoSistemas;
 
 	//bi-directional many-to-one association to TipoInspecao
-	@NotNull(message="Campo Tipo de Inspecao não pode ficar vazio")
+	@NotNull(message="Campo Tipo de Inspecao nÃ£o pode ficar vazio")
 	@ManyToOne
 	@JoinColumn(name="idTipoInspecao")
 	private TipoInspecao tipoInspecao;
 
 	//bi-directional many-to-one association to Cliente
-	@NotNull(message="Campo Cliente não pode ficar vazio")
+	@NotNull(message="Campo Cliente nÃ£o pode ficar vazio")
 	@ManyToOne
 	@JoinColumn(name="idCliente")
 	private Cliente cliente;
@@ -156,7 +161,25 @@ public class Inspecao implements Serializable {
 
 	public Inspecao() {
 		
+	}	
+
+	public Date getDtInicioInspecao() {
+		return dtInicioInspecao;
 	}
+
+	public void setDtInicioInspecao(Date dtInicioInspecao) {
+		this.dtInicioInspecao = dtInicioInspecao;
+	}
+
+	public Date getDtFimInspecao() {
+		return dtFimInspecao;
+	}
+
+	public void setDtFimInspecao(Date dtFimInspecao) {
+		this.dtFimInspecao = dtFimInspecao;
+	}
+
+
 
 	public long getIdInspecao() {
 		return this.idInspecao;
@@ -283,26 +306,12 @@ public class Inspecao implements Serializable {
 		return agendamento;
 	}
 
-	public List<CustoInspecao> getCustoInspecaos() {
-		return this.custoInspecaos;
+	public CustoInspecao getCustoInspecao() {
+		return this.custoInspecao;
 	}
 
-	public void setCustoInspecaos(List<CustoInspecao> custoInspecaos) {
-		this.custoInspecaos = custoInspecaos;
-	}
-
-	public CustoInspecao addCustoInspecao(CustoInspecao custoInspecao) {
-		getCustoInspecaos().add(custoInspecao);
-		custoInspecao.setInspecao(this);
-
-		return custoInspecao;
-	}
-
-	public CustoInspecao removeCustoInspecao(CustoInspecao custoInspecao) {
-		getCustoInspecaos().remove(custoInspecao);
-		custoInspecao.setInspecao(null);
-
-		return custoInspecao;
+	public void setCustoInspecao(CustoInspecao custoInspecao) {
+		this.custoInspecao = custoInspecao;
 	}
 
 	public List<Designacao> getDesignacoes() {

@@ -34,6 +34,11 @@ public class DTInspecaoService {
     public List<Inspecao> findByFuncionarioDesignado(String cpf){
     	return this.dtInspecaoRepository.findByFuncionarioDesignado(cpf);
     }
+    
+    public List<Inspecao> findByStatus(Long status){
+    	return this.dtInspecaoRepository.findByStatus(status);
+    }
+  
    
     
 }

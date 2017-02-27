@@ -237,7 +237,7 @@ public class InspecaoController {
 			ModelAndView mav = new ModelAndView();
 			mav.setViewName("inspecao/inspecaoInicioFimCustos");
 			mav.addObject("inspecao", insp);
-			mav.addObject("Erro", "Data inicio inspe��o n�o informada ou maior que a data fim inspe��o");
+			mav.addObject("Erro", "Data inicio inspeção não informada ou maior que a data fim inspeção");
 			return mav;
 		}		
 		insp.setDtFimInspecao(new Date());
@@ -250,6 +250,14 @@ public class InspecaoController {
 	}
 	
 	
+/*	@RequestMapping(value = "/inspecao/inspecaoRelatorio/{idInspecao}")
+	public ModelAndView inspecaoRelatorio(@PathVariable Long idInspecao) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("inspecao/inspecaoRelatorio");
+		mav.addObject("inspecao", this.inspecaoService.findOne(idInspecao));
+		return mav;
+	}
+	*/
 	
 	
 

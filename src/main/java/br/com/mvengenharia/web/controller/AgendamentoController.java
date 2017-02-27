@@ -54,7 +54,7 @@ public class AgendamentoController {
     	mav.addObject("inspecao", this.inspecaoService.findOne(idInspecao));
     	Designacao designacao = new Designacao();
     	Agendamento agenda = new Agendamento();
-    		mav.addObject("designacao", designacao);
+    	mav.addObject("designacao", designacao);
     	mav.addObject("agendamento", agenda);
         return mav;
     }      

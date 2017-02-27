@@ -1,3 +1,4 @@
+
 package br.com.mvengenharia.business.entities;
 
 import java.io.Serializable;

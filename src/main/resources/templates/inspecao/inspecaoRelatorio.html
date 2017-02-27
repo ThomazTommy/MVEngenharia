@@ -10,100 +10,79 @@
 					</ul>
 
 				</div>
-				<div th:if="${inspecao.dtInicioInspecao} == null">
-					<button class="btn btn-default" type="submit" name="save"
-						th:onClick="'executaAjaxGet(\'/inspecao/informaInicioInspecao/' + ${inspecao.idInspecao}+ '\',\'detalheInspecao\',\'\',\'\')'"
-						th:text="#{inspecao.iniciarInspecao}">Add Inspecao</button>
-				</div>
-				<div th:if="${inspecao.dtInicioInspecao} != null">
-					<dt th:text="#{inspecao.dtInicioInspecao}">DtInicioInsp</dt>
-					<dd th:text="${{inspecao.dtInicioInspecao}}">DtInicioInsp</dd>
-				</div>
+				
+				<div th:if="${not #lists.isEmpty(inspecao.relatorios)}">
 
+					<p>Relatorios não esta vazio</p>
+					<div th:each="obj : ${inspecao.relatorios}">
 
-			</div>
-		</div>
-	</div>
-</div>
+						<dt th:text="#{relatorio.dataInicioRelatorio}"></dt>
+						<dd th:text="${{obj.dataInicioRelatorio}}"></dd>
 
-<div class="row" th:if="${inspecao.dtInicioInspecao} != null and ${inspecao.custoInspecao} == null">
-	<div class="col-lg-12" >
-		<div class="panel panel-default">
-			<div class="panel-body">
-				<form role="form" class='usaAjax'
-					th:action="@{/custoInspecao/} + ${inspecao.idInspecao}"
-					th:object="${inspecao.custoInspecao}" method="post">
-					<fieldset>
-						<div class="row">
-							<div class="col-lg-12">
-								<ul th:if="${#fields.hasErrors('*')}" class="errorlist">
-									<li th:each="err : ${#fields.errors('*')}" th:text="${err}">Dados
-										Incorretos</li>
-								</ul>
-							</div>
-							<div class="col-lg-12">
-								<input type="hidden" th:field="*{inspecao.idInspecao}" />
-								<div class="form-group">
-									<label for="custoAprovado"> <span
-										th:text="#{custoInspecao.custoAprovado}">dtAgendada</span>
-									</label> <input class="form-control" type="text"
-										th:field="*{custoAprovado}" th:errorclass="fieldError" />
-								</div>
-								<div class="form-group">
-									<label for="kmEfetivo"> <span
-										th:text="#{custoInspecao.kmEfetivo}">nomeContato</span>
-									</label> <input class="form-control" type="text"
-										th:field="*{kmEfetivo}" th:errorclass="fieldError" />
-								</div>
-								<div class="form-group">
-									<label for="valorDeslocamento"> <span
-										th:text="#{custoInspecao.valorDeslocamento}">telefoneContato</span>
-									</label> <input class="form-control" type="text" maxlength="15"
-										onkeyup="mascaraDinheiro(this);"
-										onblur="mascaraDinheiro(this);"
-										th:field="*{{valorDeslocamento}}" th:errorclass="fieldError" />
-								</div>
-							</div>
+						<dt th:text="#{relatorio.funcionarioRelator}"></dt>
+						<dd th:text="${{obj.funcionarioRelator.nomeFuncionario}}"></dd>
+
+						<div th:if="${obj.dataFimRelatorio} != null">
+
+							<dt th:text="#{relatorio.dataFimRelatorio}"></dt>
+							<dd th:text="${{obj.dataFimRelatorio}}"></dd>
+
+							<dt th:text="#{relatorio.naoConformidades}"></dt>
+
+							<dd th:if="${#lists.isEmpty(obj.naoConformidades)}">Nenhuma
+								Não-Conformidade Cadastrada
+							</dd>
+							<dd th:each="nc:${obj.naoConformidades}" th:text="${nc.descNaoConformidade}"></dd>
 						</div>
-						<button class="btn btn-default" type="submit" name="save"
-							onclick="formSubmitClick(this,'detalheInspecao')"
-							th:text="#{custoInspecao.salvar}">Add Inspecao</button>
-					</fieldset>
-				</form>
-			</div>
-		</div>
-	</div>
-	
-</div>
-<div class="row" th:if="(${inspecao.dtInicioInspecao} != null) and (${inspecao.custoInspecao.custoInformado} == true)">
-<div class="col-lg-12">
-		<div class="panel panel-default">
-			<div class="panel-body">
-				<dt th:text="#{custoInspecao.custoAprovado}"></dt>
-				<dd th:text="${inspecao.custoInspecao.custoAprovado}"></dd>
-				<dt th:text="#{custoInspecao.kmEfetivo}"></dt>
-				<dd th:text="${inspecao.custoInspecao.kmEfetivo}"></dd>
-				<dt th:text="#{custoInspecao.valorDeslocamento}"></dt>		
-				<dd th:text="${inspecao.custoInspecao.valorDeslocamento}"></dd>	
-			</div>
-		</div>
-	</div>
-</div>
-<div class="row"
-	th:if="(${inspecao.dtInicioInspecao} != null) and (${inspecao.custoInspecao.custoInformado}  == true)">
-	<div class="col-lg-12">
-		<div class="panel panel-default">
 
-			<div class="panel-body">
-				<div th:if="${inspecao.dtFimInspecao} == null">
-					<button class="btn btn-default" type="submit" name="save"
-						th:onClick="'executaAjaxGet(\'/inspecao/informaFimInspecao/' + ${inspecao.idInspecao}+ '\',\'detalheInspecao\',\'\',\'\')'"
-						th:text="#{inspecao.finalizarInspecao}">Add Inspecao</button>
+						<div th:if="${obj.dataFimRelatorio} == null">
+
+
+							<form role="form" class='usaAjax' action="#"
+								th:action="@{/relatorio/} + ${inspecao.idInspecao}"
+								th:object="${relatorio}" method="post">
+								<fieldset>
+									<div class="row">
+										<div class="col-lg-12">
+											<ul th:if="${#fields.hasErrors('*')}" class="errorlist">
+												<li th:each="err : ${#fields.errors('*')}" th:text="${err}">Dados
+													Incorretos</li>
+											</ul>
+										</div>
+										<div class="col-lg-12">
+											<input type="hidden" id="idRelatorio" name="idRelatorio" th:value="${{obj.idRelatorio}}"/>
+											<input type="hidden" id="dataInicioRelatorio" name="dataInicioRelatorio" th:value="${{obj.dataInicioRelatorio}}"/>
+											<input type="hidden" id="funcionarioRelator.cpf" name="funcionarioRelator.cpf" th:value="${obj.funcionarioRelator.cpf}"/>
+											<div class="form-group">
+												<label for="naoConformidades"><span th:text="#{relatorio.naoConformidades}">Ramos</span></label>
+												<div class="checkbox" th:each="obj_ : ${allNaoConformidades}">
+													<label> <input type="checkbox" th:field="*{naoConformidades}"
+														th:value="${obj_.idNaoConformidade}" /> <span
+														th:for="${#ids.prev('naoConformidades')}" th:text="${obj_.descNaoConformidade}">ramos</span></label>
+												</div>
+											</div>
+										</div>
+									</div>
+									<button class="btn btn-default" type="submit" name="save"
+										onclick="formSubmitClick(this,'detalheInspecao')"
+										th:text="#{relatorio.salvar}">Add Inspecao</button>
+								</fieldset>
+							</form>
+						</div>
+					</div>
 				</div>
-				<div th:if="${inspecao.dtFimInspecao} != null">
-					<dt th:text="#{inspecao.dtFimInspecao}">DtInicioInsp</dt>
-					<dd th:text="${{inspecao.dtFimInspecao}}">DtInicioInsp</dd>
+
+				<div th:if="${#lists.isEmpty(inspecao.relatorios)}">
+
+					<p>Relatorios esta vazio</p>
+
+					<button type="button" class="btn btn-success"
+						th:onClick="'executaAjaxGet(\'/relatorio/iniciarNovoRelatorio/' + ${inspecao.idInspecao} + '\', \'detalheInspecao\', \'\', \'\')'">
+						<i class="fa fa-check"></i>Iniciar Novo Relatório
+					</button>
+
 				</div>
+
 			</div>
 		</div>
 	</div>

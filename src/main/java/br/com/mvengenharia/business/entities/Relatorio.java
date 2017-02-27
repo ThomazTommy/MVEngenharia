@@ -28,6 +28,10 @@ public class Relatorio implements Serializable {
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataFimRelatorio;
+	
+	private boolean ultimo;
+	
+	private String observacao;
 
 	//bi-directional many-to-one association to Inspecao
 	@JsonBackReference
@@ -45,6 +49,16 @@ public class Relatorio implements Serializable {
 	private List<NaoConformidade> naoConformidades;
 
 	public Relatorio() {
+	}
+	
+	
+	
+	public boolean getUltimo() {
+		return ultimo;
+	}
+
+	public void setUltimo(boolean ultimo) {
+		this.ultimo = ultimo;
 	}
 
 	public Date getDataInicioRelatorio() {

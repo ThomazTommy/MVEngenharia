@@ -52,5 +52,16 @@ public class DTInspecaoController {
 			mav.addObject("listaInspecoes", listaInspecoes);
 			return mav;
 		}
+	    
+	    
+	    @RequestMapping(value = "/dtinspecao/listaInspecaoParaRelatar", method = RequestMethod.GET)
+		public ModelAndView showInspecaoParaRelatar() {
+	    	Long status = Long.valueOf("1");
+			ModelAndView mav = new ModelAndView();
+			mav.setViewName("inspecao/listaInspecaoParaRelatar");
+			List<Inspecao> listaInspecoes = this.dtInspecaoService.findByStatus(status);
+			mav.addObject("listaInspecoes", listaInspecoes);
+			return mav;
+		}
 	
 }

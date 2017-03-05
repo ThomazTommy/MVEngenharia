@@ -24,7 +24,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr th:each="obj, objStat:${listaInspecoes}" th:class="${obj.dtFimInspecao}? 'success':''">
+						<tr th:each="obj, objStat:${listaInspecoes}" th:class="${not #lists.isEmpty(obj.vistorias)}? (${obj.vistorias[0].dtFimInspecao}? 'success':''):''">
 							<td th:text="${obj.idInspecao}">teste</td>
 							<td th:text="${{obj.dtAgendada}}">teste</td>
 							<td th:text="${{obj.dtSolicitacaoInspecao}}">teste</td>
@@ -35,7 +35,7 @@
 							<td
 								th:text="${obj.endereco.tipoLogradouro.descTipoLogradouro} + ' ' + ${obj.endereco.logradouro} + ' - ' + ${obj.endereco.cidade.nomeCidade} ">teste</td>
 							<td><a href="#"
-								th:onClick="'executaAjaxGet(\'/inspecao/inspecaoInicioFimCustos/' + ${obj.idInspecao}+ '\',\'detalheInspecao\',\'\',\'\')'"><span
+								th:onClick="'executaAjaxGet(\'/vistoria/inspecaoInicioFimCustos/' + ${obj.idInspecao}+ '\',\'detalheInspecao\',\'\',\'\')'"><span
 									class="glyphicon glyphicon-calendar"> </span></a> teste</td>
 						</tr>
 					</tbody>

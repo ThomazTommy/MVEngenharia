@@ -2,11 +2,9 @@ package br.com.mvengenharia.web.controller;
 
 import java.util.Calendar;
 import java.util.Date;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -19,6 +17,7 @@ import br.com.mvengenharia.business.entities.Atividade;
 import br.com.mvengenharia.business.entities.Cliente;
 import br.com.mvengenharia.business.entities.Cobertura;
 import br.com.mvengenharia.business.entities.Estado;
+import br.com.mvengenharia.business.entities.Fase;
 import br.com.mvengenharia.business.entities.Inspecao;
 import br.com.mvengenharia.business.entities.Status;
 import br.com.mvengenharia.business.entities.TipoLogradouro;
@@ -30,9 +29,13 @@ import br.com.mvengenharia.business.services.EstadoService;
 import br.com.mvengenharia.business.services.InspecaoService;
 import br.com.mvengenharia.business.services.StatusService;
 import br.com.mvengenharia.business.services.TipoLogradouroService;
+import br.com.mvengenharia.business.services.VistoriaService;
 
 @Controller
 public class InspecaoController {
+
+	@Autowired
+	VistoriaService vistoriaService;
 
 	@Autowired
 	private InspecaoService inspecaoService;
@@ -48,7 +51,7 @@ public class InspecaoController {
 
 	@Autowired
 	private CidadeService cidadeService;
-	
+
 	@Autowired
 	private AtividadeService atividadeService;
 
@@ -61,17 +64,17 @@ public class InspecaoController {
 	public InspecaoController() {
 		super();
 	}
-	
+
 	@ModelAttribute("allCoberturas")
 	public Iterable<Cobertura> populateCoberturas() {
 		return this.coberturaService.findAll();
 	}
 
-	@ModelAttribute("allInspecaos")
-	public Iterable<Inspecao> populateInspecaos() {
-		return this.inspecaoService.findAll();
-	}
-	
+	//@ModelAttribute("allInspecaos")
+	//public Iterable<Inspecao> populateInspecaos() {
+	//	return this.inspecaoService.findAll();
+	//}
+
 	@ModelAttribute("allAtividades")
 	public Iterable<Atividade> populateAtividades() {
 		return this.atividadeService.findAll();
@@ -96,13 +99,30 @@ public class InspecaoController {
 	public Iterable<TipoLogradouro> populateTipoLogradouros() {
 		return this.tipoLogradouroService.findAll();
 	}
+	
+
+	@RequestMapping("/novaInspecao")
+	public ModelAndView novaInspecao() {
+		Inspecao insp = new Inspecao();
+		insp.setDtSolicitacaoInspecao(new Date());
+		Fase fase = new Fase();
+		fase.setIdFase(1);
+		insp.setFase(fase);
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("inspecao/inspecao");		
+		mav.addObject("inspecao", insp);
+		return mav;
+	}
 
 	@RequestMapping("/inspecao")
 	public ModelAndView showInspecao() {
 		Inspecao insp = new Inspecao();
 		insp.setDtSolicitacaoInspecao(new Date());
+		Fase fase = new Fase();
+		fase.setIdFase(1);
+		insp.setFase(fase);
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("inspecao/inspecao");
+		mav.setViewName("inspecao/editarInspecao");
 		mav.addObject("inspecao", insp);
 		return mav;
 	}
@@ -122,21 +142,19 @@ public class InspecaoController {
 						this.cidadeService.findByIdEstado(inspecao.getEndereco().getEstado().getIdEstado()));
 			}
 			System.out.println(bindingResult.toString());
-			return "inspecao/inspecao";
+			return "inspecao/editarInspecao";
 		}
 		Calendar c = Calendar.getInstance();
 		c.setTime(inspecao.getDtSolicitacaoInspecao());
-		c.add(Calendar.DATE, + this.clienteService.findOne(inspecao.getCliente().getIdCliente()).getPrazoCliente());
+		c.add(Calendar.DATE, +this.clienteService.findOne(inspecao.getCliente().getIdCliente()).getPrazoCliente());
 		inspecao.setDtLimite(c.getTime());
 		this.inspecaoService.addOrUpdate(inspecao);
 		model.clear();
 		return "redirect:/inspecao";
 	}
-	
-	
 
 	@RequestMapping(value = "/inspecao/remover/{id}")
-	public String saveInspecao(@PathVariable Long id) {
+	public String removeInspecao(@PathVariable Long id) {
 		this.inspecaoService.remove(id);
 		return "redirect:/inspecao";
 	}
@@ -200,67 +218,16 @@ public class InspecaoController {
 		model.clear();
 		return "redirect:/inspecao";
 	}
-	
+
 	@RequestMapping(value = "/inspecao/detalheinspecao/{idInspecao}")
 	public ModelAndView detalheInspecao(@PathVariable Long idInspecao) {
+		Inspecao insp =  this.inspecaoService.findOne(idInspecao);
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("inspecao/detalheInspecao");
-		mav.addObject("inspecao", this.inspecaoService.findOne(idInspecao));
+		mav.addObject("inspecao",insp);
 		return mav;
 	}
-	
-	@RequestMapping(value = "/inspecao/inspecaoInicioFimCustos/{idInspecao}")
-	public ModelAndView inspecaoInicioFimCustos(@PathVariable Long idInspecao) {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("inspecao/inspecaoInicioFimCustos");
-		mav.addObject("inspecao", this.inspecaoService.findOne(idInspecao));
-		
-		return mav;
-	}
-	
-	@RequestMapping(value = "/inspecao/informaInicioInspecao/{idInspecao}")
-	public ModelAndView informaIncioInspecao(@PathVariable Long idInspecao) {
-		Inspecao insp = this.inspecaoService.findOne(idInspecao);
-		insp.setDtInicioInspecao(new Date());
-		this.inspecaoService.addOrUpdate(insp);
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("inspecao/inspecaoInicioFimCustos");
-		mav.addObject("inspecao", insp);
-	
-		return mav;
-	}
-	
-	@RequestMapping(value = "/inspecao/informaFimInspecao/{idInspecao}")
-	public ModelAndView informaFimInspecao(@PathVariable Long idInspecao) {
-		Inspecao insp = this.inspecaoService.findOne(idInspecao);
-		Date agora = new Date();
-		if(insp.getDtInicioInspecao()==null||insp.getDtInicioInspecao().after(agora))
-		{
-			ModelAndView mav = new ModelAndView();
-			mav.setViewName("inspecao/inspecaoInicioFimCustos");
-			mav.addObject("inspecao", insp);
-			mav.addObject("Erro", "Data inicio inspeção não informada ou maior que a data fim inspeção");
-			return mav;
-		}		
-		insp.setDtFimInspecao(new Date());
-		this.inspecaoService.addOrUpdate(insp);
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("redirect:/dtinspecao/listaInspecaoPorFuncionarioDesignado/" + SecurityContextHolder.getContext().getAuthentication().getName());
-		mav.addObject("inspecao", insp);
-		
-		return mav;
-	}
-	
-	
-/*	@RequestMapping(value = "/inspecao/inspecaoRelatorio/{idInspecao}")
-	public ModelAndView inspecaoRelatorio(@PathVariable Long idInspecao) {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("inspecao/inspecaoRelatorio");
-		mav.addObject("inspecao", this.inspecaoService.findOne(idInspecao));
-		return mav;
-	}
-	*/
-	
-	
 
+
+	
 }

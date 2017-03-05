@@ -18,6 +18,16 @@ public class Ramo implements Serializable {
 	private long idRamo;
 
 	private String descRamo;
+	
+private boolean situacao;
+	
+	public boolean getSituacao() {
+		return situacao;
+	}
+
+	public void setSituacao(boolean situacao) {
+		this.situacao = situacao;
+	}
 
 	public Ramo() {
 	}

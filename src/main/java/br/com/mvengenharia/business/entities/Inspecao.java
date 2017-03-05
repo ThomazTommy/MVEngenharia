@@ -16,46 +16,45 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-
 /**
  * The persistent class for the Inspecao database table.
  * 
  */
 @Entity
-@NamedQuery(name="Inspecao.findAll", query="SELECT i FROM Inspecao i")
+@NamedQuery(name = "Inspecao.findAll", query = "SELECT i FROM Inspecao i")
 public class Inspecao implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long idInspecao;
 
-	@NotNull(message="Data não pode ser nula")
+	@NotNull(message = "Data não pode ser nula")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dtSolicitacaoInspecao;
-	
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date dtInicioInspecao;
-	
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date dtFimInspecao;
-		
+
+
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dtLimite;
-	
+
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dtAgendada;
-	
+
 	private String nomeCorretor;
 
 	private int numInspecaoCliente;
 
-	@Min(value = 1, message="Número da Proposta não pode ser 0")
+	@Min(value = 1, message = "Número da Proposta não pode ser 0")
 	private int numPropostaCliente;
 
+	@Column(length = 65535,columnDefinition="Text")
 	private String observacao;
 	
-	@Min(value = 1, message="Quantidade de Blocos não pode ser 0")
+	@ManyToOne
+	@JoinColumn(name = "idFase")
+	private Fase fase;
+
+	@Min(value = 1, message = "Quantidade de Blocos não pode ser 0")
 	private int qtdBlocos = 1;
 
 	@NotNull
@@ -64,123 +63,129 @@ public class Inspecao implements Serializable {
 	@Pattern(regexp = "\\([1-9]{2}\\) [2-9][0-9]{3,4}\\-[0-9]{4}", message = "O telefone deve estar no seguinte formato: (99) 99999-9999 ou (99) 9999-9999")
 	private String telefoneCorretor;
 
-	@NotNull(message="Valor do risco n�o pode ficar vazio.")
+	@NotNull(message = "Valor do risco n�o pode ficar vazio.")
 	private BigDecimal valorTotalRisco;
 
-	//bi-directional many-to-one association to Agendamento
+	// bi-directional many-to-one association to Agendamento
 	@JsonManagedReference
-	@OneToMany(mappedBy="inspecao",  cascade=CascadeType.ALL)
+	@OneToMany(mappedBy = "inspecao", cascade = CascadeType.ALL)
 	private List<Agendamento> agendamentos;
 
-	//bi-directional many-to-one association to CustoInspecao
+	// bi-directional many-to-one association to CustoInspecao
 	@JsonManagedReference
-	@OneToOne(mappedBy="inspecao",  cascade=CascadeType.ALL)
+	@OneToOne(mappedBy = "inspecao", cascade = CascadeType.ALL)
 	private CustoInspecao custoInspecao;
 
-	//bi-directional many-to-one association to Designacao
+	// bi-directional many-to-one association to Designacao
 	@JsonManagedReference
-	@OneToMany(mappedBy="inspecao", cascade=CascadeType.ALL)
+	@OneToMany(mappedBy = "inspecao", cascade = CascadeType.ALL)
 	private List<Designacao> designacoes;
 
-	//bi-directional many-to-one association to Honorario
+	// bi-directional many-to-one association to Honorario
 	@JsonManagedReference
-	@OneToOne(mappedBy="inspecao")
+	@OneToOne(mappedBy = "inspecao")
 	private Honorario honorario;
 
-	//bi-directional many-to-one association to InsercaoSistema
+	// bi-directional many-to-one association to InsercaoSistema
 	@JsonManagedReference
-	@OneToMany(mappedBy="inspecao",  cascade=CascadeType.ALL)
+	@OneToMany(mappedBy = "inspecao", cascade = CascadeType.ALL)
 	private List<InsercaoSistema> insercaoSistemas;
 
-	//bi-directional many-to-one association to TipoInspecao
-	@NotNull(message="Campo Tipo de Inspecao não pode ficar vazio")
+	@JsonManagedReference
+	@OneToMany(mappedBy = "inspecao", cascade = CascadeType.ALL)
+	private List<AprovacaoSistema> aprovacaoSistemas;
+
+	// bi-directional many-to-one association to TipoInspecao
+	@NotNull(message = "Campo Tipo de Inspecao não pode ficar vazio")
 	@ManyToOne
-	@JoinColumn(name="idTipoInspecao")
+	@JoinColumn(name = "idTipoInspecao")
 	private TipoInspecao tipoInspecao;
 
-	//bi-directional many-to-one association to Cliente
-	@NotNull(message="Campo Cliente não pode ficar vazio")
+	// bi-directional many-to-one association to Cliente
+	@NotNull(message = "Campo Cliente não pode ficar vazio")
 	@ManyToOne
-	@JoinColumn(name="idCliente")
+	@JoinColumn(name = "idCliente")
 	private Cliente cliente;
 
-	//bi-directional many-to-one association to Ramo
-	@NotNull(message="Ramo deve ser preenchido")
+	// bi-directional many-to-one association to Ramo
+	@NotNull(message = "Ramo deve ser preenchido")
 	@ManyToOne
-	@JoinColumn(name="idRamo")
+	@JoinColumn(name = "idRamo")
 	private Ramo ramo;
 
-	//bi-directional many-to-one association to Endereco
+	// bi-directional many-to-one association to Endereco
 	@Valid
-	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
-	@JoinColumn(name="idEndereco")
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name = "idEndereco")
 	private Endereco endereco;
 
-	//bi-directional many-to-one association to Status
-	@NotNull(message="Status deve ser preenchido")
+	// bi-directional many-to-one association to Status
+	@NotNull(message = "Status deve ser preenchido")
 	@ManyToOne
-	@JoinColumn(name="idStatus")
+	@JoinColumn(name = "idStatus")
 	private Status status;
 
-	//bi-directional many-to-one association to Segurado
+	// bi-directional many-to-one association to Segurado
 	@JsonManagedReference
 	@Valid
-	@ManyToOne(cascade={CascadeType.DETACH,
-            CascadeType.MERGE,
-            CascadeType.REFRESH,
-            CascadeType.PERSIST})
-	@JoinColumn(name="idSegurado")
+	@ManyToOne(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST })
+	@JoinColumn(name = "idSegurado")
 	private Segurado segurado;
 
-	//bi-directional many-to-many association to Atividade
-	@ManyToMany
+	// bi-directional many-to-many association to Atividade
+	@ManyToMany(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST })
 	private List<Atividade> inspecaoAtividadeInformada;
 
-	//bi-directional many-to-many association to Atividade
-	@ManyToMany
+	// bi-directional many-to-many association to Atividade
+	@ManyToMany(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST })
 	private List<Atividade> inspecaoAtividadeApurada;
 
-	//bi-directional many-to-one association to Inspecao_Cobertura
-	@ManyToMany
+	// bi-directional many-to-one association to Inspecao_Cobertura
+	@ManyToMany(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST })
 	private List<Cobertura> coberturas;
 
-	//bi-directional many-to-one association to Relatorio
+	// bi-directional many-to-one association to Relatorio
 	@JsonManagedReference
-	@OneToMany(mappedBy="inspecao",  cascade=CascadeType.ALL)
+	@OneToMany(mappedBy = "inspecao", cascade = CascadeType.ALL)
 	private List<Relatorio> relatorios;
 
-	//bi-directional many-to-one association to Revisao
+	// bi-directional many-to-one association to Revisao
 	@JsonManagedReference
-	@OneToMany(mappedBy="inspecao",  cascade=CascadeType.ALL)
+	@OneToMany(mappedBy = "inspecao", cascade = CascadeType.ALL)
 	private List<Revisao> revisaos;
 
-	//bi-directional many-to-one association to Vistoria
+	// bi-directional many-to-one association to Vistoria
 	@JsonManagedReference
-	@OneToMany(mappedBy="inspecao")
+	@OneToMany(mappedBy = "inspecao", cascade = CascadeType.ALL)
 	private List<Vistoria> vistorias;
 
 	public Inspecao() {
-		
-	}	
 
-	public Date getDtInicioInspecao() {
-		return dtInicioInspecao;
 	}
+	
+	
 
-	public void setDtInicioInspecao(Date dtInicioInspecao) {
-		this.dtInicioInspecao = dtInicioInspecao;
-	}
-
-	public Date getDtFimInspecao() {
-		return dtFimInspecao;
-	}
-
-	public void setDtFimInspecao(Date dtFimInspecao) {
-		this.dtFimInspecao = dtFimInspecao;
+	public Fase getFase() {
+		return fase;
 	}
 
 
 
+	public void setFase(Fase fase) {
+		this.fase = fase;
+	}
+
+
+
+	public List<AprovacaoSistema> getAprovacaoSistemas() {
+		return aprovacaoSistemas;
+	}
+
+	public void setAprovacaoSistemas(List<AprovacaoSistema> aprovacaoSistemas) {
+		this.aprovacaoSistemas = aprovacaoSistemas;
+	}
+
+	
 	public long getIdInspecao() {
 		return this.idInspecao;
 	}
@@ -205,7 +210,6 @@ public class Inspecao implements Serializable {
 		this.dtLimite = dtLimite;
 	}
 
-	
 	public Date getDtSolicitacaoInspecao() {
 		return this.dtSolicitacaoInspecao;
 	}
@@ -214,7 +218,6 @@ public class Inspecao implements Serializable {
 		this.dtSolicitacaoInspecao = dtSolicitacaoInspecao;
 	}
 
-	
 	public String getNomeCorretor() {
 		return this.nomeCorretor;
 	}
@@ -263,7 +266,6 @@ public class Inspecao implements Serializable {
 		this.roubo = roubo;
 	}
 
-	
 	public String getTelefoneCorretor() {
 		return this.telefoneCorretor;
 	}
@@ -281,8 +283,7 @@ public class Inspecao implements Serializable {
 	}
 
 	public List<Agendamento> getAgendamentos() {
-		if(this.agendamentos == null)
-		{
+		if (this.agendamentos == null) {
 			this.agendamentos = new ArrayList<Agendamento>();
 		}
 		return this.agendamentos;
@@ -471,6 +472,7 @@ public class Inspecao implements Serializable {
 	}
 
 	public List<Vistoria> getVistorias() {
+		
 		return this.vistorias;
 	}
 

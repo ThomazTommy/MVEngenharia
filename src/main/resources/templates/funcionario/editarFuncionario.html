@@ -26,13 +26,7 @@
 							th:field="*{nomeFuncionario}" th:errorclass="fieldError" />
 					</div>
 
-					<div class="form-group">
-						<label for="numeroMatricula"> <span
-							th:text="#{funcionario.numeroMatricula}">matricula</span>
-						</label> <input class="form-control" type="text"
-							th:field="*{numeroMatricula}" th:errorclass="fieldError" />
-					</div>
-
+					
 					<div class="form-group">
 						<label for="email"> <span th:text="#{funcionario.email}">email</span>
 						</label> <input class="form-control" type="text" th:field="*{email}"
@@ -47,10 +41,10 @@
 					</div>
 
 					<div class="form-group">
-						<label th:for="${#ids.next('ativo')}"
-							th:text="#{funcionario.ativo}">Ativo</label> 
-							<input type="radio" th:field="*{ativo}" value="true"/><span th:text="#{bool.true}"/>
-							<input type="radio" th:field="*{ativo}" value="false"/><span th:text="#{bool.false}"/>
+						<label th:for="${#ids.next('situacao')}"
+							th:text="#{funcionario.situacao}">Ativo</label> 
+							<input type="radio" th:field="*{situacao}" value="true"/><span th:text="#{bool.true}"/>
+							<input type="radio" th:field="*{situacao}" value="false"/><span th:text="#{bool.false}"/>
 					</div>
 
 					<div class="form-group">

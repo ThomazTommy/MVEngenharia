@@ -1,6 +1,6 @@
 
 
-function executaAjaxGet(urlChamada, divDestino, preExecute, posExecute) {
+function executaAjaxGetNoReload(urlChamada, divDestino, preExecute, posExecute, afterFunction) {
 	$.ajax({
 		type : "GET",
 		url : urlChamada,
@@ -10,6 +10,28 @@ function executaAjaxGet(urlChamada, divDestino, preExecute, posExecute) {
 			// we have the response
 			var x = document.getElementById(divDestino);
 			x.innerHTML = response;
+			afterFunction();
+		
+		},
+		complete : function() {
+			posExecute;
+		},
+		error : function(xhr) {
+			alert("Um erro ocorreu: " + xhr.status + " - " + xhr.statusText);
+		}
+	});
+
+}
+function executaAjaxGet(urlChamada, divDestino, preExecute, posExecute) {
+	$.ajax({
+		type : "GET",
+		url : urlChamada,
+		beforeSend : preExecute,
+
+		success : function(response) {
+			// we have the response
+			var x = document.getElementById(divDestino);
+			x.innerHTML = response;			
 		},
 		complete : function() {
 			posExecute;
@@ -33,11 +55,36 @@ function executaAjaxPost(divDestino, formOrigem, preExecute, posExecute) {
 		contentType : false,
 		beforeSend : preExecute,
 		success : function(response) {
-			document.getElementById(divDestino).innerHTML = response;
+			document.getElementById(divDestino).innerHTML = response;			
 		},
 		complete : function() {
 			posExecute;
-			afterReload();
+			afterReload();			
+		},
+		error : function(xhr) {
+			alert("Um erro ocorreu: " + xhr.status + " - " + xhr.statusText);
+		}
+	});
+	return false;
+}
+
+
+function executaAjaxPostNoReload(divDestino, formOrigem, preExecute, posExecute, afterFunction) {
+	var data = new FormData(formOrigem[0]);
+
+	$.ajax({
+		type : 'POST',
+		url : formOrigem.attr("action"),
+		data : data,
+		processData : false,
+		contentType : false,
+		beforeSend : preExecute,
+		success : function(response) {
+			document.getElementById(divDestino).innerHTML = response;
+			afterFunction();			
+		},
+		complete : function() {
+			posExecute;		
 		},
 		error : function(xhr) {
 			alert("Um erro ocorreu: " + xhr.status + " - " + xhr.statusText);
@@ -50,33 +97,6 @@ function menuOnClick(destino) {
 	executaAjaxGet(destino, 'page-wrapper', '', previnePadrao());
 }
 
-function exibeModalEditaProcessoCPOCPP(valor, origem, parametroPesquisado) {
-	executaAjaxGet("/processoCPOCPP/" + origem + "/editar/" + valor + "/"
-			+ parametroPesquisado, "corpoModal", "", $("#myModal").modal());
-}
-
-function exibeModalEditaCidade(valor) {
-	executaAjaxGet("/data/cidade/" + valor, "corpoModal", "", $("#myModal")
-			.modal());
-}
-
-function exibeModalEditaCliente(valor) {
-	executaAjaxGet("/cliente/editar/" + valor, "corpoModal", "", $("#myModal")
-			.modal());
-}
-
-function exibeModalEditaStatus(valor) {
-	executaAjaxGet("/status/" + valor, "corpoModal", "", $("#myModal").modal());
-}
-
-function exibeModalEditaAssunto(valor) {
-	executaAjaxGet("/assunto/" + valor, "corpoModal", "", $("#myModal").modal());
-}
-
-function exibeModalEditaEstado(valor) {
-	executaAjaxGet("/data/estado/" + valor, "corpoModal", "", $("#myModal")
-			.modal());
-}
 
 function atualizaListaCidades(enderecoGet, parametroGet, destino, funcaoAntes,
 		funcaoDepois) {
@@ -164,6 +184,20 @@ function formSubmitClick(e, destino) {
 	$(form).find('input.temp-hidden').remove();
 	$(form).append(input);
 	executaAjaxPost(destino, form, "", previnePadrao());
+	return false;
+};
+
+function formSubmitClickNoReload(e, destino, afterFunction) {
+	var name = $(e).attr('name');
+	if (typeof name == 'undefined')
+		return;
+	var value = $(e).attr('value');
+	var form = $(e).parents('form').first();
+	var input = $('<input type="hidden" class="temp-hidden" />').attr('name',
+			name).attr('value', value);
+	$(form).find('input.temp-hidden').remove();
+	$(form).append(input);
+	executaAjaxPostNoReload(destino, form, "", previnePadrao(), afterFunction);
 	return false;
 };
 
@@ -272,8 +306,7 @@ function menuListaInspecoesPorFuncionarioDesignado(destino, idTabela) {
 			// we have the response
 			var x = document.getElementById('page-wrapper');
 			x.innerHTML = response;
-			loadDataTableStatic(idTabela);
-			buscarAposEnter();
+			loadDataTableStatic(idTabela);			
 		},
 		complete : previnePadrao(),
 		error : function(xhr) {
@@ -288,8 +321,8 @@ function loadDataTableStatic(idTabela) {
     $('#' + idTabela).DataTable({
 		language : {
 			'url' : '/static/js/Portuguese.json'
-		},
-		responsive : true
+		}
+		
     });
 }
 
@@ -303,8 +336,7 @@ function menuListaInspecoes(destino, urlDestino) {
 			// we have the response
 			var x = document.getElementById('page-wrapper');
 			x.innerHTML = response;
-			loadDataTable(urlDestino);
-			buscarAposEnter();
+			loadDataTable(urlDestino);			
 		},
 		complete : previnePadrao(),
 		error : function(xhr) {
@@ -329,8 +361,8 @@ function loadDataTable(urlDestino) {
 								return JSON.stringify(d);
 							}
 						},
-						serverSide : true,
-						responsive : true,
+						serverSide : true,						
+						
 
 						columns : [
 								{
@@ -410,10 +442,3 @@ function loadDataTable(urlDestino) {
 					});
 }
 
-function buscarAposEnter() {
-	$("div.dataTables_filter input").keyup(function(e) {
-		if (e.keyCode == 13) {
-			table.fnFilter(this.value);
-		}
-	});
-}

@@ -4,6 +4,10 @@
         
     }
 
+.panel-body {
+	overflow:auto;
+}
+
 .fieldError {
 	border: 1px solid red;
 }

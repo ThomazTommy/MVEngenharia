@@ -12,10 +12,10 @@
 								<th th:text="#{funcionario.cpf}">Cpf</th>
 								<th th:text="#{funcionario.nomeFuncionario}">Nome</th>
 								<th th:text="#{funcionario.email}">email</th>
-								<th th:text="#{funcionario.numeroMatricula}">Matricula</th>
+								
 								<th th:text="#{funcionario.escritorio}">Escritorio</th>
 								<th th:text="#{funcionario.permissoes}">Permissoes</th>
-								<th th:text="#{funcionario.ativo}">Ativo</th>
+								<th th:text="#{funcionario.situacao}">Ativo</th>
 								<th>Remover</th>
 								<th>Editar</th>
 							</tr>
@@ -25,18 +25,18 @@
 								<td th:text="${ass.cpf}">222</td>
 								<td th:text="${ass.nomeFuncionario}">nomeFuncionario</td>
 								<td th:text="${ass.email}">emailFuncionario</td>
-								<td th:text="${ass.numeroMatricula}">matriculaFuncionario</td>
+								
 								<td th:text="${ass.escritorio.descEscritorio}">descEscritorio</td>
 								<td><span th:each="obj: ${ass.permissoes}"> <span
 										th:text="${obj.descPermissoes} + '; '"> </span>
 								</span></td>
-								<td th:text="${ass.ativo}? #{bool.true} : #{bool.false}">yes</td>
+								<td th:text="${ass.situacao}? #{bool.true} : #{bool.false}">yes</td>
 								<td><a href="#"
 									th:onclick="'executaAjaxGet(\'/funcionario/remover/'+ ${ass.cpf} + '\',\'page-wrapper\',\'\',\'\');'"><span
 										class="glyphicon glyphicon-remove"></span></a></td>
 								<td><a href="#"
 									th:onclick="'executaAjaxGet(\'/funcionario/editar/'+ ${ass.cpf} + '\',\'page-wrapper\',\'\',\'\');'"><span
-										class="glyphicon glyphicon-remove"></span></a></td>
+										class="glyphicon glyphicon-pencil"></span></a></td>
 
 
 							</tr>
@@ -79,12 +79,7 @@
 							th:field="*{nomeFuncionario}" th:errorclass="fieldError" />
 					</div>
 
-					<div class="form-group">
-						<label for="numeroMatricula"> <span
-							th:text="#{funcionario.numeroMatricula}">matricula</span>
-						</label> <input class="form-control" type="text"
-							th:field="*{numeroMatricula}" th:errorclass="fieldError" />
-					</div>
+					
 
 					<div class="form-group">
 						<label for="email"> <span th:text="#{funcionario.email}">email</span>
@@ -100,10 +95,10 @@
 					</div>
 
 					<div class="form-group">
-						<label th:for="${#ids.next('ativo')}"
-							th:text="#{funcionario.ativo}">Ativo</label> 
-							<input type="radio" th:field="*{ativo}" value="true"/><span th:text="#{bool.true}"/>
-							<input type="radio" th:field="*{ativo}" value="false"/><span th:text="#{bool.false}"/>
+						<label th:for="${#ids.next('situacao')}"
+							th:text="#{funcionario.situacao}">Ativo</label> 
+							<input type="radio" th:field="*{situacao}" value="true"/><span th:text="#{bool.true}"/>
+							<input type="radio" th:field="*{situacao}" value="false"/><span th:text="#{bool.false}"/>
 					</div>
 
 					<div class="form-group">

@@ -9,7 +9,9 @@
 						<thead>
 							<tr>
 								<th th:text="#{tipoLogradouro.idTipoLogradouro}">Id</th>
-								<th th:text="#{tipoLogradouro.descTipoLogradouro}">Descri��o</th>
+								<th th:text="#{tipoLogradouro.descTipoLogradouro}">Descrição</th>
+								<th th:text="#{tipoLogradouro.abreviatura}">Descrição</th>
+								
 								<th>Remover</th>
 							</tr>
 						</thead>
@@ -17,6 +19,7 @@
 							<tr th:each="ass : ${allTipoLogradouros}">
 								<td th:text="${ass.idTipoLogradouro}">1</td>
 								<td th:text="${ass.descTipoLogradouro}">descTipoLogradouro</td>
+								<td th:text="${ass.abreviatura}">descTipoLogradouro</td>
 								<td><a href="#"
 									th:onclick="'executaAjaxGet(\'/tipoLogradouro/remover/'+ ${ass.idTipoLogradouro} + '\',\'page-wrapper\',\'\',\'\');'"><span
 										class="glyphicon glyphicon-remove"></span></a></td>
@@ -46,6 +49,12 @@
 						<label for="nomeTipoLogradouro"> <span
 							th:text="#{tipoLogradouro.descTipoLogradouro}">descTipoLogradouro</span>
 						</label> <input class="form-control" type="text" th:field="*{descTipoLogradouro}"
+							th:errorclass="fieldError" />
+					</div>
+					<div class="form-group">
+						<label for="abreviatura"> <span
+							th:text="#{tipoLogradouro.abreviatura}">descTipoLogradouro</span>
+						</label> <input class="form-control" type="text" th:field="*{abreviatura}"
 							th:errorclass="fieldError" />
 					</div>
 										

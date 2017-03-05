@@ -14,6 +14,16 @@ public class Status implements Serializable {
 	private long idStatus;
 
 	private String descStatus;
+	
+private boolean situacao;
+	
+	public boolean getSituacao() {
+		return situacao;
+	}
+
+	public void setSituacao(boolean situacao) {
+		this.situacao = situacao;
+	}
 
 	public Status() {
 	}

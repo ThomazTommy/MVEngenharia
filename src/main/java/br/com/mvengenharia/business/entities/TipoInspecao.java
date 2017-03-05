@@ -13,6 +13,16 @@ public class TipoInspecao implements Serializable {
 	private long idTipoInspecao;
 
 	private String descTipoInspecao;
+	
+private boolean situacao;
+	
+	public boolean getSituacao() {
+		return situacao;
+	}
+
+	public void setSituacao(boolean situacao) {
+		this.situacao = situacao;
+	}
 
 	public TipoInspecao() {
 	}

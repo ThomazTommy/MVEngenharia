@@ -14,6 +14,16 @@ public class NaoConformidade implements Serializable {
 	private long idNaoConformidade;
 
 	private String descNaoConformidade;
+	
+private boolean situacao;
+	
+	public boolean getSituacao() {
+		return situacao;
+	}
+
+	public void setSituacao(boolean situacao) {
+		this.situacao = situacao;
+	}
 
 	//bi-directional many-to-one association to Gravidade
 	@ManyToOne

@@ -12,8 +12,40 @@ public class Cobertura implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long idCobertura;
+	
+	private String codigoCobertura;
 
 	private String descCobertura;
+	
+	private boolean situacao;
+	
+	@ManyToOne
+	@JoinColumn(name="idGrupoCobertura")
+	private GrupoCobertura grupoCobertura;
+	
+	public String getCodigoCobertura() {
+		return codigoCobertura;
+	}
+
+	public void setCodigoCobertura(String codigoCobertura) {
+		this.codigoCobertura = codigoCobertura;
+	}
+
+	public GrupoCobertura getGrupoCobertura() {
+		return grupoCobertura;
+	}
+
+	public void setGrupoCobertura(GrupoCobertura grupoCobertura) {
+		this.grupoCobertura = grupoCobertura;
+	}
+
+	public boolean getSituacao() {
+		return situacao;
+	}
+
+	public void setSituacao(boolean situacao) {
+		this.situacao = situacao;
+	}
 
 	public Cobertura() {
 	}

@@ -18,6 +18,16 @@ public class Escritorio implements Serializable {
 	private long idEscritorio;
 
 	private String descEscritorio;
+	
+private boolean situacao;
+	
+	public boolean getSituacao() {
+		return situacao;
+	}
+
+	public void setSituacao(boolean situacao) {
+		this.situacao = situacao;
+	}
 
 	//bi-directional one-to-one association to Endereco
 	@OneToOne(cascade=CascadeType.ALL)

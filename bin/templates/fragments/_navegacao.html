@@ -11,7 +11,7 @@
 	<!-- /.navbar-header -->
 
 	<ul class="nav navbar-top-links navbar-right">
-		<li><a href="http://correio.policiamilitar.sp.gov.br"> <i
+		<li><a href="#"> <i
 				class="fa fa-envelope fa-fw"></i>
 		</a> <!-- /.dropdown-messages --></li>
 		<!-- /.dropdown -->
@@ -20,10 +20,7 @@
 				<i class="fa fa-caret-down"></i>
 		</a>
 			<ul class="dropdown-menu dropdown-user">
-				<li><a href="#"><i class="fa fa-user fa-fw"></i> Perfil do
-						Usuário</a></li>
-				<li><a href="#"><i class="fa fa-gear fa-fw"></i>
-						Configurações</a></li>
+				<li><a href="#"><i class="fa fa-user fa-fw"></i> Usuário: <span sec:authentication="name">Bob</span></a></li>
 				<li class="divider"></li>
 				<li><a href="/logout"><i class="fa fa-sign-out fa-fw"></i>
 						Sair</a></li>
@@ -56,11 +53,11 @@
 						<li><a href="#" onclick="menuOnClick('/cliente')">Clientes</a></li>
 					</ul> <!-- /.nav-second-level --></li>
 
-				<li sec:authorize="hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')"><a
-					href="#"><i class="fa fa-sitemap fa-fw"></i> Inspeções de
-						Seguros<span class="fa arrow"></span></a>
+				<li sec:authorize="hasRole('ROLE_USER')"><a href="#"><i
+						class="fa fa-sitemap fa-fw"></i> Inspeções de Seguros<span
+						class="fa arrow"></span></a>
 					<ul class="nav nav-second-level">
-						<li><a href="#" onclick="menuOnClick('/inspecao')">Nova
+						<li><a href="#" onclick="$.getScript('/static/js/novaInspecao.js');">Nova
 								Inspeção</a></li>
 						<li><a href="#"
 							onclick="menuListaInspecoes('/dtinspecao/listainspecao', '/dtinspecao/dtinspecao')">Agendar/Designar</a></li>
@@ -69,19 +66,22 @@
 								Custos</a></li>
 						<li><a href="#"
 							onclick="menuOnClick('/dtinspecao/listaInspecaoParaRelatar')">Relatar</a></li>
-							<li><a href="#"
+						<li><a href="#"
 							onclick="menuOnClick('/dtinspecao/listaInspecaoParaRevisar')">Revisar</a></li>
 						<li><a href="#"
-							onclick="menuOnClick('/dtinspecao/listaInspecaoParaInsercaoSistema')">Marcar
-								Inserção no Sistema do Cliente</a></li>
+							onclick="menuOnClick('/dtinspecao/listaInspecaoParaInsercaoSistema')">Inserir
+								no Sistema do Cliente</a></li>
+						<li><a href="#"
+							onclick="menuOnClick('/dtinspecao/listaInspecaoParaAprovacaoSistema')">Aprovar
+								no Sistema do Cliente</a></li>
 					</ul> <!-- /.nav-second-level --></li>
 
-				<li><a href="#"><i class="fa fa-edit fa-fw"></i> Público<span
+				<!-- <li><a href="#"><i class="fa fa-edit fa-fw"></i> Público<span
 						class="fa arrow"></span></a>
 					<ul class="nav nav-second-level">
 						<li><a href="#">Dado 1</a></li>
 						<li><a href="#">Dado 2</a></li>
-					</ul> <!-- /.nav-second-level --></li>
+					</ul> </li> -->
 			</ul>
 		</div>
 		<!-- /.sidebar-collapse -->

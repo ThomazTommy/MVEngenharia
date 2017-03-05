@@ -17,6 +17,16 @@ public class Gravidade implements Serializable {
 
 	private int peso;
 	
+private boolean situacao;
+	
+	public boolean getSituacao() {
+		return situacao;
+	}
+
+	public void setSituacao(boolean situacao) {
+		this.situacao = situacao;
+	}
+	
 	public Gravidade() {
 	}
 

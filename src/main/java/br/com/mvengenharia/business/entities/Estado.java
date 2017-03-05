@@ -19,6 +19,16 @@ public class Estado implements Serializable {
 
 	private String nomeEstado;
 	
+private boolean situacao;
+	
+	public boolean getSituacao() {
+		return situacao;
+	}
+
+	public void setSituacao(boolean situacao) {
+		this.situacao = situacao;
+	}
+	
 	private final String pais = "Brasil";
 
 	public String getPais() {

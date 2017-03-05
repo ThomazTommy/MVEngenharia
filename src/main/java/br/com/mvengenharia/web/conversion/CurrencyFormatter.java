@@ -6,15 +6,13 @@ import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.Locale;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.MessageSource;
 import org.springframework.format.Formatter;
 
 
 public class CurrencyFormatter implements Formatter<BigDecimal> {
 
-    @Autowired
-    private MessageSource messageSource;
+   //@Autowired
+   // private MessageSource messageSource;
 
 
     public CurrencyFormatter() {

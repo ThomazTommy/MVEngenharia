@@ -17,6 +17,16 @@ public class Cliente implements Serializable {
 	private String descCliente;
 
 	private int prazoCliente;
+	
+private boolean situacao;
+	
+	public boolean getSituacao() {
+		return situacao;
+	}
+
+	public void setSituacao(boolean situacao) {
+		this.situacao = situacao;
+	}
 
 	//bi-directional many-to-many association to Ramo
 	@ManyToMany(cascade={CascadeType.DETACH,

@@ -18,6 +18,16 @@ public class Cidade implements Serializable {
 	private long idCidade;
 
 	private String nomeCidade;
+	
+	private boolean situacao;
+	
+	public boolean getSituacao() {
+		return situacao;
+	}
+
+	public void setSituacao(boolean situacao) {
+		this.situacao = situacao;
+	}
 
 	//bi-directional many-to-one association to Estado
 	@ManyToOne

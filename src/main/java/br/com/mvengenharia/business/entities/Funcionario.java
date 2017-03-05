@@ -14,15 +14,21 @@ public class Funcionario implements Serializable {
 	@Id
 	private String cpf;
 
-	private boolean ativo;
-
 	private String email;
 
 	private String nomeFuncionario;
 
-	private String numeroMatricula;
-	
 	private String senha;
+	
+	private boolean situacao;
+	
+	public boolean getSituacao() {
+		return situacao;
+	}
+
+	public void setSituacao(boolean situacao) {
+		this.situacao = situacao;
+	}
 	
 	public String getSenha() {
 		return senha;
@@ -43,10 +49,7 @@ public class Funcionario implements Serializable {
 	public Funcionario() {
 	}
 
-	public boolean getAtivo() {
-		return this.ativo;
-	}
-
+	
 	public List<Permissoes> getPermissoes() {
 		return permissoes;
 	}
@@ -55,10 +58,7 @@ public class Funcionario implements Serializable {
 		this.permissoes = permissoes;
 	}
 
-	public void setAtivo(boolean ativo) {
-		this.ativo = ativo;
-	}
-
+	
 	public String getCpf() {
 		return this.cpf;
 	}
@@ -82,15 +82,6 @@ public class Funcionario implements Serializable {
 	public void setNomeFuncionario(String nomeFuncionario) {
 		this.nomeFuncionario = nomeFuncionario;
 	}
-
-	public String getNumeroMatricula() {
-		return this.numeroMatricula;
-	}
-
-	public void setNumeroMatricula(String numeroMatricula) {
-		this.numeroMatricula = numeroMatricula;
-	}
-
 
 	public Escritorio getEscritorio() {
 		return this.escritorio;

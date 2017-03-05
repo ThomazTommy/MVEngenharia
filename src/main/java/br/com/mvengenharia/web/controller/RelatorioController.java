@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.mvengenharia.business.entities.Relatorio;
-import br.com.mvengenharia.business.entities.Designacao;
 import br.com.mvengenharia.business.entities.Funcionario;
 import br.com.mvengenharia.business.entities.Inspecao;
 import br.com.mvengenharia.business.entities.NaoConformidade;

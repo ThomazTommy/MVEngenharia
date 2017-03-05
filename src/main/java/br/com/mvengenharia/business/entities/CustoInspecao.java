@@ -21,7 +21,7 @@ public class CustoInspecao implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long idCustoInspecao;
 
-	private double custoAprovado;
+	private BigDecimal custoAprovado;
 
 	private double kmEfetivo;
 
@@ -60,13 +60,18 @@ public class CustoInspecao implements Serializable {
 		this.idCustoInspecao = idCustoInspecao;
 	}
 
-	public double getCustoAprovado() {
-		return this.custoAprovado;
+	
+	public BigDecimal getCustoAprovado() {
+		return custoAprovado;
 	}
 
-	public void setCustoAprovado(double custoAprovado) {
+
+
+	public void setCustoAprovado(BigDecimal custoAprovado) {
 		this.custoAprovado = custoAprovado;
 	}
+
+
 
 	public double getKmEfetivo() {
 		return this.kmEfetivo;

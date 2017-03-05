@@ -19,6 +19,16 @@ public class Atividade implements Serializable {
 
 	private String descAtividade;
 	
+	private boolean situacao;
+	
+	public boolean getSituacao() {
+		return situacao;
+	}
+
+	public void setSituacao(boolean situacao) {
+		this.situacao = situacao;
+	}
+
 	public Atividade() {
 	}
 

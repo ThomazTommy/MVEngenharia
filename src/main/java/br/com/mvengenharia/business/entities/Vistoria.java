@@ -25,10 +25,11 @@ public class Vistoria implements Serializable {
 	private Date dataHoraChegadaLocal;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date dataHoraFinalInspecao;
+	private Date dtInicioInspecao;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date dataHoraInicioInspecao;
+	private Date dtFimInspecao;
+
 
 	//bi-directional many-to-one association to Inspecao
 	@JsonBackReference
@@ -60,20 +61,21 @@ public class Vistoria implements Serializable {
 		this.dataHoraChegadaLocal = dataHoraChegadaLocal;
 	}
 
-	public Date getDataHoraFinalInspecao() {
-		return this.dataHoraFinalInspecao;
+	
+	public Date getDtInicioInspecao() {
+		return dtInicioInspecao;
 	}
 
-	public void setDataHoraFinalInspecao(Date dataHoraFinalInspecao) {
-		this.dataHoraFinalInspecao = dataHoraFinalInspecao;
+	public void setDtInicioInspecao(Date dtInicioInspecao) {
+		this.dtInicioInspecao = dtInicioInspecao;
 	}
 
-	public Date getDataHoraInicioInspecao() {
-		return this.dataHoraInicioInspecao;
+	public Date getDtFimInspecao() {
+		return dtFimInspecao;
 	}
 
-	public void setDataHoraInicioInspecao(Date dataHoraInicioInspecao) {
-		this.dataHoraInicioInspecao = dataHoraInicioInspecao;
+	public void setDtFimInspecao(Date dtFimInspecao) {
+		this.dtFimInspecao = dtFimInspecao;
 	}
 
 	public Inspecao getInspecao() {

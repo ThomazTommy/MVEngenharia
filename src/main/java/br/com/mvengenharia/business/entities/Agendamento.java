@@ -27,6 +27,7 @@ public class Agendamento implements Serializable {
 	
 	private boolean ultimo;
 	
+	@Column(length = 65535,columnDefinition="Text")
 	private String observacoes;
 	
 	public String getObservacoes() {

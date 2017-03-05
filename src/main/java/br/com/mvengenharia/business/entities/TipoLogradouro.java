@@ -18,6 +18,28 @@ public class TipoLogradouro implements Serializable {
 	private long idTipoLogradouro;
 
 	private String descTipoLogradouro;
+	
+	private String abreviatura;
+	
+	
+	
+public String getAbreviatura() {
+		return abreviatura;
+	}
+
+	public void setAbreviatura(String abreviatura) {
+		this.abreviatura = abreviatura;
+	}
+
+private boolean situacao;
+	
+	public boolean getSituacao() {
+		return situacao;
+	}
+
+	public void setSituacao(boolean situacao) {
+		this.situacao = situacao;
+	}
 
 	//bi-directional many-to-one association to Endereco
 	//@OneToMany(mappedBy="tipoLogradouro")

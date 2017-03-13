@@ -107,7 +107,10 @@ public class InspecaoController {
 		insp.setDtSolicitacaoInspecao(new Date());
 		Fase fase = new Fase();
 		fase.setIdFase(1);
+		Status status = new Status();
+		status.setIdStatus(2);
 		insp.setFase(fase);
+		insp.setStatus(status);
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("inspecao/inspecao");		
 		mav.addObject("inspecao", insp);
@@ -120,13 +123,16 @@ public class InspecaoController {
 		insp.setDtSolicitacaoInspecao(new Date());
 		Fase fase = new Fase();
 		fase.setIdFase(1);
+		Status status = new Status();
+		status.setIdStatus(2);
 		insp.setFase(fase);
+		insp.setStatus(status);
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("inspecao/editarInspecao");
 		mav.addObject("inspecao", insp);
 		return mav;
 	}
-
+/*
 	@RequestMapping(value = "/inspecao", params = { "save" })
 	public String saveInspecao(@Valid Inspecao inspecao, final BindingResult bindingResult, final ModelMap model) {
 
@@ -146,7 +152,34 @@ public class InspecaoController {
 		}
 		Calendar c = Calendar.getInstance();
 		c.setTime(inspecao.getDtSolicitacaoInspecao());
-		c.add(Calendar.DATE, +this.clienteService.findOne(inspecao.getCliente().getIdCliente()).getPrazoCliente());
+		c.add(Calendar.DATE, this.clienteService.findOne(inspecao.getCliente().getIdCliente()).getPrazoCliente());
+		inspecao.setDtLimite(c.getTime());
+		this.inspecaoService.addOrUpdate(inspecao);
+		model.clear();
+		return "redirect:/inspecao";
+	}*/
+	
+	@RequestMapping(value = "/inspecao/editar", params = { "save" })
+	public String saveEditedInspecao(@Valid Inspecao inspecao, final BindingResult bindingResult,
+			final ModelMap model) {
+
+		if (bindingResult.hasErrors()) {
+			if (inspecao.getCliente() != null) {
+				model.addAttribute("listaRamos",
+						this.clienteService.findOne(inspecao.getCliente().getIdCliente()).getRamos());
+				model.addAttribute("listaTipoInspecao",
+						this.clienteService.findOne(inspecao.getCliente().getIdCliente()).getTipoInspecaos());
+			}
+			if (inspecao.getEndereco().getEstado() != null) {
+				model.addAttribute("listaCidades",
+						this.cidadeService.findByIdEstado(inspecao.getEndereco().getEstado().getIdEstado()));
+			}
+			System.out.println(bindingResult.toString());
+			return "inspecao/editarInspecao";
+		}
+		Calendar c = Calendar.getInstance();
+		c.setTime(inspecao.getDtSolicitacaoInspecao());
+		c.add(Calendar.DATE, this.clienteService.findOne(inspecao.getCliente().getIdCliente()).getPrazoCliente());
 		inspecao.setDtLimite(c.getTime());
 		this.inspecaoService.addOrUpdate(inspecao);
 		model.clear();
@@ -196,28 +229,7 @@ public class InspecaoController {
 		return mav;
 	}
 
-	@RequestMapping(value = "/inspecao/editar", params = { "save" })
-	public String saveEditedInspecao(@Valid Inspecao inspecao, final BindingResult bindingResult,
-			final ModelMap model) {
-
-		if (bindingResult.hasErrors()) {
-			if (inspecao.getCliente() != null) {
-				model.addAttribute("listaRamos",
-						this.clienteService.findOne(inspecao.getCliente().getIdCliente()).getRamos());
-				model.addAttribute("listaTipoInspecao",
-						this.clienteService.findOne(inspecao.getCliente().getIdCliente()).getTipoInspecaos());
-			}
-			if (inspecao.getEndereco().getEstado() != null) {
-				model.addAttribute("listaCidades",
-						this.cidadeService.findByIdEstado(inspecao.getEndereco().getEstado().getIdEstado()));
-			}
-			System.out.println(bindingResult.toString());
-			return "inspecao/editarInspecao";
-		}
-		this.inspecaoService.addOrUpdate(inspecao);
-		model.clear();
-		return "redirect:/inspecao";
-	}
+	
 
 	@RequestMapping(value = "/inspecao/detalheinspecao/{idInspecao}")
 	public ModelAndView detalheInspecao(@PathVariable Long idInspecao) {
@@ -225,6 +237,13 @@ public class InspecaoController {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("inspecao/detalheInspecao");
 		mav.addObject("inspecao",insp);
+		return mav;
+	}
+	
+	@RequestMapping(value = "/inspecao/listaInspecaoPorFuncionarioDesignado")
+	public ModelAndView listaInspecaoPorFuncionarioDesignado() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("inspecao/listaInspecaoPorFuncionarioDesignado");
 		return mav;
 	}
 

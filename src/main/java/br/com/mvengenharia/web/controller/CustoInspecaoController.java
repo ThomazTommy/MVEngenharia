@@ -49,7 +49,7 @@ public class CustoInspecaoController {
     	insp.setInspecaoAtividadeApurada(inspecao.getInspecaoAtividadeApurada());
     	this.inspecaoService.addOrUpdate(insp);
     	model.clear();
-        return "redirect:/dtinspecao/listaInspecaoPorFuncionarioDesignado/" + SecurityContextHolder.getContext().getAuthentication().getName();
+        return "redirect:/vistoria/inspecaoInicioFimCustos/" + idInspecao;
     }   
 
 }

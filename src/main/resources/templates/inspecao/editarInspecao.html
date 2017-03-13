@@ -144,10 +144,8 @@
 													th:text="#{inspecao.roubo}">Roubo</span></label></td>
 										</tr>
 										<tr>
-											<td><input type="radio" th:field="*{roubo}" value="true" />&nbsp;<span
-												th:text="#{bool.true}" /></td>
-											<td><input type="radio" th:field="*{roubo}"
-												value="false" />&nbsp;<span th:text="#{bool.false}" /></td>
+											<td><label><input type="radio" th:field="*{roubo}" value="true"/><span th:text="#{bool.true}">  </span></label></td>
+											<td><label><input type="radio" th:field="*{roubo}" value="false" /><span th:text="#{bool.false}">  </span></label></td>
 										</tr>
 									</table>
 								</div>

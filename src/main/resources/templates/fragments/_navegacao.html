@@ -60,10 +60,13 @@
 						<li><a href="#" onclick="$.getScript('/static/js/novaInspecao.js');">Nova
 								Inspeção</a></li>
 						<li><a href="#"
-							onclick="menuListaInspecoes('/dtinspecao/listainspecao', '/dtinspecao/dtinspecao')">Agendar/Designar</a></li>
+							onclick="menuListaInspecoes('/agendamento/listainspecao', '/dtinspecao/dtinspecao', agendamentoLink)">Agendar/Designar</a></li>
 						<li><a href="#"
+							th:onclick="'menuListaInspecoes(\'/inspecao/listaInspecaoPorFuncionarioDesignado\', \'/dtinspecao/listaInspecaoPorCpf/'+ ${#httpServletRequest.remoteUser} + '\', inspecionarLink);'">Inspecionar/Informar Custos</a></li>
+						
+						<!-- <li><a href="#"
 							th:onclick="'menuListaInspecoesPorFuncionarioDesignado(\'/dtinspecao/listaInspecaoPorFuncionarioDesignado/'+ ${#httpServletRequest.remoteUser} +'\',\'listaInspecoesPorFuncionarioDesignado\');'">Inspecionar/Informar
-								Custos</a></li>
+								Custos</a></li> -->
 						<li><a href="#"
 							onclick="menuOnClick('/dtinspecao/listaInspecaoParaRelatar')">Relatar</a></li>
 						<li><a href="#"

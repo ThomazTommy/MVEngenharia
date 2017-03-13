@@ -86,8 +86,8 @@ public class VistoriaController {
 			this.vistoriaService.addOrUpdate(vistoria);
 		}
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("redirect:/dtinspecao/listaInspecaoPorFuncionarioDesignado/"
-				+ SecurityContextHolder.getContext().getAuthentication().getName());
+		mav.setViewName("vistoria/inspecaoInicioFimCustos");
+		mav.addObject("inspecao", insp);
 		return mav;
 	}
 }

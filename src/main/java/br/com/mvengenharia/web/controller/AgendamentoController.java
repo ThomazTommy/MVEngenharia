@@ -59,20 +59,12 @@ public class AgendamentoController {
         return mav;
     }      
 
-     
-    /*@RequestMapping(value = "/agendamento/{idInspecao}", method = RequestMethod.GET)
-    public ModelAndView showAgendamento(@PathVariable long idInspecao) {
-    	ModelAndView mav = new ModelAndView();
-    	mav.setViewName("agendamento/agendamento");
-    	mav.addObject("inspecao", this.inspecaoService.findOne(idInspecao));
-    	Agendamento agenda = new Agendamento();
-    	agenda.setDtAgendamento(new Date());
-    	agenda.setFuncionario(this.funcionarioService.findOne(SecurityContextHolder.getContext().getAuthentication().getName()));
-    	agenda.setInspecao(this.inspecaoService.findOne(idInspecao));
-    	mav.addObject("agendamento", agenda);
-        return mav;
-    } */     
-    
+    @RequestMapping(value = "/agendamento/listainspecao", method = RequestMethod.GET)
+ 		public ModelAndView showInspecao() {
+ 			ModelAndView mav = new ModelAndView();
+ 			mav.setViewName("agendamento/listaInspecao");			
+ 			return mav;
+ 		}
     @RequestMapping(value="/agendamento/{idInspecao}", params={"save"}, method = RequestMethod.POST)
     public String saveAgendamento(@PathVariable long idInspecao, @Valid Agendamento agendamento, final BindingResult bindingResult, final ModelMap model) {
         if (bindingResult.hasErrors()) {

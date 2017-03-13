@@ -326,7 +326,7 @@ function loadDataTableStatic(idTabela) {
     });
 }
 
-function menuListaInspecoes(destino, urlDestino) {
+function menuListaInspecoes(destino, urlDestino, functionLink) {
 	$.ajax({
 		type : "GET",
 		url : destino,
@@ -336,7 +336,7 @@ function menuListaInspecoes(destino, urlDestino) {
 			// we have the response
 			var x = document.getElementById('page-wrapper');
 			x.innerHTML = response;
-			loadDataTable(urlDestino);			
+			loadDataTable(urlDestino, functionLink);			
 		},
 		complete : previnePadrao(),
 		error : function(xhr) {
@@ -346,7 +346,7 @@ function menuListaInspecoes(destino, urlDestino) {
 
 }
 
-function loadDataTable(urlDestino) {
+function loadDataTable(urlDestino, functionLink) {
 	var table = $('table#sample')
 			.DataTable(
 					{
@@ -419,11 +419,9 @@ function loadDataTable(urlDestino) {
 									data : 'linkscolumn',
 									orderable : false,
 									searchable : false,
-									render : function(data, type, row) {
-										return '<a href="#" onclick = "executaAjaxGet(\'/agendamento/'
-												+ row.idInspecao
-												+ '\',\'detalheInspecao\',\'\',\'\')"><span class="glyphicon glyphicon-calendar"> </span></a>';
-									}
+									render : functionLink
+										
+									
 								},
 								{
 									data : 'endereco.bairro',
@@ -440,5 +438,18 @@ function loadDataTable(urlDestino) {
 									visible : false
 								} ]
 					});
+}
+
+
+function inspecionarLink(data, type, row) {
+	return '<a href="#" onclick = "executaAjaxGet(\'/vistoria/inspecaoInicioFimCustos/'
+			+ row.idInspecao
+			+ '\',\'detalheInspecao\',\'\',\'\')"><span class="glyphicon glyphicon-calendar"> </span></a>';
+}
+
+function agendamentoLink(data, type, row) {
+	return '<a href="#" onclick = "executaAjaxGet(\'/agendamento/'
+			+ row.idInspecao
+			+ '\',\'detalheInspecao\',\'\',\'\')"><span class="glyphicon glyphicon-calendar"> </span></a>';
 }
 

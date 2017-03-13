@@ -34,7 +34,7 @@
 				<div th:if="${inspecao.vistorias[0].dtFimInspecao} == null">
 					<button class="btn btn-default" type="submit" name="save"
 					
-						th:onClick="'menuListaInspecoesPorFuncionarioDesignado(\'/vistoria/informaFimInspecao/' + ${inspecao.idInspecao} +'\',\'listaInspecoesPorFuncionarioDesignado\');'"
+						th:onClick="'executaAjaxGet(\'/vistoria/informaFimInspecao/' + ${inspecao.idInspecao} +'\',\'detalheInspecao\',\'\',\'\');'"
 						th:text="#{inspecao.finalizarInspecao}">Add Inspecao</button>
 				</div>
 				<div th:if="${inspecao.vistorias[0].dtFimInspecao} != null">
@@ -111,7 +111,7 @@
 							</div>
 						</div>
 						<button class="btn btn-default" type="submit" name="save"
-							onclick="formSubmitClick(this,'page-wrapper')"
+							onclick="formSubmitClick(this,'detalheInspecao')"
 							th:text="#{custoInspecao.salvar}">Add Inspecao</button>
 					</fieldset>
 				</form>

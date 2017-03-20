@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import br.com.mvengenharia.business.entities.Atividade;
 import br.com.mvengenharia.business.entities.CustoInspecao;
+import br.com.mvengenharia.business.entities.Fase;
 import br.com.mvengenharia.business.entities.Inspecao;
 import br.com.mvengenharia.business.services.AtividadeService;
 import br.com.mvengenharia.business.services.CustoInspecaoService;
@@ -46,6 +47,9 @@ public class CustoInspecaoController {
     	this.custoInspecaoService.addOrUpdate(custoInspecao);
     	insp.setQtdBlocos(inspecao.getQtdBlocos());
     	insp.setInspecaoAtividadeApurada(inspecao.getInspecaoAtividadeApurada());
+    	Fase fase = new Fase();
+    	fase.setIdFase(5);
+    	insp.setFase(fase);
     	this.inspecaoService.addOrUpdate(insp);
     	model.clear();
         return "redirect:/vistoria/inspecaoInicioFimCustos/" + idInspecao;

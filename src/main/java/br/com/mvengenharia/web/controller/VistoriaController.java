@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import br.com.mvengenharia.business.entities.Vistoria;
 import br.com.mvengenharia.business.entities.Atividade;
+import br.com.mvengenharia.business.entities.Fase;
 import br.com.mvengenharia.business.entities.Inspecao;
 import br.com.mvengenharia.business.services.VistoriaService;
 import br.com.mvengenharia.business.services.AtividadeService;
@@ -86,8 +87,11 @@ public class VistoriaController {
 			this.vistoriaService.addOrUpdate(vistoria);
 			insp.setFuncionarioVistoriador(vistoria.getFuncionario());
 			insp.setDtVistoria(vistoria.getDtFimInspecao());
+			Fase fase = new Fase();
+			fase.setIdFase(6);
+			insp.setFase(fase);
 			this.inspecaoService.addOrUpdate(insp);
-		}
+		}		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("vistoria/inspecaoInicioFimCustos");
 		mav.addObject("inspecao", insp);

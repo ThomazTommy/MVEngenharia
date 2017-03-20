@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.mvengenharia.business.entities.Relatorio;
+import br.com.mvengenharia.business.entities.Fase;
 import br.com.mvengenharia.business.entities.Funcionario;
 import br.com.mvengenharia.business.entities.Inspecao;
 import br.com.mvengenharia.business.entities.NaoConformidade;
@@ -91,6 +92,10 @@ public class RelatorioController {
         relatorio.setDataFimRelatorio(new Date());
     	relatorio.setUltimo(true);
         this.relatorioService.addOrUpdate(relatorio);
+        Fase fase = new Fase();
+        fase.setIdFase(7);
+        insp.setFase(fase);
+        this.inspecaoService.addOrUpdate(insp);
         model.clear();       
         return "redirect:/relatorio/" + idInspecao;
     } 

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import br.com.mvengenharia.business.entities.Fase;
 import br.com.mvengenharia.business.entities.InsercaoSistema;
 import br.com.mvengenharia.business.entities.Inspecao;
 import br.com.mvengenharia.business.services.InsercaoSistemaService;
@@ -74,6 +75,10 @@ public class InsercaoSistemaController {
         insercaoSistema.setDataHoraInsercao(new Date());
     	insercaoSistema.setUltimo(true);
         this.insercaoSistemaService.addOrUpdate(insercaoSistema);
+        Fase fase = new Fase();
+        fase.setIdFase(9);
+        insp.setFase(fase);
+        this.inspecaoService.addOrUpdate(insp);
         model.clear();       
         return "redirect:/insercaoSistema/" + idInspecao;
     } 

@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.mvengenharia.business.entities.AprovacaoSistema;
+import br.com.mvengenharia.business.entities.Fase;
 import br.com.mvengenharia.business.entities.Inspecao;
+import br.com.mvengenharia.business.entities.Status;
 import br.com.mvengenharia.business.services.AprovacaoSistemaService;
 import br.com.mvengenharia.business.services.FuncionarioService;
 import br.com.mvengenharia.business.services.InspecaoService;
@@ -74,6 +76,13 @@ public class AprovacaoSistemaController {
         aprovacaoSistema.setDataHoraAprovacao(new Date());
     	aprovacaoSistema.setUltimo(true);
         this.aprovacaoSistemaService.addOrUpdate(aprovacaoSistema);
+        Status status = new Status();
+        status.setIdStatus(3);
+        Fase fase = new Fase();
+        fase.setIdFase(10);
+        insp.setFase(fase);
+        insp.setStatus(status);
+        this.inspecaoService.addOrUpdate(insp);
         model.clear();       
         return "redirect:/aprovacaoSistema/" + idInspecao;
     } 

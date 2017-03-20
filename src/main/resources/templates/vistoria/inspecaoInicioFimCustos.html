@@ -13,7 +13,7 @@
 				<div th:if="${#lists.isEmpty(inspecao.vistorias)}">
 					<button class="btn btn-default" type="submit" name="save"
 						th:onClick="'executaAjaxGet(\'/vistoria/informaInicioInspecao/' + ${inspecao.idInspecao}+ '\',\'detalheInspecao\',\'\',\'\')'"
-						th:text="#{inspecao.iniciarInspecao} + 1">Add Inspecao</button>
+						th:text="#{inspecao.iniciarInspecao}">Add Inspecao</button>
 				</div>
 				<div th:if="(${not #lists.isEmpty(inspecao.vistorias)})">
 					<dt th:text="#{inspecao.vistorias.dtInicioInspecao}">DtInicioInsp</dt>

@@ -43,5 +43,10 @@ public class FuncionarioService {
     public void remove(final String cpf){
     	this.funcionarioRepository.deleteByCpf(cpf);
     }
+
+	public Iterable<Funcionario> findAllAtivos() {
+		
+		return this.funcionarioRepository.findAllAtivos();
+	}
     
 }

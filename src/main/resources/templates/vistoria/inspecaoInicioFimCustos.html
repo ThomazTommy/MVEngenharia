@@ -68,8 +68,10 @@
 								<div class="form-group">
 									<label for="custoAprovado"> <span
 										th:text="#{custoInspecao.custoAprovado}">dtAgendada</span>
-									</label> <input class="form-control" type="text"
-										th:field="*{custoInspecao.custoAprovado}"
+									</label> <input class="form-control" type="text" maxlength="15"
+										onkeyup="mascaraDinheiro(this);"
+										onblur="mascaraDinheiro(this);"
+										th:field="*{{custoInspecao.custoAprovado}}"
 										th:errorclass="fieldError" />
 								</div>
 								<div class="form-group">
@@ -94,6 +96,13 @@
 										th:text="#{inspecao.qtdBlocos}">nomeContato</span>
 									</label> <input class="form-control" type="number"
 										th:field="*{qtdBlocos}" th:errorclass="fieldError" />
+								</div>
+								
+								<div class="form-group">
+									<label for="observacao"> <span
+										th:text="#{inspecao.observacao}">nomeContato</span>
+									</label> <input class="form-control" type="text"
+										th:field="*{observacao}" th:errorclass="fieldError" />
 								</div>
 
 								<div id="inspecaoAtividadeApurada" class="form-group">

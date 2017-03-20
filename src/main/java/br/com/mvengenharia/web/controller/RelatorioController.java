@@ -56,10 +56,17 @@ public class RelatorioController {
         super();
     }
     
+    @RequestMapping(value = "/relatorio/listaInspecaoParaRelatar", method = RequestMethod.GET)
+	public ModelAndView showInspecaoParaRelatar() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("relatorio/listaInspecaoParaRelatar");
+		return mav;
+	}
+    
     @RequestMapping(value = "/relatorio/{idInspecao}", method = RequestMethod.GET)
     public ModelAndView showRelatorio(@PathVariable long idInspecao) {
     	ModelAndView mav = new ModelAndView();
-    	mav.setViewName("inspecao/inspecaoRelatorio");
+    	mav.setViewName("relatorio/inspecaoRelatorio");
     	mav.addObject("inspecao", this.inspecaoService.findOne(idInspecao));
     	Relatorio relatorio = new Relatorio();
     	mav.addObject("relatorio", relatorio);
@@ -70,7 +77,7 @@ public class RelatorioController {
     public String saveRelatorio(@PathVariable long idInspecao, @Valid Relatorio relatorio, final BindingResult bindingResult, final ModelMap model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("inspecao", this.inspecaoService.findOne(idInspecao)); 
-            return "inspecao/inspecaoRelatorio";
+            return "relatorio/inspecaoRelatorio";
         }
         Inspecao insp = this.inspecaoService.findOne(idInspecao);
         List<Relatorio> listaRelatorios = insp.getRelatorios();

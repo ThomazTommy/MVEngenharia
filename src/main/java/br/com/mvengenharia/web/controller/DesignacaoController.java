@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import br.com.mvengenharia.business.entities.Agendamento;
 import br.com.mvengenharia.business.entities.Designacao;
+import br.com.mvengenharia.business.entities.Fase;
 import br.com.mvengenharia.business.entities.Funcionario;
 import br.com.mvengenharia.business.entities.Inspecao;
 import br.com.mvengenharia.business.services.DesignacaoService;
@@ -78,6 +79,10 @@ public class DesignacaoController {
     	designacao.setFuncionarioDesignador(this.funcionarioService.findOne(SecurityContextHolder.getContext().getAuthentication().getName()));
     	designacao.setInspecao(this.inspecaoService.findOne(idInspecao));
     	this.designacaoService.addOrUpdate(designacao);
+    	   Fase fase = new Fase();
+           fase.setIdFase(4);
+           insp.setFase(fase);
+           this.inspecaoService.addOrUpdate(insp);
         model.clear();       
         return "redirect:/designacao/" + idInspecao;
     } 

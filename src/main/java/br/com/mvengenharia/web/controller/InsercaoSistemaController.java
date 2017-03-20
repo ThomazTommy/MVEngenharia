@@ -38,12 +38,20 @@ public class InsercaoSistemaController {
         super();
     }
     
+	@RequestMapping(value = "/insercaoSistema/listaInspecaoParaInsercaoSistema", method = RequestMethod.GET)
+	public ModelAndView showInspecaoParaInsercaoSistema() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("insercaoSistema/listaInspecaoParaInsercaoSistema");		
+		return mav;
+	}
+    
     @RequestMapping(value = "/insercaoSistema/{idInspecao}", method = RequestMethod.GET)
     public ModelAndView showInsercaoSistema(@PathVariable long idInspecao) {
     	ModelAndView mav = new ModelAndView();
-    	mav.setViewName("inspecao/inspecaoInsercaoSistema");
+    	mav.setViewName("insercaoSistema/inspecaoInsercaoSistema");
     	mav.addObject("inspecao", this.inspecaoService.findOne(idInspecao));
     	InsercaoSistema insercaoSistema = new InsercaoSistema();
+    	insercaoSistema.setDataHoraInsercao(new Date());
     	mav.addObject("insercaoSistema", insercaoSistema);
         return mav;
     }      
@@ -52,7 +60,7 @@ public class InsercaoSistemaController {
     public String saveInsercaoSistema(@PathVariable long idInspecao, @Valid InsercaoSistema insercaoSistema, final BindingResult bindingResult, final ModelMap model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("inspecao", this.inspecaoService.findOne(idInspecao)); 
-            return "inspecao/inspecaoInsercaoSistema";
+            return "insercaoSistema/inspecaoInsercaoSistema";
         }
         Inspecao insp = this.inspecaoService.findOne(idInspecao);
         List<InsercaoSistema> listaInsercaoSistemas = insp.getInsercaoSistemas();

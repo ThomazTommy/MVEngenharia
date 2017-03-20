@@ -2,6 +2,7 @@ package br.com.mvengenharia.business.entities;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
@@ -21,9 +22,11 @@ public class InsercaoSistema implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long idInsercaoSistema;
 	
+	@NotNull(message = "Data não pode ser nula")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataHoraInsercaoSistemaCliente;
 
+	@NotNull(message = "Data não pode ser nula")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataHoraInsercao;
 	

@@ -63,7 +63,7 @@ public class Inspecao implements Serializable {
 	@Pattern(regexp = "\\([1-9]{2}\\) [2-9][0-9]{3,4}\\-[0-9]{4}", message = "O telefone deve estar no seguinte formato: (99) 99999-9999 ou (99) 9999-9999")
 	private String telefoneCorretor;
 
-	@NotNull(message = "Valor do risco n�o pode ficar vazio.")
+	@NotNull(message = "Valor do risco não pode ficar vazio.")
 	private BigDecimal valorTotalRisco;
 
 	// bi-directional many-to-one association to Agendamento
@@ -125,6 +125,14 @@ public class Inspecao implements Serializable {
 	@JoinColumn(name = "idStatus")
 	private Status status;
 
+
+	@OneToOne(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST })
+	@JoinColumn(name = "cpfVistoriador")
+	private Funcionario funcionarioVistoriador;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date dtVistoria;
+	
 	// bi-directional many-to-one association to Segurado
 	@JsonManagedReference
 	@Valid
@@ -164,6 +172,30 @@ public class Inspecao implements Serializable {
 	}
 	
 	
+
+	public Funcionario getFuncionarioVistoriador() {
+		return funcionarioVistoriador;
+	}
+
+
+
+	public void setFuncionarioVistoriador(Funcionario funcionarioVistoriador) {
+		this.funcionarioVistoriador = funcionarioVistoriador;
+	}
+
+
+
+	public Date getDtVistoria() {
+		return dtVistoria;
+	}
+
+
+
+	public void setDtVistoria(Date dtVistoria) {
+		this.dtVistoria = dtVistoria;
+	}
+
+
 
 	public Fase getFase() {
 		return fase;

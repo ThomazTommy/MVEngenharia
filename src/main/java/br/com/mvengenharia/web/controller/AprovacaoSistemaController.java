@@ -38,12 +38,20 @@ public class AprovacaoSistemaController {
         super();
     }
     
+    @RequestMapping(value = "/aprovacaoSistema/listaInspecaoParaAprovacaoSistema", method = RequestMethod.GET)
+	public ModelAndView showInspecaoParaAprovacaoSistema() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("aprovacaoSistema/listaInspecaoParaAprovacaoSistema");
+		return mav;
+	}
+    
     @RequestMapping(value = "/aprovacaoSistema/{idInspecao}", method = RequestMethod.GET)
     public ModelAndView showAprovacaoSistema(@PathVariable long idInspecao) {
     	ModelAndView mav = new ModelAndView();
-    	mav.setViewName("inspecao/inspecaoAprovacaoSistema");
+    	mav.setViewName("aprovacaoSistema/inspecaoAprovacaoSistema");
     	mav.addObject("inspecao", this.inspecaoService.findOne(idInspecao));
     	AprovacaoSistema aprovacaoSistema = new AprovacaoSistema();
+    	aprovacaoSistema.setDataHoraAprovacao(new Date());
     	mav.addObject("aprovacaoSistema", aprovacaoSistema);
         return mav;
     }      
@@ -52,7 +60,7 @@ public class AprovacaoSistemaController {
     public String saveAprovacaoSistema(@PathVariable long idInspecao, @Valid AprovacaoSistema aprovacaoSistema, final BindingResult bindingResult, final ModelMap model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("inspecao", this.inspecaoService.findOne(idInspecao)); 
-            return "inspecao/inspecaoAprovacaoSistema";
+            return "aprovacaoSistema/inspecaoAprovacaoSistema";
         }
         Inspecao insp = this.inspecaoService.findOne(idInspecao);
         List<AprovacaoSistema> listaAprovacaoSistemas = insp.getAprovacaoSistemas();

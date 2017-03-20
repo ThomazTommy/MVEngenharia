@@ -346,6 +346,26 @@ function menuListaInspecoes(destino, urlDestino, functionLink) {
 
 }
 
+function menuListaInspecoesPosInspecao(destino, urlDestino, functionLink) {
+	$.ajax({
+		type : "GET",
+		url : destino,
+		beforeSend : '',
+
+		success : function(response) {
+			// we have the response
+			var x = document.getElementById('page-wrapper');
+			x.innerHTML = response;
+			loadDataTablePosInspecao(urlDestino, functionLink);			
+		},
+		complete : previnePadrao(),
+		error : function(xhr) {
+			alert("Um erro ocorreu: " + xhr.status + " - " + xhr.statusText);
+		}
+	});
+
+}
+
 function loadDataTable(urlDestino, functionLink) {
 	var table = $('table#sample')
 			.DataTable(
@@ -414,6 +434,127 @@ function loadDataTable(urlDestino, functionLink) {
 										}
 										return '';
 									}
+								}, {
+									data : 'status.descStatus',
+									visible : true
+								}, {
+									data : 'fase.descFase',
+									visible : true
+								}, {
+									data : 'linkscolumn',
+									orderable : false,
+									searchable : false,
+									render : functionLink
+								},
+								{
+									data : 'endereco.bairro',
+									visible : false
+								},
+								{
+									data : 'endereco.tipoLogradouro.descTipoLogradouro',
+									visible : false
+								}, {
+									data : 'endereco.cidade.nomeCidade',
+									visible : false
+								}]
+					});
+}
+
+
+
+function loadDataTablePosInspecao(urlDestino, functionLink) {
+	var table = $('table#sample')
+			.DataTable(
+					{
+						language : {
+							'url' : '/static/js/Portuguese.json'
+						},
+						ajax : {
+							'url' : urlDestino,
+							'contentType' : 'application/json',
+							'type' : 'POST',
+							'data' : function(d) {
+								return JSON.stringify(d);
+							}
+						},
+						serverSide : true,						
+						
+
+						columns : [
+								{
+									data : 'idInspecao'
+								},
+								{
+									data : 'dtAgendada',
+									render : function(data, type, row) {
+										if (row.dtAgendada)
+											return new Date(row.dtAgendada)
+													.toLocaleString();
+										else
+											return 'Não Confirmado';
+									}
+								},
+								{
+									data : 'dtSolicitacaoInspecao',
+									render : function(data, type, row) {
+										return new Date(
+												row.dtSolicitacaoInspecao)
+												.toLocaleString();
+									}
+								},
+								{
+									data : 'dtLimite',
+									render : function(data, type, row) {
+										return new Date(row.dtLimite)
+												.toLocaleString();
+									}
+								},
+
+								{
+									data : 'cliente.descCliente',
+
+								},
+
+								{
+									data : 'endereco.logradouro',
+
+									render : function(data, type, row) {
+										if (row.endereco) {
+											return row.endereco.tipoLogradouro.descTipoLogradouro
+													+ " "
+													+ row.endereco.logradouro
+													+ " "
+													+ row.endereco.numero
+													+ " - "
+													+ row.endereco.cidade.nomeCidade;
+										}
+										return '';
+									}
+								}, {
+									data : 'status.descStatus',
+									visible : true
+								}, {
+									data : 'fase.descFase',
+									visible : true
+								}, {
+									data : 'funcionarioVistoriador.nomeFuncionario',
+									render : function(data, type, row) {
+										if (row.funcionarioVistoriador)
+											return row.funcionarioVistoriador.nomeFuncionario;
+										else
+											return 'Não Preenchido';
+									},
+									visible : true
+								},{
+									data : 'dtVistoria',
+									render : function(data, type, row) {
+										if (row.dtVistoria)
+											return new Date(row.dtVistoria)
+										.toLocaleString();
+										else
+											return 'Não Preenchido';
+									},
+									visible : true
 								},
 								{
 									data : 'linkscolumn',
@@ -433,10 +574,7 @@ function loadDataTable(urlDestino, functionLink) {
 								}, {
 									data : 'endereco.cidade.nomeCidade',
 									visible : false
-								}, {
-									data : 'status.descStatus',
-									visible : false
-								} ]
+								}]
 					});
 }
 
@@ -449,6 +587,33 @@ function inspecionarLink(data, type, row) {
 
 function agendamentoLink(data, type, row) {
 	return '<a href="#" onclick = "executaAjaxGet(\'/agendamento/'
+			+ row.idInspecao
+			+ '\',\'detalheInspecao\',\'\',\'\')"><span class="glyphicon glyphicon-calendar"> </span></a>';
+}
+
+function relatorioLink(data, type, row) {
+	return '<a href="#" onclick = "executaAjaxGet(\'/relatorio/'
+			+ row.idInspecao
+			+ '\',\'detalheInspecao\',\'\',\'\')"><span class="glyphicon glyphicon-calendar"> </span></a>';
+}
+
+
+function revisaoLink(data, type, row) {
+	return '<a href="#" onclick = "executaAjaxGet(\'/revisao/'
+			+ row.idInspecao
+			+ '\',\'detalheInspecao\',\'\',\'\')"><span class="glyphicon glyphicon-calendar"> </span></a>';
+}
+
+
+function insercaoSistemaLink(data, type, row) {
+	return '<a href="#" onclick = "executaAjaxGet(\'/insercaoSistema/'
+			+ row.idInspecao
+			+ '\',\'detalheInspecao\',\'\',\'\')"><span class="glyphicon glyphicon-calendar"> </span></a>';
+}
+
+
+function aprovacaoSistemaLink(data, type, row) {
+	return '<a href="#" onclick = "executaAjaxGet(\'/aprovacaoSistema/'
 			+ row.idInspecao
 			+ '\',\'detalheInspecao\',\'\',\'\')"><span class="glyphicon glyphicon-calendar"> </span></a>';
 }

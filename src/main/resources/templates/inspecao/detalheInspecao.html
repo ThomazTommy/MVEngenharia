@@ -12,6 +12,8 @@
 					<dl>
 						<dt th:text="#{inspecao.idInspecao}">Id</dt>
 						<dd th:text="${inspecao.idInspecao}">1</dd>
+						<dt th:text="#{inspecao.fase}">fase</dt>
+						<dd th:text="${inspecao.fase.descFase}">fase</dd>
 						<dt th:text="#{inspecao.dtSolicitacaoInspecao}">DtSolInsp</dt>
 						<dd th:text="${{inspecao.dtSolicitacaoInspecao}}">DtSolInsp</dd>
 						<dt th:text="#{inspecao.nomeCorretor}">nome Corretor</dt>
@@ -50,7 +52,7 @@
 						<dt th:text="#{inspecao.ramo}">ramo</dt>
 						<dd th:text="${inspecao.ramo.descRamo}">ramo</dd>
 						<dt th:text="#{inspecao.status}">status</dt>
-						<dd th:text="${inspecao.status.descStatus}">status</dd>
+						<dd th:text="${inspecao.status.descStatus}">status</dd>				
 						<dt th:text="#{inspecao.tipoInspecao}">tipo inspecao</dt>
 						<dd th:text="${inspecao.tipoInspecao.descTipoInspecao}">tipo
 							inspecao</dd>
@@ -64,6 +66,8 @@
 						<dd th:text="${inspecao.segurado.nomeSegurado}">segurado</dd>
 						<dt th:text="#{inspecao.segurado.cpfCnpj}">cpf cnpj segurado</dt>
 						<dd th:text="${inspecao.segurado.cpfCnpj}">cpf cnpj segurado</dd>
+						<dt th:text="#{inspecao.segurado.telefoneSegurado}">segurado</dt>
+						<dd th:text="${inspecao.segurado.telefoneSegurado}">segurado</dd>
 					</dl>
 				</div>
 			</div>

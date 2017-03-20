@@ -56,10 +56,18 @@ public class RevisaoController {
         super();
     }
     
+    @RequestMapping(value = "/revisao/listaInspecaoParaRevisar", method = RequestMethod.GET)
+	public ModelAndView showInspecaoParaRevisar() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("revisao/listaInspecaoParaRevisar");
+		return mav;
+	}
+
+    
     @RequestMapping(value = "/revisao/{idInspecao}", method = RequestMethod.GET)
     public ModelAndView showRevisao(@PathVariable long idInspecao) {
     	ModelAndView mav = new ModelAndView();
-    	mav.setViewName("inspecao/inspecaoRevisao");
+    	mav.setViewName("revisao/inspecaoRevisao");
     	mav.addObject("inspecao", this.inspecaoService.findOne(idInspecao));
     	Revisao revisao = new Revisao();
     	mav.addObject("revisao", revisao);
@@ -70,7 +78,7 @@ public class RevisaoController {
     public String saveRevisao(@PathVariable long idInspecao, @Valid Revisao revisao, final BindingResult bindingResult, final ModelMap model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("inspecao", this.inspecaoService.findOne(idInspecao)); 
-            return "inspecao/inspecaoRevisao";
+            return "revisao/inspecaoRevisao";
         }
         Inspecao insp = this.inspecaoService.findOne(idInspecao);
         List<Revisao> listaRevisaos = insp.getRevisaos();

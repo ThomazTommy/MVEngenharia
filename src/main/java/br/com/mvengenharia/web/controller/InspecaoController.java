@@ -26,6 +26,7 @@ import br.com.mvengenharia.business.services.CidadeService;
 import br.com.mvengenharia.business.services.ClienteService;
 import br.com.mvengenharia.business.services.CoberturaService;
 import br.com.mvengenharia.business.services.EstadoService;
+import br.com.mvengenharia.business.services.FaseService;
 import br.com.mvengenharia.business.services.InspecaoService;
 import br.com.mvengenharia.business.services.StatusService;
 import br.com.mvengenharia.business.services.TipoLogradouroService;
@@ -60,6 +61,10 @@ public class InspecaoController {
 
 	@Autowired
 	private CoberturaService coberturaService;
+	
+	
+	@Autowired
+	private FaseService faseService;
 
 	public InspecaoController() {
 		super();
@@ -69,11 +74,6 @@ public class InspecaoController {
 	public Iterable<Cobertura> populateCoberturas() {
 		return this.coberturaService.findAll();
 	}
-
-	//@ModelAttribute("allInspecaos")
-	//public Iterable<Inspecao> populateInspecaos() {
-	//	return this.inspecaoService.findAll();
-	//}
 
 	@ModelAttribute("allAtividades")
 	public Iterable<Atividade> populateAtividades() {
@@ -95,6 +95,11 @@ public class InspecaoController {
 		return this.statusService.findAll();
 	}
 
+	@ModelAttribute("allFases")
+	public Iterable<Fase> populateFases() {
+		return this.faseService.findAll();
+	}
+	
 	@ModelAttribute("allTipoLogradouros")
 	public Iterable<TipoLogradouro> populateTipoLogradouros() {
 		return this.tipoLogradouroService.findAll();
@@ -132,32 +137,6 @@ public class InspecaoController {
 		mav.addObject("inspecao", insp);
 		return mav;
 	}
-/*
-	@RequestMapping(value = "/inspecao", params = { "save" })
-	public String saveInspecao(@Valid Inspecao inspecao, final BindingResult bindingResult, final ModelMap model) {
-
-		if (bindingResult.hasErrors()) {
-			if (inspecao.getCliente() != null) {
-				model.addAttribute("listaRamos",
-						this.clienteService.findOne(inspecao.getCliente().getIdCliente()).getRamos());
-				model.addAttribute("listaTipoInspecao",
-						this.clienteService.findOne(inspecao.getCliente().getIdCliente()).getTipoInspecaos());
-			}
-			if (inspecao.getEndereco().getEstado() != null) {
-				model.addAttribute("listaCidades",
-						this.cidadeService.findByIdEstado(inspecao.getEndereco().getEstado().getIdEstado()));
-			}
-			System.out.println(bindingResult.toString());
-			return "inspecao/editarInspecao";
-		}
-		Calendar c = Calendar.getInstance();
-		c.setTime(inspecao.getDtSolicitacaoInspecao());
-		c.add(Calendar.DATE, this.clienteService.findOne(inspecao.getCliente().getIdCliente()).getPrazoCliente());
-		inspecao.setDtLimite(c.getTime());
-		this.inspecaoService.addOrUpdate(inspecao);
-		model.clear();
-		return "redirect:/inspecao";
-	}*/
 	
 	@RequestMapping(value = "/inspecao/editar", params = { "save" })
 	public String saveEditedInspecao(@Valid Inspecao inspecao, final BindingResult bindingResult,
@@ -239,13 +218,7 @@ public class InspecaoController {
 		mav.addObject("inspecao",insp);
 		return mav;
 	}
-	
-	@RequestMapping(value = "/inspecao/listaInspecaoPorFuncionarioDesignado")
-	public ModelAndView listaInspecaoPorFuncionarioDesignado() {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("inspecao/listaInspecaoPorFuncionarioDesignado");
-		return mav;
-	}
+
 
 
 	

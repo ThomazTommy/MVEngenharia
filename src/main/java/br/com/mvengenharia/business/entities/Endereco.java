@@ -22,7 +22,7 @@ public class Endereco implements Serializable {
 
 	private String bairro;
 	
-	@Pattern(regexp = "\\d{5}[-]\\d{3}")
+	@Pattern(regexp = "\\d{5}[-]\\d{3}", message="O CEP deve estar no formato 99999-999.")
 	private String cep;
 
 	private String complemento;

@@ -123,7 +123,7 @@ function loadDataTableNovaInspecao(urlDestino) {
 									visible : false
 								}, {
 									data : 'status.descStatus',
-									visible : false
+									visible : true									
 								} ]
 					});
 }

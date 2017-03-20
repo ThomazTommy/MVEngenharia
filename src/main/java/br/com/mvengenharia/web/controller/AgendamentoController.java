@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import br.com.mvengenharia.business.entities.Agendamento;
 import br.com.mvengenharia.business.entities.Designacao;
+import br.com.mvengenharia.business.entities.Fase;
 import br.com.mvengenharia.business.entities.Funcionario;
 import br.com.mvengenharia.business.entities.Inspecao;
 import br.com.mvengenharia.business.services.AgendamentoService;
@@ -39,7 +40,7 @@ public class AgendamentoController {
     
     @ModelAttribute("allFuncionarios")
 	public Iterable<Funcionario> populateFuncionarios() {
-		return this.funcionarioService.findAll();
+		return this.funcionarioService.findAllAtivos();
 	}
 
       
@@ -50,7 +51,7 @@ public class AgendamentoController {
     @RequestMapping(value = "/agendamento/{idInspecao}", method = RequestMethod.GET)
     public ModelAndView showDesignacao(@PathVariable long idInspecao) {
     	ModelAndView mav = new ModelAndView();
-    	mav.setViewName("inspecao/inspecaoAgendamentoDesignacao");
+    	mav.setViewName("agendamento/inspecaoAgendamentoDesignacao");
     	mav.addObject("inspecao", this.inspecaoService.findOne(idInspecao));
     	Designacao designacao = new Designacao();
     	Agendamento agenda = new Agendamento();
@@ -70,7 +71,7 @@ public class AgendamentoController {
         if (bindingResult.hasErrors()) {
             model.addAttribute("inspecao", this.inspecaoService.findOne(idInspecao)); 
             model.addAttribute("designacao", new Designacao());
-        	return "inspecao/inspecaoAgendamentoDesignacao";
+        	return "agendamento/inspecaoAgendamentoDesignacao";
         }
         Inspecao insp = this.inspecaoService.findOne(idInspecao);
         List<Agendamento> listaAgds = insp.getAgendamentos();
@@ -84,6 +85,11 @@ public class AgendamentoController {
     	agendamento.setInspecao(this.inspecaoService.findOne(idInspecao));    
         agendamento.setUltimo(true);
         this.agendamentoService.addOrUpdate(agendamento);
+        
+        Fase fase = new Fase();
+        fase.setIdFase(2);
+        insp.setFase(fase);
+        this.inspecaoService.addOrUpdate(insp);
         model.clear();       
         return "redirect:/agendamento/" + idInspecao;
     } 
@@ -103,6 +109,9 @@ public class AgendamentoController {
         agenda.setFuncionarioConfirmacao(this.funcionarioService.findOne(SecurityContextHolder.getContext().getAuthentication().getName()));
         this.agendamentoService.addOrUpdate(agenda);
         insp.setDtAgendada(agenda.getDtAgendada());
+        Fase fase = new Fase();
+        fase.setIdFase(3);
+        insp.setFase(fase);
         this.inspecaoService.addOrUpdate(insp);
         model.clear();       
         return "redirect:/agendamento/" + idInspecao;

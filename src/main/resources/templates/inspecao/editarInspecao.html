@@ -266,6 +266,15 @@
 											th:value="${status.idStatus}" th:text="${status.descStatus}">Status</option>
 									</select>
 								</div>
+								
+								<div class="form-group">
+									<label for="fase"> <span th:text="#{inspecao.fase}">fase</span>
+									</label> <select th:errorclass="fieldError" class="form-control"
+										th:field="*{fase}">
+										<option th:each="fase : ${allFases}"
+											th:value="${fase.idFase}" th:text="${fase.descFase}">Fase</option>
+									</select>
+								</div>
 
 							</div>
 						</div>

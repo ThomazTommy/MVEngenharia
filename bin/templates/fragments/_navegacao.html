@@ -11,8 +11,7 @@
 	<!-- /.navbar-header -->
 
 	<ul class="nav navbar-top-links navbar-right">
-		<li><a href="#"> <i
-				class="fa fa-envelope fa-fw"></i>
+		<li><a href="#"> <i class="fa fa-envelope fa-fw"></i>
 		</a> <!-- /.dropdown-messages --></li>
 		<!-- /.dropdown -->
 		<li class="dropdown"><a class="dropdown-toggle"
@@ -20,7 +19,8 @@
 				<i class="fa fa-caret-down"></i>
 		</a>
 			<ul class="dropdown-menu dropdown-user">
-				<li><a href="#"><i class="fa fa-user fa-fw"></i> Usuário: <span sec:authentication="name">Bob</span></a></li>
+				<li><a href="#"><i class="fa fa-user fa-fw"></i> Usuário: <span
+						sec:authentication="name">Bob</span></a></li>
 				<li class="divider"></li>
 				<li><a href="/logout"><i class="fa fa-sign-out fa-fw"></i>
 						Sair</a></li>
@@ -44,6 +44,7 @@
 						<li><a href="#" onclick="menuOnClick('/permissoes')">Permissões</a></li>
 						<li><a href="#" onclick="menuOnClick('/ramo')">Ramos</a></li>
 						<li><a href="#" onclick="menuOnClick('/status')">Status</a></li>
+						<li><a href="#" onclick="menuOnClick('/fase')">Fase</a></li>
 						<li><a href="#" onclick="menuOnClick('/tipoInspecao')">Tipo
 								de Inspeção</a></li>
 						<li><a href="#" onclick="menuOnClick('/tipoLogradouro')">Tipo
@@ -57,25 +58,23 @@
 						class="fa fa-sitemap fa-fw"></i> Inspeções de Seguros<span
 						class="fa arrow"></span></a>
 					<ul class="nav nav-second-level">
-						<li><a href="#" onclick="$.getScript('/static/js/novaInspecao.js');">Nova
+						<li><a href="#"
+							onclick="$.getScript('/static/js/novaInspecao.js');">Nova
 								Inspeção</a></li>
 						<li><a href="#"
-							onclick="menuListaInspecoes('/agendamento/listainspecao', '/dtinspecao/dtinspecao', agendamentoLink)">Agendar/Designar</a></li>
+							onclick="menuListaInspecoes('/agendamento/listainspecao', '/dtinspecao/listaInspecaoPorFase/1/2/3/4', agendamentoLink)">Agendar/Designar</a></li>
 						<li><a href="#"
-							th:onclick="'menuListaInspecoes(\'/inspecao/listaInspecaoPorFuncionarioDesignado\', \'/dtinspecao/listaInspecaoPorCpf/'+ ${#httpServletRequest.remoteUser} + '\', inspecionarLink);'">Inspecionar/Informar Custos</a></li>
-						
-						<!-- <li><a href="#"
-							th:onclick="'menuListaInspecoesPorFuncionarioDesignado(\'/dtinspecao/listaInspecaoPorFuncionarioDesignado/'+ ${#httpServletRequest.remoteUser} +'\',\'listaInspecoesPorFuncionarioDesignado\');'">Inspecionar/Informar
-								Custos</a></li> -->
+							th:onclick="'menuListaInspecoes(\'/vistoria/listaInspecaoPorFuncionarioDesignado\', \'/dtinspecao/listaInspecaoPorCpf/'+ ${#httpServletRequest.remoteUser} + '\', inspecionarLink);'">Inspecionar/Informar
+								Custos</a></li>
 						<li><a href="#"
-							onclick="menuOnClick('/dtinspecao/listaInspecaoParaRelatar')">Relatar</a></li>
+							onclick="menuListaInspecoesPosInspecao('/relatorio/listaInspecaoParaRelatar', '/dtinspecao/listaInspecaoPorFase/5', relatorioLink)">Relatar</a></li>
 						<li><a href="#"
-							onclick="menuOnClick('/dtinspecao/listaInspecaoParaRevisar')">Revisar</a></li>
+							onclick="menuListaInspecoesPosInspecao('/revisao/listaInspecaoParaRevisar', '/dtinspecao/listaInspecaoPorFase/7', revisaoLink)">Revisão</a></li>
 						<li><a href="#"
-							onclick="menuOnClick('/dtinspecao/listaInspecaoParaInsercaoSistema')">Inserir
+							onclick="menuListaInspecoesPosInspecao('/insercaoSistema/listaInspecaoParaInsercaoSistema', '/dtinspecao/listaInspecaoPorFase/8', insercaoSistemaLink)">Inserir
 								no Sistema do Cliente</a></li>
 						<li><a href="#"
-							onclick="menuOnClick('/dtinspecao/listaInspecaoParaAprovacaoSistema')">Aprovar
+							onclick="menuListaInspecoesPosInspecao('/aprovacaoSistema/listaInspecaoParaAprovacaoSistema', '/dtinspecao/listaInspecaoPorFase/9', aprovacaoSistemaLink)">Aprovar
 								no Sistema do Cliente</a></li>
 					</ul> <!-- /.nav-second-level --></li>
 

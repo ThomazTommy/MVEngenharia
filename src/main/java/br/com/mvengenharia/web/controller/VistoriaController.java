@@ -84,10 +84,21 @@ public class VistoriaController {
 			vistoria.setDtFimInspecao(agora);
 			vistoria.setInspecao(insp);
 			this.vistoriaService.addOrUpdate(vistoria);
+			insp.setFuncionarioVistoriador(vistoria.getFuncionario());
+			insp.setDtVistoria(vistoria.getDtFimInspecao());
+			this.inspecaoService.addOrUpdate(insp);
 		}
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("vistoria/inspecaoInicioFimCustos");
 		mav.addObject("inspecao", insp);
+		return mav;
+	}
+	
+	
+	@RequestMapping(value = "/vistoria/listaInspecaoPorFuncionarioDesignado")
+	public ModelAndView listaInspecaoPorFuncionarioDesignado() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("vistoria/listaInspecaoPorFuncionarioDesignado");
 		return mav;
 	}
 }

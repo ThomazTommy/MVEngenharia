@@ -2,6 +2,7 @@ package br.com.mvengenharia.business.entities;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
@@ -23,12 +24,13 @@ public class AprovacaoSistema implements Serializable {
 
 	private boolean aprovacaoSemRessalvas;
 
+	@NotNull(message = "Data não pode ser nula")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataHoraAprovacaoSistemaCliente;
 	
+	@NotNull(message = "Data não pode ser nula")
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date dataHoraAprovacao;
-		
+	private Date dataHoraAprovacao;		
 	
 	private boolean ultimo;
 	

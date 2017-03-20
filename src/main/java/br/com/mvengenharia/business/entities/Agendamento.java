@@ -46,7 +46,7 @@ public class Agendamento implements Serializable {
 		this.ultimo = ultimo;
 	}
 
-	@NotNull(message="Campo CPF Funcionario n�o pode ficar vazio")
+	@NotNull(message="Campo CPF Funcionario não pode ficar vazio")
 	@ManyToOne
 	@JoinColumn(name="cpfFuncionario")
 	private Funcionario funcionario;
@@ -72,7 +72,7 @@ public class Agendamento implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dtConfirmacao;
 	
-	@Size(min=1, message="Campo nome Contato n�o pode ficar vazio")
+	@Size(min=1, message="Campo nome Contato não pode ficar vazio")
 	private String nomeContato;
 	
 	@Pattern(regexp = "\\([1-9]{2}\\) [2-9][0-9]{3,4}\\-[0-9]{4}", message = "O telefone deve estar no seguinte formato: (99) 99999-9999 ou (99) 9999-9999")

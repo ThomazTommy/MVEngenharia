@@ -1,7 +1,5 @@
 package br.com.mvengenharia.web.controller;
 
-import java.util.List;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,7 +41,39 @@ public class DTInspecaoController {
 				dtInspecaoService.findAllByStatus(input, idStatus), HttpStatus.OK);
 		return resp;
 	}
+	
+	@RequestMapping(value = "/dtinspecao/listaInspecaoPorFase/{idFase}", method = RequestMethod.POST)
+	public ResponseEntity<DataTablesOutput<Inspecao>> getInspecaoPorFase(@Valid @RequestBody DataTablesInput input,
+			@PathVariable Long idFase) {
+		ResponseEntity<DataTablesOutput<Inspecao>> resp = new ResponseEntity<DataTablesOutput<Inspecao>>(
+				dtInspecaoService.findAllByFase(input, idFase), HttpStatus.OK);
+		return resp;
+	}
+	
+	@RequestMapping(value = "/dtinspecao/listaInspecaoPorFase/{idFase1}/{idFase2}", method = RequestMethod.POST)
+	public ResponseEntity<DataTablesOutput<Inspecao>> getInspecaoPorFase(@Valid @RequestBody DataTablesInput input,
+			@PathVariable Long idFase1, @PathVariable Long idFase2) {
+		ResponseEntity<DataTablesOutput<Inspecao>> resp = new ResponseEntity<DataTablesOutput<Inspecao>>(
+				dtInspecaoService.findAllByFase(input, idFase1, idFase2 ), HttpStatus.OK);
+		return resp;
+	}
+	
+	@RequestMapping(value = "/dtinspecao/listaInspecaoPorFase/{idFase1}/{idFase2}/{idFase3}", method = RequestMethod.POST)
+	public ResponseEntity<DataTablesOutput<Inspecao>> getInspecaoPorFase(@Valid @RequestBody DataTablesInput input,
+			@PathVariable Long idFase1, @PathVariable Long idFase2, @PathVariable Long idFase3) {
+		ResponseEntity<DataTablesOutput<Inspecao>> resp = new ResponseEntity<DataTablesOutput<Inspecao>>(
+				dtInspecaoService.findAllByFase(input, idFase1, idFase2, idFase3), HttpStatus.OK);
+		return resp;
+	}
 
+	@RequestMapping(value = "/dtinspecao/listaInspecaoPorFase/{idFase1}/{idFase2}/{idFase3}/{idFase4}", method = RequestMethod.POST)
+	public ResponseEntity<DataTablesOutput<Inspecao>> getInspecaoPorFase(@Valid @RequestBody DataTablesInput input,
+			@PathVariable Long idFase1, @PathVariable Long idFase2, @PathVariable Long idFase3, @PathVariable Long idFase4) {
+		ResponseEntity<DataTablesOutput<Inspecao>> resp = new ResponseEntity<DataTablesOutput<Inspecao>>(
+				dtInspecaoService.findAllByFase(input, idFase1, idFase2, idFase3, idFase4), HttpStatus.OK);
+		return resp;
+	}
+	
 	@RequestMapping(value = "/dtinspecao/listaInspecaoPorCpf/{cpf}", method = RequestMethod.POST)
 	public ResponseEntity<DataTablesOutput<Inspecao>> getInspecaoPorCpf(@Valid @RequestBody DataTablesInput input,
 			@PathVariable String cpf) {
@@ -59,53 +89,13 @@ public class DTInspecaoController {
 		return mav;
 	}
 
-	@RequestMapping(value = "/dtinspecao/listaInspecaoPorFuncionarioDesignado/{cpf}", method = RequestMethod.GET)
-	public ModelAndView showInspecaoPorFuncionario(@PathVariable String cpf) {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("inspecao/listaInspecaoPorFuncionarioDesignado");
-		List<Inspecao> listaInspecoes = this.dtInspecaoService.findByFuncionarioDesignado(cpf);
-		mav.addObject("listaInspecoes", listaInspecoes);
-		return mav;
-	}
+	
 
-	@RequestMapping(value = "/dtinspecao/listaInspecaoParaRelatar", method = RequestMethod.GET)
-	public ModelAndView showInspecaoParaRelatar() {
-		Long status = Long.valueOf("1");
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("inspecao/listaInspecaoParaRelatar");
-		List<Inspecao> listaInspecoes = this.dtInspecaoService.findByStatus(status);
-		mav.addObject("listaInspecoes", listaInspecoes);
-		return mav;
-	}
+	
 
-	@RequestMapping(value = "/dtinspecao/listaInspecaoParaRevisar", method = RequestMethod.GET)
-	public ModelAndView showInspecaoParaRevisar() {
-		Long status = Long.valueOf("1");
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("inspecao/listaInspecaoParaRevisar");
-		List<Inspecao> listaInspecoes = this.dtInspecaoService.findByStatus(status);
-		mav.addObject("listaInspecoes", listaInspecoes);
-		return mav;
-	}
+	
 
-	@RequestMapping(value = "/dtinspecao/listaInspecaoParaInsercaoSistema", method = RequestMethod.GET)
-	public ModelAndView showInspecaoParaInsercaoSistema() {
-		Long status = Long.valueOf("1");
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("inspecao/listaInspecaoParaInsercaoSistema");
-		List<Inspecao> listaInspecoes = this.dtInspecaoService.findByStatus(status);
-		mav.addObject("listaInspecoes", listaInspecoes);
-		return mav;
-	}
 
-	@RequestMapping(value = "/dtinspecao/listaInspecaoParaAprovacaoSistema", method = RequestMethod.GET)
-	public ModelAndView showInspecaoParaAprovacaoSistema() {
-		Long status = Long.valueOf("1");
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("inspecao/listaInspecaoParaAprovacaoSistema");
-		List<Inspecao> listaInspecoes = this.dtInspecaoService.findByStatus(status);
-		mav.addObject("listaInspecoes", listaInspecoes);
-		return mav;
-	}
+	
 
 }

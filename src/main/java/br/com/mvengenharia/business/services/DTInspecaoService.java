@@ -49,7 +49,9 @@ public class DTInspecaoService {
 				Predicate a = builder.equal(designacao.on(builder.equal(designacao.get("ultima"), true))
 						.get("funcionarioDesignado").get("cpf"), cpf);
 				Predicate b = builder.equal(root.<Status>get("fase").<Long>get("idFase"), 4);
-				return builder.and(a,b);
+				Predicate c = builder.equal(root.<Status>get("fase").<Long>get("idFase"), 4);
+				Predicate d = builder.or(b,c);
+				return builder.and(a,d);
 			}
 		};
 		return this.dtInspecaoRepository.findAll(input, specification);

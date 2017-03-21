@@ -59,7 +59,7 @@ public class FuncionarioController {
         Funcionario func = this.funcionarioService.findOne(funcionario.getCpf());
         if (func!=null)
         {
-        	bindingResult.rejectValue("cpf","cpf.invalido","Cpf j· cadastrado");
+        	bindingResult.rejectValue("cpf","cpf.invalido","Cpf j√° cadastrado");
         }
         System.out.println(bindingResult.toString());
         if (bindingResult.hasErrors()) {

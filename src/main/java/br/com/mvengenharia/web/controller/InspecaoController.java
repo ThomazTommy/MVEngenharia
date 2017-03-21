@@ -27,6 +27,7 @@ import br.com.mvengenharia.business.services.ClienteService;
 import br.com.mvengenharia.business.services.CoberturaService;
 import br.com.mvengenharia.business.services.EstadoService;
 import br.com.mvengenharia.business.services.FaseService;
+import br.com.mvengenharia.business.services.HonorarioService;
 import br.com.mvengenharia.business.services.InspecaoService;
 import br.com.mvengenharia.business.services.StatusService;
 import br.com.mvengenharia.business.services.TipoLogradouroService;
@@ -62,6 +63,8 @@ public class InspecaoController {
 	@Autowired
 	private CoberturaService coberturaService;
 	
+	@Autowired
+	private HonorarioService honorarioService;
 	
 	@Autowired
 	private FaseService faseService;
@@ -161,6 +164,7 @@ public class InspecaoController {
 		c.add(Calendar.DATE, this.clienteService.findOne(inspecao.getCliente().getIdCliente()).getPrazoCliente());
 		inspecao.setDtLimite(c.getTime());
 		this.inspecaoService.addOrUpdate(inspecao);
+		honorarioService.calculaHonorario(inspecao);
 		model.clear();
 		return "redirect:/inspecao";
 	}

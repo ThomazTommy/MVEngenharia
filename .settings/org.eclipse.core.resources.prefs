@@ -26,6 +26,7 @@ encoding//src/main/resources/templates/fragments/_scripts.html=UTF-8
 encoding//src/main/resources/templates/funcionario/editarFuncionario.html=UTF-8
 encoding//src/main/resources/templates/funcionario/funcionario.html=UTF-8
 encoding//src/main/resources/templates/gravidade/gravidade.html=UTF-8
+encoding//src/main/resources/templates/honorario/honorario.html=UTF-8
 encoding//src/main/resources/templates/insercaoSistema/inspecaoInsercaoSistema.html=UTF-8
 encoding//src/main/resources/templates/insercaoSistema/listaInspecaoParaInsercaoSistema.html=UTF-8
 encoding//src/main/resources/templates/inspecao/detalheInspecao.html=UTF-8

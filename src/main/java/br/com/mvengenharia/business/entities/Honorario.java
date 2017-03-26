@@ -1,41 +1,68 @@
 package br.com.mvengenharia.business.entities;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
+
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-
 
 /**
  * The persistent class for the Honorario database table.
  * 
  */
 @Entity
-@NamedQuery(name="Honorario.findAll", query="SELECT h FROM Honorario h")
+@NamedQuery(name = "Honorario.findAll", query = "SELECT h FROM Honorario h")
 public class Honorario implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long idHonorario;
-
-	private String cpfAlterador;
+	
+	@ManyToOne
+	@JoinColumn(name="cpfResponsavelInsercao")
+	private Funcionario funcionarioAlterador;
 
 	private String descCondicoes;
 
-	private byte flagAlteracao;
+	private boolean flagAlteracao;
 
 	private String motivoAlteracao;
 
-	private double valorHonorarioCalculado;
+	private BigDecimal valorHonorarioCalculado;
 
-	//bi-directional many-to-one association to Inspecao
+	// bi-directional many-to-one association to Inspecao
 	@JsonBackReference
 	@OneToOne
-	@JoinColumn(name="idInspecao")
+	@JoinColumn(name = "idInspecao")
 	private Inspecao inspecao;
 
 	public Honorario() {
+	}
+
+	public Funcionario getFuncionarioAlterador() {
+		return funcionarioAlterador;
+	}
+
+	public void setFuncionarioAlterador(Funcionario funcionarioAlterador) {
+		this.funcionarioAlterador = funcionarioAlterador;
+	}
+
+	public boolean isFlagAlteracao() {
+		return flagAlteracao;
+	}
+
+	public void setFlagAlteracao(boolean flagAlteracao) {
+		this.flagAlteracao = flagAlteracao;
+	}
+
+	public BigDecimal getValorHonorarioCalculado() {
+		return valorHonorarioCalculado;
+	}
+
+	public void setValorHonorarioCalculado(BigDecimal valorHonorarioCalculado) {
+		this.valorHonorarioCalculado = valorHonorarioCalculado;
 	}
 
 	public long getIdHonorario() {
@@ -46,28 +73,12 @@ public class Honorario implements Serializable {
 		this.idHonorario = idHonorario;
 	}
 
-	public String getCpfAlterador() {
-		return this.cpfAlterador;
-	}
-
-	public void setCpfAlterador(String cpfAlterador) {
-		this.cpfAlterador = cpfAlterador;
-	}
-
 	public String getDescCondicoes() {
 		return this.descCondicoes;
 	}
 
 	public void setDescCondicoes(String descCondicoes) {
 		this.descCondicoes = descCondicoes;
-	}
-
-	public byte getFlagAlteracao() {
-		return this.flagAlteracao;
-	}
-
-	public void setFlagAlteracao(byte flagAlteracao) {
-		this.flagAlteracao = flagAlteracao;
 	}
 
 	public String getMotivoAlteracao() {
@@ -78,21 +89,12 @@ public class Honorario implements Serializable {
 		this.motivoAlteracao = motivoAlteracao;
 	}
 
-	public double getValorHonorarioCalculado() {
-		return this.valorHonorarioCalculado;
-	}
-
-	public void setValorHonorarioCalculado(double valorHonorarioCalculado) {
-		this.valorHonorarioCalculado = valorHonorarioCalculado;
-	}
-
 	public Inspecao getInspecao() {
 		return this.inspecao;
 	}
 
 	public void setInspecao(Inspecao inspecao) {
-		this.inspecao = inspecao;
-		inspecao.setHonorario(this);
+		this.inspecao = inspecao;		
 	}
 
 }

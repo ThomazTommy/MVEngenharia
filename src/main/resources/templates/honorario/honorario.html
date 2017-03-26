@@ -1,0 +1,33 @@
+<div id="honorario">
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<span
+						th:text="#{honorario.titulo} + ${inspecao.idInspecao}">Add
+						Novo Inspecao</span>
+				</div>
+				<div class="panel-body">
+					<div class="col-lg-12">
+						<dl>
+							<dt th:text="#{inspecao.honorario}">valor do honorario</dt>
+							<dd th:text="${{inspecao.honorario.valorHonorarioCalculado}}">1</dd>
+							<dt th:text="#{inspecao.honorario.descCondicoes}">Condicoes</dt>
+							<dd th:text="${inspecao.honorario.descCondicoes}">condicoes</dd>
+							<dt th:text="#{inspecao.honorario.flagAlteracao}">Gerado pelo Sistema</dt>
+							<dd th:text="${inspecao.honorario.flagAlteracao}">Gerado pelo sistema</dd>							
+							<dt th:text="#{inspecao.honorario.motivoAlteracao}">Motivo Alteração</dt>
+							<dd th:text="${inspecao.honorario.motivoAlteracao}">Motivo Alteracao</dd>
+						</dl>
+						<button type="button" class="btn"
+										th:onClick="'executaAjaxGet(\'/honorario/editar/' + ${inspecao.idInspecao} + '\', \'honorario\', \'\', \'\')'">
+										<i class="fa fa-check"></i><span
+											th:text="#{honorario.alterarHonorario}"></span>
+									</button>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

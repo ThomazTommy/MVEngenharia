@@ -16,6 +16,7 @@ import br.com.mvengenharia.business.entities.Vistoria;
 import br.com.mvengenharia.business.entities.Atividade;
 import br.com.mvengenharia.business.entities.Fase;
 import br.com.mvengenharia.business.entities.Inspecao;
+import br.com.mvengenharia.business.entities.Status;
 import br.com.mvengenharia.business.services.VistoriaService;
 import br.com.mvengenharia.business.services.AtividadeService;
 import br.com.mvengenharia.business.services.FuncionarioService;
@@ -61,6 +62,7 @@ public class VistoriaController {
 		Vistoria vistoria = new Vistoria();
 		vistoria.setDataHoraChegadaLocal(new Date());
 		vistoria.setDtInicioInspecao(new Date());
+		vistoria.setDtFimInspecao(null);
 		vistoria.setFuncionario(
 				this.funcionarioService.findByCpf(SecurityContextHolder.getContext().getAuthentication().getName()));
 		Inspecao insp = this.inspecaoService.findOne(idInspecao);
@@ -87,9 +89,38 @@ public class VistoriaController {
 			this.vistoriaService.addOrUpdate(vistoria);
 			insp.setFuncionarioVistoriador(vistoria.getFuncionario());
 			insp.setDtVistoria(vistoria.getDtFimInspecao());
+			Status status = new Status();
+			status.setIdStatus(2);
 			Fase fase = new Fase();
 			fase.setIdFase(6);
+			insp.setStatus(status);
 			insp.setFase(fase);
+			this.inspecaoService.addOrUpdate(insp);
+		}		
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("vistoria/inspecaoInicioFimCustos");
+		mav.addObject("inspecao", insp);
+		return mav;
+	}
+	
+	@RequestMapping(value = "/vistoria/frustarInspecao/{idInspecao}")
+	public ModelAndView frustarInspecao(@PathVariable Long idInspecao) {
+		Inspecao insp = this.inspecaoService.findOne(idInspecao);
+		List<Vistoria> listaVistorias = insp.getVistorias();
+		Date agora = new Date();
+		if (!listaVistorias.isEmpty()) {
+			Vistoria vistoria = listaVistorias.get(0);
+			vistoria.setDtFimInspecao(agora);
+			vistoria.setInspecao(insp);
+			this.vistoriaService.addOrUpdate(vistoria);
+			insp.setFuncionarioVistoriador(vistoria.getFuncionario());
+			insp.setDtVistoria(vistoria.getDtFimInspecao());
+			Status status = new Status();
+			status.setIdStatus(4);
+			Fase fase = new Fase();
+			fase.setIdFase(1);
+			insp.setFase(fase);
+			insp.setStatus(status);
 			this.inspecaoService.addOrUpdate(insp);
 		}		
 		ModelAndView mav = new ModelAndView();

@@ -8,7 +8,7 @@ import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -60,7 +60,7 @@ public class Inspecao implements Serializable {
 	@NotNull
 	private boolean roubo;
 
-	@Pattern(regexp = "\\([1-9]{2}\\) [2-9][0-9]{3,4}\\-[0-9]{4}", message = "O telefone deve estar no seguinte formato: (99) 99999-9999 ou (99) 9999-9999")
+	//@Pattern(regexp = "\\([1-9]{2}\\) [2-9][0-9]{3,4}\\-[0-9]{4}", message = "O telefone deve estar no seguinte formato: (99) 99999-9999 ou (99) 9999-9999")
 	private String telefoneCorretor;
 
 	@NotNull(message = "Valor do risco não pode ficar vazio.")
@@ -83,7 +83,7 @@ public class Inspecao implements Serializable {
 
 	// bi-directional many-to-one association to Honorario
 	@JsonManagedReference
-	@OneToOne(mappedBy = "inspecao")
+	@OneToOne(mappedBy = "inspecao", cascade = CascadeType.ALL)
 	private Honorario honorario;
 
 	// bi-directional many-to-one association to InsercaoSistema
@@ -141,6 +141,8 @@ public class Inspecao implements Serializable {
 	private Segurado segurado;
 
 	// bi-directional many-to-many association to Atividade
+	@Valid
+	@NotEmpty(message = "Atividade deve ser preenchido")
 	@ManyToMany(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST })
 	private List<Atividade> inspecaoAtividadeInformada;
 
@@ -149,6 +151,8 @@ public class Inspecao implements Serializable {
 	private List<Atividade> inspecaoAtividadeApurada;
 
 	// bi-directional many-to-one association to Inspecao_Cobertura
+	@Valid
+	@NotEmpty(message = "Cobertura deve ser preenchido")
 	@ManyToMany(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST })
 	private List<Cobertura> coberturas;
 
@@ -325,7 +329,7 @@ public class Inspecao implements Serializable {
 		this.agendamentos = agendamentos;
 	}
 
-	public Agendamento addAgendamento(Agendamento agendamento) {
+	/*public Agendamento addAgendamento(Agendamento agendamento) {
 		getAgendamentos().add(agendamento);
 		agendamento.setInspecao(this);
 
@@ -337,7 +341,7 @@ public class Inspecao implements Serializable {
 		agendamento.setInspecao(null);
 
 		return agendamento;
-	}
+	}*/
 
 	public CustoInspecao getCustoInspecao() {
 		return this.custoInspecao;
@@ -360,8 +364,7 @@ public class Inspecao implements Serializable {
 	}
 
 	public void setHonorario(Honorario honorario) {
-		this.honorario = honorario;
-		honorario.setInspecao(this);
+		this.honorario = honorario;		
 	}
 
 	public List<InsercaoSistema> getInsercaoSistemas() {
@@ -372,7 +375,7 @@ public class Inspecao implements Serializable {
 		this.insercaoSistemas = insercaoSistemas;
 	}
 
-	public InsercaoSistema addInsercaoSistema(InsercaoSistema insercaoSistema) {
+	/*public InsercaoSistema addInsercaoSistema(InsercaoSistema insercaoSistema) {
 		getInsercaoSistemas().add(insercaoSistema);
 		insercaoSistema.setInspecao(this);
 
@@ -384,7 +387,7 @@ public class Inspecao implements Serializable {
 		insercaoSistema.setInspecao(null);
 
 		return insercaoSistema;
-	}
+	}*/
 
 	public TipoInspecao getTipoInspecao() {
 		return this.tipoInspecao;
@@ -467,7 +470,7 @@ public class Inspecao implements Serializable {
 		this.relatorios = relatorios;
 	}
 
-	public Relatorio addRelatorio(Relatorio relatorio) {
+	/*public Relatorio addRelatorio(Relatorio relatorio) {
 		getRelatorios().add(relatorio);
 		relatorio.setInspecao(this);
 
@@ -479,7 +482,7 @@ public class Inspecao implements Serializable {
 		relatorio.setInspecao(null);
 
 		return relatorio;
-	}
+	}*/
 
 	public List<Revisao> getRevisaos() {
 		return this.revisaos;
@@ -489,7 +492,7 @@ public class Inspecao implements Serializable {
 		this.revisaos = revisaos;
 	}
 
-	public Revisao addRevisao(Revisao revisao) {
+	/*public Revisao addRevisao(Revisao revisao) {
 		getRevisaos().add(revisao);
 		revisao.setInspecao(this);
 
@@ -501,7 +504,7 @@ public class Inspecao implements Serializable {
 		revisao.setInspecao(null);
 
 		return revisao;
-	}
+	}*/
 
 	public List<Vistoria> getVistorias() {
 		
@@ -512,7 +515,7 @@ public class Inspecao implements Serializable {
 		this.vistorias = vistorias;
 	}
 
-	public Vistoria addVistoria(Vistoria vistoria) {
+	/*public Vistoria addVistoria(Vistoria vistoria) {
 		getVistorias().add(vistoria);
 		vistoria.setInspecao(this);
 
@@ -524,6 +527,6 @@ public class Inspecao implements Serializable {
 		vistoria.setInspecao(null);
 
 		return vistoria;
-	}
+	}*/
 
 }

@@ -12,6 +12,8 @@ $.ajax({
 	},
 	complete : function() {
 		$('.multipleSelect').multiselect({
+			maxHeight: 200,
+			enableCaseInsensitiveFiltering : true,
 			buttonWidth : '100%',
 			nonSelectedText : 'Selecione',
 			allSelectedText : 'Todos...',
@@ -97,6 +99,9 @@ function loadDataTableNovaInspecao(urlDestino) {
 										}
 										return '';
 									}
+								}, {
+									data : 'status.descStatus',
+									visible : true									
 								},
 								{
 									data : 'linkscolumn',
@@ -121,9 +126,6 @@ function loadDataTableNovaInspecao(urlDestino) {
 								}, {
 									data : 'endereco.cidade.nomeCidade',
 									visible : false
-								}, {
-									data : 'status.descStatus',
-									visible : true									
 								} ]
 					});
 }

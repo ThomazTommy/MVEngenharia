@@ -203,11 +203,14 @@ function formSubmitClickNoReload(e, destino, afterFunction) {
 
 function afterReload() {
 	$('.multipleSelect').multiselect({
+		maxHeight: 200,
 		buttonWidth : '100%',
+		enableCaseInsensitiveFiltering : true,
 		nonSelectedText : 'Selecione',
 		allSelectedText : 'Todos...',
 		includeSelectAllOption : true,
 		selectAllText : "Todos"
+		
 	});
 	$('.usaCalendario').datetimepicker({
 		format : 'd/m/Y H:i:s'

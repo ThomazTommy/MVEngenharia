@@ -1,8 +1,12 @@
 
 .multiselect-container {
         width: 100%;
+        height: 30;
         
     }
+.multiselect-container > li > a { 
+     white-space: normal;
+}
 
 .panel-body {
 	overflow:auto;

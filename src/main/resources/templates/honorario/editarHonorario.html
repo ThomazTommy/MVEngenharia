@@ -1,0 +1,50 @@
+<div id="honorario">
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<span
+						th:text="#{honorario.editarHonorario} + ${inspecao.idInspecao}">Add
+						Novo Inspecao</span>
+				</div>
+				<div class="panel-body">
+					<div class="col-lg-12">
+						<form role="form" class='usaAjax' action="#"
+							th:action="@{/honorario/} + ${inspecao.idInspecao}" th:object="${honorario}" method="post">
+							<fieldset>
+								<ul th:if="${#fields.hasErrors('*')}" class="errorlist">
+									<li th:each="err : ${#fields.errors('*')}" th:text="${err}">Dados
+										Incorretos</li>
+								</ul>
+								<input type = "hidden" th:field="*{idHonorario}"/>
+								<div class="form-group">
+									<label for="valorHonorarioCalculado"> <span
+										th:text="#{honorario.valorHonorarioCalculado}">descEstado</span>
+									</label> <input class="form-control" type="text"
+										th:field="*{valorHonorarioCalculado}" th:errorclass="fieldError" />
+								</div>
+								<div class="form-group">
+									<label for="descCondicoes"> <span
+										th:text="#{honorario.descCondicoes}">descCondicoes</span>
+									</label> <input class="form-control" type="text"
+										th:field="*{descCondicoes}" th:errorclass="fieldError" />
+								</div>
+								<div class="form-group">
+									<label for="motivoAlteracao"> <span
+										th:text="#{honorario.motivoAlteracao}">motivoAlteracao</span>
+									</label> <input class="form-control" type="text"
+										th:field="*{motivoAlteracao}" th:errorclass="fieldError" />
+								</div>
+
+								<button class="btn btn-default" type="submit" name="save"
+									onclick="formSubmitClick(this,'honorario')"
+									th:text="#{honorario.salvar}">Add Honorario</button>
+
+							</fieldset>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

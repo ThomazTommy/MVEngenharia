@@ -31,5 +31,10 @@ public class FaseService {
     public void remove(final Long id){
     	this.faseRepository.delete(id);
     }
+
+	public Fase findOne(long id) {
+
+		return this.faseRepository.findOne(id);
+	}
     
 }

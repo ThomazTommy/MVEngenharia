@@ -25,31 +25,31 @@ import br.com.mvengenharia.business.services.InspecaoService;
 @Controller
 public class VistoriaController {
 
+	@Autowired
+	private VistoriaService vistoriaService;
 
-    @Autowired
-    private VistoriaService vistoriaService;
-    
-    @Autowired
-    private InspecaoService inspecaoService;
-    
+	@Autowired
+	private InspecaoService inspecaoService;
+
 	@Autowired
 	private AtividadeService atividadeService;
 
-    @Autowired
-    private FuncionarioService funcionarioService;
-        
-    public VistoriaController() {
-        super();
-    }
-    
+	@Autowired
+	private FuncionarioService funcionarioService;
+
+	public VistoriaController() {
+		super();
+	}
+
 	@ModelAttribute("allAtividades")
 	public Iterable<Atividade> populateAtividades() {
 		return this.atividadeService.findAll();
 	}
+
 	@RequestMapping(value = "/vistoria/inspecaoInicioFimCustos/{idInspecao}")
 	public ModelAndView inspecaoInicioFimCustos(@PathVariable Long idInspecao) {
-		Inspecao insp =  this.inspecaoService.findOne(idInspecao);
-		
+		Inspecao insp = this.inspecaoService.findOne(idInspecao);
+
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("vistoria/inspecaoInicioFimCustos");
 		mav.addObject("inspecao", insp);
@@ -59,17 +59,20 @@ public class VistoriaController {
 
 	@RequestMapping(value = "/vistoria/informaInicioInspecao/{idInspecao}")
 	public ModelAndView informaIncioInspecao(@PathVariable Long idInspecao) {
-		Vistoria vistoria = new Vistoria();
+		Inspecao insp = this.inspecaoService.findOne(idInspecao);
+		Vistoria vistoria;
+		if (insp.getVistoria() == null) {
+			vistoria = new Vistoria();
+		} else {
+			vistoria = insp.getVistoria();
+		}
 		vistoria.setDataHoraChegadaLocal(new Date());
 		vistoria.setDtInicioInspecao(new Date());
 		vistoria.setDtFimInspecao(null);
 		vistoria.setFuncionario(
 				this.funcionarioService.findByCpf(SecurityContextHolder.getContext().getAuthentication().getName()));
-		Inspecao insp = this.inspecaoService.findOne(idInspecao);
 		vistoria.setInspecao(insp);
-		List<Vistoria> listaVistorias = new ArrayList<Vistoria>();
-		listaVistorias.add(vistoria);
-		insp.setVistorias(listaVistorias);
+		insp.setVistoria(vistoria);
 		this.inspecaoService.addOrUpdate(insp);
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("vistoria/inspecaoInicioFimCustos");
@@ -80,56 +83,54 @@ public class VistoriaController {
 	@RequestMapping(value = "/vistoria/informaFimInspecao/{idInspecao}")
 	public ModelAndView informaFimInspecao(@PathVariable Long idInspecao) {
 		Inspecao insp = this.inspecaoService.findOne(idInspecao);
-		List<Vistoria> listaVistorias = insp.getVistorias();
 		Date agora = new Date();
-		if (!listaVistorias.isEmpty()) {
-			Vistoria vistoria = listaVistorias.get(0);
-			vistoria.setDtFimInspecao(agora);
-			vistoria.setInspecao(insp);
-			this.vistoriaService.addOrUpdate(vistoria);
-			insp.setFuncionarioVistoriador(vistoria.getFuncionario());
-			insp.setDtVistoria(vistoria.getDtFimInspecao());
-			Status status = new Status();
-			status.setIdStatus(2);
-			Fase fase = new Fase();
-			fase.setIdFase(6);
-			insp.setStatus(status);
-			insp.setFase(fase);
-			this.inspecaoService.addOrUpdate(insp);
-		}		
+		Vistoria vistoria = insp.getVistoria();
+		vistoria.setDtFimInspecao(agora);
+		vistoria.setInspecao(insp);
+		insp.setFuncionarioVistoriador(vistoria.getFuncionario());
+		insp.setDtVistoria(vistoria.getDtFimInspecao());
+		Status status = new Status();
+		status.setIdStatus(2);
+		Fase fase = new Fase();
+		fase.setIdFase(6);
+		insp.setStatus(status);
+		insp.setFase(fase);
+		List<Atividade> atividades = new ArrayList<Atividade>();
+		for (Atividade atv : insp.getInspecaoAtividadeInformada()) {
+			atividades.add(atv);
+		}
+		insp.setInspecaoAtividadeApurada(atividades);
+		insp.setVistoria(vistoria);
+		this.inspecaoService.addOrUpdate(insp);
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("vistoria/inspecaoInicioFimCustos");
 		mav.addObject("inspecao", insp);
 		return mav;
 	}
-	
+
 	@RequestMapping(value = "/vistoria/frustarInspecao/{idInspecao}")
 	public ModelAndView frustarInspecao(@PathVariable Long idInspecao) {
 		Inspecao insp = this.inspecaoService.findOne(idInspecao);
-		List<Vistoria> listaVistorias = insp.getVistorias();
 		Date agora = new Date();
-		if (!listaVistorias.isEmpty()) {
-			Vistoria vistoria = listaVistorias.get(0);
-			vistoria.setDtFimInspecao(agora);
-			vistoria.setInspecao(insp);
-			this.vistoriaService.addOrUpdate(vistoria);
-			insp.setFuncionarioVistoriador(vistoria.getFuncionario());
-			insp.setDtVistoria(vistoria.getDtFimInspecao());
-			Status status = new Status();
-			status.setIdStatus(4);
-			Fase fase = new Fase();
-			fase.setIdFase(1);
-			insp.setFase(fase);
-			insp.setStatus(status);
-			this.inspecaoService.addOrUpdate(insp);
-		}		
+		Vistoria vistoria = insp.getVistoria();
+		vistoria.setDtFimInspecao(agora);
+		vistoria.setInspecao(insp);
+		insp.setFuncionarioVistoriador(vistoria.getFuncionario());
+		insp.setDtVistoria(vistoria.getDtFimInspecao());
+		Status status = new Status();
+		status.setIdStatus(4);
+		Fase fase = new Fase();
+		fase.setIdFase(1);
+		insp.setFase(fase);
+		insp.setStatus(status);
+		insp.setVistoria(vistoria);
+		this.inspecaoService.addOrUpdate(insp);
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("vistoria/inspecaoInicioFimCustos");
 		mav.addObject("inspecao", insp);
 		return mav;
 	}
-	
-	
+
 	@RequestMapping(value = "/vistoria/listaInspecaoPorFuncionarioDesignado")
 	public ModelAndView listaInspecaoPorFuncionarioDesignado() {
 		ModelAndView mav = new ModelAndView();

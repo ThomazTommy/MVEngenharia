@@ -10,14 +10,14 @@
 					</ul>
 
 				</div>
-				<div th:if="${#lists.isEmpty(inspecao.vistorias)}">
+				<div th:if="${inspecao.vistoria} == null">
 					<button class="btn btn-default" type="submit" name="save"
 						th:onClick="'executaAjaxGet(\'/vistoria/informaInicioInspecao/' + ${inspecao.idInspecao}+ '\',\'detalheInspecao\',\'\',\'\')'"
 						th:text="#{inspecao.iniciarInspecao}">Add Inspecao</button>
 				</div>
-				<div th:if="(${not #lists.isEmpty(inspecao.vistorias)})">
+				<div th:if="${inspecao.vistoria} != null">
 					<dt th:text="#{inspecao.vistorias.dtInicioInspecao}">DtInicioInsp</dt>
-					<dd th:text="${{inspecao.vistorias[0].dtInicioInspecao}}">DtInicioInsp</dd>
+					<dd th:text="${{inspecao.vistoria.dtInicioInspecao}}">DtInicioInsp</dd>
 					<button th:if="${inspecao.status.idStatus} == 4" class="btn btn-default" type="submit" name="save"
 						th:onClick="'executaAjaxGet(\'/vistoria/informaInicioInspecao/' + ${inspecao.idInspecao}+ '\',\'detalheInspecao\',\'\',\'\')'"
 						th:text="#{inspecao.reiniciarInspecao}">Add Inspecao</button>
@@ -29,23 +29,23 @@
 	</div>
 </div>
 <div class="row"
-	th:if="(${not #lists.isEmpty(inspecao.vistorias)}) and (${inspecao.vistorias[0].dtInicioInspecao} != null)">
+	th:if="(${inspecao.vistoria} != null) and (${inspecao.vistoria.dtInicioInspecao} != null)">
 	<div class="col-lg-12">
 		<div class="panel panel-default">
 
 			<div class="panel-body">
-				<div th:if="${inspecao.vistorias[0].dtFimInspecao} == null">
+				<div th:if="${inspecao.vistoria.dtFimInspecao} == null">
 					<button class="btn btn-default" type="submit" name="save"
 						th:onClick="'executaAjaxGet(\'/vistoria/informaFimInspecao/' + ${inspecao.idInspecao} +'\',\'detalheInspecao\',\'\',\'\');'"
 						th:text="#{inspecao.finalizarInspecao}">Add Inspecao</button>
 					<br />
 					<button class="btn btn-default"
 						th:onClick="'executaAjaxGet(\'/vistoria/frustarInspecao/' + ${inspecao.idInspecao} +'\',\'detalheInspecao\',\'\',\'\');'"
-						th:text="#{inspecao.frustarInspecao}">Add Inspecao</button>
+						th:text="#{inspecao.frustrarInspecao}">Add Inspecao</button>
 				</div>
-				<div th:if="${inspecao.vistorias[0].dtFimInspecao} != null">
+				<div th:if="${inspecao.vistoria.dtFimInspecao} != null">
 					<dt th:text="#{inspecao.vistorias.dtFimInspecao}">DtInicioInsp</dt>
-					<dd th:text="${{inspecao.vistorias[0].dtFimInspecao}}">DtInicioInsp</dd>
+					<dd th:text="${{inspecao.vistoria.dtFimInspecao}}">DtInicioInsp</dd>
 				</div>
 			</div>
 		</div>
@@ -54,7 +54,7 @@
 
 
 <div class="row"
-	th:if="(${not #lists.isEmpty(inspecao.vistorias)}) and ${inspecao.vistorias[0].dtFimInspecao} != null and ${inspecao.custoInspecao} == null and ${inspecao.status.idStatus} != 4">
+	th:if="(${inspecao.vistoria} != null) and ${inspecao.vistoria.dtFimInspecao} != null and ${inspecao.custoInspecao} == null and ${inspecao.status.idStatus} != 4">
 	<div class="col-lg-12">
 		<div class="panel panel-default">
 			<div class="panel-body">
@@ -137,7 +137,7 @@
 
 </div>
 <div class="row"
-	th:if="(${not #lists.isEmpty(inspecao.vistorias)}) and (${inspecao.vistorias[0].dtInicioInspecao} != null) and (${inspecao.custoInspecao} != null) and (${inspecao.custoInspecao.custoInformado} == true)">
+	th:if="(${inspecao.vistoria} != null) and (${inspecao.vistoria.dtInicioInspecao} != null) and (${inspecao.custoInspecao} != null) and (${inspecao.custoInspecao.custoInformado} == true)">
 	<div class="col-lg-12">
 		<div class="panel panel-default">
 			<div class="panel-body">

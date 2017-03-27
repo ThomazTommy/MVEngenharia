@@ -40,7 +40,7 @@ public class DesignacaoController {
     
     @ModelAttribute("allFuncionarios")
 	public Iterable<Funcionario> populateFuncionarios() {
-		return this.funcionarioService.findAll();
+		return this.funcionarioService.findAllAtivos();
 	}
     
     public DesignacaoController() {

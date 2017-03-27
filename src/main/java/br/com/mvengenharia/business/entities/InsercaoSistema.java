@@ -22,11 +22,9 @@ public class InsercaoSistema implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long idInsercaoSistema;
 	
-	@NotNull(message = "Data não pode ser nula")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataHoraInsercaoSistemaCliente;
 
-	@NotNull(message = "Data não pode ser nula")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataHoraInsercao;
 	

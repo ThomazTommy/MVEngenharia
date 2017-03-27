@@ -60,7 +60,14 @@ public class AprovacaoSistemaController {
    
     @RequestMapping(value="/aprovacaoSistema/{idInspecao}", params={"save"}, method = RequestMethod.POST)
     public String saveAprovacaoSistema(@PathVariable long idInspecao, @Valid AprovacaoSistema aprovacaoSistema, final BindingResult bindingResult, final ModelMap model) {
-        if (bindingResult.hasErrors()) {
+    	 if (aprovacaoSistema.getDataHoraAprovacao() == null){
+         	bindingResult.rejectValue("dataHoraAprovacao","dataHoraAprovacao.invalido","Data Hora Cadastro inválida");
+         }
+         if (aprovacaoSistema.getDataHoraAprovacaoSistemaCliente() == null){
+         	bindingResult.rejectValue("dataHoraAprovacaoSistemaCliente","dataHoraAprovacaoSistemaCliente.invalido","Data Hora Aprovação no Cliente inválida");
+         }
+    	
+    	if (bindingResult.hasErrors()) {
             model.addAttribute("inspecao", this.inspecaoService.findOne(idInspecao)); 
             return "aprovacaoSistema/inspecaoAprovacaoSistema";
         }

@@ -33,7 +33,7 @@ public class Vistoria implements Serializable {
 
 	//bi-directional many-to-one association to Inspecao
 	@JsonBackReference
-	@ManyToOne
+	@OneToOne
 	@JoinColumn(name="idInspecao")
 	private Inspecao inspecao;
 

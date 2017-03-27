@@ -204,6 +204,7 @@ function formSubmitClickNoReload(e, destino, afterFunction) {
 function afterReload() {
 	$('.multipleSelect').multiselect({
 		maxHeight: 200,
+		dropUp: true,
 		buttonWidth : '100%',
 		enableCaseInsensitiveFiltering : true,
 		nonSelectedText : 'Selecione',
@@ -459,7 +460,8 @@ function loadDataTable(urlDestino, functionLink) {
 								}, {
 									data : 'endereco.cidade.nomeCidade',
 									visible : false
-								}]
+								}],
+								"order": [[ 0, "desc" ]]
 					});
 }
 
@@ -577,7 +579,8 @@ function loadDataTablePosInspecao(urlDestino, functionLink) {
 								}, {
 									data : 'endereco.cidade.nomeCidade',
 									visible : false
-								}]
+								}],
+								"order": [[ 0, "desc" ]]
 					});
 }
 

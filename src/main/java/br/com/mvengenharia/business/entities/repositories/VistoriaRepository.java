@@ -6,8 +6,5 @@ import org.springframework.stereotype.Repository;
 import br.com.mvengenharia.business.entities.Vistoria;
 
 @Repository
-public interface VistoriaRepository extends CrudRepository<Vistoria, Long> {
-
-
-	
+public interface VistoriaRepository extends CrudRepository<Vistoria, Long> {	
 }

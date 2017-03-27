@@ -11,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.mvengenharia.business.entities.Atividade;
@@ -113,15 +114,20 @@ public class InspecaoController {
 	public ModelAndView novaInspecao() {
 		Inspecao insp = new Inspecao();
 		insp.setDtSolicitacaoInspecao(new Date());
-		Fase fase = new Fase();
-		fase.setIdFase(1);
-		Status status = new Status();
-		status.setIdStatus(2);
+		Fase fase = faseService.findOne(1L);		
+		Status status = statusService.findOne(2L);
 		insp.setFase(fase);
 		insp.setStatus(status);
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("inspecao/inspecao");		
+		mav.setViewName("inspecao/novaInspecao");		
 		mav.addObject("inspecao", insp);
+		return mav;
+	}
+	
+	@RequestMapping("/inspecao/sucesso")
+	public ModelAndView showSucesso() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("inspecao/sucesso");
 		return mav;
 	}
 
@@ -129,16 +135,59 @@ public class InspecaoController {
 	public ModelAndView showInspecao() {
 		Inspecao insp = new Inspecao();
 		insp.setDtSolicitacaoInspecao(new Date());
-		Fase fase = new Fase();
-		fase.setIdFase(1);
-		Status status = new Status();
-		status.setIdStatus(2);
+		Fase fase = faseService.findOne(1L);		
+		Status status = statusService.findOne(2L);
 		insp.setFase(fase);
 		insp.setStatus(status);
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("inspecao/editarInspecao");
+		mav.setViewName("inspecao/inspecao");
 		mav.addObject("inspecao", insp);
 		return mav;
+	}
+	
+	@RequestMapping(value = "/inspecao", params = { "save" }, method = RequestMethod.POST)
+	public String saveInspecao(@Valid Inspecao inspecao, final BindingResult bindingResult,
+			final ModelMap model) {
+
+		if (bindingResult.hasErrors()) {
+			if (inspecao.getCliente() != null) {
+				model.addAttribute("listaRamos",
+						this.clienteService.findOne(inspecao.getCliente().getIdCliente()).getRamos());
+				model.addAttribute("listaTipoInspecao",
+						this.clienteService.findOne(inspecao.getCliente().getIdCliente()).getTipoInspecaos());
+			}
+			if (inspecao.getEndereco().getEstado() != null) {
+				model.addAttribute("listaCidades",
+						this.cidadeService.findByIdEstado(inspecao.getEndereco().getEstado().getIdEstado()));
+			}
+			System.out.println(bindingResult.toString());
+			return "inspecao/novaInspecao";
+		}
+		Inspecao insp = this.inspecaoService.findOne(inspecao.getIdInspecao());
+		if (insp != null)
+		{
+			inspecao.setAgendamentos(insp.getAgendamentos());
+			inspecao.setAprovacaoSistemas(insp.getAprovacaoSistemas());
+			inspecao.setCustoInspecao(insp.getCustoInspecao());
+			inspecao.setDesignacoes(insp.getDesignacoes());
+			inspecao.setDtAgendada(insp.getDtAgendada());
+			inspecao.setDtVistoria(insp.getDtVistoria());
+			inspecao.setFuncionarioVistoriador(insp.getFuncionarioVistoriador());
+			inspecao.setInsercaoSistemas(insp.getInsercaoSistemas());
+			inspecao.setInspecaoAtividadeApurada(insp.getInspecaoAtividadeApurada());
+			inspecao.setObservacao(insp.getObservacao());
+			inspecao.setRelatorios(insp.getRelatorios());
+			inspecao.setRevisaos(insp.getRevisaos());
+			inspecao.setVistoria(insp.getVistoria());
+		}
+		Calendar c = Calendar.getInstance();
+		c.setTime(inspecao.getDtSolicitacaoInspecao());
+		c.add(Calendar.DATE, this.clienteService.findOne(inspecao.getCliente().getIdCliente()).getPrazoCliente());
+		inspecao.setDtLimite(c.getTime());
+		this.inspecaoService.addOrUpdate(inspecao);
+		honorarioService.calculaHonorario(inspecao);
+		model.clear();
+		return "redirect:/inspecao/sucesso";
 	}
 	
 	@RequestMapping(value = "/inspecao/editar", params = { "save" })
@@ -158,6 +207,23 @@ public class InspecaoController {
 			}
 			System.out.println(bindingResult.toString());
 			return "inspecao/editarInspecao";
+		}
+		Inspecao insp = this.inspecaoService.findOne(inspecao.getIdInspecao());
+		if (insp != null)
+		{
+			inspecao.setAgendamentos(insp.getAgendamentos());
+			inspecao.setAprovacaoSistemas(insp.getAprovacaoSistemas());
+			inspecao.setCustoInspecao(insp.getCustoInspecao());
+			inspecao.setDesignacoes(insp.getDesignacoes());
+			inspecao.setDtAgendada(insp.getDtAgendada());
+			inspecao.setDtVistoria(insp.getDtVistoria());
+			inspecao.setFuncionarioVistoriador(insp.getFuncionarioVistoriador());
+			inspecao.setInsercaoSistemas(insp.getInsercaoSistemas());
+			inspecao.setInspecaoAtividadeApurada(insp.getInspecaoAtividadeApurada());
+			inspecao.setObservacao(insp.getObservacao());
+			inspecao.setRelatorios(insp.getRelatorios());
+			inspecao.setRevisaos(insp.getRevisaos());
+			inspecao.setVistoria(insp.getVistoria());
 		}
 		Calendar c = Calendar.getInstance();
 		c.setTime(inspecao.getDtSolicitacaoInspecao());

@@ -52,6 +52,8 @@
 						<li><a href="#" onclick="menuOnClick('/escritorio')">Escritórios</a></li>
 						<li><a href="#" onclick="menuOnClick('/funcionario')">Funcionários</a></li>
 						<li><a href="#" onclick="menuOnClick('/cliente')">Clientes</a></li>
+						<li><a href="#"
+							onclick="$.getScript('/static/js/novaInspecao.js');">Inspeções</a></li>
 					</ul> <!-- /.nav-second-level --></li>
 
 				<li sec:authorize="hasRole('ROLE_USER')"><a href="#"><i
@@ -59,7 +61,7 @@
 						class="fa arrow"></span></a>
 					<ul class="nav nav-second-level">
 						<li><a href="#"
-							onclick="$.getScript('/static/js/novaInspecao.js');">Nova
+							onclick="menuOnClick('/novaInspecao')">Nova
 								Inspeção</a></li>
 						<li><a href="#"
 							onclick="menuListaInspecoes('/agendamento/listainspecao', '/dtinspecao/listaInspecaoPorFase/1/2/3/4', agendamentoLink)">Agendar/Designar</a></li>

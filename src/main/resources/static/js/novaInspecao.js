@@ -3,7 +3,7 @@
  */
 $.ajax({
 	type : "GET",
-	url : "/novaInspecao",
+	url : "/inspecao",
 	beforeSend : function() {
 	},
 	success : function(response) {
@@ -13,6 +13,7 @@ $.ajax({
 	complete : function() {
 		$('.multipleSelect').multiselect({
 			maxHeight: 200,
+			dropUp: true,
 			enableCaseInsensitiveFiltering : true,
 			buttonWidth : '100%',
 			nonSelectedText : 'Selecione',
@@ -126,6 +127,7 @@ function loadDataTableNovaInspecao(urlDestino) {
 								}, {
 									data : 'endereco.cidade.nomeCidade',
 									visible : false
-								} ]
+								} ],
+								"order": [[ 0, "desc" ]]
 					});
 }

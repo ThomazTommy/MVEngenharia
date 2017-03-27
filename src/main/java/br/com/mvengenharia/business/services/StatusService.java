@@ -31,5 +31,9 @@ public class StatusService {
     public void remove(final Long id){
     	this.statusRepository.delete(id);
     }
+
+	public Status findOne(Long id) {		
+		return this.statusRepository.findOne(id);
+	}
     
 }

@@ -168,8 +168,8 @@ public class Inspecao implements Serializable {
 
 	// bi-directional many-to-one association to Vistoria
 	@JsonManagedReference
-	@OneToMany(mappedBy = "inspecao", cascade = CascadeType.ALL)
-	private List<Vistoria> vistorias;
+	@OneToOne(mappedBy = "inspecao", cascade = CascadeType.ALL)
+	private Vistoria vistoria;
 
 	public Inspecao() {
 
@@ -506,13 +506,13 @@ public class Inspecao implements Serializable {
 		return revisao;
 	}*/
 
-	public List<Vistoria> getVistorias() {
+	public Vistoria getVistoria() {
 		
-		return this.vistorias;
+		return this.vistoria;
 	}
 
-	public void setVistorias(List<Vistoria> vistorias) {
-		this.vistorias = vistorias;
+	public void setVistoria(Vistoria vistoria) {
+		this.vistoria = vistoria;
 	}
 
 	/*public Vistoria addVistoria(Vistoria vistoria) {

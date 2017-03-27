@@ -58,8 +58,15 @@ public class InsercaoSistemaController {
     }      
    
     @RequestMapping(value="/insercaoSistema/{idInspecao}", params={"save"}, method = RequestMethod.POST)
-    public String saveInsercaoSistema(@PathVariable long idInspecao, @Valid InsercaoSistema insercaoSistema, final BindingResult bindingResult, final ModelMap model) {
-        if (bindingResult.hasErrors()) {
+    public String saveInsercaoSistema(@PathVariable long idInspecao, InsercaoSistema insercaoSistema, final BindingResult bindingResult, final ModelMap model) {
+        if (insercaoSistema.getDataHoraInsercao() == null){
+        	bindingResult.rejectValue("dataHoraInsercao","dataHoraInsercao.invalido","Data Hora Cadastro inválida");
+        }
+        if (insercaoSistema.getDataHoraInsercaoSistemaCliente() == null){
+        	bindingResult.rejectValue("dataHoraInsercaoSistemaCliente","dataHoraInsercaoSistemaCliente.invalido","Data Hora Inserção no Cliente inválida");
+        }
+    	
+    	if (bindingResult.hasErrors()) {
             model.addAttribute("inspecao", this.inspecaoService.findOne(idInspecao)); 
             return "insercaoSistema/inspecaoInsercaoSistema";
         }
@@ -92,10 +99,10 @@ public class InsercaoSistemaController {
         	rel.setUltimo(false);
         	this.insercaoSistemaService.addOrUpdate(rel);
         }        
-        InsercaoSistema insercaoSistema = new InsercaoSistema();
-        insercaoSistema.setUltimo(true);
-        insercaoSistema.setInspecao(insp);
-        this.insercaoSistemaService.addOrUpdate(insercaoSistema);
+       InsercaoSistema insercaoSistema = new InsercaoSistema();
+       insercaoSistema.setUltimo(true);
+       insercaoSistema.setInspecao(insp);
+       this.insercaoSistemaService.addOrUpdate(insercaoSistema);
         return "redirect:/insercaoSistema/" + idInspecao;
     } 
 }

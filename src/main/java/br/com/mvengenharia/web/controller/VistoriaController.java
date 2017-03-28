@@ -17,16 +17,12 @@ import br.com.mvengenharia.business.entities.Atividade;
 import br.com.mvengenharia.business.entities.Fase;
 import br.com.mvengenharia.business.entities.Inspecao;
 import br.com.mvengenharia.business.entities.Status;
-import br.com.mvengenharia.business.services.VistoriaService;
 import br.com.mvengenharia.business.services.AtividadeService;
 import br.com.mvengenharia.business.services.FuncionarioService;
 import br.com.mvengenharia.business.services.InspecaoService;
 
 @Controller
 public class VistoriaController {
-
-	@Autowired
-	private VistoriaService vistoriaService;
 
 	@Autowired
 	private InspecaoService inspecaoService;

@@ -2,8 +2,6 @@ package br.com.mvengenharia.business.entities;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import java.util.Date;

@@ -50,6 +50,10 @@ public class HonorarioService {
 
 	@Autowired
 	private FuncionarioService funcionarioService;
+	
+
+	@Autowired
+	private InspecaoService inspecaoService;
 
 	public HonorarioService() {
 		super();
@@ -292,7 +296,7 @@ public class HonorarioService {
 	}
 
 	private void setaHonorario(Inspecao inspecao, BigDecimal valor) {
-
+		inspecao = this.inspecaoService.findOne(inspecao.getIdInspecao());
 		Honorario honorario = null;
 		if(inspecao.getHonorario() == null)
 		{
@@ -310,7 +314,8 @@ public class HonorarioService {
 				+ " - Valor do Risco: R$ " + inspecao.getValorTotalRisco());
 		honorario.setMotivoAlteracao("Calculado pelo Sistema");
 		honorario.setInspecao(inspecao);
-		this.addOrUpdate(honorario);
+		inspecao.setHonorario(honorario);
+		this.inspecaoService.addOrUpdate(inspecao);
 	}
 
 }

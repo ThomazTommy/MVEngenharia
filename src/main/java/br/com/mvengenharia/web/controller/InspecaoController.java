@@ -124,10 +124,11 @@ public class InspecaoController {
 		return mav;
 	}
 	
-	@RequestMapping("/inspecao/sucesso")
-	public ModelAndView showSucesso() {
+	@RequestMapping("/inspecao/sucesso/{idInspecao}")
+	public ModelAndView showSucesso(@PathVariable Long idInspecao) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("inspecao/sucesso");
+		mav.addObject("inspecao", this.inspecaoService.findOne(idInspecao));
 		return mav;
 	}
 
@@ -187,7 +188,7 @@ public class InspecaoController {
 		this.inspecaoService.addOrUpdate(inspecao);
 		honorarioService.calculaHonorario(inspecao);
 		model.clear();
-		return "redirect:/inspecao/sucesso";
+		return "redirect:/inspecao/sucesso/" + inspecao.getIdInspecao();
 	}
 	
 	@RequestMapping(value = "/inspecao/editar", params = { "save" })
@@ -224,6 +225,7 @@ public class InspecaoController {
 			inspecao.setRelatorios(insp.getRelatorios());
 			inspecao.setRevisaos(insp.getRevisaos());
 			inspecao.setVistoria(insp.getVistoria());
+			inspecao.setHonorario(insp.getHonorario());
 		}
 		Calendar c = Calendar.getInstance();
 		c.setTime(inspecao.getDtSolicitacaoInspecao());
@@ -232,7 +234,7 @@ public class InspecaoController {
 		this.inspecaoService.addOrUpdate(inspecao);
 		honorarioService.calculaHonorario(inspecao);
 		model.clear();
-		return "redirect:/inspecao";
+		return "redirect:/inspecao/sucesso/" + inspecao.getIdInspecao();
 	}
 
 	@RequestMapping(value = "/inspecao/remover/{id}")

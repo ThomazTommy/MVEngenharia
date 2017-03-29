@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
@@ -24,10 +26,14 @@ public class Honorario implements Serializable {
 	@JoinColumn(name="cpfResponsavelInsercao")
 	private Funcionario funcionarioAlterador;
 
+	@NotNull(message = "Memória de cálculo deve ser preenchida")
+	@Size(min = 1, message = "Memória de cálculo deve ser preenchida")
 	private String descCondicoes;
 
 	private boolean flagAlteracao;
 
+	@NotNull(message = "Motivo da alteração deve ser preenchido")
+	@Size(min = 1, message = "Motivo da alteração deve ser preenchido")
 	private String motivoAlteracao;
 
 	private BigDecimal valorHonorarioCalculado;

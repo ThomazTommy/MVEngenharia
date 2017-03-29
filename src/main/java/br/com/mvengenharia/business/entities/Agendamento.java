@@ -162,5 +162,20 @@ public class Agendamento implements Serializable {
 	public void setInspecao(Inspecao inspecao) {
 		this.inspecao = inspecao;
 	}
+	
+	@Override
+	public String toString(){
+		StringBuilder sb = new StringBuilder();
+		sb.append("dtAgendamento - ").append(this.getDtAgendamento().toString())
+		.append(" dtAgendada - ").append(this.getDtAgendada().toString())
+		.append(" dtConfirmacao - ").append(this.getDtConfirmacao().toString())
+		.append(" cpfAgendador - ").append(this.getFuncionario().getCpf())
+		.append(" cpfConfirmador - ").append(this.getFuncionarioConfirmacao().getCpf())
+		.append(" nomeContato - ").append(this.getNomeContato())
+		.append(" observacoes - ").append(this.getObservacoes())
+		.append(" telefoneContato - ").append(this.getTelefoneContato())
+		.append(" ultimo - ").append(this.getUltimo());		
+		return sb.toString();
+	}
 
 }

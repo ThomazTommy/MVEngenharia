@@ -33,7 +33,6 @@ public class Inspecao implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dtSolicitacaoInspecao;
 
-
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dtLimite;
 
@@ -47,9 +46,9 @@ public class Inspecao implements Serializable {
 	@Min(value = 1, message = "Número da Proposta não pode ser 0")
 	private int numPropostaCliente;
 
-	@Column(length = 65535,columnDefinition="Text")
+	@Column(length = 65535, columnDefinition = "Text")
 	private String observacao;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "idFase")
 	private Fase fase;
@@ -60,7 +59,9 @@ public class Inspecao implements Serializable {
 	@NotNull
 	private boolean roubo;
 
-	//@Pattern(regexp = "\\([1-9]{2}\\) [2-9][0-9]{3,4}\\-[0-9]{4}", message = "O telefone deve estar no seguinte formato: (99) 99999-9999 ou (99) 9999-9999")
+	// @Pattern(regexp = "\\([1-9]{2}\\) [2-9][0-9]{3,4}\\-[0-9]{4}", message =
+	// "O telefone deve estar no seguinte formato: (99) 99999-9999 ou (99)
+	// 9999-9999")
 	private String telefoneCorretor;
 
 	@NotNull(message = "Valor do risco não pode ficar vazio.")
@@ -125,14 +126,13 @@ public class Inspecao implements Serializable {
 	@JoinColumn(name = "idStatus")
 	private Status status;
 
-
 	@OneToOne(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST })
 	@JoinColumn(name = "cpfVistoriador")
 	private Funcionario funcionarioVistoriador;
-	
+
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dtVistoria;
-	
+
 	// bi-directional many-to-one association to Segurado
 	@JsonManagedReference
 	@Valid
@@ -174,44 +174,30 @@ public class Inspecao implements Serializable {
 	public Inspecao() {
 
 	}
-	
-	
 
 	public Funcionario getFuncionarioVistoriador() {
 		return funcionarioVistoriador;
 	}
 
-
-
 	public void setFuncionarioVistoriador(Funcionario funcionarioVistoriador) {
 		this.funcionarioVistoriador = funcionarioVistoriador;
 	}
-
-
 
 	public Date getDtVistoria() {
 		return dtVistoria;
 	}
 
-
-
 	public void setDtVistoria(Date dtVistoria) {
 		this.dtVistoria = dtVistoria;
 	}
-
-
 
 	public Fase getFase() {
 		return fase;
 	}
 
-
-
 	public void setFase(Fase fase) {
 		this.fase = fase;
 	}
-
-
 
 	public List<AprovacaoSistema> getAprovacaoSistemas() {
 		return aprovacaoSistemas;
@@ -221,7 +207,6 @@ public class Inspecao implements Serializable {
 		this.aprovacaoSistemas = aprovacaoSistemas;
 	}
 
-	
 	public long getIdInspecao() {
 		return this.idInspecao;
 	}
@@ -329,19 +314,17 @@ public class Inspecao implements Serializable {
 		this.agendamentos = agendamentos;
 	}
 
-	/*public Agendamento addAgendamento(Agendamento agendamento) {
-		getAgendamentos().add(agendamento);
-		agendamento.setInspecao(this);
-
-		return agendamento;
-	}
-
-	public Agendamento removeAgendamento(Agendamento agendamento) {
-		getAgendamentos().remove(agendamento);
-		agendamento.setInspecao(null);
-
-		return agendamento;
-	}*/
+	/*
+	 * public Agendamento addAgendamento(Agendamento agendamento) {
+	 * getAgendamentos().add(agendamento); agendamento.setInspecao(this);
+	 * 
+	 * return agendamento; }
+	 * 
+	 * public Agendamento removeAgendamento(Agendamento agendamento) {
+	 * getAgendamentos().remove(agendamento); agendamento.setInspecao(null);
+	 * 
+	 * return agendamento; }
+	 */
 
 	public CustoInspecao getCustoInspecao() {
 		return this.custoInspecao;
@@ -364,7 +347,7 @@ public class Inspecao implements Serializable {
 	}
 
 	public void setHonorario(Honorario honorario) {
-		this.honorario = honorario;		
+		this.honorario = honorario;
 	}
 
 	public List<InsercaoSistema> getInsercaoSistemas() {
@@ -375,19 +358,19 @@ public class Inspecao implements Serializable {
 		this.insercaoSistemas = insercaoSistemas;
 	}
 
-	/*public InsercaoSistema addInsercaoSistema(InsercaoSistema insercaoSistema) {
-		getInsercaoSistemas().add(insercaoSistema);
-		insercaoSistema.setInspecao(this);
-
-		return insercaoSistema;
-	}
-
-	public InsercaoSistema removeInsercaoSistema(InsercaoSistema insercaoSistema) {
-		getInsercaoSistemas().remove(insercaoSistema);
-		insercaoSistema.setInspecao(null);
-
-		return insercaoSistema;
-	}*/
+	/*
+	 * public InsercaoSistema addInsercaoSistema(InsercaoSistema
+	 * insercaoSistema) { getInsercaoSistemas().add(insercaoSistema);
+	 * insercaoSistema.setInspecao(this);
+	 * 
+	 * return insercaoSistema; }
+	 * 
+	 * public InsercaoSistema removeInsercaoSistema(InsercaoSistema
+	 * insercaoSistema) { getInsercaoSistemas().remove(insercaoSistema);
+	 * insercaoSistema.setInspecao(null);
+	 * 
+	 * return insercaoSistema; }
+	 */
 
 	public TipoInspecao getTipoInspecao() {
 		return this.tipoInspecao;
@@ -470,19 +453,17 @@ public class Inspecao implements Serializable {
 		this.relatorios = relatorios;
 	}
 
-	/*public Relatorio addRelatorio(Relatorio relatorio) {
-		getRelatorios().add(relatorio);
-		relatorio.setInspecao(this);
-
-		return relatorio;
-	}
-
-	public Relatorio removeRelatorio(Relatorio relatorio) {
-		getRelatorios().remove(relatorio);
-		relatorio.setInspecao(null);
-
-		return relatorio;
-	}*/
+	/*
+	 * public Relatorio addRelatorio(Relatorio relatorio) {
+	 * getRelatorios().add(relatorio); relatorio.setInspecao(this);
+	 * 
+	 * return relatorio; }
+	 * 
+	 * public Relatorio removeRelatorio(Relatorio relatorio) {
+	 * getRelatorios().remove(relatorio); relatorio.setInspecao(null);
+	 * 
+	 * return relatorio; }
+	 */
 
 	public List<Revisao> getRevisaos() {
 		return this.revisaos;
@@ -492,22 +473,20 @@ public class Inspecao implements Serializable {
 		this.revisaos = revisaos;
 	}
 
-	/*public Revisao addRevisao(Revisao revisao) {
-		getRevisaos().add(revisao);
-		revisao.setInspecao(this);
-
-		return revisao;
-	}
-
-	public Revisao removeRevisao(Revisao revisao) {
-		getRevisaos().remove(revisao);
-		revisao.setInspecao(null);
-
-		return revisao;
-	}*/
+	/*
+	 * public Revisao addRevisao(Revisao revisao) { getRevisaos().add(revisao);
+	 * revisao.setInspecao(this);
+	 * 
+	 * return revisao; }
+	 * 
+	 * public Revisao removeRevisao(Revisao revisao) {
+	 * getRevisaos().remove(revisao); revisao.setInspecao(null);
+	 * 
+	 * return revisao; }
+	 */
 
 	public Vistoria getVistoria() {
-		
+
 		return this.vistoria;
 	}
 
@@ -515,18 +494,93 @@ public class Inspecao implements Serializable {
 		this.vistoria = vistoria;
 	}
 
-	/*public Vistoria addVistoria(Vistoria vistoria) {
-		getVistorias().add(vistoria);
-		vistoria.setInspecao(this);
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("Criada ou Alterada a Inspeção:").append("idInspecao: ").append(this.getIdInspecao())
+				.append("Cliente: ").append(this.getCliente().getDescCliente() == null ? "" : this.getCliente().getDescCliente())
+				.append("\r\n")
+				.append("custoInspecao: ").append(this.getCustoInspecao() == null ? "" : this.getCustoInspecao().toString())
+				.append("\r\n")
+				.append("dtAgendada: ").append(this.getDtAgendada() == null ? "" : this.getDtAgendada().toString())
+				.append("\r\n")
+				.append("dtLimite: ").append(this.getDtLimite() == null ? "" : this.getDtLimite().toString())
+				.append("\r\n")
+				.append("dtSolicitacaoInspecao: ").append(this.getDtSolicitacaoInspecao() == null ? "" : this.getDtSolicitacaoInspecao().toString())
+				.append("\r\n")
+				.append("dtVistoria: ").append(this.getDtVistoria() == null ? "" : this.getDtVistoria().toString())
+				.append("\r\n")
+				.append("endereco: ").append(this.getEndereco() == null ? "" : this.getEndereco().toString())
+				.append("\r\n")
+				.append("fase: ").append(this.getFase().getDescFase() == null ? "" : this.getFase().getDescFase())
+				.append("\r\n")
+				.append("funcionarioVistoriador: ").append(this.getFuncionarioVistoriador() == null ? "" : this.getFuncionarioVistoriador().toString())
+				.append("\r\n")
+				.append("honorario: ").append(this.getHonorario() == null ? "" : this.getHonorario().toString())
+				.append("\r\n")
+				.append("nomeCorretor: ").append(this.getNomeCorretor() == null ? "" : this.getNomeCorretor())
+				.append("\r\n")
+				.append("numInspecaoCliente: ").append(this.getNumInspecaoCliente())
+				.append("\r\n")
+				.append("numPropostaCliente: ").append(this.getNumPropostaCliente())
+				.append("\r\n")
+				.append("observacao: ").append(this.getObservacao() == null ? "" : this.getObservacao())
+				.append("\r\n")
+				.append("qtdBlocos: ").append(this.getQtdBlocos())
+				.append("\r\n")
+				.append("ramo: ").append(this.getRamo().getDescRamo() == null ? "" : this.getRamo().getDescRamo())
+				.append("\r\n")
+				.append("roubo: ").append(this.getRoubo())
+				.append("\r\n")
+				.append("segurado ").append(this.getSegurado() == null ? "" : this.getSegurado().toString())
+				.append("\r\n")
+				.append("status: ").append(this.getStatus().getDescStatus() == null ? "" : this.getStatus().getDescStatus())
+				.append("\r\n")
+				.append("telefoneCorretor: ").append(this.getTelefoneCorretor() == null ? "" : this.getTelefoneCorretor())
+				.append("\r\n")
+				.append("tipoInspecao: ").append(this.getTipoInspecao().getDescTipoInspecao() == null ? "" : this.getTipoInspecao().getDescTipoInspecao())
+				.append("\r\n")
+				.append("valorTotalRisco: ").append(this.getValorTotalRisco() == null ? "" : this.getValorTotalRisco())
+				.append("\r\n")
+				.append("vistoria: ").append(this.getVistoria() == null ? "" : this.getVistoria().toString())
+				.append("\r\n")
+				.append("revisoes: ").append("\r\n");
+		for (Revisao rev : this.getRevisaos()) {
+			sb.append(rev.toString()).append("\r\n");
+		}
+		sb.append("relatorios: ").append("\r\n");
+		for (Relatorio rel : this.getRelatorios()) {
+			sb.append(rel.toString()).append("\r\n");
+		}
+		sb.append("atividadesInformadas: ").append("\r\n");
+		for (Atividade atv : this.getInspecaoAtividadeInformada()) {
+			sb.append(atv.getDescAtividade()).append("\r\n");
+		}
+		sb.append("atividadesApuradas: ").append("\r\n");
+		for (Atividade atv : this.getInspecaoAtividadeApurada()) {
+			sb.append(atv.getDescAtividade()).append("\r\n");
+		}
+		sb.append("insercoesSistema: ").append("\r\n");
+		for (InsercaoSistema insercao : this.getInsercaoSistemas()) {
+			sb.append(insercao.toString()).append("\r\n");
+		}
+		sb.append("designacoes: ").append("\r\n");
+		for (Designacao des : this.getDesignacoes()) {
+			sb.append(des.toString()).append("\r\n");
+		}
+		sb.append("coberturas: ").append("\r\n");
+		for (Cobertura cob : this.getCoberturas()) {
+			sb.append(cob.getDescCobertura()).append("\r\n");
+		}
+		sb.append("aprovacoesSistema: ").append("\r\n");
+		for (AprovacaoSistema aprv : this.getAprovacaoSistemas()) {
+			sb.append(aprv.toString()).append("\r\n");
+		}
+		sb.append("agendamentos: ").append("\r\n");
+		for (Agendamento agd : this.getAgendamentos()) {
+			sb.append(agd.toString());
+		}
 
-		return vistoria;
+		return sb.toString();
 	}
-
-	public Vistoria removeVistoria(Vistoria vistoria) {
-		getVistorias().remove(vistoria);
-		vistoria.setInspecao(null);
-
-		return vistoria;
-	}*/
-
 }

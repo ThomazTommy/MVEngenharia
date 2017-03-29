@@ -1,5 +1,7 @@
 package br.com.mvengenharia.web.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -49,16 +51,20 @@ public class HonorarioController {
 		{
 			honorario = inspecao.getHonorario();
 		}
+		honorario.setMotivoAlteracao("");
 		mav.addObject("honorario", honorario);
 		return mav;
 	}
 
 	@RequestMapping(value = "/honorario/{idInspecao}", params = { "save" },  method = RequestMethod.POST)
-	public String saveHonorario(final Honorario honorario, final BindingResult bindingResult, final ModelMap model, @PathVariable Long idInspecao) {
+	public String saveHonorario(@Valid final Honorario honorario, final BindingResult bindingResult, final ModelMap model, @PathVariable Long idInspecao) {
+		Inspecao inspecao = this.inspecaoService.findOne(idInspecao);		
 		if (bindingResult.hasErrors()) {
+			model.addAttribute("inspecao", inspecao);
 			return "honorario/editarHonorario";
 		}
-		honorario.setInspecao(this.inspecaoService.findOne(idInspecao));
+		honorario.setInspecao(inspecao);
+		honorario.setFlagAlteracao(true);
 		this.honorarioService.addOrUpdate(honorario);
 		model.clear();
 		return "redirect:/honorario/" + idInspecao;

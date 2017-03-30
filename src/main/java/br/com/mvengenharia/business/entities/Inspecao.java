@@ -498,87 +498,94 @@ public class Inspecao implements Serializable {
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		sb.append("Criada ou Alterada a Inspeção:").append("idInspecao: ").append(this.getIdInspecao())
-				.append("Cliente: ").append(this.getCliente().getDescCliente() == null ? "" : this.getCliente().getDescCliente())
-				.append("\r\n")
-				.append("custoInspecao: ").append(this.getCustoInspecao() == null ? "" : this.getCustoInspecao().toString())
-				.append("\r\n")
+				.append("Cliente: ")
+				.append(this.getCliente().getDescCliente() == null ? "" : this.getCliente().getDescCliente())
+				.append("\r\n").append("custoInspecao: ")
+				.append(this.getCustoInspecao() == null ? "" : this.getCustoInspecao().toString()).append("\r\n")
 				.append("dtAgendada: ").append(this.getDtAgendada() == null ? "" : this.getDtAgendada().toString())
-				.append("\r\n")
-				.append("dtLimite: ").append(this.getDtLimite() == null ? "" : this.getDtLimite().toString())
-				.append("\r\n")
-				.append("dtSolicitacaoInspecao: ").append(this.getDtSolicitacaoInspecao() == null ? "" : this.getDtSolicitacaoInspecao().toString())
-				.append("\r\n")
-				.append("dtVistoria: ").append(this.getDtVistoria() == null ? "" : this.getDtVistoria().toString())
-				.append("\r\n")
+				.append("\r\n").append("dtLimite: ")
+				.append(this.getDtLimite() == null ? "" : this.getDtLimite().toString()).append("\r\n")
+				.append("dtSolicitacaoInspecao: ")
+				.append(this.getDtSolicitacaoInspecao() == null ? "" : this.getDtSolicitacaoInspecao().toString())
+				.append("\r\n").append("dtVistoria: ")
+				.append(this.getDtVistoria() == null ? "" : this.getDtVistoria().toString()).append("\r\n")
 				.append("endereco: ").append(this.getEndereco() == null ? "" : this.getEndereco().toString())
-				.append("\r\n")
-				.append("fase: ").append(this.getFase().getDescFase() == null ? "" : this.getFase().getDescFase())
-				.append("\r\n")
-				.append("funcionarioVistoriador: ").append(this.getFuncionarioVistoriador() == null ? "" : this.getFuncionarioVistoriador().toString())
-				.append("\r\n")
-				.append("honorario: ").append(this.getHonorario() == null ? "" : this.getHonorario().toString())
-				.append("\r\n")
+				.append("\r\n").append("fase: ")
+				.append(this.getFase().getDescFase() == null ? "" : this.getFase().getDescFase()).append("\r\n")
+				.append("funcionarioVistoriador: ")
+				.append(this.getFuncionarioVistoriador() == null ? "" : this.getFuncionarioVistoriador().toString())
+				.append("\r\n").append("honorario: ")
+				.append(this.getHonorario() == null ? "" : this.getHonorario().toString()).append("\r\n")
 				.append("nomeCorretor: ").append(this.getNomeCorretor() == null ? "" : this.getNomeCorretor())
-				.append("\r\n")
-				.append("numInspecaoCliente: ").append(this.getNumInspecaoCliente())
-				.append("\r\n")
-				.append("numPropostaCliente: ").append(this.getNumPropostaCliente())
-				.append("\r\n")
-				.append("observacao: ").append(this.getObservacao() == null ? "" : this.getObservacao())
-				.append("\r\n")
-				.append("qtdBlocos: ").append(this.getQtdBlocos())
-				.append("\r\n")
-				.append("ramo: ").append(this.getRamo().getDescRamo() == null ? "" : this.getRamo().getDescRamo())
-				.append("\r\n")
-				.append("roubo: ").append(this.getRoubo())
-				.append("\r\n")
-				.append("segurado ").append(this.getSegurado() == null ? "" : this.getSegurado().toString())
-				.append("\r\n")
-				.append("status: ").append(this.getStatus().getDescStatus() == null ? "" : this.getStatus().getDescStatus())
-				.append("\r\n")
-				.append("telefoneCorretor: ").append(this.getTelefoneCorretor() == null ? "" : this.getTelefoneCorretor())
-				.append("\r\n")
-				.append("tipoInspecao: ").append(this.getTipoInspecao().getDescTipoInspecao() == null ? "" : this.getTipoInspecao().getDescTipoInspecao())
-				.append("\r\n")
-				.append("valorTotalRisco: ").append(this.getValorTotalRisco() == null ? "" : this.getValorTotalRisco())
-				.append("\r\n")
+				.append("\r\n").append("numInspecaoCliente: ").append(this.getNumInspecaoCliente()).append("\r\n")
+				.append("numPropostaCliente: ").append(this.getNumPropostaCliente()).append("\r\n")
+				.append("observacao: ").append(this.getObservacao() == null ? "" : this.getObservacao()).append("\r\n")
+				.append("qtdBlocos: ").append(this.getQtdBlocos()).append("\r\n").append("ramo: ")
+				.append(this.getRamo().getDescRamo() == null ? "" : this.getRamo().getDescRamo()).append("\r\n")
+				.append("roubo: ").append(this.getRoubo()).append("\r\n").append("segurado ")
+				.append(this.getSegurado() == null ? "" : this.getSegurado().toString()).append("\r\n")
+				.append("status: ")
+				.append(this.getStatus().getDescStatus() == null ? "" : this.getStatus().getDescStatus()).append("\r\n")
+				.append("telefoneCorretor: ")
+				.append(this.getTelefoneCorretor() == null ? "" : this.getTelefoneCorretor()).append("\r\n")
+				.append("tipoInspecao: ")
+				.append(this.getTipoInspecao().getDescTipoInspecao() == null ? ""
+						: this.getTipoInspecao().getDescTipoInspecao())
+				.append("\r\n").append("valorTotalRisco: ")
+				.append(this.getValorTotalRisco() == null ? "" : this.getValorTotalRisco()).append("\r\n")
 				.append("vistoria: ").append(this.getVistoria() == null ? "" : this.getVistoria().toString())
-				.append("\r\n")
-				.append("revisoes: ").append("\r\n");
-		for (Revisao rev : this.getRevisaos()) {
-			sb.append(rev.toString()).append("\r\n");
+				.append("\r\n").append("revisoes: ").append("\r\n");
+		if (this.getRevisaos() != null) {
+			for (Revisao rev : this.getRevisaos()) {
+				sb.append(rev.toString()).append("\r\n");
+			}
 		}
 		sb.append("relatorios: ").append("\r\n");
-		for (Relatorio rel : this.getRelatorios()) {
-			sb.append(rel.toString()).append("\r\n");
+		if (this.getRelatorios() != null) {
+			for (Relatorio rel : this.getRelatorios()) {
+				sb.append(rel.toString()).append("\r\n");
+			}
 		}
 		sb.append("atividadesInformadas: ").append("\r\n");
-		for (Atividade atv : this.getInspecaoAtividadeInformada()) {
-			sb.append(atv.getDescAtividade()).append("\r\n");
+		if (this.getInspecaoAtividadeInformada() != null) {
+			for (Atividade atv : this.getInspecaoAtividadeInformada()) {
+				sb.append(atv.getDescAtividade()).append("\r\n");
+			}
 		}
 		sb.append("atividadesApuradas: ").append("\r\n");
-		for (Atividade atv : this.getInspecaoAtividadeApurada()) {
-			sb.append(atv.getDescAtividade()).append("\r\n");
+		if (this.getInspecaoAtividadeApurada() != null) {
+			for (Atividade atv : this.getInspecaoAtividadeApurada()) {
+				sb.append(atv.getDescAtividade()).append("\r\n");
+			}
 		}
 		sb.append("insercoesSistema: ").append("\r\n");
-		for (InsercaoSistema insercao : this.getInsercaoSistemas()) {
-			sb.append(insercao.toString()).append("\r\n");
+		if (this.getInsercaoSistemas() != null) {
+			for (InsercaoSistema insercao : this.getInsercaoSistemas()) {
+				sb.append(insercao.toString()).append("\r\n");
+			}
 		}
 		sb.append("designacoes: ").append("\r\n");
-		for (Designacao des : this.getDesignacoes()) {
-			sb.append(des.toString()).append("\r\n");
-		}
+		if (this.getDesignacoes() != null)
+			for (Designacao des : this.getDesignacoes()) {
+				sb.append(des.toString()).append("\r\n");
+			}
 		sb.append("coberturas: ").append("\r\n");
-		for (Cobertura cob : this.getCoberturas()) {
-			sb.append(cob.getDescCobertura()).append("\r\n");
+		if (this.getCoberturas() != null) {
+			for (Cobertura cob : this.getCoberturas()) {
+				sb.append(cob.getDescCobertura()).append("\r\n");
+			}
 		}
 		sb.append("aprovacoesSistema: ").append("\r\n");
-		for (AprovacaoSistema aprv : this.getAprovacaoSistemas()) {
-			sb.append(aprv.toString()).append("\r\n");
+		if (this.getAprovacaoSistemas() != null) {
+			for (AprovacaoSistema aprv : this.getAprovacaoSistemas()) {
+				sb.append(aprv.toString()).append("\r\n");
+			}
 		}
 		sb.append("agendamentos: ").append("\r\n");
-		for (Agendamento agd : this.getAgendamentos()) {
-			sb.append(agd.toString());
+		if (this.getAgendamentos() != null) {
+			for (Agendamento agd : this.getAgendamentos()) {
+				sb.append(agd.toString());
+			}
 		}
 
 		return sb.toString();

@@ -5,6 +5,8 @@ import java.util.Date;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -243,30 +245,6 @@ public class InspecaoController {
 		return "redirect:/inspecao";
 	}
 
-	@RequestMapping(value = "/inspecao/cidadesPorEstado/{idEstado}")
-	public ModelAndView getCidadesPorEstado(@PathVariable Long idEstado) {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("inspecao/listaCidadesPorEstado");
-		mav.addObject("listaCidades", this.cidadeService.findByIdEstado(idEstado));
-		return mav;
-	}
-
-	@RequestMapping(value = "/inspecao/tipoInspecaoPorCliente/{idCliente}")
-	public ModelAndView getTipoInspecaoPorCliente(@PathVariable Long idCliente) {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("inspecao/listaTipoInspecaoPorCliente");
-		mav.addObject("listaTipoInspecao", this.clienteService.findOne(idCliente).getTipoInspecaos());
-		return mav;
-	}
-
-	@RequestMapping(value = "/inspecao/ramoPorCliente/{idCliente}")
-	public ModelAndView getRamoPorCliente(@PathVariable Long idCliente) {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("inspecao/listaRamoPorCliente");
-		mav.addObject("listaRamos", this.clienteService.findOne(idCliente).getRamos());
-		return mav;
-	}
-
 	@RequestMapping("/inspecao/editar/{idInspecao}")
 	public ModelAndView editarInspecao(@PathVariable Long idInspecao) {
 		ModelAndView mav = new ModelAndView();
@@ -282,7 +260,7 @@ public class InspecaoController {
 
 	
 
-	@RequestMapping(value = "/inspecao/detalheinspecao/{idInspecao}")
+	@RequestMapping(value = "/inspecao/detalheInspecao/{idInspecao}")
 	public ModelAndView detalheInspecao(@PathVariable Long idInspecao) {
 		Inspecao insp =  this.inspecaoService.findOne(idInspecao);
 		ModelAndView mav = new ModelAndView();

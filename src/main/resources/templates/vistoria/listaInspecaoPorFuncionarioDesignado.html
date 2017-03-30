@@ -8,29 +8,7 @@
 			<div class="panel-heading">Lista de Inspeções</div>
 			<!-- /.panel-heading -->
 			<div class="panel-body">
-				<table width="100%"
-					class="table table-striped table-bordered table-hover"
-					id="sample">
-
-					<thead>
-						<tr>
-							<th>Protocolo</th>
-							<th>Data Agendamento</th>
-							<th>Data Cadastro</th>
-							<th>Data Limite</th>
-							<th>Cliente</th>
-							<th>Endereço</th>
-							<th>Status</th>
-							<th>Fase</th>
-							<th>Ações</th>
-							<th>Bairro</th>
-							<th>TipoLogradouro</th>
-							<th>Cidade</th>
-							
-						</tr>
-					</thead>
-					
-				</table>
+				<div th:replace="fragments/_dataTablePosVistoria" />
 			</div>
 		</div>
 	</div>

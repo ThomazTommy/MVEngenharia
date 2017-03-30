@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+
 import br.com.mvengenharia.business.entities.Atividade;
 import br.com.mvengenharia.business.entities.CustoInspecao;
 import br.com.mvengenharia.business.entities.Fase;
@@ -38,21 +40,55 @@ public class CustoInspecaoController {
 		return this.atividadeService.findAll();
 	}
     
-    @RequestMapping(value="/custoInspecao/{idInspecao}", params={"save"}, method = RequestMethod.POST)
+    @RequestMapping(value="/custoInspecao/editar/{idInspecao}", params={"save"}, method = RequestMethod.POST)
     public String saveCustoInspecao(@PathVariable Long idInspecao, final Inspecao inspecao, final BindingResult bindingResult, final ModelMap model) {
     	CustoInspecao custoInspecao = inspecao.getCustoInspecao();
     	Inspecao insp = this.inspecaoService.findOne(idInspecao);
+    	if(insp.getCustoInspecao() != null)
+    	{
+    	custoInspecao.setIdCustoInspecao(insp.getCustoInspecao().getIdCustoInspecao());
+    	}
     	custoInspecao.setCustoInformado(true);
     	custoInspecao.setInspecao(insp);
-    	this.custoInspecaoService.addOrUpdate(custoInspecao);
     	insp.setQtdBlocos(inspecao.getQtdBlocos());
+    	insp.setObservacao(inspecao.getObservacao());
     	insp.setInspecaoAtividadeApurada(inspecao.getInspecaoAtividadeApurada());
-    	Fase fase = new Fase();
-    	fase.setIdFase(5);
-    	insp.setFase(fase);
+    	insp.setCustoInspecao(custoInspecao);
     	this.inspecaoService.addOrUpdate(insp);
     	model.clear();
-        return "redirect:/vistoria/inspecaoInicioFimCustos/" + idInspecao;
-    }   
+        return "redirect:/custoInspecao/detalheInspecao/" + idInspecao;
+    } 
+    
+
+    @RequestMapping(value = "/custoInspecao/editar/{idInspecao}", method = RequestMethod.GET)
+	public ModelAndView custoInspecaoEdicao(@PathVariable Long idInspecao) {
+		Inspecao insp =  this.inspecaoService.findOne(idInspecao);
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("custoInspecao/custoInspecaoForm");
+		mav.addObject("inspecao",insp);
+		return mav;
+	}
+    
+    
+    
+    @RequestMapping(value = "/custoInspecao/detalheInspecao/{idInspecao}")
+	public ModelAndView custoInspecaoDetalhe(@PathVariable Long idInspecao) {
+		Inspecao insp =  this.inspecaoService.findOne(idInspecao);
+		if(insp.getCustoInspecao() == null)
+		{
+			insp.setCustoInspecao(new CustoInspecao());
+		}
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("custoInspecao/custoInspecao");
+		mav.addObject("inspecao",insp);
+		return mav;
+	}
+    
+    @RequestMapping(value = "/custoInspecao")
+	public ModelAndView custoInspecao() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("custoInspecao/listaInspecaoParaCustoInspecao");
+		return mav;
+	}
 
 }

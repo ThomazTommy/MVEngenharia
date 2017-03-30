@@ -591,6 +591,13 @@ function inspecionarLink(data, type, row) {
 			+ '\',\'detalheInspecao\',\'\',\'\')"><span class="glyphicon glyphicon-calendar"> </span></a>';
 }
 
+
+function detalheLink(data, type, row) {
+	return '<a href="#" onclick = "executaAjaxGet(\'/inspecao/detalheInspecao/'
+			+ row.idInspecao
+			+ '\',\'detalheInspecao\',\'\',\'\')"><span class="glyphicon glyphicon-calendar"> </span></a>';
+}
+
 function agendamentoLink(data, type, row) {
 	return '<a href="#" onclick = "executaAjaxGet(\'/agendamento/'
 			+ row.idInspecao
@@ -620,6 +627,13 @@ function insercaoSistemaLink(data, type, row) {
 
 function aprovacaoSistemaLink(data, type, row) {
 	return '<a href="#" onclick = "executaAjaxGet(\'/aprovacaoSistema/'
+			+ row.idInspecao
+			+ '\',\'detalheInspecao\',\'\',\'\')"><span class="glyphicon glyphicon-calendar"> </span></a>';
+}
+
+
+function custoInspecaoLink(data, type, row) {
+	return '<a href="#" onclick = "executaAjaxGet(\'/custoInspecao/detalheInspecao/'
 			+ row.idInspecao
 			+ '\',\'detalheInspecao\',\'\',\'\')"><span class="glyphicon glyphicon-calendar"> </span></a>';
 }

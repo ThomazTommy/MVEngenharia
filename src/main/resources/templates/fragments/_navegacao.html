@@ -60,14 +60,15 @@
 						class="fa fa-sitemap fa-fw"></i> Inspeções de Seguros<span
 						class="fa arrow"></span></a>
 					<ul class="nav nav-second-level">
-						<li><a href="#"
-							onclick="menuOnClick('/novaInspecao')">Nova
+						<li sec:authorize="!hasRole('ROLE_ADMIN')"><a href="#"
+							onclick="menuListaInspecoesPosInspecao('/inspecao', '/dtinspecao/dtinspecao', detalheLink)">Inspeções</a></li>
+
+						<li><a href="#" onclick="menuOnClick('/novaInspecao')">Nova
 								Inspeção</a></li>
 						<li><a href="#"
-							onclick="menuListaInspecoes('/agendamento/listainspecao', '/dtinspecao/listaInspecaoPorFase/1/2/3/4', agendamentoLink)">Agendar/Designar</a></li>
+							onclick="menuListaInspecoesPosInspecao('/agendamento/listainspecao', '/dtinspecao/listaInspecaoPorFase/1/2/3/4', agendamentoLink)">Agendar/Designar</a></li>
 						<li><a href="#"
-							th:onclick="'menuListaInspecoes(\'/vistoria/listaInspecaoPorFuncionarioDesignado\', \'/dtinspecao/listaInspecaoPorCpf/'+ ${#httpServletRequest.remoteUser} + '\', inspecionarLink);'">Inspecionar/Informar
-								Custos</a></li>
+							th:onclick="'menuListaInspecoesPosInspecao(\'/vistoria/listaInspecaoPorFuncionarioDesignado\', \'/dtinspecao/listaInspecaoPorCpf/'+ ${#httpServletRequest.remoteUser} + '\', inspecionarLink);'">Inspecionar</a></li>
 						<li><a href="#"
 							onclick="menuListaInspecoesPosInspecao('/relatorio/listaInspecaoParaRelatar', '/dtinspecao/listaInspecaoPorFase/5', relatorioLink)">Relatar</a></li>
 						<li><a href="#"
@@ -78,6 +79,9 @@
 						<li><a href="#"
 							onclick="menuListaInspecoesPosInspecao('/aprovacaoSistema/listaInspecaoParaAprovacaoSistema', '/dtinspecao/listaInspecaoPorFase/9', aprovacaoSistemaLink)">Aprovar
 								no Sistema do Cliente</a></li>
+						<li><a href="#"
+							onclick="menuListaInspecoesPosInspecao('/custoInspecao', '/dtinspecao/dtinspecao', custoInspecaoLink)">Lançamento de Custos</a></li>
+
 					</ul> <!-- /.nav-second-level --></li>
 
 				<!-- <li><a href="#"><i class="fa fa-edit fa-fw"></i> Público<span

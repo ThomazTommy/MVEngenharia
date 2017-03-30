@@ -7,8 +7,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import br.com.mvengenharia.business.entities.Ramo;
+import br.com.mvengenharia.business.services.ClienteService;
 import br.com.mvengenharia.business.services.RamoService;
 
 @Controller
@@ -18,6 +20,8 @@ public class RamoController {
     @Autowired
     private RamoService ramoService;
     
+    @Autowired
+    private ClienteService clienteService;
       
     public RamoController() {
         super();
@@ -49,6 +53,14 @@ public class RamoController {
         this.ramoService.remove(id);
         return "redirect:/ramo";
     }  
+    
+    @RequestMapping(value = "/inspecao/ramoPorCliente/{idCliente}")
+	public ModelAndView getRamoPorCliente(@PathVariable Long idCliente) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("inspecao/listaRamoPorCliente");
+		mav.addObject("listaRamos", this.clienteService.findOne(idCliente).getRamos());
+		return mav;
+	}
 
 
 }

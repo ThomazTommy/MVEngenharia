@@ -1,0 +1,18 @@
+<div id="detalheInspecao" th:replace="inspecao/detalheInspecao"></div>
+<div class="row">
+	<div class="col-lg-12">
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<dt th:text="#{custoInspecao.custoAprovado}"></dt>
+				<dd th:text="${inspecao.custoInspecao.custoAprovado}"></dd>
+				<dt th:text="#{custoInspecao.kmEfetivo}"></dt>
+				<dd th:text="${inspecao.custoInspecao.kmEfetivo}"></dd>
+				<dt th:text="#{custoInspecao.valorDeslocamento}"></dt>
+				<dd th:text="${inspecao.custoInspecao.valorDeslocamento}"></dd>
+				<br/>
+				<button type="button" class="btn btn-success"
+										th:onClick="'executaAjaxGet(\'/custoInspecao/editar/' + ${inspecao.idInspecao} + '\', \'detalheInspecao\', \'\', \'\')'"/>
+			</div>
+		</div>
+	</div>
+</div>

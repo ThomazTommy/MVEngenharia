@@ -12,8 +12,8 @@ $.ajax({
 	},
 	complete : function() {
 		$('.multipleSelect').multiselect({
-			maxHeight: 200,
-			dropUp: true,
+			maxHeight : 200,
+			dropUp : true,
 			enableCaseInsensitiveFiltering : true,
 			buttonWidth : '100%',
 			nonSelectedText : 'Selecione',
@@ -47,8 +47,7 @@ function loadDataTableNovaInspecao(urlDestino) {
 								return JSON.stringify(d);
 							}
 						},
-						serverSide : true,						
-						
+						serverSide : true,
 
 						columns : [
 								{
@@ -100,10 +99,37 @@ function loadDataTableNovaInspecao(urlDestino) {
 										}
 										return '';
 									}
-								}, {
-									data : 'status.descStatus',
-									visible : true									
 								},
+								{
+									data : 'status.descStatus',
+									visible : true
+								},
+								{
+									data : 'fase.descFase',
+									visible : true
+								},
+								{
+									data : 'funcionarioVistoriador.nomeFuncionario',
+									render : function(data, type, row) {
+										if (row.funcionarioVistoriador)
+											return row.funcionarioVistoriador.nomeFuncionario;
+										else
+											return 'Não Preenchido';
+									},
+									visible : true
+								},
+								{
+									data : 'dtVistoria',
+									render : function(data, type, row) {
+										if (row.dtVistoria)
+											return new Date(row.dtVistoria)
+													.toLocaleString();
+										else
+											return 'Não Preenchido';
+									},
+									visible : true
+								},
+
 								{
 									data : 'linkscolumn',
 									orderable : false,
@@ -111,10 +137,10 @@ function loadDataTableNovaInspecao(urlDestino) {
 									render : function(data, type, row) {
 										return '<a href="#" onclick = "executaAjaxGetNoReload(\'/inspecao/remover/'
 												+ row.idInspecao
-												+ '\',\'page-wrapper\',\'\',\'\',function(){$.getScript(\'/static/js/novaInspecao.js\')})"><span class="glyphicon glyphicon-remove"> </span></a>' +
-												'<span>  </span><a href="#" onclick = "executaAjaxGet(\'/inspecao/editar/'
-													+ row.idInspecao
-													+ '\',\'form-wrapper\',\'\',\'\')"><span class="glyphicon glyphicon-pencil"> </span></a>';
+												+ '\',\'page-wrapper\',\'\',\'\',function(){$.getScript(\'/static/js/novaInspecao.js\')})"><span class="glyphicon glyphicon-remove"> </span></a>'
+												+ '<span>  </span><a href="#" onclick = "executaAjaxGet(\'/inspecao/editar/'
+												+ row.idInspecao
+												+ '\',\'form-wrapper\',\'\',\'\')"><span class="glyphicon glyphicon-pencil"> </span></a>';
 									}
 								},
 								{
@@ -128,6 +154,6 @@ function loadDataTableNovaInspecao(urlDestino) {
 									data : 'endereco.cidade.nomeCidade',
 									visible : false
 								} ],
-								"order": [[ 0, "desc" ]]
+						"order" : [ [ 0, "desc" ] ]
 					});
 }

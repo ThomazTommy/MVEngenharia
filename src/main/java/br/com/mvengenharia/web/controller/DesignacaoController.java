@@ -82,6 +82,8 @@ public class DesignacaoController {
     	   Fase fase = new Fase();
            fase.setIdFase(4);
            insp.setFase(fase);
+           insp.setFuncionarioVistoriador(designacao.getFuncionarioDesignado());
+            
            this.inspecaoService.addOrUpdate(insp);
         model.clear();       
         return "redirect:/designacao/" + idInspecao;

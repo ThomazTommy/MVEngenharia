@@ -7,6 +7,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import br.com.mvengenharia.business.entities.Cidade;
 import br.com.mvengenharia.business.entities.Estado;
@@ -27,26 +28,26 @@ public class CidadeController {
         super();
     }
      
-    @ModelAttribute("allCidades")
-    public Iterable<Cidade> populateCidades() {
-        return this.cidadeService.findAll();
-    }
-    
-    
-    @ModelAttribute("allEstados")
-    public Iterable<Estado> populateEstados() {
-        return this.estadoService.findAll();
-    }
-    
+    @RequestMapping(value = "/inspecao/cidadesPorEstado/{idEstado}")
+	public ModelAndView getCidadesPorEstado(@PathVariable Long idEstado) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("inspecao/listaCidadesPorEstado");
+		mav.addObject("listaCidades", this.cidadeService.findByIdEstado(idEstado));
+		return mav;
+	}   
     
     @RequestMapping("/cidade")
-    public String showCidade(final Cidade cidade) {
+    public String showCidade(final Cidade cidade, ModelMap model) {
+    	model.addAttribute("allEstados", this.estadoService.findAll());
+    	model.addAttribute("allCidades", this.cidadeService.findAll());
           return "cidade/cidade";
     }      
     
     @RequestMapping(value="/cidade", params={"save"})
     public String saveCidade(final Cidade cidade, final BindingResult bindingResult, final ModelMap model) {
         if (bindingResult.hasErrors()) {
+        	model.addAttribute("allEstados", this.estadoService.findAll());
+        	model.addAttribute("allCidades", this.cidadeService.findAll());
             return "cidade/cidade";
         }
         this.cidadeService.addOrUpdate(cidade);

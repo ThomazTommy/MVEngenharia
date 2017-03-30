@@ -151,8 +151,8 @@ public class Inspecao implements Serializable {
 	private List<Atividade> inspecaoAtividadeApurada;
 
 	// bi-directional many-to-one association to Inspecao_Cobertura
-	@Valid
-	@NotEmpty(message = "Cobertura deve ser preenchido")
+	//@Valid
+	//@NotEmpty(message = "Cobertura deve ser preenchido")
 	@ManyToMany(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST })
 	private List<Cobertura> coberturas;
 

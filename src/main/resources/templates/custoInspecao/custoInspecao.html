@@ -11,7 +11,8 @@
 				<dd th:text="${inspecao.custoInspecao.valorDeslocamento}"></dd>
 				<br/>
 				<button type="button" class="btn btn-success"
-										th:onClick="'executaAjaxGet(\'/custoInspecao/editar/' + ${inspecao.idInspecao} + '\', \'detalheInspecao\', \'\', \'\')'"/>
+										th:onClick="'executaAjaxGet(\'/custoInspecao/editar/' + ${inspecao.idInspecao} + '\', \'detalheInspecao\', \'\', \'\')'">
+										<i class="fa fa-check"></i><span>Alterar Custos</span></button>
 			</div>
 		</div>
 	</div>

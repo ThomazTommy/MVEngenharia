@@ -54,6 +54,9 @@ function loadDataTableNovaInspecao(urlDestino) {
 									data : 'idInspecao'
 								},
 								{
+									data : 'numInspecaoCliente'
+								},
+								{
 									data : 'dtAgendada',
 									render : function(data, type, row) {
 										if (row.dtAgendada)
@@ -95,6 +98,8 @@ function loadDataTableNovaInspecao(urlDestino) {
 													+ " "
 													+ row.endereco.numero
 													+ " - "
+													+ row.endereco.bairro
+													+ " - "
 													+ row.endereco.cidade.nomeCidade;
 										}
 										return '';
@@ -102,7 +107,7 @@ function loadDataTableNovaInspecao(urlDestino) {
 								},
 								{
 									data : 'status.descStatus',
-									visible : true
+									visible : false
 								},
 								{
 									data : 'fase.descFase',

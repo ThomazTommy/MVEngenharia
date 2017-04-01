@@ -42,7 +42,7 @@
 						<dd th:text="${inspecao.cliente.descCliente}">cliente</dd>
 						<dt th:text="#{inspecao.endereco}">endereco</dt>
 						<dd
-							th:text="${inspecao.endereco.tipoLogradouro.descTipoLogradouro} + ' ' + ${inspecao.endereco.logradouro} + ' ' + ${inspecao.endereco.numero} + ' - ' + ${inspecao.endereco.cidade.nomeCidade}">endereco</dd>
+							th:text="${inspecao.endereco.tipoLogradouro.descTipoLogradouro} + ' ' + ${inspecao.endereco.logradouro} + ' ' + ${inspecao.endereco.numero} + ' - ' +${inspecao.endereco.bairro} + ' - ' + ${inspecao.endereco.cidade.nomeCidade}">endereco</dd>
 
 					</dl>
 				</div>

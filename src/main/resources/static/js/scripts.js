@@ -393,6 +393,9 @@ function loadDataTable(urlDestino, functionLink) {
 									data : 'idInspecao'
 								},
 								{
+									data : 'numInspecaoCliente'
+								},
+								{
 									data : 'dtAgendada',
 									render : function(data, type, row) {
 										if (row.dtAgendada)
@@ -434,13 +437,15 @@ function loadDataTable(urlDestino, functionLink) {
 													+ " "
 													+ row.endereco.numero
 													+ " - "
+													+ row.endereco.bairro
+													+ " - "
 													+ row.endereco.cidade.nomeCidade;
 										}
 										return '';
 									}
 								}, {
 									data : 'status.descStatus',
-									visible : true
+									visible : false
 								}, {
 									data : 'fase.descFase',
 									visible : true

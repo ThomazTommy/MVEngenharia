@@ -153,8 +153,9 @@ public class Inspecao implements Serializable {
 	// bi-directional many-to-one association to Inspecao_Cobertura
 	//@Valid
 	//@NotEmpty(message = "Cobertura deve ser preenchido")
-	@ManyToMany(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST })
-	private List<Cobertura> coberturas;
+	//@ManyToMany(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST })
+	@Column(length = 65535, columnDefinition = "Text")
+	private String coberturas;
 
 	// bi-directional many-to-one association to Relatorio
 	@JsonManagedReference
@@ -437,11 +438,11 @@ public class Inspecao implements Serializable {
 		this.inspecaoAtividadeInformada = inspecao_Atividade_Informada;
 	}
 
-	public List<Cobertura> getCoberturas() {
+	public String getCoberturas() {
 		return this.coberturas;
 	}
 
-	public void setCoberturas(List<Cobertura> coberturas) {
+	public void setCoberturas(String coberturas) {
 		this.coberturas = coberturas;
 	}
 
@@ -533,6 +534,8 @@ public class Inspecao implements Serializable {
 						: this.getTipoInspecao().getDescTipoInspecao())
 				.append("\r\n").append("valorTotalRisco: ")
 				.append(this.getValorTotalRisco() == null ? "" : this.getValorTotalRisco()).append("\r\n")
+				.append("coberturas: ")
+				.append(this.getCoberturas() == null ? "" : this.getCoberturas()).append("\r\n")
 				.append("vistoria: ").append(this.getVistoria() == null ? "" : this.getVistoria().toString())
 				.append("\r\n").append("revisoes: ").append("\r\n");
 		if (this.getRevisaos() != null) {
@@ -569,12 +572,7 @@ public class Inspecao implements Serializable {
 			for (Designacao des : this.getDesignacoes()) {
 				sb.append(des.toString()).append("\r\n");
 			}
-		sb.append("coberturas: ").append("\r\n");
-		if (this.getCoberturas() != null) {
-			for (Cobertura cob : this.getCoberturas()) {
-				sb.append(cob.getDescCobertura()).append("\r\n");
-			}
-		}
+		
 		sb.append("aprovacoesSistema: ").append("\r\n");
 		if (this.getAprovacaoSistemas() != null) {
 			for (AprovacaoSistema aprv : this.getAprovacaoSistemas()) {

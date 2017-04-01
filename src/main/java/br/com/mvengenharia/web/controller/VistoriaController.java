@@ -88,7 +88,7 @@ public class VistoriaController {
 		Status status = new Status();
 		status.setIdStatus(2);
 		Fase fase = new Fase();
-		fase.setIdFase(6);
+		fase.setIdFase(5);
 		insp.setStatus(status);
 		insp.setFase(fase);
 		List<Atividade> atividades = new ArrayList<Atividade>();

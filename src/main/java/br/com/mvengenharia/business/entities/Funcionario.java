@@ -91,5 +91,12 @@ public class Funcionario implements Serializable {
 		this.escritorio = escritorio;
 	}
 	
-
+	@Override
+	public String toString(){
+		StringBuilder sb = new StringBuilder();
+		sb.append("cpf: ").append(this.getCpf() == null ? "" :this.getCpf().toString()).append("|")
+		.append("nomeFuncionario: ").append(this.getNomeFuncionario() == null ? "" :this.getNomeFuncionario().toString());	
+		return sb.toString();
+	}
+	
 }

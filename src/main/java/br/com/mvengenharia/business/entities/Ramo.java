@@ -47,5 +47,12 @@ private boolean situacao;
 	public void setDescRamo(String descRamos) {
 		this.descRamo = descRamos;
 	}
+	
+	@Override
+	public String toString(){
+		StringBuilder sb = new StringBuilder();
+		sb.append("descRamo: ").append(this.getDescRamo() == null ? "" :this.getDescRamo().toString());
+		return sb.toString();
+	}
 
 }

@@ -47,5 +47,12 @@ public class Atividade implements Serializable {
 	public void setDescAtividade(String descAtividade) {
 		this.descAtividade = descAtividade;
 	}
+	
+	@Override
+	public String toString(){
+		StringBuilder sb = new StringBuilder();
+		sb.append("descAtividade: ").append(this.getDescAtividade() == null ? "" :this.getDescAtividade().toString());
+		return sb.toString();
+	}
 
 }

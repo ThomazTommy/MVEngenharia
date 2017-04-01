@@ -102,5 +102,15 @@ public class Honorario implements Serializable {
 	public void setInspecao(Inspecao inspecao) {
 		this.inspecao = inspecao;		
 	}
+	
+	@Override
+	public String toString(){
+		StringBuilder sb = new StringBuilder();
+		sb.append("decCondicoes: ").append(this.getDescCondicoes() == null ? "" :this.getDescCondicoes().toString()).append("|")
+		.append("funcionarioAlterador: ").append(this.getFuncionarioAlterador() == null ? "" :this.getFuncionarioAlterador().toString()).append("|")
+		.append("valorHonorarioCalculado: ").append(this.getValorHonorarioCalculado() == null ? "" : this.getValorHonorarioCalculado().toString()).append("|")
+		.append("motivoAlteracao: ").append(this.getMotivoAlteracao() == null ? "" : this.getMotivoAlteracao().toString());			
+		return sb.toString();
+	}
 
 }

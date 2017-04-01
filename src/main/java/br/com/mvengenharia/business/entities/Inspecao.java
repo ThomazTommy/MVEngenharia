@@ -501,85 +501,85 @@ public class Inspecao implements Serializable {
 		sb.append("Criada ou Alterada a Inspeção:").append("idInspecao: ").append(this.getIdInspecao())
 				.append("Cliente: ")
 				.append(this.getCliente().getDescCliente() == null ? "" : this.getCliente().getDescCliente())
-				.append("\r\n").append("custoInspecao: ")
-				.append(this.getCustoInspecao() == null ? "" : this.getCustoInspecao().toString()).append("\r\n")
+				.append("|").append("custoInspecao: ")
+				.append(this.getCustoInspecao() == null ? "" : this.getCustoInspecao().toString()).append("|")
 				.append("dtAgendada: ").append(this.getDtAgendada() == null ? "" : this.getDtAgendada().toString())
-				.append("\r\n").append("dtLimite: ")
-				.append(this.getDtLimite() == null ? "" : this.getDtLimite().toString()).append("\r\n")
+				.append("|").append("dtLimite: ")
+				.append(this.getDtLimite() == null ? "" : this.getDtLimite().toString()).append("|")
 				.append("dtSolicitacaoInspecao: ")
 				.append(this.getDtSolicitacaoInspecao() == null ? "" : this.getDtSolicitacaoInspecao().toString())
-				.append("\r\n").append("dtVistoria: ")
-				.append(this.getDtVistoria() == null ? "" : this.getDtVistoria().toString()).append("\r\n")
+				.append("|").append("dtVistoria: ")
+				.append(this.getDtVistoria() == null ? "" : this.getDtVistoria().toString()).append("|")
 				.append("endereco: ").append(this.getEndereco() == null ? "" : this.getEndereco().toString())
-				.append("\r\n").append("fase: ")
-				.append(this.getFase().getDescFase() == null ? "" : this.getFase().getDescFase()).append("\r\n")
+				.append("|").append("fase: ")
+				.append(this.getFase().getDescFase() == null ? "" : this.getFase().getDescFase()).append("|")
 				.append("funcionarioVistoriador: ")
 				.append(this.getFuncionarioVistoriador() == null ? "" : this.getFuncionarioVistoriador().toString())
-				.append("\r\n").append("honorario: ")
-				.append(this.getHonorario() == null ? "" : this.getHonorario().toString()).append("\r\n")
+				.append("|").append("honorario: ")
+				.append(this.getHonorario() == null ? "" : this.getHonorario().toString()).append("|")
 				.append("nomeCorretor: ").append(this.getNomeCorretor() == null ? "" : this.getNomeCorretor())
-				.append("\r\n").append("numInspecaoCliente: ").append(this.getNumInspecaoCliente()).append("\r\n")
-				.append("numPropostaCliente: ").append(this.getNumPropostaCliente()).append("\r\n")
-				.append("observacao: ").append(this.getObservacao() == null ? "" : this.getObservacao()).append("\r\n")
-				.append("qtdBlocos: ").append(this.getQtdBlocos()).append("\r\n").append("ramo: ")
-				.append(this.getRamo().getDescRamo() == null ? "" : this.getRamo().getDescRamo()).append("\r\n")
-				.append("roubo: ").append(this.getRoubo()).append("\r\n").append("segurado ")
-				.append(this.getSegurado() == null ? "" : this.getSegurado().toString()).append("\r\n")
+				.append("|").append("numInspecaoCliente: ").append(this.getNumInspecaoCliente()).append("|")
+				.append("numPropostaCliente: ").append(this.getNumPropostaCliente()).append("|")
+				.append("observacao: ").append(this.getObservacao() == null ? "" : this.getObservacao()).append("|")
+				.append("qtdBlocos: ").append(this.getQtdBlocos()).append("|").append("ramo: ")
+				.append(this.getRamo().getDescRamo() == null ? "" : this.getRamo().getDescRamo()).append("|")
+				.append("roubo: ").append(this.getRoubo()).append("|").append("segurado ")
+				.append(this.getSegurado() == null ? "" : this.getSegurado().toString()).append("|")
 				.append("status: ")
-				.append(this.getStatus().getDescStatus() == null ? "" : this.getStatus().getDescStatus()).append("\r\n")
+				.append(this.getStatus().getDescStatus() == null ? "" : this.getStatus().getDescStatus()).append("|")
 				.append("telefoneCorretor: ")
-				.append(this.getTelefoneCorretor() == null ? "" : this.getTelefoneCorretor()).append("\r\n")
+				.append(this.getTelefoneCorretor() == null ? "" : this.getTelefoneCorretor()).append("|")
 				.append("tipoInspecao: ")
 				.append(this.getTipoInspecao().getDescTipoInspecao() == null ? ""
 						: this.getTipoInspecao().getDescTipoInspecao())
-				.append("\r\n").append("valorTotalRisco: ")
-				.append(this.getValorTotalRisco() == null ? "" : this.getValorTotalRisco()).append("\r\n")
+				.append("|").append("valorTotalRisco: ")
+				.append(this.getValorTotalRisco() == null ? "" : this.getValorTotalRisco()).append("|")
 				.append("coberturas: ")
-				.append(this.getCoberturas() == null ? "" : this.getCoberturas()).append("\r\n")
+				.append(this.getCoberturas() == null ? "" : this.getCoberturas()).append("|")
 				.append("vistoria: ").append(this.getVistoria() == null ? "" : this.getVistoria().toString())
-				.append("\r\n").append("revisoes: ").append("\r\n");
+				.append("|").append("revisoes: ").append("|");
 		if (this.getRevisaos() != null) {
 			for (Revisao rev : this.getRevisaos()) {
-				sb.append(rev.toString()).append("\r\n");
+				sb.append(rev.toString()).append("|");
 			}
 		}
-		sb.append("relatorios: ").append("\r\n");
+		sb.append("relatorios: ").append("|");
 		if (this.getRelatorios() != null) {
 			for (Relatorio rel : this.getRelatorios()) {
-				sb.append(rel.toString()).append("\r\n");
+				sb.append(rel.toString()).append("|");
 			}
 		}
-		sb.append("atividadesInformadas: ").append("\r\n");
+		sb.append("atividadesInformadas: ").append("|");
 		if (this.getInspecaoAtividadeInformada() != null) {
 			for (Atividade atv : this.getInspecaoAtividadeInformada()) {
-				sb.append(atv.getDescAtividade()).append("\r\n");
+				sb.append(atv.getDescAtividade()).append("|");
 			}
 		}
-		sb.append("atividadesApuradas: ").append("\r\n");
+		sb.append("atividadesApuradas: ").append("|");
 		if (this.getInspecaoAtividadeApurada() != null) {
 			for (Atividade atv : this.getInspecaoAtividadeApurada()) {
-				sb.append(atv.getDescAtividade()).append("\r\n");
+				sb.append(atv.getDescAtividade()).append("|");
 			}
 		}
-		sb.append("insercoesSistema: ").append("\r\n");
+		sb.append("insercoesSistema: ").append("|");
 		if (this.getInsercaoSistemas() != null) {
 			for (InsercaoSistema insercao : this.getInsercaoSistemas()) {
-				sb.append(insercao.toString()).append("\r\n");
+				sb.append(insercao.toString()).append("|");
 			}
 		}
-		sb.append("designacoes: ").append("\r\n");
+		sb.append("designacoes: ").append("|");
 		if (this.getDesignacoes() != null)
 			for (Designacao des : this.getDesignacoes()) {
-				sb.append(des.toString()).append("\r\n");
+				sb.append(des.toString()).append("|");
 			}
 		
-		sb.append("aprovacoesSistema: ").append("\r\n");
+		sb.append("aprovacoesSistema: ").append("|");
 		if (this.getAprovacaoSistemas() != null) {
 			for (AprovacaoSistema aprv : this.getAprovacaoSistemas()) {
-				sb.append(aprv.toString()).append("\r\n");
+				sb.append(aprv.toString()).append("|");
 			}
 		}
-		sb.append("agendamentos: ").append("\r\n");
+		sb.append("agendamentos: ").append("|");
 		if (this.getAgendamentos() != null) {
 			for (Agendamento agd : this.getAgendamentos()) {
 				sb.append(agd.toString());

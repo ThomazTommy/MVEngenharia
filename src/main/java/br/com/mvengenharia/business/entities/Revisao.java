@@ -126,5 +126,22 @@ public class Revisao implements Serializable {
 	public void setNaoConformidades(List<NaoConformidade> naoConformidades) {
 		this.naoConformidades = naoConformidades;
 	}
+	
+	@Override
+	public String toString(){
+		StringBuilder sb = new StringBuilder();
+		sb.append("dataFimRevisao: ").append(this.getDataFimRevisao() == null ? "" :this.getDataFimRevisao().toString()).append("|")
+		.append("dataInicioRevisao: ").append(this.getDataInicioRevisao() == null ? "" :this.getDataInicioRevisao().toString()).append("|")
+		.append("dataFuncionarioRevisor: ").append(this.getFuncionarioRevisor() == null ? "" :this.getFuncionarioRevisor().toString()).append("|")
+		.append("observacao: ").append(this.getObservacao() == null ? "" :this.getObservacao().toString()).append("|")
+		
+		.append("naoConformidades: ");
+		for(NaoConformidade nc : this.getNaoConformidades())
+		{
+			sb.append(nc.getDescNaoConformidade() == null ? "" : nc.getDescNaoConformidade()).append("|");
+		}
+		sb.append("ultimo: ").append(this.getUltimo());
+		return sb.toString();
+	}
 
 }

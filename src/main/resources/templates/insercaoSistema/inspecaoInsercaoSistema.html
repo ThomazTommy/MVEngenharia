@@ -36,7 +36,7 @@
 									th:if="${obj.dataHoraInsercao} != null and ${obj.ultimo} == true">
 
 									<button type="button" class="btn btn-success"
-										th:onClick="'executaAjaxGet(\'/insercaoSistema/iniciarNovaInsercaoSistema/' + ${inspecao.idInspecao} + '\', \'detalheInspecao\', \'\', \'\')'">
+										th:onClick="'perguntaInicioInsercao(' + ${inspecao.idInspecao} + ')'">
 										<i class="fa fa-check"></i><span
 											th:text="#{insercaoSistema.iniciarInsercao}"></span>
 									</button>
@@ -47,7 +47,8 @@
 									th:if="${obj.dataHoraInsercao} == null and ${obj.ultimo} == true">
 									<form role="form" class='usaAjax' action="#"
 										th:action="@{/insercaoSistema/} + ${inspecao.idInspecao}"
-										th:object="${insercaoSistema}" method="post">
+										th:object="${insercaoSistema}" method="post"
+										onSubmit="return false">
 
 										<fieldset>
 											<div class="row">
@@ -71,7 +72,7 @@
 												</div>
 
 												<button class="btn btn-default" type="submit" name="save"
-													onclick="formSubmitClick(this,'detalheInspecao')"
+													onclick="perguntaFimInsercao(this,'detalheInspecao')"
 													th:text="#{insercaoSistema.salvar}">Add Inspecao</button>
 
 											</div>
@@ -89,7 +90,7 @@
 					<p>Nenhuma insercao cadastrada</p>
 
 					<button type="button" class="btn btn-success"
-						th:onClick="'executaAjaxGet(\'/insercaoSistema/iniciarNovaInsercaoSistema/' + ${inspecao.idInspecao} + '\', \'detalheInspecao\', \'\', \'\')'">
+						th:onClick="'perguntaInicioInsercao(' + ${inspecao.idInspecao} + ')'">
 						<i class="fa fa-check"></i><span
 							th:text="#{insercaoSistema.iniciarInsercao}"></span>
 					</button>

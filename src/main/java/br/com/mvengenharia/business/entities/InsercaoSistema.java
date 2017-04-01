@@ -44,7 +44,7 @@ public class InsercaoSistema implements Serializable {
 
 	
 	
-	public boolean isUltimo() {
+	public boolean getUltimo() {
 		return ultimo;
 	}
 
@@ -95,5 +95,16 @@ public class InsercaoSistema implements Serializable {
 	public void setFuncionarioResponsavelInsercao(Funcionario funcionarioResponsavelInsercao) {
 		this.funcionarioResponsavelInsercao = funcionarioResponsavelInsercao;
 	}
+	
+	@Override
+	public String toString(){
+		StringBuilder sb = new StringBuilder();
+		sb.append("dataHoraInsercao: ").append(this.getDataHoraInsercao() == null ? "" :this.getDataHoraInsercao().toString()).append("|");
+		sb.append("dataHoraInsercaoSistemaCliente: ").append(this.getDataHoraInsercaoSistemaCliente() == null ? "" :this.getDataHoraInsercaoSistemaCliente().toString()).append("|");
+		sb.append("funcionarioResponsavelInsercao: ").append(this.getFuncionarioResponsavelInsercao().toString()).append("|");
+		sb.append("ultimo: ").append(this.getUltimo());		
+		return sb.toString();
+	}
+	
 
 }

@@ -97,4 +97,14 @@ public class CustoInspecao implements Serializable {
 		this.inspecao = inspecao;
 	}
 
+
+	@Override
+	public String toString(){
+		StringBuilder sb = new StringBuilder();
+		sb.append("custoAprovado: ").append(this.getCustoAprovado() == null ? "" :this.getCustoAprovado().toString()).append("|")
+		.append("custoInformado: ").append(this.getCustoInformado()).append("|")
+		.append("kmEfetivo: ").append(this.getKmEfetivo()).append("|")
+		.append("ValorDeslocamento: ").append(this.getValorDeslocamento() == null ? "" :this.getValorDeslocamento().toString());		
+		return sb.toString();
+	}
 }

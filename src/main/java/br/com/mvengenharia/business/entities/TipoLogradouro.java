@@ -64,26 +64,11 @@ private boolean situacao;
 		this.descTipoLogradouro = descTipoLogradouro;
 	}
 
-	//public List<Endereco> getEnderecos() {
-	//	return this.enderecos;
-	//}
-
-	//public void setEnderecos(List<Endereco> enderecos) {
-	//	this.enderecos = enderecos;
-	//}
-
-	//public Endereco addEndereco(Endereco endereco) {
-	//	getEnderecos().add(endereco);
-	//	endereco.setTipoLogradouro(this);
-
-	//	return endereco;
-	//}
-
-	//public Endereco removeEndereco(Endereco endereco) {
-	//	getEnderecos().remove(endereco);
-	//	endereco.setTipoLogradouro(null);
-
-	//	return endereco;
-	//}
+	@Override
+	public String toString(){
+		StringBuilder sb = new StringBuilder();
+		sb.append("descTipoLogradouro: ").append(this.getDescTipoLogradouro() == null ? "" :this.getDescTipoLogradouro().toString());		
+		return sb.toString();
+	}
 
 }

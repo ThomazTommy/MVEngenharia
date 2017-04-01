@@ -104,4 +104,12 @@ private boolean situacao;
 		this.tipoInspecaos = tipoInspecaos;
 	}
 	
+	@Override
+	public String toString(){
+		StringBuilder sb = new StringBuilder();
+		sb.append("descCliente: ").append(this.getDescCliente());
+		
+		return sb.toString();
+	}
+	
 }

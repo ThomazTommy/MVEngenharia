@@ -12,14 +12,14 @@
 				</div>
 				<div th:if="${inspecao.vistoria} == null">
 					<button class="btn btn-default" type="submit" name="save"
-						th:onClick="'executaAjaxGet(\'/vistoria/informaInicioInspecao/' + ${inspecao.idInspecao}+ '\',\'detalheInspecao\',\'\',\'\')'"
+						th:onClick="'perguntaInicioVistoria(' + ${inspecao.idInspecao} +')'"
 						th:text="#{inspecao.iniciarInspecao}">Add Inspecao</button>
 				</div>
 				<div th:if="${inspecao.vistoria} != null">
 					<dt th:text="#{inspecao.vistorias.dtInicioInspecao}">DtInicioInsp</dt>
 					<dd th:text="${{inspecao.vistoria.dtInicioInspecao}}">DtInicioInsp</dd>
 					<button th:if="${inspecao.status.idStatus} == 4" class="btn btn-default" type="submit" name="save"
-						th:onClick="'executaAjaxGet(\'/vistoria/informaInicioInspecao/' + ${inspecao.idInspecao}+ '\',\'detalheInspecao\',\'\',\'\')'"
+						th:onClick="'perguntaInicioVistoria(' + ${inspecao.idInspecao} +')'"
 						th:text="#{inspecao.reiniciarInspecao}">Add Inspecao</button>
 				</div>
 
@@ -36,11 +36,11 @@
 			<div class="panel-body">
 				<div th:if="${inspecao.vistoria.dtFimInspecao} == null">
 					<button class="btn btn-default" type="submit" name="save"
-						th:onClick="'executaAjaxGet(\'/vistoria/informaFimInspecao/' + ${inspecao.idInspecao} +'\',\'detalheInspecao\',\'\',\'\');'"
+						th:onClick="'perguntaFimVistoria(' + ${inspecao.idInspecao} +')'"
 						th:text="#{inspecao.finalizarInspecao}">Add Inspecao</button>
 					<br />
 					<button class="btn btn-default"
-						th:onClick="'executaAjaxGet(\'/vistoria/frustarInspecao/' + ${inspecao.idInspecao} +'\',\'detalheInspecao\',\'\',\'\');'"
+						th:onClick="'perguntaFrustrarVistoria(' + ${inspecao.idInspecao} +')'"
 						th:text="#{inspecao.frustrarInspecao}">Add Inspecao</button>
 				</div>
 				<div th:if="${inspecao.vistoria.dtFimInspecao} != null">

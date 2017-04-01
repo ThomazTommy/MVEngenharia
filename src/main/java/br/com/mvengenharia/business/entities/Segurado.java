@@ -84,19 +84,14 @@ public class Segurado implements Serializable {
 	public void setInspecaos(List<Inspecao> inspecaos) {
 		this.inspecaos = inspecaos;
 	}
-
-	public Inspecao addInspecao(Inspecao inspecao) {
-		getInspecaos().add(inspecao);
-		inspecao.setSegurado(this);
-
-		return inspecao;
-	}
-
-	public Inspecao removeInspecao(Inspecao inspecao) {
-		getInspecaos().remove(inspecao);
-		inspecao.setSegurado(null);
-
-		return inspecao;
+	
+	@Override
+	public String toString(){
+		StringBuilder sb = new StringBuilder();
+		sb.append("cpfCnpj: ").append(this.getCpfCnpj() == null ? "" :this.getCpfCnpj().toString()).append("|")
+		.append("nomeSegurado: ").append(this.getNomeSegurado() == null ? "" :this.getNomeSegurado().toString()).append("|")
+		.append("telefoneSegurado: ").append(this.getTelefoneSegurado() == null ? "" : this.getTelefoneSegurado().toString());		
+		return sb.toString();
 	}
 
 }

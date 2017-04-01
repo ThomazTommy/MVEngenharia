@@ -2,6 +2,7 @@ package br.com.mvengenharia.business.entities;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 
 /**
@@ -17,9 +18,10 @@ public class Cidade implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long idCidade;
 
+	@NotNull
 	private String nomeCidade;
 	
-	private boolean situacao;
+	private boolean situacao = true;
 	
 	public boolean getSituacao() {
 		return situacao;
@@ -33,10 +35,6 @@ public class Cidade implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="idEstado")
 	private Estado estado;
-
-	//bi-directional many-to-one association to Endereco
-	//@OneToMany(mappedBy="cidade")
-	//private List<Endereco> enderecos;
 
 	public Cidade() {
 	}
@@ -65,26 +63,12 @@ public class Cidade implements Serializable {
 		this.estado = estado;
 	}
 
-	//public List<Endereco> getEnderecos() {
-	//	return this.enderecos;
-	//}
-
-	//public void setEnderecos(List<Endereco> enderecos) {
-	//	this.enderecos = enderecos;
-	//}
-
-	//public Endereco addEndereco(Endereco endereco) {
-	//	getEnderecos().add(endereco);
-	//	endereco.setCidade(this);
-
-	//	return endereco;
-	//}
-
-	//public Endereco removeEndereco(Endereco endereco) {
-	//	getEnderecos().remove(endereco);
-	//	endereco.setCidade(null);
-
-	//	return endereco;
-	//}
-
+	@Override
+	public String toString(){
+		StringBuilder sb = new StringBuilder();
+		sb.append("nomeCidade: ").append(this.getNomeCidade());
+		
+		
+		return sb.toString();
+	}
 }

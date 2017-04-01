@@ -48,7 +48,7 @@ public class AprovacaoSistema implements Serializable {
 
 	
 	
-	public boolean isUltimo() {
+	public boolean getUltimo() {
 		return ultimo;
 	}
 
@@ -106,6 +106,17 @@ public class AprovacaoSistema implements Serializable {
 
 	public void setFuncionarioAprovador(Funcionario funcionarioAprovador) {
 		this.funcionarioAprovador = funcionarioAprovador;
+	}
+	
+
+	@Override
+	public String toString(){
+		StringBuilder sb = new StringBuilder();
+		sb.append("dataHoraAprovacao: ").append(this.getDataHoraAprovacao() == null ? "" :this.getDataHoraAprovacao().toString()).append("|");
+		sb.append("dataHoraAprovacaoSistemaCliente: ").append(this.getDataHoraAprovacaoSistemaCliente() == null ? "" :this.getDataHoraAprovacaoSistemaCliente().toString()).append("|");
+		sb.append("funcionarioAprovador: ").append(this.getFuncionarioAprovador().toString()).append("|");
+		sb.append("ultimo: ").append(this.getUltimo());		
+		return sb.toString();
 	}
 
 }

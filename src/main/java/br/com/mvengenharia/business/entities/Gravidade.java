@@ -54,4 +54,11 @@ private boolean situacao;
 		this.peso = peso;
 	}
 	
+	@Override
+	public String toString(){
+		StringBuilder sb = new StringBuilder();
+		sb.append("descGravidade: ").append(this.getDescGravidade() == null ? "" :this.getDescGravidade().toString()).append("|");	
+		return sb.toString();
+	}
+	
 }

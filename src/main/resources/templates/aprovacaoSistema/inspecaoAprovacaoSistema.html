@@ -37,7 +37,7 @@
 									th:if="${obj.dataHoraAprovacao} != null and ${obj.ultimo} == true">
 
 									<button type="button" class="btn btn-success"
-										th:onClick="'executaAjaxGet(\'/aprovacaoSistema/iniciarNovaAprovacaoSistema/' + ${inspecao.idInspecao} + '\', \'detalheInspecao\', \'\', \'\')'">
+										th:onClick="'perguntaInicioAprovacao(' + ${inspecao.idInspecao} + ')'">
 										<i class="fa fa-check"></i><span
 											th:text="#{aprovacaoSistema.iniciarAprovacao}"></span>
 									</button>
@@ -48,7 +48,8 @@
 									th:if="${obj.dataHoraAprovacao} == null and ${obj.ultimo} == true">
 									<form role="form" class='usaAjax' action="#"
 										th:action="@{/aprovacaoSistema/} + ${inspecao.idInspecao}"
-										th:object="${aprovacaoSistema}" method="post">
+										th:object="${aprovacaoSistema}" method="post"
+										onSubmit="return false">
 
 										<fieldset>
 											<div class="row">
@@ -73,7 +74,7 @@
 												</div>
 
 												<button class="btn btn-default" type="submit" name="save"
-													onclick="formSubmitClick(this,'detalheInspecao')"
+													onclick="perguntaFimAprovacao(this,'detalheInspecao')"
 													th:text="#{aprovacaoSistema.salvar}">Add Inspecao</button>
 
 											</div>
@@ -91,8 +92,8 @@
 					<p>Nenhuma aprovacao cadastrada</p>
 
 					<button type="button" class="btn btn-success"
-						th:onClick="'executaAjaxGet(\'/aprovacaoSistema/iniciarNovaAprovacaoSistema/' + ${inspecao.idInspecao} + '\', \'detalheInspecao\', \'\', \'\')'">
-						<i class="fa fa-check"></i><span
+							th:onClick="'perguntaInicioAprovacao(' + ${inspecao.idInspecao} + ')'">
+							<i class="fa fa-check"></i><span
 							th:text="#{aprovacaoSistema.iniciarAprovacao}"></span>
 					</button>
 

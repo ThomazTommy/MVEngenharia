@@ -42,5 +42,12 @@ private boolean situacao;
 	public void setDescTipoInspecao(String descTipoInspecao) {
 		this.descTipoInspecao = descTipoInspecao;
 	}
+	
+	@Override
+	public String toString(){
+		StringBuilder sb = new StringBuilder();
+		sb.append("descTipoInspecao: ").append(this.getDescTipoInspecao() == null ? "" :this.getDescTipoInspecao().toString());		
+		return sb.toString();
+	}
 
 }

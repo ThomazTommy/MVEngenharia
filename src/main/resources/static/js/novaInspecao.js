@@ -107,7 +107,7 @@ function loadDataTableNovaInspecao(urlDestino) {
 								},
 								{
 									data : 'status.descStatus',
-									visible : false
+									visible : true
 								},
 								{
 									data : 'fase.descFase',
@@ -140,9 +140,7 @@ function loadDataTableNovaInspecao(urlDestino) {
 									orderable : false,
 									searchable : false,
 									render : function(data, type, row) {
-										return '<a href="#" onclick = "executaAjaxGetNoReload(\'/inspecao/remover/'
-												+ row.idInspecao
-												+ '\',\'page-wrapper\',\'\',\'\',function(){$.getScript(\'/static/js/novaInspecao.js\')})"><span class="glyphicon glyphicon-remove"> </span></a>'
+										return '<a href="#" onclick = "perguntaRemoverInspecao(' + row.idInspecao + ')"><span class="glyphicon glyphicon-remove"> </span></a>'
 												+ '<span>  </span><a href="#" onclick = "executaAjaxGet(\'/inspecao/editar/'
 												+ row.idInspecao
 												+ '\',\'form-wrapper\',\'\',\'\')"><span class="glyphicon glyphicon-pencil"> </span></a>';

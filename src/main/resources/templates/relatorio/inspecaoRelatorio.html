@@ -46,7 +46,8 @@
 
 									<form role="form" class='usaAjax' action="#"
 										th:action="@{/relatorio/} + ${inspecao.idInspecao}"
-										th:object="${relatorio}" method="post">
+										th:object="${relatorio}" method="post"
+										onSubmit="return false">
 										<fieldset>
 											<div class="row">
 												<div class="col-lg-12">
@@ -85,7 +86,7 @@
 												</div>
 											</div>
 											<button class="btn btn-default" type="submit" name="save"
-												onclick="formSubmitClick(this,'detalheInspecao')"
+												onclick="perguntaFimRelatorio(this,'detalheInspecao')"
 												th:text="#{relatorio.salvar}">Add Inspecao</button>
 										</fieldset>
 									</form>
@@ -94,7 +95,7 @@
 						</div>
 						<button th:if="${obj.ultimo} == true" type="button"
 							class="btn btn-success"
-							th:onClick="'executaAjaxGet(\'/relatorio/iniciarNovoRelatorio/' + ${inspecao.idInspecao} + '\', \'detalheInspecao\', \'\', \'\')'">
+							th:onClick="'perguntaInicioRelatorio(' + ${inspecao.idInspecao} + ',\'detalheInsepcao\')' ">
 							<i class="fa fa-check"></i>Iniciar Novo Relatório
 						</button>
 
@@ -105,7 +106,7 @@
 					<p>Relatorios esta vazio</p>
 
 					<button type="button" class="btn btn-success"
-						th:onClick="'executaAjaxGet(\'/relatorio/iniciarNovoRelatorio/' + ${inspecao.idInspecao} + '\', \'detalheInspecao\', \'\', \'\')'">
+						th:onClick="'perguntaInicioRelatorio(' + ${inspecao.idInspecao} + ',\'detalheInsepcao\')' ">
 						<i class="fa fa-check"></i>Iniciar Novo Relatório
 					</button>
 

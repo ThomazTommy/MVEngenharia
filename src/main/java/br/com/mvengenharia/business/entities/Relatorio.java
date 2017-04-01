@@ -115,4 +115,20 @@ public class Relatorio implements Serializable {
 		this.naoConformidades = naoConformidades;
 	}
 
+	@Override
+	public String toString(){
+		StringBuilder sb = new StringBuilder();
+		sb.append("dataFimRelatorio: ").append(this.getDataFimRelatorio() == null ? "" :this.getDataFimRelatorio().toString()).append("|")
+		.append("dataInicioRelatorio: ").append(this.getDataInicioRelatorio() == null ? "" :this.getDataInicioRelatorio().toString()).append("|")
+		.append("dataFuncionarioRelator: ").append(this.getFuncionarioRelator() == null ? "" :this.getFuncionarioRelator().toString()).append("|")
+		.append("observacao: ").append(this.getObservacao() == null ? "" :this.getObservacao().toString()).append("|")
+		
+		.append("naoConformidades: ");
+		for(NaoConformidade nc : this.getNaoConformidades())
+		{
+			sb.append(nc.getDescNaoConformidade() == null ? "" : nc.getDescNaoConformidade()).append("|");
+		}
+		sb.append("ultimo: ").append(this.getUltimo());
+		return sb.toString();
+	}
 }

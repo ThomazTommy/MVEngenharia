@@ -91,12 +91,9 @@
 									
 								<div id = "coberturas" class="form-group">
 									<label for="coberturas"> <span th:text="#{inspecao.coberturas}">coberturas</span>
-									</label><br/> <select th:errorclass="fieldError" class="form-control multipleSelect"
-									th:field="*{coberturas}" multiple="multiple" >
-										<option th:each="cobertura : ${allCoberturas}"
-											th:value="${cobertura.idCobertura}"
-											th:text="${cobertura.descCobertura}">Atividade</option>
-									</select>
+									</label>
+									<input class="form-control" type="text"
+										th:field="*{coberturas}" th:errorclass="fieldError" />
 								</div>
 
 

@@ -146,5 +146,16 @@ public class Endereco implements Serializable {
 	public void setTipoLogradouro(TipoLogradouro tipoLogradouro) {
 		this.tipoLogradouro = tipoLogradouro;
 	}
+	
+	@Override
+	public String toString(){
+		StringBuilder sb = new StringBuilder();
+		sb.append("Endereco: ").append(this.getTipoLogradouro().toString())
+		.append(" ").append(this.getLogradouro()).append(" - ").append(this.getBairro() == null ? "":this.getBairro())
+		.append(" - ").append(this.getCidade().toString());
+		
+		
+		return sb.toString();
+	}
 
 }

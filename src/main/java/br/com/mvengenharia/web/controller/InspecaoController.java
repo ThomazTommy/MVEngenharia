@@ -5,8 +5,6 @@ import java.util.Date;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -18,7 +16,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import br.com.mvengenharia.business.entities.Atividade;
 import br.com.mvengenharia.business.entities.Cliente;
-import br.com.mvengenharia.business.entities.Cobertura;
 import br.com.mvengenharia.business.entities.Estado;
 import br.com.mvengenharia.business.entities.Fase;
 import br.com.mvengenharia.business.entities.Inspecao;
@@ -27,7 +24,6 @@ import br.com.mvengenharia.business.entities.TipoLogradouro;
 import br.com.mvengenharia.business.services.AtividadeService;
 import br.com.mvengenharia.business.services.CidadeService;
 import br.com.mvengenharia.business.services.ClienteService;
-import br.com.mvengenharia.business.services.CoberturaService;
 import br.com.mvengenharia.business.services.EstadoService;
 import br.com.mvengenharia.business.services.FaseService;
 import br.com.mvengenharia.business.services.HonorarioService;
@@ -63,9 +59,7 @@ public class InspecaoController {
 	@Autowired
 	private TipoLogradouroService tipoLogradouroService;
 
-	@Autowired
-	private CoberturaService coberturaService;
-	
+
 	@Autowired
 	private HonorarioService honorarioService;
 	
@@ -76,10 +70,7 @@ public class InspecaoController {
 		super();
 	}
 
-	@ModelAttribute("allCoberturas")
-	public Iterable<Cobertura> populateCoberturas() {
-		return this.coberturaService.findAll();
-	}
+	
 
 	@ModelAttribute("allAtividades")
 	public Iterable<Atividade> populateAtividades() {
@@ -241,7 +232,11 @@ public class InspecaoController {
 
 	@RequestMapping(value = "/inspecao/remover/{id}")
 	public String removeInspecao(@PathVariable Long id) {
-		this.inspecaoService.remove(id);
+		Inspecao insp = this.inspecaoService.findOne(id);
+		Status status = new Status();
+		status.setIdStatus(1L);
+		insp.setStatus(status);
+		this.inspecaoService.addOrUpdate(insp);
 		return "redirect:/inspecao";
 	}
 

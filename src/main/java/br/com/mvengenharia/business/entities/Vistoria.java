@@ -94,4 +94,14 @@ public class Vistoria implements Serializable {
 		this.funcionario = funcionario;
 	}
 
+	
+	@Override
+	public String toString(){
+		StringBuilder sb = new StringBuilder();
+		sb.append("dataHoraChegadaLocal: ").append(this.getDataHoraChegadaLocal() == null ? "" :this.getDataHoraChegadaLocal().toString()).append("|")
+		.append("dtFimInspecao: ").append(this.getDtFimInspecao() == null ? "" :this.getDtFimInspecao().toString()).append("|")
+		.append("dtInicioInspecao: ").append(this.getDtInicioInspecao() == null ? "" :this.getDtInicioInspecao().toString()).append("|")
+		.append("Funcionario: ").append(this.getFuncionario() == null ? "" : this.getFuncionario().toString()).append("|");		
+		return sb.toString();
+	}
 }

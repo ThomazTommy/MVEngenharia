@@ -41,7 +41,7 @@ public class Designacao implements Serializable {
 	@JoinColumn(name = "cpfDesignador")
 	private Funcionario funcionarioDesignador;
 
-	public boolean isUltima() {
+	public boolean getUltima() {
 		return ultima;
 	}
 
@@ -92,4 +92,14 @@ public class Designacao implements Serializable {
 		this.inspecao = inspecao;
 	}
 
+	@Override
+	public String toString(){
+		StringBuilder sb = new StringBuilder();
+		sb.append("dataDesignacao: ").append(this.getDataDesignacao() == null ? "" :this.getDataDesignacao().toString()).append("|");
+		sb.append("funcionarioDesignado: ").append(this.getFuncionarioDesignado() == null ? "" :this.getFuncionarioDesignado().toString()).append("|");
+		sb.append("FuncionarioDesignador: ").append(this.getFuncionarioDesignador() == null ? "" : this.getFuncionarioDesignador().toString()).append("|");
+		sb.append("ultima: ").append(this.getUltima());		
+		return sb.toString();
+	}
+	
 }

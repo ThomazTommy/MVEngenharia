@@ -1,6 +1,6 @@
 
-
-function executaAjaxGetNoReload(urlChamada, divDestino, preExecute, posExecute, afterFunction) {
+function executaAjaxGetNoReload(urlChamada, divDestino, preExecute, posExecute,
+		afterFunction) {
 	$.ajax({
 		type : "GET",
 		url : urlChamada,
@@ -11,7 +11,7 @@ function executaAjaxGetNoReload(urlChamada, divDestino, preExecute, posExecute, 
 			var x = document.getElementById(divDestino);
 			x.innerHTML = response;
 			afterFunction();
-		
+
 		},
 		complete : function() {
 			posExecute;
@@ -31,7 +31,7 @@ function executaAjaxGet(urlChamada, divDestino, preExecute, posExecute) {
 		success : function(response) {
 			// we have the response
 			var x = document.getElementById(divDestino);
-			x.innerHTML = response;			
+			x.innerHTML = response;
 		},
 		complete : function() {
 			posExecute;
@@ -55,11 +55,11 @@ function executaAjaxPost(divDestino, formOrigem, preExecute, posExecute) {
 		contentType : false,
 		beforeSend : preExecute,
 		success : function(response) {
-			document.getElementById(divDestino).innerHTML = response;			
+			document.getElementById(divDestino).innerHTML = response;
 		},
 		complete : function() {
 			posExecute;
-			afterReload();			
+			afterReload();
 		},
 		error : function(xhr) {
 			alert("Um erro ocorreu: " + xhr.status + " - " + xhr.statusText);
@@ -68,8 +68,8 @@ function executaAjaxPost(divDestino, formOrigem, preExecute, posExecute) {
 	return false;
 }
 
-
-function executaAjaxPostNoReload(divDestino, formOrigem, preExecute, posExecute, afterFunction) {
+function executaAjaxPostNoReload(divDestino, formOrigem, preExecute,
+		posExecute, afterFunction) {
 	var data = new FormData(formOrigem[0]);
 
 	$.ajax({
@@ -81,10 +81,10 @@ function executaAjaxPostNoReload(divDestino, formOrigem, preExecute, posExecute,
 		beforeSend : preExecute,
 		success : function(response) {
 			document.getElementById(divDestino).innerHTML = response;
-			afterFunction();			
+			afterFunction();
 		},
 		complete : function() {
-			posExecute;		
+			posExecute;
 		},
 		error : function(xhr) {
 			alert("Um erro ocorreu: " + xhr.status + " - " + xhr.statusText);
@@ -96,7 +96,6 @@ function executaAjaxPostNoReload(divDestino, formOrigem, preExecute, posExecute,
 function menuOnClick(destino) {
 	executaAjaxGet(destino, 'page-wrapper', '', previnePadrao());
 }
-
 
 function atualizaListaCidades(enderecoGet, parametroGet, destino, funcaoAntes,
 		funcaoDepois) {
@@ -203,15 +202,15 @@ function formSubmitClickNoReload(e, destino, afterFunction) {
 
 function afterReload() {
 	$('.multipleSelect').multiselect({
-		maxHeight: 200,
-		dropUp: true,
+		maxHeight : 200,
+		dropUp : true,
 		buttonWidth : '100%',
 		enableCaseInsensitiveFiltering : true,
 		nonSelectedText : 'Selecione',
 		allSelectedText : 'Todos...',
 		includeSelectAllOption : true,
 		selectAllText : "Todos"
-		
+
 	});
 	$('.usaCalendario').datetimepicker({
 		format : 'd/m/Y H:i:s'
@@ -300,7 +299,6 @@ function somenteNumeros(e) {
 	}
 }
 
-
 function menuListaInspecoesPorFuncionarioDesignado(destino, idTabela) {
 	$.ajax({
 		type : "GET",
@@ -310,7 +308,7 @@ function menuListaInspecoesPorFuncionarioDesignado(destino, idTabela) {
 			// we have the response
 			var x = document.getElementById('page-wrapper');
 			x.innerHTML = response;
-			loadDataTableStatic(idTabela);			
+			loadDataTableStatic(idTabela);
 		},
 		complete : previnePadrao(),
 		error : function(xhr) {
@@ -320,14 +318,13 @@ function menuListaInspecoesPorFuncionarioDesignado(destino, idTabela) {
 
 }
 
-
 function loadDataTableStatic(idTabela) {
-    $('#' + idTabela).DataTable({
+	$('#' + idTabela).DataTable({
 		language : {
 			'url' : '/static/js/Portuguese.json'
 		}
-		
-    });
+
+	});
 }
 
 function menuListaInspecoes(destino, urlDestino, functionLink) {
@@ -340,7 +337,7 @@ function menuListaInspecoes(destino, urlDestino, functionLink) {
 			// we have the response
 			var x = document.getElementById('page-wrapper');
 			x.innerHTML = response;
-			loadDataTable(urlDestino, functionLink);			
+			loadDataTable(urlDestino, functionLink);
 		},
 		complete : previnePadrao(),
 		error : function(xhr) {
@@ -360,7 +357,7 @@ function menuListaInspecoesPosInspecao(destino, urlDestino, functionLink) {
 			// we have the response
 			var x = document.getElementById('page-wrapper');
 			x.innerHTML = response;
-			loadDataTablePosInspecao(urlDestino, functionLink);			
+			loadDataTablePosInspecao(urlDestino, functionLink);
 		},
 		complete : previnePadrao(),
 		error : function(xhr) {
@@ -385,8 +382,7 @@ function loadDataTable(urlDestino, functionLink) {
 								return JSON.stringify(d);
 							}
 						},
-						serverSide : true,						
-						
+						serverSide : true,
 
 						columns : [
 								{
@@ -411,7 +407,8 @@ function loadDataTable(urlDestino, functionLink) {
 										return new Date(
 												row.dtSolicitacaoInspecao)
 												.toLocaleString();
-									}
+									},
+									visible : false
 								},
 								{
 									data : 'dtLimite',
@@ -443,13 +440,16 @@ function loadDataTable(urlDestino, functionLink) {
 										}
 										return '';
 									}
-								}, {
+								},
+								{
 									data : 'status.descStatus',
 									visible : false
-								}, {
+								},
+								{
 									data : 'fase.descFase',
 									visible : true
-								}, {
+								},
+								{
 									data : 'linkscolumn',
 									orderable : false,
 									searchable : false,
@@ -465,12 +465,10 @@ function loadDataTable(urlDestino, functionLink) {
 								}, {
 									data : 'endereco.cidade.nomeCidade',
 									visible : false
-								}],
-								"order": [[ 0, "desc" ]]
+								} ],
+						"order" : [ [ 0, "desc" ] ]
 					});
 }
-
-
 
 function loadDataTablePosInspecao(urlDestino, functionLink) {
 	var table = $('table#sample')
@@ -487,12 +485,14 @@ function loadDataTablePosInspecao(urlDestino, functionLink) {
 								return JSON.stringify(d);
 							}
 						},
-						serverSide : true,						
-						
+						serverSide : true,
 
 						columns : [
 								{
 									data : 'idInspecao'
+								},
+								{
+									data : 'numInspecaoCliente'
 								},
 								{
 									data : 'dtAgendada',
@@ -510,7 +510,8 @@ function loadDataTablePosInspecao(urlDestino, functionLink) {
 										return new Date(
 												row.dtSolicitacaoInspecao)
 												.toLocaleString();
-									}
+									},
+									visible : false
 								},
 								{
 									data : 'dtLimite',
@@ -536,17 +537,22 @@ function loadDataTablePosInspecao(urlDestino, functionLink) {
 													+ " "
 													+ row.endereco.numero
 													+ " - "
+													+ row.endereco.bairro
+													+ " - "
 													+ row.endereco.cidade.nomeCidade;
 										}
 										return '';
 									}
-								}, {
+								},
+								{
 									data : 'status.descStatus',
-									visible : true
-								}, {
+									visible : false
+								},
+								{
 									data : 'fase.descFase',
 									visible : true
-								}, {
+								},
+								{
 									data : 'funcionarioVistoriador.nomeFuncionario',
 									render : function(data, type, row) {
 										if (row.funcionarioVistoriador)
@@ -555,12 +561,13 @@ function loadDataTablePosInspecao(urlDestino, functionLink) {
 											return 'Não Preenchido';
 									},
 									visible : true
-								},{
+								},
+								{
 									data : 'dtVistoria',
 									render : function(data, type, row) {
 										if (row.dtVistoria)
 											return new Date(row.dtVistoria)
-										.toLocaleString();
+													.toLocaleString();
 										else
 											return 'Não Preenchido';
 									},
@@ -571,8 +578,7 @@ function loadDataTablePosInspecao(urlDestino, functionLink) {
 									orderable : false,
 									searchable : false,
 									render : functionLink
-										
-									
+
 								},
 								{
 									data : 'endereco.bairro',
@@ -584,18 +590,16 @@ function loadDataTablePosInspecao(urlDestino, functionLink) {
 								}, {
 									data : 'endereco.cidade.nomeCidade',
 									visible : false
-								}],
-								"order": [[ 0, "desc" ]]
+								} ],
+						"order" : [ [ 0, "desc" ] ]
 					});
 }
-
 
 function inspecionarLink(data, type, row) {
 	return '<a href="#" onclick = "executaAjaxGet(\'/vistoria/inspecaoInicioFimCustos/'
 			+ row.idInspecao
 			+ '\',\'detalheInspecao\',\'\',\'\')"><span class="glyphicon glyphicon-calendar"> </span></a>';
 }
-
 
 function detalheLink(data, type, row) {
 	return '<a href="#" onclick = "executaAjaxGet(\'/inspecao/detalheInspecao/'
@@ -615,13 +619,11 @@ function relatorioLink(data, type, row) {
 			+ '\',\'detalheInspecao\',\'\',\'\')"><span class="glyphicon glyphicon-calendar"> </span></a>';
 }
 
-
 function revisaoLink(data, type, row) {
 	return '<a href="#" onclick = "executaAjaxGet(\'/revisao/'
 			+ row.idInspecao
 			+ '\',\'detalheInspecao\',\'\',\'\')"><span class="glyphicon glyphicon-calendar"> </span></a>';
 }
-
 
 function insercaoSistemaLink(data, type, row) {
 	return '<a href="#" onclick = "executaAjaxGet(\'/insercaoSistema/'
@@ -629,17 +631,148 @@ function insercaoSistemaLink(data, type, row) {
 			+ '\',\'detalheInspecao\',\'\',\'\')"><span class="glyphicon glyphicon-calendar"> </span></a>';
 }
 
-
 function aprovacaoSistemaLink(data, type, row) {
 	return '<a href="#" onclick = "executaAjaxGet(\'/aprovacaoSistema/'
 			+ row.idInspecao
 			+ '\',\'detalheInspecao\',\'\',\'\')"><span class="glyphicon glyphicon-calendar"> </span></a>';
 }
 
-
 function custoInspecaoLink(data, type, row) {
 	return '<a href="#" onclick = "executaAjaxGet(\'/custoInspecao/detalheInspecao/'
 			+ row.idInspecao
 			+ '\',\'detalheInspecao\',\'\',\'\')"><span class="glyphicon glyphicon-calendar"> </span></a>';
+}
+
+function perguntaInicioRelatorio(idInspecao)
+{
+	var r = confirm("Deseja realmente iniciar o Relatório?");
+	if (r == true) {
+		executaAjaxGet('/relatorio/iniciarNovoRelatorio/' + idInspecao, 'detalheInspecao', '' , '');
+	} else {
+	    return false;
+	}
+}
+
+
+function perguntaFimRelatorio(obj, destino)
+{
+	var r = confirm("Deseja realmente finalizar o Relatório?");
+	if (r == true) {
+		formSubmitClick(obj,destino);
+	} else {
+		return false;
+	}
+}
+
+
+function perguntaInicioRevisao(idInspecao)
+{
+	var r = confirm("Deseja realmente iniciar a Revisão?");
+	if (r == true) {
+		executaAjaxGet('/revisao/iniciarNovaRevisao/' + idInspecao, 'detalheInspecao', '' , '');
+	} else {
+	    return false;
+	}
+}
+
+
+function perguntaFimRevisao(obj, destino)
+{
+	var r = confirm("Deseja realmente finalizar a Revisão?");
+	if (r == true) {
+		formSubmitClick(obj,destino);
+	} else {
+		return false;
+	}
+}
+
+
+function perguntaInicioVistoria(idInspecao)
+{
+	var r = confirm("Deseja realmente iniciar a Inspeção?");
+	if (r == true) {
+		executaAjaxGet('/vistoria/informaInicioInspecao/' + idInspecao, 'detalheInspecao', '' , '');
+	} else {
+	    return false;
+	}
+}
+
+
+
+function perguntaFimVistoria(idInspecao)
+{
+	var r = confirm("Deseja realmente finalizar a Inspeção?");
+	if (r == true) {
+		executaAjaxGet('/vistoria/informaFimInspecao/' + idInspecao, 'detalheInspecao', '' , '');
+	} else {
+	    return false;
+	}
+}
+
+
+
+function perguntaFrustrarVistoria(idInspecao)
+{
+	var r = confirm("Deseja realmente frustrar a Inspeção?");
+	if (r == true) {
+		executaAjaxGet('/vistoria/frustarInspecao/' + idInspecao, 'detalheInspecao', '' , '');
+	} else {
+	    return false;
+	}
+}
+
+
+function perguntaInicioAprovacao(idInspecao)
+{
+	var r = confirm("Deseja realmente iniciar a aprovação da Inspeção?");
+	if (r == true) {
+		executaAjaxGet('/aprovacaoSistema/iniciarNovaAprovacaoSistema/' + idInspecao, 'detalheInspecao', '' , '');
+	} else {
+	    return false;
+	}
+}
+
+
+function perguntaFimAprovacao(obj, destino)
+{
+	var r = confirm("Deseja realmente aprovar a Inspeção?");
+	if (r == true) {
+		formSubmitClick(obj,destino);
+	} else {
+		return false;
+	}
+}
+
+
+function perguntaInicioInsercao(idInspecao)
+{
+	var r = confirm("Deseja realmente iniciar a inserção da Inspeção?");
+	if (r == true) {
+		executaAjaxGet('/insercaoSistema/iniciarNovaInsercaoSistema/' + idInspecao, 'detalheInspecao', '' , '');
+	} else {
+	    return false;
+	}
+}
+
+
+function perguntaFimInsercao(obj, destino)
+{
+	var r = confirm("Deseja realmente inserir a Inspeção?");
+	if (r == true) {
+		formSubmitClick(obj,destino);
+	} else {
+		return false;
+	}
+}
+
+
+function perguntaRemoverInspecao(idInspecao)
+{
+	var r = confirm("Deseja realmente remover a Inspeção de nº " + idInspecao + " ?");
+	if (r == true) {
+		executaAjaxGetNoReload('/inspecao/remover/' + idInspecao ,'page-wrapper','','',function(){$.getScript('/static/js/novaInspecao.js')})
+	} else {
+	    return false;
+	}
 }
 

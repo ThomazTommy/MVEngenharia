@@ -63,5 +63,12 @@ public class Fase implements Serializable {
 	public void setDescFase(String descFase) {
 		this.descFase = descFase;
 	}
+	
+	@Override
+	public String toString(){
+		StringBuilder sb = new StringBuilder();
+		sb.append("descFase: ").append(this.getDescFase() == null ? "" :this.getDescFase().toString());		
+		return sb.toString();
+	}
 
 }

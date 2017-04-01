@@ -166,14 +166,22 @@ public class Agendamento implements Serializable {
 	@Override
 	public String toString(){
 		StringBuilder sb = new StringBuilder();
-		sb.append("dtAgendamento - ").append(this.getDtAgendamento().toString())
-		.append(" dtAgendada - ").append(this.getDtAgendada().toString())
-		.append(" dtConfirmacao - ").append(this.getDtConfirmacao().toString())
-		.append(" cpfAgendador - ").append(this.getFuncionario().getCpf())
-		.append(" cpfConfirmador - ").append(this.getFuncionarioConfirmacao().getCpf())
-		.append(" nomeContato - ").append(this.getNomeContato())
-		.append(" observacoes - ").append(this.getObservacoes())
-		.append(" telefoneContato - ").append(this.getTelefoneContato())
+		sb.append("dtAgendamento - ").append(this.dtAgendamento == null ? "" : this.getDtAgendamento().toString())
+		.append("|")
+		.append(" dtAgendada - ").append(this.getDtAgendada() == null ? "" : this.getDtAgendada().toString())
+		.append("|")
+		.append(" dtConfirmacao - ").append(this.getDtConfirmacao() == null ? "" : this.getDtConfirmacao().toString())
+		.append("|")
+		.append(" Agendador - ").append(this.getFuncionario() == null ? "" : this.getFuncionario().toString())
+		.append("|")
+		.append(" Confirmador - ").append(this.getFuncionarioConfirmacao() == null ? "" : this.getFuncionarioConfirmacao().toString())
+		.append("|")
+		.append(" nomeContato - ").append(this.getNomeContato() == null ? "" : this.getNomeContato())
+		.append("|")
+		.append(" observacoes - ").append(this.getObservacoes() == null ? "" : this.getObservacoes())
+		.append("|")
+		.append(" telefoneContato - ").append(this.getTelefoneContato() == null ? "" : this.getTelefoneContato())
+		.append("|")
 		.append(" ultimo - ").append(this.getUltimo());		
 		return sb.toString();
 	}

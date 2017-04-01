@@ -63,5 +63,13 @@ private boolean situacao;
 	public void setSiglaEstado(String siglaEstado) {
 		this.siglaEstado = siglaEstado;
 	}
+	
+	@Override
+	public String toString(){
+		StringBuilder sb = new StringBuilder();
+		sb.append("nomeEstado: ").append(this.getNomeEstado() == null ? "" :this.getNomeEstado().toString()).append("|")
+		.append("siglaEstado: ").append(this.getSiglaEstado() == null ? "" :this.getSiglaEstado().toString());			
+		return sb.toString();
+	}
 
 }

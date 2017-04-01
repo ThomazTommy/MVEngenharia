@@ -44,4 +44,11 @@ private boolean situacao;
 		this.descStatus = descStatus;
 	}
 
+	
+	@Override
+	public String toString(){
+		StringBuilder sb = new StringBuilder();
+		sb.append("descStatus: ").append(this.getDescStatus() == null ? "" :this.getDescStatus().toString());		
+		return sb.toString();
+	}
 }

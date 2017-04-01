@@ -57,4 +57,11 @@ private boolean situacao;
 		this.gravidade = gravidade;
 	}
 
+	@Override
+	public String toString(){
+		StringBuilder sb = new StringBuilder();
+		sb.append("descNaoConformidade: ").append(this.getDescNaoConformidade() == null ? "" :this.getDescNaoConformidade().toString());	
+		return sb.toString();
+	}
+	
 }

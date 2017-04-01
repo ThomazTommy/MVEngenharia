@@ -21,7 +21,7 @@ public class TipoLogradouroService {
     }  
         
     public Iterable<TipoLogradouro> findAll() {
-        return this.tipoLogradouroRepository.findAll();
+        return this.tipoLogradouroRepository.findAllAtivo();
     }    
       
     public void addOrUpdate(final TipoLogradouro tipoLogradouro) {
@@ -31,5 +31,9 @@ public class TipoLogradouroService {
     public void remove(final Long id){
     	this.tipoLogradouroRepository.delete(id);
     }
+
+	public TipoLogradouro findOne(Long id) {		
+		return this.tipoLogradouroRepository.findOne(id);
+	}
     
 }

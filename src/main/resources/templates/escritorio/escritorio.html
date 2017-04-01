@@ -9,9 +9,10 @@
 						<thead>
 							<tr>
 								<th th:text="#{escritorio.idEscritorio}">Id</th>
-								<th th:text="#{escritorio.descEscritorio}">Descrição</th>
+								<th th:text="#{escritorio.descEscritorio}">Descriï¿½ï¿½o</th>
 								<th th:text="#{escritorio.endereco}">Endereco</th>								
 								<th>Remover</th>
+								<th>Editar</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -22,6 +23,9 @@
 								<td><a href="#"
 									th:onclick="'executaAjaxGet(\'/escritorio/remover/'+ ${ass.idEscritorio} + '\',\'page-wrapper\',\'\',\'\');'"><span
 										class="glyphicon glyphicon-remove"></span></a></td>
+										<td><a href="#"
+									th:onclick="'executaAjaxGet(\'/escritorio/editar/'+ ${ass.idEscritorio} + '\',\'page-wrapper\',\'\',\'\');'"><span
+										class="glyphicon glyphicon-pencil"></span></a></td>
 
 							</tr>
 						</tbody>
@@ -45,6 +49,7 @@
 							Incorretos</li>
 					</ul>
 					<div class="form-group">
+					<input type="hidden" th:field="*{idEscritorio}"/>
 						<label for="nomeEscritorio"> <span
 							th:text="#{escritorio.descEscritorio}">descEscritorio</span>
 						</label> <input class="form-control" type="text" th:field="*{descEscritorio}"
@@ -106,10 +111,24 @@
 								th:value="${obj.idCidade}" th:text="${obj.nomeCidade}">Cidade</option>
 						</select>
 					</div>
-										
+					<div class="form-group">
+						<table class="table semBorda">
+							<tr>
+								<td><label th:for="${#ids.next('escritorio')}"><span
+										th:text="#{escritorio.situacao}">Situacao</span></label></td>
+							</tr>
+							<tr>
+								<td><label><input type="radio"
+										th:field="*{situacao}" value="true" /><span
+										th:text="#{bool.true}"> </span></label></td>
+								<td><label><input type="radio"
+										th:field="*{situacao}" value="false" /><span
+										th:text="#{bool.false}"> </span></label></td>
+							</tr>
+						</table>
+					</div>										
 						<button class="btn btn-default" type="submit" name="save" onclick="formSubmitClick(this,'page-wrapper')"
-							th:text="#{escritorio.salvar}">Add Escritorio</button>
-					
+							th:text="#{escritorio.salvar}">Add Escritorio</button>					
 				</fieldset>
 			</form>
 		</div>

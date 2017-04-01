@@ -30,7 +30,10 @@ public class TipoLogradouroController {
    
     
     @RequestMapping("/tipoLogradouro")
-    public String showTipoLogradouro(final TipoLogradouro tipoLogradouro) {
+    public String showTipoLogradouro(ModelMap model) {
+    	TipoLogradouro tl = new TipoLogradouro();
+    	tl.setSituacao(true);
+    	model.addAttribute("tipoLogradouro", tl);
           return "tipoLogradouro/tipoLogradouro";
     }      
     
@@ -44,9 +47,18 @@ public class TipoLogradouroController {
         return "redirect:/tipoLogradouro";
     } 
     
+    @RequestMapping(value="/tipoLogradouro/editar/{id}")
+    public String editarTipoLogradouro(@PathVariable Long id, ModelMap model) {
+        TipoLogradouro tl = this.tipoLogradouroService.findOne(id);
+        model.addAttribute("tipoLogradouro", tl);
+        return "tipoLogradouro/tipoLogradouro";
+    }  
+    
     @RequestMapping(value="/tipoLogradouro/remover/{id}")
     public String saveTipoLogradouro(@PathVariable Long id) {
-        this.tipoLogradouroService.remove(id);
+        TipoLogradouro tl = this.tipoLogradouroService.findOne(id);
+        tl.setSituacao(false);
+        this.tipoLogradouroService.addOrUpdate(tl);
         return "redirect:/tipoLogradouro";
     }  
 

@@ -62,7 +62,10 @@ public class EscritorioController {
    
     
     @RequestMapping("/escritorio")
-    public String showEscritorio(final Escritorio escritorio) {
+    public String showEscritorio(ModelMap model) {
+    	Escritorio e = new Escritorio();
+    	e.setSituacao(true);
+    	model.addAttribute("escritorio", e);
           return "escritorio/escritorio";
     }      
     
@@ -75,6 +78,13 @@ public class EscritorioController {
         model.clear();
         return "redirect:/escritorio";
     } 
+    
+    @RequestMapping(value="/escritorio/editar/{id}")
+    public String editarEscritorio(@PathVariable Long id, ModelMap model) {
+        Escritorio e = this.escritorioService.findOne(id);
+        model.addAttribute("escritorio", e);
+        return "escritorio/escritorio";
+    }  
     
     @RequestMapping(value="/escritorio/remover/{id}")
     public String saveEscritorio(@PathVariable Long id) {

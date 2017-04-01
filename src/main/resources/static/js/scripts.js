@@ -768,7 +768,7 @@ function perguntaFimInsercao(obj, destino)
 
 function perguntaRemoverInspecao(idInspecao)
 {
-	var r = confirm("Deseja realmente remover a Inspeção de nº " + idInspecao + " ?");
+	var r = confirm("Deseja realmente cancelar a Inspeção de nº " + idInspecao + " ?");
 	if (r == true) {
 		executaAjaxGetNoReload('/inspecao/remover/' + idInspecao ,'page-wrapper','','',function(){$.getScript('/static/js/novaInspecao.js')})
 	} else {

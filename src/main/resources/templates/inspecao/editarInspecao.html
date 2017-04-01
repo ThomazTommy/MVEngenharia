@@ -78,21 +78,24 @@
 											th:value="${ramo.idRamo}" th:text="${ramo.descRamo}">Ramo</option>
 									</select>
 								</div>
-								
+
 								<div id="inspecaoAtividadeInformada" class="form-group">
-									<label for="inspecaoAtividadeInformada"> <span th:text="#{inspecao.inspecaoAtividadeInformada}">inspecaoAtividadeInformada</span>
-									</label><br/> <select th:errorclass="fieldError" class="form-control multipleSelect"
+									<label for="inspecaoAtividadeInformada"> <span
+										th:text="#{inspecao.inspecaoAtividadeInformada}">inspecaoAtividadeInformada</span>
+									</label><br /> <select th:errorclass="fieldError"
+										class="form-control multipleSelect"
 										th:field="*{inspecaoAtividadeInformada}" multiple="multiple">
 										<option th:each="atividade : ${allAtividades}"
-											th:value="${atividade.idAtividade}" th:text="${atividade.descAtividade}">Atividade</option>
+											th:value="${atividade.idAtividade}"
+											th:text="${atividade.descAtividade}">Atividade</option>
 									</select>
 								</div>
-								
-									
-								<div id = "coberturas" class="form-group">
-									<label for="coberturas"> <span th:text="#{inspecao.coberturas}">coberturas</span>
-									</label>
-									<input class="form-control" type="text"
+
+
+								<div id="coberturas" class="form-group">
+									<label for="coberturas"> <span
+										th:text="#{inspecao.coberturas}">coberturas</span>
+									</label> <input class="form-control" type="text"
 										th:field="*{coberturas}" th:errorclass="fieldError" />
 								</div>
 
@@ -129,16 +132,21 @@
 								</div>
 
 								<div class="form-group">
-									<table class="table semBorda">
-										<tr>
-											<td><label th:for="${#ids.next('roubo')}"><span
-													th:text="#{inspecao.roubo}">Roubo</span></label></td>
-										</tr>
-										<tr>
-											<td><label><input type="radio" th:field="*{roubo}" value="true"/><span th:text="#{bool.true}">  </span></label></td>
-											<td><label><input type="radio" th:field="*{roubo}" value="false" /><span th:text="#{bool.false}">  </span></label></td>
-										</tr>
-									</table>
+									<label for="status"> <span th:text="#{inspecao.status}">status</span>
+									</label> <select th:errorclass="fieldError" class="form-control"
+										th:field="*{status}">
+										<option th:each="status : ${allStatus}"
+											th:value="${status.idStatus}" th:text="${status.descStatus}">Status</option>
+									</select>
+								</div>
+
+								<div class="form-group">
+									<label for="fase"> <span th:text="#{inspecao.fase}">fase</span>
+									</label> <select th:errorclass="fieldError" class="form-control"
+										th:field="*{fase}">
+										<option th:each="fase : ${allFases}" th:value="${fase.idFase}"
+											th:text="${fase.descFase}">Fase</option>
+									</select>
 								</div>
 
 
@@ -147,7 +155,22 @@
 
 							<div class="col-lg-6">
 
-
+								<div class="form-group">
+									<table class="table semBorda">
+										<tr>
+											<td><label th:for="${#ids.next('roubo')}"><span
+													th:text="#{inspecao.roubo}">Roubo</span></label></td>
+										</tr>
+										<tr>
+											<td><label><input type="radio"
+													th:field="*{roubo}" value="true" /><span
+													th:text="#{bool.true}"> </span></label></td>
+											<td><label><input type="radio"
+													th:field="*{roubo}" value="false" /><span
+													th:text="#{bool.false}"> </span></label></td>
+										</tr>
+									</table>
+								</div>
 								<div class="form-group">
 									<label for="segurado.cpfCnpj"> <span
 										th:text="#{inspecao.segurado.cpfCnpj}">Cpf ou CNPJ</span>
@@ -249,42 +272,30 @@
 
 
 
+
+
+
 								<div class="form-group">
-									<label for="status"> <span th:text="#{inspecao.status}">status</span>
-									</label> <select th:errorclass="fieldError" class="form-control"
-										th:field="*{status}">
-										<option th:each="status : ${allStatus}"
-											th:value="${status.idStatus}" th:text="${status.descStatus}">Status</option>
-									</select>
+									<label for="inicioVistoria"> <span
+										th:text="#{inspecao.vistoria.dtInicioInspecao}">fase</span>
+									</label> <input class="form-control usaCalendario" type="text"
+										th:field="*{vistoria.dtInicioInspecao}"
+										th:errorclass="fieldError" />
 								</div>
-								
+
 								<div class="form-group">
-									<label for="fase"> <span th:text="#{inspecao.fase}">fase</span>
-									</label> <select th:errorclass="fieldError" class="form-control"
-										th:field="*{fase}">
-										<option th:each="fase : ${allFases}"
-											th:value="${fase.idFase}" th:text="${fase.descFase}">Fase</option>
-									</select>
+									<label for="fimVistoria"> <span
+										th:text="#{inspecao.vistoria.dtFimInspecao}">fase</span>
+									</label> <input class="form-control usaCalendario" type="text"
+										th:field="*{vistoria.dtFimInspecao}"
+										th:errorclass="fieldError" />
 								</div>
-								
-							
-								<div class="form-group">
-									<label for="inicioVistoria"> <span th:text="#{inspecao.vistoria.dtInicioInspecao}">fase</span>
-									</label> <input class="form-control" type="text"
-										th:field="*{vistoria.dtInicioInspecao}" th:errorclass="fieldError" />
-								</div>
-								
-								<div class="form-group">
-									<label for="fimVistoria"> <span th:text="#{inspecao.vistoria.dtFimInspecao}">fase</span>
-									</label> <input class="form-control" type="text"
-										th:field="*{vistoria.dtFimInspecao}" th:errorclass="fieldError" />
-								</div>
-								
+
 
 							</div>
 						</div>
-						
-						
+
+
 
 
 						<button class="btn btn-default" type="submit" name="save"

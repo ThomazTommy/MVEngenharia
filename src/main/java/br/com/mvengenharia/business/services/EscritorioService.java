@@ -21,7 +21,7 @@ public class EscritorioService {
     }  
         
     public Iterable<Escritorio> findAll() {
-        return this.escritorioRepository.findAll();
+        return this.escritorioRepository.findAllAtivo();
     }    
       
     public void addOrUpdate(final Escritorio escritorio) {
@@ -31,5 +31,10 @@ public class EscritorioService {
     public void remove(final Long id){
     	this.escritorioRepository.delete(id);
     }
+
+	public Escritorio findOne(Long id) {
+		
+		return this.escritorioRepository.findOne(id);
+	}
     
 }

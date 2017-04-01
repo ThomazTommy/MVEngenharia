@@ -114,7 +114,7 @@ public class AprovacaoSistema implements Serializable {
 		StringBuilder sb = new StringBuilder();
 		sb.append("dataHoraAprovacao: ").append(this.getDataHoraAprovacao() == null ? "" :this.getDataHoraAprovacao().toString()).append("|");
 		sb.append("dataHoraAprovacaoSistemaCliente: ").append(this.getDataHoraAprovacaoSistemaCliente() == null ? "" :this.getDataHoraAprovacaoSistemaCliente().toString()).append("|");
-		sb.append("funcionarioAprovador: ").append(this.getFuncionarioAprovador().toString()).append("|");
+		sb.append("funcionarioAprovador: ").append(this.getFuncionarioAprovador() == null ? "": this.getFuncionarioAprovador().toString()).append("|");
 		sb.append("ultimo: ").append(this.getUltimo());		
 		return sb.toString();
 	}

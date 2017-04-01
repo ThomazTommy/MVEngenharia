@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -19,6 +20,7 @@ import br.com.mvengenharia.business.entities.Cliente;
 import br.com.mvengenharia.business.entities.Estado;
 import br.com.mvengenharia.business.entities.Fase;
 import br.com.mvengenharia.business.entities.Inspecao;
+import br.com.mvengenharia.business.entities.Log;
 import br.com.mvengenharia.business.entities.Status;
 import br.com.mvengenharia.business.entities.TipoLogradouro;
 import br.com.mvengenharia.business.services.AtividadeService;
@@ -28,6 +30,7 @@ import br.com.mvengenharia.business.services.EstadoService;
 import br.com.mvengenharia.business.services.FaseService;
 import br.com.mvengenharia.business.services.HonorarioService;
 import br.com.mvengenharia.business.services.InspecaoService;
+import br.com.mvengenharia.business.services.LogService;
 import br.com.mvengenharia.business.services.StatusService;
 import br.com.mvengenharia.business.services.TipoLogradouroService;
 import br.com.mvengenharia.business.services.VistoriaService;
@@ -65,6 +68,9 @@ public class InspecaoController {
 	
 	@Autowired
 	private FaseService faseService;
+
+	@Autowired
+	private LogService logService;
 
 	public InspecaoController() {
 		super();
@@ -237,6 +243,10 @@ public class InspecaoController {
 		status.setIdStatus(1L);
 		insp.setStatus(status);
 		this.inspecaoService.addOrUpdate(insp);
+		this.logService.addOrUpdate(new Log("Removida inspecao de id nº " + id, 
+    			SecurityContextHolder.getContext().getAuthentication().getName(), 
+    			id, 
+    			new Date()));
 		return "redirect:/inspecao";
 	}
 

@@ -26,12 +26,17 @@
 							cliente</dt>
 						<dd th:text="${inspecao.numPropostaCliente}">num proposta
 							cliente</dd>
+							<dt th:text="#{inspecao.valorTotalRisco}">valor total risco</dt>
+							<dd th:text="${{inspecao.valorTotalRisco}}">valor total risco</dd>
 					</dl>
 				</div>
 				<div class="col-lg-4">
 					<dl>
-						<dt th:text="#{inspecao.valorTotalRisco}">valor total risco</dt>
-						<dd th:text="${{inspecao.valorTotalRisco}}">valor total risco</dd>
+						<dt th:text="#{inspecao.nomeContato}">qtd blococ</dt>
+						<dd th:text="${inspecao.nomeContato}">qtd blococ</dd>
+						<dt th:text="#{inspecao.telefoneContato}">qtd blococ</dt>
+						<dd th:text="${inspecao.telefoneContato}">qtd blococ</dd>						
+						
 						<dt th:text="#{inspecao.qtdBlocos}">qtd blococ</dt>
 						<dd th:text="${inspecao.qtdBlocos}">qtd blococ</dd>
 						<dt th:text="#{inspecao.roubo}">roubo</dt>
@@ -52,7 +57,7 @@
 						<dt th:text="#{inspecao.ramo}">ramo</dt>
 						<dd th:text="${inspecao.ramo.descRamo}">ramo</dd>
 						<dt th:text="#{inspecao.status}">status</dt>
-						<dd th:text="${inspecao.status.descStatus}">status</dd>				
+						<dd th:text="${inspecao.status.descStatus}">status</dd>
 						<dt th:text="#{inspecao.tipoInspecao}">tipo inspecao</dt>
 						<dd th:text="${inspecao.tipoInspecao.descTipoInspecao}">tipo
 							inspecao</dd>
@@ -71,9 +76,100 @@
 					</dl>
 				</div>
 			</div>
-
-
-
 		</div>
+		<div th:if="${inspecao.agendamentos} != null">
+			<div th:each="agendamento : ${inspecao.agendamentos}">
+				<div th:if="${agendamento.ultimo}">
+					<div class="panel panel-default col-lg-4">
+						<div class="panel-body">
+							<dl>
+								<dt>Último Agendamento:</dt>
+								<dd th:text="'Data agendada: ' + ${{agendamento.dtAgendada}}"></dd>
+								<!-- <dd th:text="'Nome Contato: ' + ${{agendamento.nomeContato}}"></dd>
+								<dd
+									th:text="'Telefone Contato: ' + ${{agendamento.telefoneContato}}"></dd> -->
+								<dd th:text="'Observações: ' + ${{agendamento.observacoes}}"></dd>
+							</dl>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<div th:if="${not #lists.isEmpty(inspecao.relatorios)}">
+			<div th:each="obj : ${inspecao.relatorios}">
+				<div th:if="${obj.ultimo}">
+					<div class="panel panel-default col-lg-4">
+
+						<div class="panel-body">
+							<dt th:text="#{relatorio.dataInicioRelatorio}"></dt>
+							<dd th:text="${{obj.dataInicioRelatorio}}"></dd>
+
+							<dt th:text="#{relatorio.funcionarioRelator}"></dt>
+							<dd th:text="${{obj.funcionarioRelator.nomeFuncionario}}"></dd>
+
+							<div th:if="${obj.dataFimRelatorio} != null">
+
+								<dt th:text="#{relatorio.dataFimRelatorio}"></dt>
+								<dd th:text="${{obj.dataFimRelatorio}}"></dd>
+
+								<dt th:text="#{relatorio.naoConformidades}"></dt>
+
+								<dd th:if="${#lists.isEmpty(obj.naoConformidades)}">Nenhuma
+									Não-Conformidade Cadastrada</dd>
+								<dd th:each="nc:${obj.naoConformidades}"
+									th:text="${nc.descNaoConformidade}"></dd>
+
+								<dt th:if="${obj.observacao} != null"
+									th:text="#{relatorio.observacao}"></dt>
+								<dd th:if="${obj.observacao} != null"
+									th:text="${obj.observacao}"></dd>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div th:if="${not #lists.isEmpty(inspecao.revisaos)}">
+			<div th:each="obj : ${inspecao.revisaos}">
+				<div th:if="${obj.ultimo}">
+					<div class="panel panel-default col-lg-4">
+
+						<div class="panel-body">
+							<dt th:text="#{revisao.dataInicioRevisao}"></dt>
+							<dd th:text="${{obj.dataInicioRevisao}}"></dd>
+
+							<dt th:text="#{revisao.funcionarioRevisor}"></dt>
+							<dd th:text="${{obj.funcionarioRevisor.nomeFuncionario}}"></dd>
+
+							<div th:if="${obj.dataFimRevisao} != null">
+
+								<dt th:text="#{revisao.dataFimRevisao}"></dt>
+								<dd th:text="${{obj.dataFimRevisao}}"></dd>
+
+								<dt th:text="#{revisao.naoConformidades}"></dt>
+
+								<dd th:if="${#lists.isEmpty(obj.naoConformidades)}">Nenhuma
+									Não-Conformidade Cadastrada</dd>
+								<dd th:each="nc:${obj.naoConformidades}"
+									th:text="${nc.descNaoConformidade}"></dd>
+
+								<dt th:if="${obj.observacao} != null"
+									th:text="#{revisao.observacao}"></dt>
+								<dd th:if="${obj.observacao} != null"
+									th:text="${obj.observacao}"></dd>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
+
 	</div>
 </div>
+

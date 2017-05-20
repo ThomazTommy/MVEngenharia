@@ -3,6 +3,8 @@ package br.com.mvengenharia.business.entities;
 import java.io.Serializable;
 import javax.persistence.*;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 @Entity
 @NamedQuery(name="TipoInspecao.findAll", query="SELECT t FROM TipoInspecao t")
 public class TipoInspecao implements Serializable {
@@ -45,9 +47,12 @@ private boolean situacao;
 	
 	@Override
 	public String toString(){
+		return ToStringBuilder.reflectionToString(this);
+/*
 		StringBuilder sb = new StringBuilder();
 		sb.append("descTipoInspecao: ").append(this.getDescTipoInspecao() == null ? "" :this.getDescTipoInspecao().toString());		
 		return sb.toString();
+		*/
 	}
 
 }

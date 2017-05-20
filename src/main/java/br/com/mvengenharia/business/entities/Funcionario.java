@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 
 @Entity
 @NamedQuery(name = "Funcionario.findAll", query = "SELECT i FROM Funcionario i")
@@ -93,10 +95,13 @@ public class Funcionario implements Serializable {
 	
 	@Override
 	public String toString(){
+		return ToStringBuilder.reflectionToString(this);
+/*
 		StringBuilder sb = new StringBuilder();
 		sb.append("cpf: ").append(this.getCpf() == null ? "" :this.getCpf().toString()).append("|")
 		.append("nomeFuncionario: ").append(this.getNomeFuncionario() == null ? "" :this.getNomeFuncionario().toString());	
 		return sb.toString();
+		*/
 	}
 	
 }

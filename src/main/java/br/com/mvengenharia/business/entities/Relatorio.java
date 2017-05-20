@@ -3,6 +3,8 @@ package br.com.mvengenharia.business.entities;
 import java.io.Serializable;
 import javax.persistence.*;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import java.util.Date;
@@ -117,6 +119,8 @@ public class Relatorio implements Serializable {
 
 	@Override
 	public String toString(){
+		return ToStringBuilder.reflectionToString(this);
+/*
 		StringBuilder sb = new StringBuilder();
 		sb.append("dataFimRelatorio: ").append(this.getDataFimRelatorio() == null ? "" :this.getDataFimRelatorio().toString()).append("|")
 		.append("dataInicioRelatorio: ").append(this.getDataInicioRelatorio() == null ? "" :this.getDataInicioRelatorio().toString()).append("|")
@@ -130,5 +134,6 @@ public class Relatorio implements Serializable {
 		}
 		sb.append("ultimo: ").append(this.getUltimo());
 		return sb.toString();
+		*/
 	}
 }

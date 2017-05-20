@@ -6,6 +6,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import java.util.List;
@@ -87,11 +89,14 @@ public class Segurado implements Serializable {
 	
 	@Override
 	public String toString(){
+		return ToStringBuilder.reflectionToString(this);
+/*
 		StringBuilder sb = new StringBuilder();
 		sb.append("cpfCnpj: ").append(this.getCpfCnpj() == null ? "" :this.getCpfCnpj().toString()).append("|")
 		.append("nomeSegurado: ").append(this.getNomeSegurado() == null ? "" :this.getNomeSegurado().toString()).append("|")
 		.append("telefoneSegurado: ").append(this.getTelefoneSegurado() == null ? "" : this.getTelefoneSegurado().toString());		
 		return sb.toString();
+		*/
 	}
 
 }

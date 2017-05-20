@@ -5,6 +5,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import java.util.Date;
@@ -165,7 +166,8 @@ public class Agendamento implements Serializable {
 	
 	@Override
 	public String toString(){
-		StringBuilder sb = new StringBuilder();
+		return ToStringBuilder.reflectionToString(this);
+		/*StringBuilder sb = new StringBuilder();
 		sb.append("dtAgendamento - ").append(this.dtAgendamento == null ? "" : this.getDtAgendamento().toString())
 		.append("|")
 		.append(" dtAgendada - ").append(this.getDtAgendada() == null ? "" : this.getDtAgendada().toString())
@@ -183,7 +185,7 @@ public class Agendamento implements Serializable {
 		.append(" telefoneContato - ").append(this.getTelefoneContato() == null ? "" : this.getTelefoneContato())
 		.append("|")
 		.append(" ultimo - ").append(this.getUltimo());		
-		return sb.toString();
+		return sb.toString();*/
 	}
 
 }

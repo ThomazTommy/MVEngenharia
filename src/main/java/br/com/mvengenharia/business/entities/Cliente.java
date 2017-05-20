@@ -2,6 +2,9 @@ package br.com.mvengenharia.business.entities;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 import java.util.List;
 
 
@@ -106,10 +109,13 @@ private boolean situacao;
 	
 	@Override
 	public String toString(){
+		return ToStringBuilder.reflectionToString(this);
+/*
 		StringBuilder sb = new StringBuilder();
 		sb.append("descCliente: ").append(this.getDescCliente());
 		
 		return sb.toString();
+		*/
 	}
 	
 }

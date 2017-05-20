@@ -3,6 +3,8 @@ package br.com.mvengenharia.business.entities;
 import java.io.Serializable;
 import javax.persistence.*;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import java.util.Date;
@@ -97,11 +99,14 @@ public class Vistoria implements Serializable {
 	
 	@Override
 	public String toString(){
+		return ToStringBuilder.reflectionToString(this);
+/*
 		StringBuilder sb = new StringBuilder();
 		sb.append("dataHoraChegadaLocal: ").append(this.getDataHoraChegadaLocal() == null ? "" :this.getDataHoraChegadaLocal().toString()).append("|")
 		.append("dtFimInspecao: ").append(this.getDtFimInspecao() == null ? "" :this.getDtFimInspecao().toString()).append("|")
 		.append("dtInicioInspecao: ").append(this.getDtInicioInspecao() == null ? "" :this.getDtInicioInspecao().toString()).append("|")
 		.append("Funcionario: ").append(this.getFuncionario() == null ? "" : this.getFuncionario().toString()).append("|");		
 		return sb.toString();
+		*/
 	}
 }

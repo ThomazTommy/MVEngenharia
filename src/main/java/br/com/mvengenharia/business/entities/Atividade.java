@@ -3,6 +3,8 @@ package br.com.mvengenharia.business.entities;
 import java.io.Serializable;
 import javax.persistence.*;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 
 /**
  * The persistent class for the Atividade database table.
@@ -50,9 +52,12 @@ public class Atividade implements Serializable {
 	
 	@Override
 	public String toString(){
+		return ToStringBuilder.reflectionToString(this);
+/*
 		StringBuilder sb = new StringBuilder();
 		sb.append("descAtividade: ").append(this.getDescAtividade() == null ? "" :this.getDescAtividade().toString());
 		return sb.toString();
+*/
 	}
 
 }

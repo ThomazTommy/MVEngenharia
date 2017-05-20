@@ -2,7 +2,10 @@
 <div class="row">
 	<div class="col-lg-12">
 		<div class="panel panel-default">
-			<div class="panel-heading"><span th:text="'Relatórios da Inspeção de Protocolo nº ' + ${inspecao.idInspecao}"></span></div>
+			<div class="panel-heading">
+				<span
+					th:text="'Relatórios da Inspeção de Protocolo nº ' + ${inspecao.idInspecao}"></span>
+			</div>
 			<div class="panel-body">
 				<div>
 					<ul th:if="${Erro} != null" class="errorlist">
@@ -11,7 +14,7 @@
 
 				</div>
 
-				<div th:if="${not #lists.isEmpty(inspecao.relatorios)}">					
+				<div th:if="${not #lists.isEmpty(inspecao.relatorios)}">
 					<div th:each="obj : ${inspecao.relatorios}">
 						<div class="panel panel-default">
 
@@ -46,8 +49,7 @@
 
 									<form role="form" class='usaAjax' action="#"
 										th:action="@{/relatorio/} + ${inspecao.idInspecao}"
-										th:object="${relatorio}" method="post"
-										onSubmit="return false">
+										th:object="${relatorio}" method="post" onSubmit="return false">
 										<fieldset>
 											<div class="row">
 												<div class="col-lg-12">
@@ -82,6 +84,33 @@
 															th:text="#{relatorio.observacao}">numInspecaoCliente</span>
 														</label> <input class="form-control" type="text"
 															th:field="*{observacao}" th:errorclass="fieldError" />
+													</div>
+
+													<div class="form-group">
+														<label for="qtdBlocos"> <span
+															th:text="#{inspecao.qtdBlocos}">nomeContato</span>
+														</label> <input class="form-control" type="number"
+															th:field="*{inspecao.qtdBlocos}" th:errorclass="fieldError" />
+													</div>
+
+													<div class="form-group">
+														<label for="observacao"> <span
+															th:text="#{inspecao.observacao}">nomeContato</span>
+														</label> <input class="form-control" type="text"
+															th:field="*{inspecao.observacao}" th:errorclass="fieldError" />
+													</div>
+
+													<div id="inspecaoAtividadeApurada" class="form-group">
+														<label for="inspecaoAtividadeApurada"> <span
+															th:text="#{inspecao.inspecaoAtividadeApurada}">inspecaoAtividadeInformada</span>
+														</label><br /> <select th:errorclass="fieldError"
+															class="form-control multipleSelect"
+															th:field="*{inspecao.inspecaoAtividadeApurada}"
+															multiple="multiple">
+															<option th:each="atividade : ${allAtividades}"
+																th:value="${atividade.idAtividade}"
+																th:text="${atividade.descAtividade}">Atividade</option>
+														</select>
 													</div>
 												</div>
 											</div>

@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 
 
 @Entity
@@ -66,9 +68,12 @@ public class Fase implements Serializable {
 	
 	@Override
 	public String toString(){
+		return ToStringBuilder.reflectionToString(this);
+/*
 		StringBuilder sb = new StringBuilder();
 		sb.append("descFase: ").append(this.getDescFase() == null ? "" :this.getDescFase().toString());		
 		return sb.toString();
+		*/
 	}
 
 }

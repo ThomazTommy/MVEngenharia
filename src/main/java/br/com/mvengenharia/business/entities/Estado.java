@@ -3,6 +3,8 @@ package br.com.mvengenharia.business.entities;
 import java.io.Serializable;
 import javax.persistence.*;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 
 /**
  * The persistent class for the Estado database table.
@@ -66,10 +68,14 @@ private boolean situacao;
 	
 	@Override
 	public String toString(){
+		return ToStringBuilder.reflectionToString(this);
+
+		/*
 		StringBuilder sb = new StringBuilder();
 		sb.append("nomeEstado: ").append(this.getNomeEstado() == null ? "" :this.getNomeEstado().toString()).append("|")
 		.append("siglaEstado: ").append(this.getSiglaEstado() == null ? "" :this.getSiglaEstado().toString());			
 		return sb.toString();
+		*/
 	}
 
 }

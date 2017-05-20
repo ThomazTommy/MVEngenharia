@@ -3,6 +3,8 @@ package br.com.mvengenharia.business.entities;
 import java.io.Serializable;
 import javax.persistence.*;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 
 @Entity
 @NamedQuery(name="Status.findAll", query="SELECT s FROM Status s")
@@ -47,8 +49,11 @@ private boolean situacao;
 	
 	@Override
 	public String toString(){
+		return ToStringBuilder.reflectionToString(this);
+/*
 		StringBuilder sb = new StringBuilder();
 		sb.append("descStatus: ").append(this.getDescStatus() == null ? "" :this.getDescStatus().toString());		
 		return sb.toString();
+		*/
 	}
 }

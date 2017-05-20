@@ -50,9 +50,7 @@ public class CustoInspecaoController {
     	}
     	custoInspecao.setCustoInformado(true);
     	custoInspecao.setInspecao(insp);
-    	insp.setQtdBlocos(inspecao.getQtdBlocos());
-    	insp.setObservacao(inspecao.getObservacao());
-    	insp.setInspecaoAtividadeApurada(inspecao.getInspecaoAtividadeApurada());
+    	
     	insp.setCustoInspecao(custoInspecao);
     	this.inspecaoService.addOrUpdate(insp);
     	model.clear();

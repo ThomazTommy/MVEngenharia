@@ -3,6 +3,8 @@ package br.com.mvengenharia.business.entities;
 import java.io.Serializable;
 import javax.persistence.*;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 
 @Entity
 @NamedQuery(name="Gravidade.findAll", query="SELECT g FROM Gravidade g")
@@ -56,9 +58,12 @@ private boolean situacao;
 	
 	@Override
 	public String toString(){
+		return ToStringBuilder.reflectionToString(this);
+/*
 		StringBuilder sb = new StringBuilder();
 		sb.append("descGravidade: ").append(this.getDescGravidade() == null ? "" :this.getDescGravidade().toString()).append("|");	
 		return sb.toString();
+		*/
 	}
 	
 }

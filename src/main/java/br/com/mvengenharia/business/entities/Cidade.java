@@ -4,6 +4,8 @@ import java.io.Serializable;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 
 /**
  * The persistent class for the Cidade database table.
@@ -65,10 +67,13 @@ public class Cidade implements Serializable {
 
 	@Override
 	public String toString(){
+		return ToStringBuilder.reflectionToString(this);
+/*
 		StringBuilder sb = new StringBuilder();
 		sb.append("nomeCidade: ").append(this.getNomeCidade());
 		
 		
 		return sb.toString();
+		*/
 	}
 }

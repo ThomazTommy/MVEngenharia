@@ -16,8 +16,8 @@
 						<dd
 							th:text="'Inspeção agendada por ' + ${agenda.funcionario.nomeFuncionario}"></dd>
 						<dd th:text="'Data Agendada - ' + ${{agenda.dtAgendada}}"></dd>
-						<dd th:text="'Nome do Contato - ' + ${agenda.nomeContato}"></dd>
-						<dd th:text="'Telefone do Contato - ' + ${agenda.telefoneContato}"></dd>
+						<!-- <dd th:text="'Nome do Contato - ' + ${agenda.nomeContato}"></dd>
+						<dd th:text="'Telefone do Contato - ' + ${agenda.telefoneContato}"></dd> -->
 						<dd th:text="'Data Agendamento - ' + ${{agenda.dtAgendamento}}"></dd>
 						<dd th:text="'Observações - ' + ${{agenda.observacoes}}"></dd>
 						<button
@@ -55,7 +55,7 @@
 									</label> <input class="form-control usaCalendario" type="text"
 										th:field="*{dtAgendada}" th:errorclass="fieldError" />
 								</div>
-								<div class="form-group">
+								<!-- <div class="form-group">
 									<label for="nomeContato"> <span
 										th:text="#{agendamento.nomeContato}">nomeContato</span>
 									</label> <input class="form-control" type="text"
@@ -68,7 +68,7 @@
 										onkeyup="mascararTelefone(this);"
 										onblur="mascararTelefone(this);" th:field="*{telefoneContato}"
 										th:errorclass="fieldError" />
-								</div>
+								</div> -->
 								<div class="form-group">
 									<label for="observacoes"> <span
 										th:text="#{agendamento.observacoes}">observacoes</span>

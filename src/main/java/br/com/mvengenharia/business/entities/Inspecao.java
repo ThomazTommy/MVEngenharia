@@ -8,6 +8,9 @@ import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -62,7 +65,13 @@ public class Inspecao implements Serializable {
 	// @Pattern(regexp = "\\([1-9]{2}\\) [2-9][0-9]{3,4}\\-[0-9]{4}", message =
 	// "O telefone deve estar no seguinte formato: (99) 99999-9999 ou (99)
 	// 9999-9999")
-	private String telefoneCorretor;
+	private String telefoneCorretor;	
+	
+	@NotNull
+	private String nomeContato;
+	
+	@Pattern(regexp = "\\([1-9]{2}\\) [2-9][0-9]{3,4}\\-[0-9]{4}", message = "O telefone deve estar no seguinte formato: (99) 99999-9999 ou (99) 9999-9999")
+	private String telefoneContato;
 
 	@NotNull(message = "Valor do risco não pode ficar vazio.")
 	private BigDecimal valorTotalRisco;
@@ -175,6 +184,23 @@ public class Inspecao implements Serializable {
 	public Inspecao() {
 
 	}
+	
+	public String getNomeContato() {
+		return nomeContato;
+	}
+
+	public void setNomeContato(String nomeContato) {
+		this.nomeContato = nomeContato;
+	}
+
+	public String getTelefoneContato() {
+		return telefoneContato;
+	}
+
+	public void setTelefoneContato(String telefoneContato) {
+		this.telefoneContato = telefoneContato;
+	}
+
 
 	public Funcionario getFuncionarioVistoriador() {
 		return funcionarioVistoriador;
@@ -497,6 +523,8 @@ public class Inspecao implements Serializable {
 
 	@Override
 	public String toString() {
+		return ToStringBuilder.reflectionToString(this);
+/*
 		StringBuilder sb = new StringBuilder();
 		sb.append("Criada ou Alterada a Inspeção:").append("idInspecao: ").append(this.getIdInspecao())
 				.append("Cliente: ")
@@ -587,5 +615,6 @@ public class Inspecao implements Serializable {
 		}
 
 		return sb.toString();
+		*/
 	}
 }

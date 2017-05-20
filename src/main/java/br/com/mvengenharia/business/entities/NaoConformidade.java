@@ -3,6 +3,8 @@ package br.com.mvengenharia.business.entities;
 import java.io.Serializable;
 import javax.persistence.*;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 
 @Entity
 @NamedQuery(name="NaoConformidade.findAll", query="SELECT n FROM NaoConformidade n")
@@ -59,9 +61,12 @@ private boolean situacao;
 
 	@Override
 	public String toString(){
+		return ToStringBuilder.reflectionToString(this);
+/*
 		StringBuilder sb = new StringBuilder();
 		sb.append("descNaoConformidade: ").append(this.getDescNaoConformidade() == null ? "" :this.getDescNaoConformidade().toString());	
 		return sb.toString();
+		*/
 	}
 	
 }

@@ -1,5 +1,6 @@
 package br.com.mvengenharia.web.controller;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import javax.validation.Valid;
@@ -19,6 +20,7 @@ import br.com.mvengenharia.business.entities.Atividade;
 import br.com.mvengenharia.business.entities.Cliente;
 import br.com.mvengenharia.business.entities.Estado;
 import br.com.mvengenharia.business.entities.Fase;
+import br.com.mvengenharia.business.entities.Feriado;
 import br.com.mvengenharia.business.entities.Inspecao;
 import br.com.mvengenharia.business.entities.Log;
 import br.com.mvengenharia.business.entities.Status;
@@ -28,6 +30,7 @@ import br.com.mvengenharia.business.services.CidadeService;
 import br.com.mvengenharia.business.services.ClienteService;
 import br.com.mvengenharia.business.services.EstadoService;
 import br.com.mvengenharia.business.services.FaseService;
+import br.com.mvengenharia.business.services.FeriadoService;
 import br.com.mvengenharia.business.services.HonorarioService;
 import br.com.mvengenharia.business.services.InspecaoService;
 import br.com.mvengenharia.business.services.LogService;
@@ -40,6 +43,9 @@ public class InspecaoController {
 
 	@Autowired
 	VistoriaService vistoriaService;
+	
+	@Autowired
+	FeriadoService feriadoService;
 
 	@Autowired
 	private InspecaoService inspecaoService;
@@ -180,10 +186,7 @@ public class InspecaoController {
 			inspecao.setRevisaos(insp.getRevisaos());
 			inspecao.setVistoria(insp.getVistoria());
 		}
-		Calendar c = Calendar.getInstance();
-		c.setTime(inspecao.getDtSolicitacaoInspecao());
-		c.add(Calendar.DATE, this.clienteService.findOne(inspecao.getCliente().getIdCliente()).getPrazoCliente());
-		inspecao.setDtLimite(c.getTime());
+		inspecao.setDtLimite(obtemDataLimiteSemFeriados(inspecao.getDtSolicitacaoInspecao(), this.clienteService.findOne(inspecao.getCliente().getIdCliente()).getPrazoCliente()));
 		this.inspecaoService.addOrUpdate(inspecao);
 		honorarioService.calculaHonorario(inspecao);
 		model.clear();
@@ -226,10 +229,7 @@ public class InspecaoController {
 			inspecao.setVistoria(insp.getVistoria());
 			inspecao.setHonorario(insp.getHonorario());
 		}
-		Calendar c = Calendar.getInstance();
-		c.setTime(inspecao.getDtSolicitacaoInspecao());
-		c.add(Calendar.DATE, this.clienteService.findOne(inspecao.getCliente().getIdCliente()).getPrazoCliente());
-		inspecao.setDtLimite(c.getTime());
+		inspecao.setDtLimite(obtemDataLimiteSemFeriados(inspecao.getDtSolicitacaoInspecao(), this.clienteService.findOne(inspecao.getCliente().getIdCliente()).getPrazoCliente()));
 		this.inspecaoService.addOrUpdate(inspecao);
 		honorarioService.calculaHonorario(inspecao);
 		model.clear();
@@ -272,6 +272,33 @@ public class InspecaoController {
 		mav.setViewName("inspecao/detalheInspecao");
 		mav.addObject("inspecao",insp);
 		return mav;
+	}
+	
+	private Date obtemDataLimiteSemFeriados(Date dataCadastro, int qtdDiasPrazo){
+		Date retorno = (Date) dataCadastro.clone();				
+		Calendar cal = Calendar.getInstance();		
+		Iterable<Feriado> feriados = feriadoService.findByAnoFeriado(cal.get(Calendar.YEAR));
+		for(int i = 0; i <= qtdDiasPrazo; i++){
+			while(retorno.getDay() == 0 || retorno.getDay() == 6){
+				Calendar c = Calendar.getInstance();
+				c.setTime(retorno);				
+				c.add(Calendar.DATE, 1);
+				retorno = c.getTime();
+			}
+			for(Feriado feriado : feriados){
+				if (retorno.compareTo(feriado.getDataFeriado()) == 0){
+					Calendar c = Calendar.getInstance();
+					c.setTime(retorno);				
+					c.add(Calendar.DATE, 1);
+					retorno = c.getTime();
+				}
+			}
+			Calendar c = Calendar.getInstance();
+			c.setTime(retorno);				
+			c.add(Calendar.DATE, 1);
+			retorno = c.getTime();
+		}		
+		return retorno;
 	}
 
 

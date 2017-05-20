@@ -6,6 +6,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 
 /**
  * The persistent class for the Endereco database table.
@@ -149,6 +151,9 @@ public class Endereco implements Serializable {
 	
 	@Override
 	public String toString(){
+		return ToStringBuilder.reflectionToString(this);
+
+		/*
 		StringBuilder sb = new StringBuilder();
 		sb.append("Endereco: ").append(this.getTipoLogradouro().toString())
 		.append(" ").append(this.getLogradouro()).append(" - ").append(this.getBairro() == null ? "":this.getBairro())
@@ -156,6 +161,7 @@ public class Endereco implements Serializable {
 		
 		
 		return sb.toString();
+		*/
 	}
 
 }

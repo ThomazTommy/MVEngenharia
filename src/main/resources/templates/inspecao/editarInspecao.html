@@ -26,7 +26,7 @@
 								<div class="form-group">
 									<label for="dtSolicitacaoInspecao"> <span
 										th:text="#{inspecao.dtSolicitacaoInspecao}">dtSolicitacaoInspecao</span>
-									</label> <input class="form-control" readonly="true" type="text"
+									</label> <input class="form-control usaCalendario" type="text"
 										th:field="*{dtSolicitacaoInspecao}" th:errorclass="fieldError" />
 								</div>
 
@@ -108,6 +108,22 @@
 								<div class="form-group">
 									<label for="telefoneCorretor"> <span
 										th:text="#{inspecao.telefoneCorretor}">telefoneCorretor</span>
+									</label> <input class="form-control" type="text" maxlength="15"
+										onkeyup="mascararTelefone(this);"
+										onblur="mascararTelefone(this);"
+										th:field="*{telefoneCorretor}" th:errorclass="fieldError" />
+
+								</div>
+								
+								<div class="form-group">
+									<label for="nomeContato"> <span
+										th:text="#{inspecao.nomeContato}">nomeCorretor</span>
+									</label> <input class="form-control" type="text"
+										th:field="*{nomeContato}" th:errorclass="fieldError" />
+								</div>
+								<div class="form-group">
+									<label for="telefoneContato"> <span
+										th:text="#{inspecao.telefoneContato}">telefoneCorretor</span>
 									</label> <input class="form-control" type="text" maxlength="15"
 										onkeyup="mascararTelefone(this);"
 										onblur="mascararTelefone(this);"

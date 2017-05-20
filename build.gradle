@@ -51,6 +51,8 @@ dependencies {
 	//teste Biblioteca DataTable
 	compile('com.github.darrachequesne:spring-data-jpa-datatables:4.0')
 	
+	compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.5'
+	
 	
 	providedRuntime('org.springframework.boot:spring-boot-starter-tomcat:1.5.2.RELEASE')
 	testCompile('org.springframework.boot:spring-boot-starter-test:1.5.2.RELEASE')

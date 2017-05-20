@@ -3,6 +3,8 @@ package br.com.mvengenharia.business.entities;
 import java.io.Serializable;
 import javax.persistence.*;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import java.util.Date;
@@ -94,12 +96,15 @@ public class Designacao implements Serializable {
 
 	@Override
 	public String toString(){
+		return ToStringBuilder.reflectionToString(this);
+/*
 		StringBuilder sb = new StringBuilder();
 		sb.append("dataDesignacao: ").append(this.getDataDesignacao() == null ? "" :this.getDataDesignacao().toString()).append("|");
 		sb.append("funcionarioDesignado: ").append(this.getFuncionarioDesignado() == null ? "" :this.getFuncionarioDesignado().toString()).append("|");
 		sb.append("FuncionarioDesignador: ").append(this.getFuncionarioDesignador() == null ? "" : this.getFuncionarioDesignador().toString()).append("|");
 		sb.append("ultima: ").append(this.getUltima());		
 		return sb.toString();
+		*/
 	}
 	
 }

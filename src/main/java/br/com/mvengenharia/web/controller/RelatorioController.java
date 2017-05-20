@@ -17,11 +17,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.mvengenharia.business.entities.Relatorio;
+import br.com.mvengenharia.business.entities.Atividade;
 import br.com.mvengenharia.business.entities.Fase;
 import br.com.mvengenharia.business.entities.Funcionario;
 import br.com.mvengenharia.business.entities.Inspecao;
 import br.com.mvengenharia.business.entities.NaoConformidade;
 import br.com.mvengenharia.business.services.RelatorioService;
+import br.com.mvengenharia.business.services.AtividadeService;
 import br.com.mvengenharia.business.services.FuncionarioService;
 import br.com.mvengenharia.business.services.InspecaoService;
 import br.com.mvengenharia.business.services.NaoConformidadeService;
@@ -32,6 +34,8 @@ public class RelatorioController {
 
     @Autowired
     private RelatorioService relatorioService;
+    @Autowired
+    private AtividadeService atividadeService;
     
     @Autowired
     private InspecaoService inspecaoService;
@@ -46,6 +50,11 @@ public class RelatorioController {
 	public Iterable<Funcionario> populateFuncionarios() {
 		return this.funcionarioService.findAll();
 	}
+    
+    @ModelAttribute("allAtividades")
+   	public Iterable<Atividade> populateAtividades() {
+   		return this.atividadeService.findAll();
+   	}
     
     @ModelAttribute("allNaoConformidades")
   	public Iterable<NaoConformidade> populateNaoConformidades() {
@@ -66,10 +75,12 @@ public class RelatorioController {
     
     @RequestMapping(value = "/relatorio/{idInspecao}", method = RequestMethod.GET)
     public ModelAndView showRelatorio(@PathVariable long idInspecao) {
+    	Inspecao insp = this.inspecaoService.findOne(idInspecao);
     	ModelAndView mav = new ModelAndView();
     	mav.setViewName("relatorio/inspecaoRelatorio");
-    	mav.addObject("inspecao", this.inspecaoService.findOne(idInspecao));
+    	mav.addObject("inspecao", insp);
     	Relatorio relatorio = new Relatorio();
+    	relatorio.setInspecao(insp);
     	mav.addObject("relatorio", relatorio);
         return mav;
     }      
@@ -81,6 +92,7 @@ public class RelatorioController {
             return "relatorio/inspecaoRelatorio";
         }
         Inspecao insp = this.inspecaoService.findOne(idInspecao);
+        Inspecao inspRel = relatorio.getInspecao();
         List<Relatorio> listaRelatorios = insp.getRelatorios();
         for(Relatorio rel : listaRelatorios)
         {
@@ -95,6 +107,11 @@ public class RelatorioController {
         Fase fase = new Fase();
         fase.setIdFase(7);
         insp.setFase(fase);
+        
+        insp.setQtdBlocos(inspRel.getQtdBlocos());
+    	insp.setObservacao(inspRel.getObservacao());
+    	insp.setInspecaoAtividadeApurada(inspRel.getInspecaoAtividadeApurada());
+        
         this.inspecaoService.addOrUpdate(insp);
         model.clear();       
         return "redirect:/relatorio/" + idInspecao;

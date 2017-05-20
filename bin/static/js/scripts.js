@@ -97,12 +97,6 @@ function menuOnClick(destino) {
 	executaAjaxGet(destino, 'page-wrapper', '', previnePadrao());
 }
 
-function atualizaListaCidades(enderecoGet, parametroGet, destino, funcaoAntes,
-		funcaoDepois) {
-	executaAjaxGet(enderecoGet + parametroGet, destino, funcaoAntes,
-			funcaoDepois);
-}
-
 function ajaxindicatorstart(text) {
 	$('#resultLoading').css({
 		'width' : '100%',
@@ -212,10 +206,10 @@ function afterReload() {
 		selectAllText : "Todos"
 
 	});
+	$.datetimepicker.setLocale('pt-BR');
 	$('.usaCalendario').datetimepicker({
 		format : 'd/m/Y H:i:s'
-	});
-	$.datetimepicker.setLocale('pt-BR');
+	});	
 	$('table#sample').DataTable().ajax.reload();
 }
 

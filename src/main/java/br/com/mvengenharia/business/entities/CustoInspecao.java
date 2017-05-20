@@ -5,6 +5,8 @@ import java.math.BigDecimal;
 
 import javax.persistence.*;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 
@@ -100,11 +102,14 @@ public class CustoInspecao implements Serializable {
 
 	@Override
 	public String toString(){
+		return ToStringBuilder.reflectionToString(this);
+/*
 		StringBuilder sb = new StringBuilder();
 		sb.append("custoAprovado: ").append(this.getCustoAprovado() == null ? "" :this.getCustoAprovado().toString()).append("|")
 		.append("custoInformado: ").append(this.getCustoInformado()).append("|")
 		.append("kmEfetivo: ").append(this.getKmEfetivo()).append("|")
 		.append("ValorDeslocamento: ").append(this.getValorDeslocamento() == null ? "" :this.getValorDeslocamento().toString());		
 		return sb.toString();
+		*/
 	}
 }

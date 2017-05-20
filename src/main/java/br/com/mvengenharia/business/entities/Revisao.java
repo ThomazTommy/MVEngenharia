@@ -3,6 +3,8 @@ package br.com.mvengenharia.business.entities;
 import java.io.Serializable;
 import javax.persistence.*;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import java.util.Date;
@@ -129,6 +131,8 @@ public class Revisao implements Serializable {
 	
 	@Override
 	public String toString(){
+		return ToStringBuilder.reflectionToString(this);
+/*
 		StringBuilder sb = new StringBuilder();
 		sb.append("dataFimRevisao: ").append(this.getDataFimRevisao() == null ? "" :this.getDataFimRevisao().toString()).append("|")
 		.append("dataInicioRevisao: ").append(this.getDataInicioRevisao() == null ? "" :this.getDataInicioRevisao().toString()).append("|")
@@ -142,6 +146,7 @@ public class Revisao implements Serializable {
 		}
 		sb.append("ultimo: ").append(this.getUltimo());
 		return sb.toString();
+		*/
 	}
 
 }

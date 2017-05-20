@@ -3,24 +3,25 @@ package br.com.mvengenharia.business.entities;
 import java.io.Serializable;
 import javax.persistence.*;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 /**
  * The persistent class for the Escritorio database table.
  * 
  */
 @Entity
-@NamedQuery(name="Escritorio.findAll", query="SELECT e FROM Escritorio e")
+@NamedQuery(name = "Escritorio.findAll", query = "SELECT e FROM Escritorio e")
 public class Escritorio implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long idEscritorio;
 
 	private String descEscritorio;
-	
-private boolean situacao;
-	
+
+	private boolean situacao;
+
 	public boolean getSituacao() {
 		return situacao;
 	}
@@ -29,8 +30,8 @@ private boolean situacao;
 		this.situacao = situacao;
 	}
 
-	//bi-directional one-to-one association to Endereco
-	@OneToOne(cascade=CascadeType.ALL)
+	// bi-directional one-to-one association to Endereco
+	@OneToOne(cascade = CascadeType.ALL)
 	private Endereco endereco;
 
 	public Escritorio() {
@@ -59,5 +60,11 @@ private boolean situacao;
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
 	}
-	
+
+	@Override
+	public String toString() {
+		return ToStringBuilder.reflectionToString(this);
+
+	}
+
 }

@@ -3,6 +3,8 @@ package br.com.mvengenharia.business.entities;
 import java.io.Serializable;
 import javax.persistence.*;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 
 /**
  * The persistent class for the TipoLogradouro database table.
@@ -66,9 +68,12 @@ private boolean situacao;
 
 	@Override
 	public String toString(){
+		return ToStringBuilder.reflectionToString(this);
+/*
 		StringBuilder sb = new StringBuilder();
 		sb.append("descTipoLogradouro: ").append(this.getDescTipoLogradouro() == null ? "" :this.getDescTipoLogradouro().toString());		
 		return sb.toString();
+		*/
 	}
 
 }

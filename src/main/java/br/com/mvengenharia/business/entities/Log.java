@@ -5,6 +5,8 @@ import java.util.Date;
 
 import javax.persistence.*;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 
 @Entity
 @NamedQuery(name="Log.findAll", query="SELECT s FROM Log s")
@@ -15,7 +17,7 @@ public class Log implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long idLog;
 	
-	@Column(length = 65535, columnDefinition = "Text")
+	@Column(columnDefinition = "MediumText")
 	private String descLog;
 	
 	private String cpfFuncionario;
@@ -75,6 +77,12 @@ public class Log implements Serializable {
 
 	public void setDescLog(String descLog) {
 		this.descLog = descLog;
+	}
+	
+	@Override
+	public String toString(){
+		return ToStringBuilder.reflectionToString(this);
+
 	}
 
 }

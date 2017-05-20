@@ -1,5 +1,7 @@
 package br.com.mvengenharia.business.entities;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 public class RequestUser {
 	
 	private String username;
@@ -26,6 +28,11 @@ public class RequestUser {
 		// TODO Auto-generated constructor stub
 	}	
 	
+	@Override
+	public String toString(){
+		return ToStringBuilder.reflectionToString(this);
+
+	}
 
 	
 

@@ -7,6 +7,8 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 /**
@@ -105,12 +107,15 @@ public class Honorario implements Serializable {
 	
 	@Override
 	public String toString(){
+		return ToStringBuilder.reflectionToString(this);
+/*
 		StringBuilder sb = new StringBuilder();
 		sb.append("decCondicoes: ").append(this.getDescCondicoes() == null ? "" :this.getDescCondicoes().toString()).append("|")
 		.append("funcionarioAlterador: ").append(this.getFuncionarioAlterador() == null ? "" :this.getFuncionarioAlterador().toString()).append("|")
 		.append("valorHonorarioCalculado: ").append(this.getValorHonorarioCalculado() == null ? "" : this.getValorHonorarioCalculado().toString()).append("|")
 		.append("motivoAlteracao: ").append(this.getMotivoAlteracao() == null ? "" : this.getMotivoAlteracao().toString());			
 		return sb.toString();
+		*/
 	}
 
 }

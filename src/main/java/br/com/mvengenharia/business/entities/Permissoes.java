@@ -7,6 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 @Entity
 @NamedQuery(name="Permissoes.findAll", query="SELECT s FROM Permissoes s")
 public class Permissoes implements Serializable {
@@ -44,6 +46,12 @@ public class Permissoes implements Serializable {
 	public Permissoes() {
 		super();
 		// TODO Auto-generated constructor stub
+	}
+	
+	@Override
+	public String toString(){
+		return ToStringBuilder.reflectionToString(this);
+
 	}
 
 	

@@ -2,6 +2,9 @@ package br.com.mvengenharia.business.entities;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import java.util.Date;
@@ -111,12 +114,15 @@ public class AprovacaoSistema implements Serializable {
 
 	@Override
 	public String toString(){
+		return ToStringBuilder.reflectionToString(this);
+/*
 		StringBuilder sb = new StringBuilder();
 		sb.append("dataHoraAprovacao: ").append(this.getDataHoraAprovacao() == null ? "" :this.getDataHoraAprovacao().toString()).append("|");
 		sb.append("dataHoraAprovacaoSistemaCliente: ").append(this.getDataHoraAprovacaoSistemaCliente() == null ? "" :this.getDataHoraAprovacaoSistemaCliente().toString()).append("|");
 		sb.append("funcionarioAprovador: ").append(this.getFuncionarioAprovador() == null ? "": this.getFuncionarioAprovador().toString()).append("|");
 		sb.append("ultimo: ").append(this.getUltimo());		
 		return sb.toString();
+		*/
 	}
 
 }

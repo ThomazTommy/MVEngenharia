@@ -416,6 +416,10 @@ function loadDataTable(urlDestino, functionLink) {
 									data : 'cliente.descCliente',
 
 								},
+								{
+									data : 'ramo.descRamo',
+
+								},
 
 								{
 									data : 'endereco.logradouro',
@@ -427,6 +431,8 @@ function loadDataTable(urlDestino, functionLink) {
 													+ row.endereco.logradouro
 													+ " "
 													+ row.endereco.numero
+													+ " - "
+													+ row.endereco.complemento
 													+ " - "
 													+ row.endereco.bairro
 													+ " - "
@@ -519,6 +525,10 @@ function loadDataTablePosInspecao(urlDestino, functionLink) {
 									data : 'cliente.descCliente',
 
 								},
+								{
+									data : 'ramo.descRamo',
+
+								},
 
 								{
 									data : 'endereco.logradouro',
@@ -530,6 +540,8 @@ function loadDataTablePosInspecao(urlDestino, functionLink) {
 													+ row.endereco.logradouro
 													+ " "
 													+ row.endereco.numero
+													+ " - "
+													+ row.endereco.complemento
 													+ " - "
 													+ row.endereco.bairro
 													+ " - "

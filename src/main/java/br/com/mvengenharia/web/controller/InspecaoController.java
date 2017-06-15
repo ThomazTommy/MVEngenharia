@@ -31,6 +31,7 @@ import br.com.mvengenharia.business.services.ClienteService;
 import br.com.mvengenharia.business.services.EstadoService;
 import br.com.mvengenharia.business.services.FaseService;
 import br.com.mvengenharia.business.services.FeriadoService;
+import br.com.mvengenharia.business.services.FuncionarioService;
 import br.com.mvengenharia.business.services.HonorarioService;
 import br.com.mvengenharia.business.services.InspecaoService;
 import br.com.mvengenharia.business.services.LogService;
@@ -43,9 +44,12 @@ public class InspecaoController {
 
 	@Autowired
 	VistoriaService vistoriaService;
-	
+
 	@Autowired
 	FeriadoService feriadoService;
+
+	@Autowired
+	FuncionarioService funcionarioService;
 
 	@Autowired
 	private InspecaoService inspecaoService;
@@ -68,10 +72,9 @@ public class InspecaoController {
 	@Autowired
 	private TipoLogradouroService tipoLogradouroService;
 
-
 	@Autowired
 	private HonorarioService honorarioService;
-	
+
 	@Autowired
 	private FaseService faseService;
 
@@ -81,8 +84,6 @@ public class InspecaoController {
 	public InspecaoController() {
 		super();
 	}
-
-	
 
 	@ModelAttribute("allAtividades")
 	public Iterable<Atividade> populateAtividades() {
@@ -108,27 +109,26 @@ public class InspecaoController {
 	public Iterable<Fase> populateFases() {
 		return this.faseService.findAll();
 	}
-	
+
 	@ModelAttribute("allTipoLogradouros")
 	public Iterable<TipoLogradouro> populateTipoLogradouros() {
 		return this.tipoLogradouroService.findAll();
 	}
-	
 
 	@RequestMapping("/novaInspecao")
 	public ModelAndView novaInspecao() {
 		Inspecao insp = new Inspecao();
 		insp.setDtSolicitacaoInspecao(new Date());
-		Fase fase = faseService.findOne(1L);		
+		Fase fase = faseService.findOne(1L);
 		Status status = statusService.findOne(2L);
 		insp.setFase(fase);
 		insp.setStatus(status);
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("inspecao/novaInspecao");		
+		mav.setViewName("inspecao/novaInspecao");
 		mav.addObject("inspecao", insp);
 		return mav;
 	}
-	
+
 	@RequestMapping("/inspecao/sucesso/{idInspecao}")
 	public ModelAndView showSucesso(@PathVariable Long idInspecao) {
 		ModelAndView mav = new ModelAndView();
@@ -141,7 +141,7 @@ public class InspecaoController {
 	public ModelAndView showInspecao() {
 		Inspecao insp = new Inspecao();
 		insp.setDtSolicitacaoInspecao(new Date());
-		Fase fase = faseService.findOne(1L);		
+		Fase fase = faseService.findOne(1L);
 		Status status = statusService.findOne(2L);
 		insp.setFase(fase);
 		insp.setStatus(status);
@@ -150,10 +150,9 @@ public class InspecaoController {
 		mav.addObject("inspecao", insp);
 		return mav;
 	}
-	
+
 	@RequestMapping(value = "/inspecao", params = { "save" }, method = RequestMethod.POST)
-	public String saveInspecao(@Valid Inspecao inspecao, final BindingResult bindingResult,
-			final ModelMap model) {
+	public String saveInspecao(@Valid Inspecao inspecao, final BindingResult bindingResult, final ModelMap model) {
 
 		if (bindingResult.hasErrors()) {
 			if (inspecao.getCliente() != null) {
@@ -170,8 +169,7 @@ public class InspecaoController {
 			return "inspecao/novaInspecao";
 		}
 		Inspecao insp = this.inspecaoService.findOne(inspecao.getIdInspecao());
-		if (insp != null)
-		{
+		if (insp != null) {
 			inspecao.setAgendamentos(insp.getAgendamentos());
 			inspecao.setAprovacaoSistemas(insp.getAprovacaoSistemas());
 			inspecao.setCustoInspecao(insp.getCustoInspecao());
@@ -185,14 +183,20 @@ public class InspecaoController {
 			inspecao.setRelatorios(insp.getRelatorios());
 			inspecao.setRevisaos(insp.getRevisaos());
 			inspecao.setVistoria(insp.getVistoria());
+			inspecao.setFuncionarioCadastrador(insp.getFuncionarioCadastrador());
 		}
-		inspecao.setDtLimite(obtemDataLimiteSemFeriados(inspecao.getDtSolicitacaoInspecao(), this.clienteService.findOne(inspecao.getCliente().getIdCliente()).getPrazoCliente()));
+		if (inspecao.getFuncionarioCadastrador() == null) {
+			inspecao.setFuncionarioCadastrador(
+					this.funcionarioService.findOne(SecurityContextHolder.getContext().getAuthentication().getName()));
+		}
+		inspecao.setDtLimite(obtemDataLimiteSemFeriados(inspecao.getDtSolicitacaoInspecao(),
+				this.clienteService.findOne(inspecao.getCliente().getIdCliente()).getPrazoCliente()));
 		this.inspecaoService.addOrUpdate(inspecao);
 		honorarioService.calculaHonorario(inspecao);
 		model.clear();
 		return "redirect:/inspecao/sucesso/" + inspecao.getIdInspecao();
 	}
-	
+
 	@RequestMapping(value = "/inspecao/editar", params = { "save" })
 	public String saveEditedInspecao(@Valid Inspecao inspecao, final BindingResult bindingResult,
 			final ModelMap model) {
@@ -212,8 +216,7 @@ public class InspecaoController {
 			return "inspecao/editarInspecao";
 		}
 		Inspecao insp = this.inspecaoService.findOne(inspecao.getIdInspecao());
-		if (insp != null)
-		{
+		if (insp != null) {
 			inspecao.setAgendamentos(insp.getAgendamentos());
 			inspecao.setAprovacaoSistemas(insp.getAprovacaoSistemas());
 			inspecao.setCustoInspecao(insp.getCustoInspecao());
@@ -229,7 +232,8 @@ public class InspecaoController {
 			inspecao.setVistoria(insp.getVistoria());
 			inspecao.setHonorario(insp.getHonorario());
 		}
-		inspecao.setDtLimite(obtemDataLimiteSemFeriados(inspecao.getDtSolicitacaoInspecao(), this.clienteService.findOne(inspecao.getCliente().getIdCliente()).getPrazoCliente()));
+		inspecao.setDtLimite(obtemDataLimiteSemFeriados(inspecao.getDtSolicitacaoInspecao(),
+				this.clienteService.findOne(inspecao.getCliente().getIdCliente()).getPrazoCliente()));
 		this.inspecaoService.addOrUpdate(inspecao);
 		honorarioService.calculaHonorario(inspecao);
 		model.clear();
@@ -243,10 +247,8 @@ public class InspecaoController {
 		status.setIdStatus(1L);
 		insp.setStatus(status);
 		this.inspecaoService.addOrUpdate(insp);
-		this.logService.addOrUpdate(new Log("Removida inspecao de id nº " + id, 
-    			SecurityContextHolder.getContext().getAuthentication().getName(), 
-    			id, 
-    			new Date()));
+		this.logService.addOrUpdate(new Log("Removida inspecao de id nº " + id,
+				SecurityContextHolder.getContext().getAuthentication().getName(), id, new Date()));
 		return "redirect:/inspecao";
 	}
 
@@ -263,45 +265,40 @@ public class InspecaoController {
 		return mav;
 	}
 
-	
-
 	@RequestMapping(value = "/inspecao/detalheInspecao/{idInspecao}")
 	public ModelAndView detalheInspecao(@PathVariable Long idInspecao) {
-		Inspecao insp =  this.inspecaoService.findOne(idInspecao);
+		Inspecao insp = this.inspecaoService.findOne(idInspecao);
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("inspecao/detalheInspecao");
-		mav.addObject("inspecao",insp);
+		mav.addObject("inspecao", insp);
 		return mav;
 	}
-	
-	private Date obtemDataLimiteSemFeriados(Date dataCadastro, int qtdDiasPrazo){
-		Date retorno = (Date) dataCadastro.clone();				
-		Calendar cal = Calendar.getInstance();		
+
+	private Date obtemDataLimiteSemFeriados(Date dataCadastro, int qtdDiasPrazo) {
+		Date retorno = (Date) dataCadastro.clone();
+		Calendar cal = Calendar.getInstance();
 		Iterable<Feriado> feriados = feriadoService.findByAnoFeriado(cal.get(Calendar.YEAR));
-		for(int i = 0; i <= qtdDiasPrazo; i++){
-			while(retorno.getDay() == 0 || retorno.getDay() == 6){
+		for (int i = 0; i <= qtdDiasPrazo; i++) {
+			while (retorno.getDay() == 0 || retorno.getDay() == 6) {
 				Calendar c = Calendar.getInstance();
-				c.setTime(retorno);				
+				c.setTime(retorno);
 				c.add(Calendar.DATE, 1);
 				retorno = c.getTime();
 			}
-			for(Feriado feriado : feriados){
-				if (retorno.compareTo(feriado.getDataFeriado()) == 0){
+			for (Feriado feriado : feriados) {
+				if (retorno.compareTo(feriado.getDataFeriado()) == 0) {
 					Calendar c = Calendar.getInstance();
-					c.setTime(retorno);				
+					c.setTime(retorno);
 					c.add(Calendar.DATE, 1);
 					retorno = c.getTime();
 				}
 			}
 			Calendar c = Calendar.getInstance();
-			c.setTime(retorno);				
+			c.setTime(retorno);
 			c.add(Calendar.DATE, 1);
 			retorno = c.getTime();
-		}		
+		}
 		return retorno;
 	}
 
-
-
-	
 }

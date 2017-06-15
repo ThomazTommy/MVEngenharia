@@ -138,6 +138,11 @@ public class Inspecao implements Serializable {
 	@OneToOne(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST })
 	@JoinColumn(name = "cpfVistoriador")
 	private Funcionario funcionarioVistoriador;
+	
+	@OneToOne(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST })
+	@JoinColumn(name = "cpfCadastrador")
+	private Funcionario funcionarioCadastrador;
+
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dtVistoria;
@@ -185,6 +190,14 @@ public class Inspecao implements Serializable {
 
 	}
 	
+	public Funcionario getFuncionarioCadastrador() {
+		return funcionarioCadastrador;
+	}
+
+	public void setFuncionarioCadastrador(Funcionario funcionarioCadastrador) {
+		this.funcionarioCadastrador = funcionarioCadastrador;
+	}
+
 	public String getNomeContato() {
 		return nomeContato;
 	}

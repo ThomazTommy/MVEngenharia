@@ -86,6 +86,10 @@ function loadDataTableNovaInspecao(urlDestino) {
 									data : 'cliente.descCliente',
 
 								},
+								{
+									data : 'ramo.descRamo',
+
+								},
 
 								{
 									data : 'endereco.logradouro',
@@ -97,6 +101,8 @@ function loadDataTableNovaInspecao(urlDestino) {
 													+ row.endereco.logradouro
 													+ " "
 													+ row.endereco.numero
+													+ " - "
+													+ row.endereco.complemento
 													+ " - "
 													+ row.endereco.bairro
 													+ " - "

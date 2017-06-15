@@ -44,6 +44,9 @@ public class HonorarioService {
 	BigDecimal valorAlfaCondominioMaisCincoBlocos = new BigDecimal(200.00);
 	
 	
+	//AXA
+		BigDecimal valorAXAateQuinzeMilhoes = new BigDecimal(130.00);
+		BigDecimal valorAXAMaiorQueQuinzeMilhoes = new BigDecimal(350.00);
 
 	@Autowired
 	private HonorarioRepository honorarioRepository;
@@ -211,82 +214,11 @@ public class HonorarioService {
 		}
 
 		case "AXA": {
-			switch (inspecao.getTipoInspecao().getDescTipoInspecao()) {
-			case "COMPREENSIVO": {
-				if (inspecao.getRamo().getDescRamo().contentEquals("Empresarial - Industrial")) {
-					if ((inspecao.getValorTotalRisco().compareTo(new BigDecimal(20000001)) >= 0)
-							&& (inspecao.getValorTotalRisco().compareTo(new BigDecimal(50000000)) <= 0)) {
-						this.setaHonorario(inspecao, valorCompreensivoIndustrialMaiorVinteMilMenorCinquentaMil);
-					}
-					if (inspecao.getValorTotalRisco().compareTo(new BigDecimal(20000000)) <= 0) {
-						this.setaHonorario(inspecao, valorCompreensivoIndustrialAteVinteMil);
-					}
-				} else {
-					if (inspecao.getValorTotalRisco().compareTo(new BigDecimal(20000000)) <= 0) {
-						this.setaHonorario(inspecao, valorCompreensivoNaoIndustrialAteVinteMil);
-					}
-					if ((inspecao.getValorTotalRisco().compareTo(new BigDecimal(20000001)) >= 0)
-							&& (inspecao.getValorTotalRisco().compareTo(new BigDecimal(50000000)) <= 0)) {
-						this.setaHonorario(inspecao, valorCompreensivoNaoIndustrialMaiorVinteMilMenorCinquentaMil);
-					}
-					if ((inspecao.getValorTotalRisco().compareTo(new BigDecimal(50000001)) >= 0)
-							&& (inspecao.getValorTotalRisco().compareTo(new BigDecimal(100000000)) <= 0)) {
-						this.setaHonorario(inspecao, valorCompreensivoNaoIndustrialMaiorCinquentaMilMenorCemMil);
-					}
-					if (inspecao.getValorTotalRisco().compareTo(new BigDecimal(100000001)) >= 0) {
-
-						this.setaHonorario(inspecao, valorCompreensivoNaoIndustrialMaiorCemMil);
-
-					}
-
-				}
-				break;
+			if(inspecao.getValorTotalRisco().compareTo(new BigDecimal(15000000))<=0){
+				this.setaHonorario(inspecao, valorAXAateQuinzeMilhoes);
 			}
-			case "MASSIFICADO": {
-				if (inspecao.getRamo().getDescRamo().contentEquals("Empresarial - Industrial")) {
-					if (inspecao.getValorTotalRisco().compareTo(new BigDecimal(15000000)) <= 0) {
-
-						this.setaHonorario(inspecao, valorMassificadoIndustrialAteQuinzeMil);
-
-					}
-				}
-
-				if (inspecao.getRamo().getDescRamo().contentEquals("Empresarial - Comércio e Serviços")) {
-					if (inspecao.getValorTotalRisco().compareTo(new BigDecimal(15000000)) <= 0) {
-
-						this.setaHonorario(inspecao, valorMassificadoNaoIndustrialAteQuinzeMil);
-
-					}
-					if ((inspecao.getValorTotalRisco().compareTo(new BigDecimal(15000001)) >= 0)
-							&& (inspecao.getValorTotalRisco().compareTo(new BigDecimal(20000000)) <= 0)) {
-
-						this.setaHonorario(inspecao, valorMassificadoNaoIndustrialMaiorQuinzeMilMenorVinteMil);
-
-					}
-					if ((inspecao.getValorTotalRisco().compareTo(new BigDecimal(20000001)) >= 0)
-							&& (inspecao.getValorTotalRisco().compareTo(new BigDecimal(50000000)) <= 0)) {
-
-						this.setaHonorario(inspecao, valorMassificadoNaoIndustrialMaiorVinteMilMenorCinquentaMil);
-
-					}
-				}
-
-				if (inspecao.getRamo().getDescRamo().contentEquals("Condomínio")) {
-					if (inspecao.getValorTotalRisco().compareTo(new BigDecimal(100000000)) <= 0) {
-						if (inspecao.getQtdBlocos() <= 2) {
-							this.setaHonorario(inspecao, valorMassificadoCondominioAteCemMilAteDoisBlocos);
-						} else {
-							this.setaHonorario(inspecao, valorMassificadoCondominioAteCemMilMaisTresBlocos);
-						}
-					}
-					if (inspecao.getValorTotalRisco().compareTo(new BigDecimal(100000001)) >= 0) {
-						this.setaHonorario(inspecao, valorMassificadoCondominioMaiorCemMil);
-					}
-				}
-				break;
-			}
-			}
-			break;
+			else
+			{this.setaHonorario(inspecao, valorAXAMaiorQueQuinzeMilhoes);}
 		}
 
 		default: {

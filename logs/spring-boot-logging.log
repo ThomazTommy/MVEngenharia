@@ -16340,3 +16340,419 @@ java.lang.IllegalArgumentException: Invalid character found in method name. HTTP
 2017-05-07 17:56:57.904  INFO 6936 --- [RMI TCP Connection(2)-192.168.56.1] ationConfigEmbeddedWebApplicationContext : Closing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@363ee3a2: startup date [Sun May 07 17:55:27 BRT 2017]; root of context hierarchy
 2017-05-07 17:56:57.932  INFO 6936 --- [RMI TCP Connection(2)-192.168.56.1] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
 2017-05-07 17:56:57.952  INFO 6936 --- [RMI TCP Connection(2)-192.168.56.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2017-06-15 13:17:50.040  INFO 1540 --- [main] b.c.m.MVEngenhariaApplication            : Starting MVEngenhariaApplication on LAPTOP-AIEQOC43 with PID 1540 (C:\Users\Thomaz\Documents\GitHub\MVEngenharia\bin started by Thomaz in C:\Users\Thomaz\Documents\GitHub\MVEngenharia)
+2017-06-15 13:17:50.120  INFO 1540 --- [main] b.c.m.MVEngenhariaApplication            : No active profile set, falling back to default profiles: default
+2017-06-15 13:17:50.967  INFO 1540 --- [main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@6b09fb41: startup date [Thu Jun 15 13:17:50 BRT 2017]; root of context hierarchy
+2017-06-15 13:17:55.481  INFO 1540 --- [main] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2017-06-15 13:17:55.760  INFO 1540 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'MVEngenhariaAsyncConfig' of type [br.com.mvengenharia.MVEngenhariaAsyncConfig$$EnhancerBySpringCGLIB$$77decd84] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-06-15 13:17:55.795  INFO 1540 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 
+2017-06-15 13:17:56.528  INFO 1540 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$8b3c03c4] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-06-15 13:17:58.209  INFO 1540 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 8080 (http)
+2017-06-15 13:17:58.246  INFO 1540 --- [main] o.apache.catalina.core.StandardService   : Starting service Tomcat
+2017-06-15 13:17:58.248  INFO 1540 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.11
+2017-06-15 13:17:58.738  INFO 1540 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2017-06-15 13:17:58.739  INFO 1540 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 7776 ms
+2017-06-15 13:17:59.323  INFO 1540 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2017-06-15 13:17:59.325  INFO 1540 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2017-06-15 13:17:59.326  INFO 1540 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2017-06-15 13:17:59.328  INFO 1540 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2017-06-15 13:17:59.333  INFO 1540 --- [localhost-startStop-1] .s.DelegatingFilterProxyRegistrationBean : Mapping filter: 'springSecurityFilterChain' to: [/*]
+2017-06-15 13:17:59.334  INFO 1540 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'dispatcherServlet' to [/]
+2017-06-15 13:18:25.374  INFO 1540 --- [main] j.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2017-06-15 13:22:33.370  INFO 1540 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2017-06-15 13:22:37.420  INFO 1540 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: org.springframework.security.web.util.matcher.AnyRequestMatcher@1, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@50841932, org.springframework.security.web.context.SecurityContextPersistenceFilter@614ae4eb, org.springframework.security.web.header.HeaderWriterFilter@48a61e38, org.springframework.security.web.csrf.CsrfFilter@41f61188, org.springframework.security.web.authentication.logout.LogoutFilter@54eb2bf6, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@6097f225, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@594f508f, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@73dd3a46, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@68fa8ea5, org.springframework.security.web.session.SessionManagementFilter@37d8562f, org.springframework.security.web.access.ExceptionTranslationFilter@1bbfd42f, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@54ddd7e4]
+2017-06-15 13:22:38.102  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@6b09fb41: startup date [Thu Jun 15 13:17:50 BRT 2017]; root of context hierarchy
+2017-06-15 13:22:38.314  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto org.springframework.web.servlet.ModelAndView br.com.mvengenharia.exception.CustomErrorController.error(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,java.lang.Exception)
+2017-06-15 13:22:38.321  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/agendamento/confirmar/{idInspecao}/{idAgendamento}],methods=[GET]}" onto public java.lang.String br.com.mvengenharia.web.controller.AgendamentoController.confirmarAgendamento(long,long,org.springframework.ui.ModelMap)
+2017-06-15 13:22:38.322  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/agendamento/{idInspecao}],methods=[POST],params=[save]}" onto public java.lang.String br.com.mvengenharia.web.controller.AgendamentoController.saveAgendamento(long,br.com.mvengenharia.business.entities.Agendamento,org.springframework.validation.BindingResult,org.springframework.ui.ModelMap)
+2017-06-15 13:22:38.323  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/agendamento/remover/{idInspecao}/{idAgendamento}]}" onto public java.lang.String br.com.mvengenharia.web.controller.AgendamentoController.saveAgendamento(java.lang.Long,java.lang.Long)
+2017-06-15 13:22:38.324  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/agendamento/{idInspecao}],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView br.com.mvengenharia.web.controller.AgendamentoController.showDesignacao(long)
+2017-06-15 13:22:38.324  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/agendamento/listainspecao],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView br.com.mvengenharia.web.controller.AgendamentoController.showInspecao()
+2017-06-15 13:22:38.327  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/aprovacaoSistema/listaInspecaoParaAprovacaoSistema],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView br.com.mvengenharia.web.controller.AprovacaoSistemaController.showInspecaoParaAprovacaoSistema()
+2017-06-15 13:22:38.328  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/aprovacaoSistema/{idInspecao}],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView br.com.mvengenharia.web.controller.AprovacaoSistemaController.showAprovacaoSistema(long)
+2017-06-15 13:22:38.328  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/aprovacaoSistema/iniciarNovaAprovacaoSistema/{idInspecao}],methods=[GET]}" onto public java.lang.String br.com.mvengenharia.web.controller.AprovacaoSistemaController.iniciarAprovacaoSistema(long,org.springframework.ui.ModelMap)
+2017-06-15 13:22:38.329  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/aprovacaoSistema/{idInspecao}],methods=[POST],params=[save]}" onto public java.lang.String br.com.mvengenharia.web.controller.AprovacaoSistemaController.saveAprovacaoSistema(long,br.com.mvengenharia.business.entities.AprovacaoSistema,org.springframework.validation.BindingResult,org.springframework.ui.ModelMap)
+2017-06-15 13:22:38.331  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/atividade]}" onto public java.lang.String br.com.mvengenharia.web.controller.AtividadeController.showAtividade(br.com.mvengenharia.business.entities.Atividade)
+2017-06-15 13:22:38.331  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/atividade],params=[save]}" onto public java.lang.String br.com.mvengenharia.web.controller.AtividadeController.saveAtividade(br.com.mvengenharia.business.entities.Atividade,org.springframework.validation.BindingResult,org.springframework.ui.ModelMap)
+2017-06-15 13:22:38.331  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/atividade/remover/{id}]}" onto public java.lang.String br.com.mvengenharia.web.controller.AtividadeController.saveAtividade(java.lang.Long)
+2017-06-15 13:22:38.334  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/inspecao/cidadesPorEstado/{idEstado}]}" onto public org.springframework.web.servlet.ModelAndView br.com.mvengenharia.web.controller.CidadeController.getCidadesPorEstado(java.lang.Long)
+2017-06-15 13:22:38.335  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/cidade]}" onto public java.lang.String br.com.mvengenharia.web.controller.CidadeController.showCidade(br.com.mvengenharia.business.entities.Cidade,org.springframework.ui.ModelMap)
+2017-06-15 13:22:38.336  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/cidade],params=[save]}" onto public java.lang.String br.com.mvengenharia.web.controller.CidadeController.saveCidade(br.com.mvengenharia.business.entities.Cidade,org.springframework.validation.BindingResult,org.springframework.ui.ModelMap)
+2017-06-15 13:22:38.337  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/cidade/remover/{id}]}" onto public java.lang.String br.com.mvengenharia.web.controller.CidadeController.saveCidade(java.lang.Long)
+2017-06-15 13:22:38.338  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/cliente/editar],params=[save]}" onto public java.lang.String br.com.mvengenharia.web.controller.ClienteController.saveEditedCliente(br.com.mvengenharia.business.entities.Cliente,org.springframework.validation.BindingResult,org.springframework.ui.ModelMap)
+2017-06-15 13:22:38.339  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/cliente]}" onto public java.lang.String br.com.mvengenharia.web.controller.ClienteController.showCliente(br.com.mvengenharia.business.entities.Cliente)
+2017-06-15 13:22:38.340  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/cliente/remover/{id}]}" onto public java.lang.String br.com.mvengenharia.web.controller.ClienteController.saveCliente(java.lang.Long)
+2017-06-15 13:22:38.341  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/cliente],params=[save]}" onto public java.lang.String br.com.mvengenharia.web.controller.ClienteController.saveCliente(br.com.mvengenharia.business.entities.Cliente,org.springframework.validation.BindingResult,org.springframework.ui.ModelMap)
+2017-06-15 13:22:38.342  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/cliente/editar/{id}]}" onto public org.springframework.web.servlet.ModelAndView br.com.mvengenharia.web.controller.ClienteController.editaCliente(java.lang.Long)
+2017-06-15 13:22:38.344  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/custoInspecao/detalheInspecao/{idInspecao}]}" onto public org.springframework.web.servlet.ModelAndView br.com.mvengenharia.web.controller.CustoInspecaoController.custoInspecaoDetalhe(java.lang.Long)
+2017-06-15 13:22:38.345  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/custoInspecao/editar/{idInspecao}],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView br.com.mvengenharia.web.controller.CustoInspecaoController.custoInspecaoEdicao(java.lang.Long)
+2017-06-15 13:22:38.345  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/custoInspecao/editar/{idInspecao}],methods=[POST],params=[save]}" onto public java.lang.String br.com.mvengenharia.web.controller.CustoInspecaoController.saveCustoInspecao(java.lang.Long,br.com.mvengenharia.business.entities.Inspecao,org.springframework.validation.BindingResult,org.springframework.ui.ModelMap)
+2017-06-15 13:22:38.346  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/custoInspecao]}" onto public org.springframework.web.servlet.ModelAndView br.com.mvengenharia.web.controller.CustoInspecaoController.custoInspecao()
+2017-06-15 13:22:38.347  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/designacao/{idInspecao}],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView br.com.mvengenharia.web.controller.DesignacaoController.showDesignacao(long)
+2017-06-15 13:22:38.348  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/designacao/{idInspecao}],methods=[POST],params=[save]}" onto public java.lang.String br.com.mvengenharia.web.controller.DesignacaoController.saveDesignacao(long,br.com.mvengenharia.business.entities.Designacao,org.springframework.validation.BindingResult,org.springframework.ui.ModelMap)
+2017-06-15 13:22:38.349  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/designacao/remover/{idInspecao}/{idDesignacao}]}" onto public java.lang.String br.com.mvengenharia.web.controller.DesignacaoController.removeDesignacao(java.lang.Long,java.lang.Long)
+2017-06-15 13:22:38.351  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/dtinspecao/listaInspecaoPorFase/{idFase1}/{idFase2}],methods=[POST]}" onto public org.springframework.http.ResponseEntity<org.springframework.data.jpa.datatables.mapping.DataTablesOutput<br.com.mvengenharia.business.entities.Inspecao>> br.com.mvengenharia.web.controller.DTInspecaoController.getInspecaoPorFase(org.springframework.data.jpa.datatables.mapping.DataTablesInput,java.lang.Long,java.lang.Long)
+2017-06-15 13:22:38.352  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/dtinspecao/listaInspecaoPorFase/{idFase1}/{idFase2}/{idFase3}],methods=[POST]}" onto public org.springframework.http.ResponseEntity<org.springframework.data.jpa.datatables.mapping.DataTablesOutput<br.com.mvengenharia.business.entities.Inspecao>> br.com.mvengenharia.web.controller.DTInspecaoController.getInspecaoPorFase(org.springframework.data.jpa.datatables.mapping.DataTablesInput,java.lang.Long,java.lang.Long,java.lang.Long)
+2017-06-15 13:22:38.353  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/dtinspecao/listaInspecaoPorFase/{idFase1}/{idFase2}/{idFase3}/{idFase4}],methods=[POST]}" onto public org.springframework.http.ResponseEntity<org.springframework.data.jpa.datatables.mapping.DataTablesOutput<br.com.mvengenharia.business.entities.Inspecao>> br.com.mvengenharia.web.controller.DTInspecaoController.getInspecaoPorFase(org.springframework.data.jpa.datatables.mapping.DataTablesInput,java.lang.Long,java.lang.Long,java.lang.Long,java.lang.Long)
+2017-06-15 13:22:38.353  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/dtinspecao/listaInspecaoPorFase/{idFase}],methods=[POST]}" onto public org.springframework.http.ResponseEntity<org.springframework.data.jpa.datatables.mapping.DataTablesOutput<br.com.mvengenharia.business.entities.Inspecao>> br.com.mvengenharia.web.controller.DTInspecaoController.getInspecaoPorFase(org.springframework.data.jpa.datatables.mapping.DataTablesInput,java.lang.Long)
+2017-06-15 13:22:38.354  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/dtinspecao/listaInspecaoPorCpf/{cpf}],methods=[POST]}" onto public org.springframework.http.ResponseEntity<org.springframework.data.jpa.datatables.mapping.DataTablesOutput<br.com.mvengenharia.business.entities.Inspecao>> br.com.mvengenharia.web.controller.DTInspecaoController.getInspecaoPorCpf(org.springframework.data.jpa.datatables.mapping.DataTablesInput,java.lang.String)
+2017-06-15 13:22:38.355  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/dtinspecao/listaInspecaoPorStatus/{idStatus}],methods=[POST]}" onto public org.springframework.http.ResponseEntity<org.springframework.data.jpa.datatables.mapping.DataTablesOutput<br.com.mvengenharia.business.entities.Inspecao>> br.com.mvengenharia.web.controller.DTInspecaoController.getInspecaoPorStatus(org.springframework.data.jpa.datatables.mapping.DataTablesInput,java.lang.Long)
+2017-06-15 13:22:38.356  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/dtinspecao/listainspecao],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView br.com.mvengenharia.web.controller.DTInspecaoController.showInspecao()
+2017-06-15 13:22:38.357  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/dtinspecao/dtinspecao],methods=[POST]}" onto public org.springframework.http.ResponseEntity<org.springframework.data.jpa.datatables.mapping.DataTablesOutput<br.com.mvengenharia.business.entities.Inspecao>> br.com.mvengenharia.web.controller.DTInspecaoController.getInspecoes(org.springframework.data.jpa.datatables.mapping.DataTablesInput)
+2017-06-15 13:22:38.357  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/escritorio/editar/{id}]}" onto public java.lang.String br.com.mvengenharia.web.controller.EscritorioController.editarEscritorio(java.lang.Long,org.springframework.ui.ModelMap)
+2017-06-15 13:22:38.358  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/escritorio]}" onto public java.lang.String br.com.mvengenharia.web.controller.EscritorioController.showEscritorio(org.springframework.ui.ModelMap)
+2017-06-15 13:22:38.358  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/escritorio/remover/{id}]}" onto public java.lang.String br.com.mvengenharia.web.controller.EscritorioController.saveEscritorio(java.lang.Long)
+2017-06-15 13:22:38.359  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/escritorio],params=[save]}" onto public java.lang.String br.com.mvengenharia.web.controller.EscritorioController.saveEscritorio(br.com.mvengenharia.business.entities.Escritorio,org.springframework.validation.BindingResult,org.springframework.ui.ModelMap)
+2017-06-15 13:22:38.359  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/estado],params=[save]}" onto public java.lang.String br.com.mvengenharia.web.controller.EstadoController.saveEstado(br.com.mvengenharia.business.entities.Estado,org.springframework.validation.BindingResult,org.springframework.ui.ModelMap)
+2017-06-15 13:22:38.360  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/estado/remover/{id}]}" onto public java.lang.String br.com.mvengenharia.web.controller.EstadoController.saveEstado(java.lang.Long)
+2017-06-15 13:22:38.361  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/estado]}" onto public java.lang.String br.com.mvengenharia.web.controller.EstadoController.showEstado(br.com.mvengenharia.business.entities.Estado)
+2017-06-15 13:22:38.362  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/fase],params=[save]}" onto public java.lang.String br.com.mvengenharia.web.controller.FaseController.saveFase(br.com.mvengenharia.business.entities.Fase,org.springframework.validation.BindingResult,org.springframework.ui.ModelMap)
+2017-06-15 13:22:38.362  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/fase/remover/{id}]}" onto public java.lang.String br.com.mvengenharia.web.controller.FaseController.saveFase(java.lang.Long)
+2017-06-15 13:22:38.362  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/fase]}" onto public java.lang.String br.com.mvengenharia.web.controller.FaseController.showFase(br.com.mvengenharia.business.entities.Fase)
+2017-06-15 13:22:38.363  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/feriado]}" onto public java.lang.String br.com.mvengenharia.web.controller.FeriadoController.showFeriado(br.com.mvengenharia.business.entities.Feriado)
+2017-06-15 13:22:38.363  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/feriado],params=[save]}" onto public java.lang.String br.com.mvengenharia.web.controller.FeriadoController.saveFeriado(br.com.mvengenharia.business.entities.Feriado,org.springframework.validation.BindingResult,org.springframework.ui.ModelMap)
+2017-06-15 13:22:38.363  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/feriado/remover/{id}]}" onto public java.lang.String br.com.mvengenharia.web.controller.FeriadoController.saveFeriado(java.lang.Long)
+2017-06-15 13:22:38.364  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/funcionario/editar],params=[save]}" onto public java.lang.String br.com.mvengenharia.web.controller.FuncionarioController.saveEditedCliente(br.com.mvengenharia.business.entities.Funcionario,org.springframework.validation.BindingResult,org.springframework.ui.ModelMap)
+2017-06-15 13:22:38.365  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/funcionario/editar/{cpf}]}" onto public org.springframework.web.servlet.ModelAndView br.com.mvengenharia.web.controller.FuncionarioController.editaCliente(java.lang.String)
+2017-06-15 13:22:38.365  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/funcionario/remover/{id}]}" onto public java.lang.String br.com.mvengenharia.web.controller.FuncionarioController.saveFuncionario(java.lang.String)
+2017-06-15 13:22:38.366  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/funcionario],params=[save]}" onto public java.lang.String br.com.mvengenharia.web.controller.FuncionarioController.saveFuncionario(br.com.mvengenharia.business.entities.Funcionario,org.springframework.validation.BindingResult,org.springframework.ui.ModelMap)
+2017-06-15 13:22:38.366  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/funcionario]}" onto public java.lang.String br.com.mvengenharia.web.controller.FuncionarioController.showFuncionario(br.com.mvengenharia.business.entities.Funcionario)
+2017-06-15 13:22:38.367  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/gravidade],params=[save]}" onto public java.lang.String br.com.mvengenharia.web.controller.GravidadeController.saveGravidade(br.com.mvengenharia.business.entities.Gravidade,org.springframework.validation.BindingResult,org.springframework.ui.ModelMap)
+2017-06-15 13:22:38.367  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/gravidade/remover/{id}]}" onto public java.lang.String br.com.mvengenharia.web.controller.GravidadeController.saveGravidade(java.lang.Long)
+2017-06-15 13:22:38.368  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/gravidade]}" onto public java.lang.String br.com.mvengenharia.web.controller.GravidadeController.showGravidade(br.com.mvengenharia.business.entities.Gravidade)
+2017-06-15 13:22:38.371  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView br.com.mvengenharia.web.controller.HomeController.home()
+2017-06-15 13:22:38.371  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/enviaemail],methods=[GET]}" onto public java.lang.String br.com.mvengenharia.web.controller.HomeController.enviaemail(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2017-06-15 13:22:38.372  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/logout],methods=[GET]}" onto public java.lang.String br.com.mvengenharia.web.controller.HomeController.logoutPage(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2017-06-15 13:22:38.372  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/login],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView br.com.mvengenharia.web.controller.HomeController.login()
+2017-06-15 13:22:38.373  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/honorario/{idInspecao}],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView br.com.mvengenharia.web.controller.HonorarioController.showHonorario(br.com.mvengenharia.business.entities.Honorario,java.lang.Long)
+2017-06-15 13:22:38.373  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/honorario/editar/{idInspecao}],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView br.com.mvengenharia.web.controller.HonorarioController.editaHonorario(br.com.mvengenharia.business.entities.Honorario,java.lang.Long)
+2017-06-15 13:22:38.374  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/honorario/{idInspecao}],methods=[POST],params=[save]}" onto public java.lang.String br.com.mvengenharia.web.controller.HonorarioController.saveHonorario(br.com.mvengenharia.business.entities.Honorario,org.springframework.validation.BindingResult,org.springframework.ui.ModelMap,java.lang.Long)
+2017-06-15 13:22:38.374  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/honorario/remover/{id}]}" onto public java.lang.String br.com.mvengenharia.web.controller.HonorarioController.saveHonorario(java.lang.Long)
+2017-06-15 13:22:38.375  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/insercaoSistema/{idInspecao}],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView br.com.mvengenharia.web.controller.InsercaoSistemaController.showInsercaoSistema(long)
+2017-06-15 13:22:38.375  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/insercaoSistema/iniciarNovaInsercaoSistema/{idInspecao}],methods=[GET]}" onto public java.lang.String br.com.mvengenharia.web.controller.InsercaoSistemaController.iniciarInsercaoSistema(long,org.springframework.ui.ModelMap)
+2017-06-15 13:22:38.375  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/insercaoSistema/{idInspecao}],methods=[POST],params=[save]}" onto public java.lang.String br.com.mvengenharia.web.controller.InsercaoSistemaController.saveInsercaoSistema(long,br.com.mvengenharia.business.entities.InsercaoSistema,org.springframework.validation.BindingResult,org.springframework.ui.ModelMap)
+2017-06-15 13:22:38.376  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/insercaoSistema/listaInspecaoParaInsercaoSistema],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView br.com.mvengenharia.web.controller.InsercaoSistemaController.showInspecaoParaInsercaoSistema()
+2017-06-15 13:22:38.377  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/inspecao/editar],params=[save]}" onto public java.lang.String br.com.mvengenharia.web.controller.InspecaoController.saveEditedInspecao(br.com.mvengenharia.business.entities.Inspecao,org.springframework.validation.BindingResult,org.springframework.ui.ModelMap)
+2017-06-15 13:22:38.377  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/inspecao]}" onto public org.springframework.web.servlet.ModelAndView br.com.mvengenharia.web.controller.InspecaoController.showInspecao()
+2017-06-15 13:22:38.378  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/inspecao/sucesso/{idInspecao}]}" onto public org.springframework.web.servlet.ModelAndView br.com.mvengenharia.web.controller.InspecaoController.showSucesso(java.lang.Long)
+2017-06-15 13:22:38.379  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/novaInspecao]}" onto public org.springframework.web.servlet.ModelAndView br.com.mvengenharia.web.controller.InspecaoController.novaInspecao()
+2017-06-15 13:22:38.379  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/inspecao],methods=[POST],params=[save]}" onto public java.lang.String br.com.mvengenharia.web.controller.InspecaoController.saveInspecao(br.com.mvengenharia.business.entities.Inspecao,org.springframework.validation.BindingResult,org.springframework.ui.ModelMap)
+2017-06-15 13:22:38.380  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/inspecao/remover/{id}]}" onto public java.lang.String br.com.mvengenharia.web.controller.InspecaoController.removeInspecao(java.lang.Long)
+2017-06-15 13:22:38.381  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/inspecao/detalheInspecao/{idInspecao}]}" onto public org.springframework.web.servlet.ModelAndView br.com.mvengenharia.web.controller.InspecaoController.detalheInspecao(java.lang.Long)
+2017-06-15 13:22:38.381  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/inspecao/editar/{idInspecao}]}" onto public org.springframework.web.servlet.ModelAndView br.com.mvengenharia.web.controller.InspecaoController.editarInspecao(java.lang.Long)
+2017-06-15 13:22:38.382  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/log/getAll],methods=[POST]}" onto public org.springframework.http.ResponseEntity<org.springframework.data.jpa.datatables.mapping.DataTablesOutput<br.com.mvengenharia.business.entities.Log>> br.com.mvengenharia.web.controller.LogController.getInspecoes(org.springframework.data.jpa.datatables.mapping.DataTablesInput)
+2017-06-15 13:22:38.382  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/log]}" onto public java.lang.String br.com.mvengenharia.web.controller.LogController.showLog(br.com.mvengenharia.business.entities.Log)
+2017-06-15 13:22:38.383  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/naoConformidade]}" onto public java.lang.String br.com.mvengenharia.web.controller.NaoConformidadeController.showNaoConformidade(br.com.mvengenharia.business.entities.NaoConformidade)
+2017-06-15 13:22:38.383  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/naoConformidade/remover/{id}]}" onto public java.lang.String br.com.mvengenharia.web.controller.NaoConformidadeController.saveNaoConformidade(java.lang.Long)
+2017-06-15 13:22:38.384  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/naoConformidade],params=[save]}" onto public java.lang.String br.com.mvengenharia.web.controller.NaoConformidadeController.saveNaoConformidade(br.com.mvengenharia.business.entities.NaoConformidade,org.springframework.validation.BindingResult,org.springframework.ui.ModelMap)
+2017-06-15 13:22:38.386  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/permissoes]}" onto public java.lang.String br.com.mvengenharia.web.controller.PermissoesController.showPermissoes(br.com.mvengenharia.business.entities.Permissoes)
+2017-06-15 13:22:38.388  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/permissoes],params=[save]}" onto public java.lang.String br.com.mvengenharia.web.controller.PermissoesController.savePermissoes(br.com.mvengenharia.business.entities.Permissoes,org.springframework.validation.BindingResult,org.springframework.ui.ModelMap)
+2017-06-15 13:22:38.389  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/permissoes/remover/{id}]}" onto public java.lang.String br.com.mvengenharia.web.controller.PermissoesController.savePermissoes(java.lang.Long)
+2017-06-15 13:22:38.393  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/inspecao/ramoPorCliente/{idCliente}]}" onto public org.springframework.web.servlet.ModelAndView br.com.mvengenharia.web.controller.RamoController.getRamoPorCliente(java.lang.Long)
+2017-06-15 13:22:38.393  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/ramo]}" onto public java.lang.String br.com.mvengenharia.web.controller.RamoController.showRamo(br.com.mvengenharia.business.entities.Ramo)
+2017-06-15 13:22:38.394  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/ramo],params=[save]}" onto public java.lang.String br.com.mvengenharia.web.controller.RamoController.saveRamo(br.com.mvengenharia.business.entities.Ramo,org.springframework.validation.BindingResult,org.springframework.ui.ModelMap)
+2017-06-15 13:22:38.407  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/ramo/remover/{id}]}" onto public java.lang.String br.com.mvengenharia.web.controller.RamoController.saveRamo(java.lang.Long)
+2017-06-15 13:22:38.409  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/relatorio/listaInspecaoParaRelatar],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView br.com.mvengenharia.web.controller.RelatorioController.showInspecaoParaRelatar()
+2017-06-15 13:22:38.410  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/relatorio/{idInspecao}],methods=[POST],params=[save]}" onto public java.lang.String br.com.mvengenharia.web.controller.RelatorioController.saveRelatorio(long,br.com.mvengenharia.business.entities.Relatorio,org.springframework.validation.BindingResult,org.springframework.ui.ModelMap)
+2017-06-15 13:22:38.410  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/relatorio/{idInspecao}],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView br.com.mvengenharia.web.controller.RelatorioController.showRelatorio(long)
+2017-06-15 13:22:38.411  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/relatorio/iniciarNovoRelatorio/{idInspecao}],methods=[GET]}" onto public java.lang.String br.com.mvengenharia.web.controller.RelatorioController.iniciarRelatorio(long,org.springframework.ui.ModelMap)
+2017-06-15 13:22:38.412  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/revisao/listaInspecaoParaRevisar],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView br.com.mvengenharia.web.controller.RevisaoController.showInspecaoParaRevisar()
+2017-06-15 13:22:38.413  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/revisao/{idInspecao}],methods=[POST],params=[save]}" onto public java.lang.String br.com.mvengenharia.web.controller.RevisaoController.saveRevisao(long,br.com.mvengenharia.business.entities.Revisao,org.springframework.validation.BindingResult,org.springframework.ui.ModelMap)
+2017-06-15 13:22:38.413  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/revisao/{idInspecao}],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView br.com.mvengenharia.web.controller.RevisaoController.showRevisao(long)
+2017-06-15 13:22:38.414  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/revisao/iniciarNovaRevisao/{idInspecao}],methods=[GET]}" onto public java.lang.String br.com.mvengenharia.web.controller.RevisaoController.iniciarRevisao(long,org.springframework.ui.ModelMap)
+2017-06-15 13:22:38.428  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/status],params=[save]}" onto public java.lang.String br.com.mvengenharia.web.controller.StatusController.saveStatus(br.com.mvengenharia.business.entities.Status,org.springframework.validation.BindingResult,org.springframework.ui.ModelMap)
+2017-06-15 13:22:38.429  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/status/remover/{id}]}" onto public java.lang.String br.com.mvengenharia.web.controller.StatusController.saveStatus(java.lang.Long)
+2017-06-15 13:22:38.429  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/status]}" onto public java.lang.String br.com.mvengenharia.web.controller.StatusController.showStatus(br.com.mvengenharia.business.entities.Status)
+2017-06-15 13:22:38.430  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/inspecao/tipoInspecaoPorCliente/{idCliente}]}" onto public org.springframework.web.servlet.ModelAndView br.com.mvengenharia.web.controller.TipoInspecaoController.getTipoInspecaoPorCliente(java.lang.Long)
+2017-06-15 13:22:38.431  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/tipoInspecao]}" onto public java.lang.String br.com.mvengenharia.web.controller.TipoInspecaoController.showTipoInspecao(br.com.mvengenharia.business.entities.TipoInspecao)
+2017-06-15 13:22:38.431  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/tipoInspecao],params=[save]}" onto public java.lang.String br.com.mvengenharia.web.controller.TipoInspecaoController.saveTipoInspecao(br.com.mvengenharia.business.entities.TipoInspecao,org.springframework.validation.BindingResult,org.springframework.ui.ModelMap)
+2017-06-15 13:22:38.433  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/tipoInspecao/remover/{id}]}" onto public java.lang.String br.com.mvengenharia.web.controller.TipoInspecaoController.saveTipoInspecao(java.lang.Long)
+2017-06-15 13:22:38.435  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/tipoLogradouro/editar/{id}]}" onto public java.lang.String br.com.mvengenharia.web.controller.TipoLogradouroController.editarTipoLogradouro(java.lang.Long,org.springframework.ui.ModelMap)
+2017-06-15 13:22:38.436  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/tipoLogradouro]}" onto public java.lang.String br.com.mvengenharia.web.controller.TipoLogradouroController.showTipoLogradouro(org.springframework.ui.ModelMap)
+2017-06-15 13:22:38.437  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/tipoLogradouro/remover/{id}]}" onto public java.lang.String br.com.mvengenharia.web.controller.TipoLogradouroController.saveTipoLogradouro(java.lang.Long)
+2017-06-15 13:22:38.437  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/tipoLogradouro],params=[save]}" onto public java.lang.String br.com.mvengenharia.web.controller.TipoLogradouroController.saveTipoLogradouro(br.com.mvengenharia.business.entities.TipoLogradouro,org.springframework.validation.BindingResult,org.springframework.ui.ModelMap)
+2017-06-15 13:22:38.438  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/vistoria/listaInspecaoPorFuncionarioDesignado]}" onto public org.springframework.web.servlet.ModelAndView br.com.mvengenharia.web.controller.VistoriaController.listaInspecaoPorFuncionarioDesignado()
+2017-06-15 13:22:38.438  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/vistoria/inspecaoInicioFimCustos/{idInspecao}]}" onto public org.springframework.web.servlet.ModelAndView br.com.mvengenharia.web.controller.VistoriaController.inspecaoInicioFimCustos(java.lang.Long)
+2017-06-15 13:22:38.439  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/vistoria/informaFimInspecao/{idInspecao}]}" onto public org.springframework.web.servlet.ModelAndView br.com.mvengenharia.web.controller.VistoriaController.informaFimInspecao(java.lang.Long)
+2017-06-15 13:22:38.439  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/vistoria/informaInicioInspecao/{idInspecao}]}" onto public org.springframework.web.servlet.ModelAndView br.com.mvengenharia.web.controller.VistoriaController.informaIncioInspecao(java.lang.Long)
+2017-06-15 13:22:38.439  INFO 1540 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/vistoria/frustarInspecao/{idInspecao}]}" onto public org.springframework.web.servlet.ModelAndView br.com.mvengenharia.web.controller.VistoriaController.frustarInspecao(java.lang.Long)
+2017-06-15 13:22:38.549  INFO 1540 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/static/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-06-15 13:22:38.549  INFO 1540 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-06-15 13:22:38.550  INFO 1540 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-06-15 13:22:38.683  INFO 1540 --- [main] .m.m.a.ExceptionHandlerExceptionResolver : Detected @ExceptionHandler methods in globalExceptionHandler
+2017-06-15 13:22:38.777  INFO 1540 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-06-15 13:22:40.897  INFO 1540 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2017-06-15 13:22:41.207  INFO 1540 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 8080 (http)
+2017-06-15 13:22:41.217  INFO 1540 --- [main] b.c.m.MVEngenhariaApplication            : Started MVEngenhariaApplication in 292.179 seconds (JVM running for 295.169)
+2017-06-15 13:23:28.059  INFO 1540 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2017-06-15 13:23:28.060  INFO 1540 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
+2017-06-15 13:23:28.133  INFO 1540 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 73 ms
+2017-06-15 13:34:55.742 ERROR 1540 --- [http-nio-8080-exec-7] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.IllegalStateException: getOutputStream() has already been called for this response] with root cause
+
+java.lang.IllegalStateException: getOutputStream() has already been called for this response
+	at org.apache.catalina.connector.Response.getWriter(Response.java:609) ~[tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.apache.catalina.connector.ResponseFacade.getWriter(ResponseFacade.java:211) ~[tomcat-embed-core-8.5.11.jar:8.5.11]
+	at javax.servlet.ServletResponseWrapper.getWriter(ServletResponseWrapper.java:109) ~[tomcat-embed-core-8.5.11.jar:8.5.11]
+	at javax.servlet.ServletResponseWrapper.getWriter(ServletResponseWrapper.java:109) ~[tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.springframework.security.web.util.OnCommittedResponseWrapper.getWriter(OnCommittedResponseWrapper.java:149) ~[spring-security-web-4.2.2.RELEASE.jar:4.2.2.RELEASE]
+	at org.thymeleaf.spring4.view.ThymeleafView.renderFragment(ThymeleafView.java:335) ~[thymeleaf-spring4-2.1.5.RELEASE.jar:2.1.5.RELEASE]
+	at org.thymeleaf.spring4.view.ThymeleafView.render(ThymeleafView.java:190) ~[thymeleaf-spring4-2.1.5.RELEASE.jar:2.1.5.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.render(DispatcherServlet.java:1282) ~[spring-webmvc-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.processDispatchResult(DispatcherServlet.java:1037) ~[spring-webmvc-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:980) ~[spring-webmvc-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:897) ~[spring-webmvc-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:970) ~[spring-webmvc-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:872) ~[spring-webmvc-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:648) ~[tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:846) ~[spring-webmvc-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:729) ~[tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:230) ~[tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165) ~[tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52) ~[tomcat-embed-websocket-8.5.11.jar:8.5.11]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:192) ~[tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165) ~[tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:317) ~[spring-security-web-4.2.2.RELEASE.jar:4.2.2.RELEASE]
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:127) ~[spring-security-web-4.2.2.RELEASE.jar:4.2.2.RELEASE]
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:91) ~[spring-security-web-4.2.2.RELEASE.jar:4.2.2.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:331) ~[spring-security-web-4.2.2.RELEASE.jar:4.2.2.RELEASE]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:114) ~[spring-security-web-4.2.2.RELEASE.jar:4.2.2.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:331) ~[spring-security-web-4.2.2.RELEASE.jar:4.2.2.RELEASE]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:137) ~[spring-security-web-4.2.2.RELEASE.jar:4.2.2.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:331) ~[spring-security-web-4.2.2.RELEASE.jar:4.2.2.RELEASE]
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:111) ~[spring-security-web-4.2.2.RELEASE.jar:4.2.2.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:331) ~[spring-security-web-4.2.2.RELEASE.jar:4.2.2.RELEASE]
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:170) ~[spring-security-web-4.2.2.RELEASE.jar:4.2.2.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:331) ~[spring-security-web-4.2.2.RELEASE.jar:4.2.2.RELEASE]
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63) ~[spring-security-web-4.2.2.RELEASE.jar:4.2.2.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:331) ~[spring-security-web-4.2.2.RELEASE.jar:4.2.2.RELEASE]
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:200) ~[spring-security-web-4.2.2.RELEASE.jar:4.2.2.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:331) ~[spring-security-web-4.2.2.RELEASE.jar:4.2.2.RELEASE]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:116) ~[spring-security-web-4.2.2.RELEASE.jar:4.2.2.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:331) ~[spring-security-web-4.2.2.RELEASE.jar:4.2.2.RELEASE]
+	at org.springframework.security.web.csrf.CsrfFilter.doFilterInternal(CsrfFilter.java:100) ~[spring-security-web-4.2.2.RELEASE.jar:4.2.2.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:331) ~[spring-security-web-4.2.2.RELEASE.jar:4.2.2.RELEASE]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:64) ~[spring-security-web-4.2.2.RELEASE.jar:4.2.2.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:331) ~[spring-security-web-4.2.2.RELEASE.jar:4.2.2.RELEASE]
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:105) ~[spring-security-web-4.2.2.RELEASE.jar:4.2.2.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:331) ~[spring-security-web-4.2.2.RELEASE.jar:4.2.2.RELEASE]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:56) ~[spring-security-web-4.2.2.RELEASE.jar:4.2.2.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:331) ~[spring-security-web-4.2.2.RELEASE.jar:4.2.2.RELEASE]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:214) ~[spring-security-web-4.2.2.RELEASE.jar:4.2.2.RELEASE]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:177) ~[spring-security-web-4.2.2.RELEASE.jar:4.2.2.RELEASE]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:346) ~[spring-web-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:262) ~[spring-web-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:192) ~[tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165) ~[tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99) ~[spring-web-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:192) ~[tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165) ~[tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.springframework.web.filter.HttpPutFormContentFilter.doFilterInternal(HttpPutFormContentFilter.java:105) ~[spring-web-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:192) ~[tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165) ~[tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:81) ~[spring-web-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:192) ~[tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165) ~[tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:197) ~[spring-web-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:192) ~[tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165) ~[tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:198) ~[tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96) [tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:474) [tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:140) [tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:79) [tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:87) [tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:349) [tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:783) [tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66) [tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:798) [tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1434) [tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) [tomcat-embed-core-8.5.11.jar:8.5.11]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source) [na:1.8.0_131]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source) [na:1.8.0_131]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-8.5.11.jar:8.5.11]
+	at java.lang.Thread.run(Unknown Source) [na:1.8.0_131]
+
+2017-06-15 13:34:55.783 ERROR 1540 --- [http-nio-8080-exec-7] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet dispatcherServlet threw exception
+
+java.lang.IllegalStateException: getOutputStream() has already been called for this response
+	at org.apache.catalina.connector.Response.getWriter(Response.java:609) ~[tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.apache.catalina.connector.ResponseFacade.getWriter(ResponseFacade.java:211) ~[tomcat-embed-core-8.5.11.jar:8.5.11]
+	at javax.servlet.ServletResponseWrapper.getWriter(ServletResponseWrapper.java:109) ~[tomcat-embed-core-8.5.11.jar:8.5.11]
+	at javax.servlet.ServletResponseWrapper.getWriter(ServletResponseWrapper.java:109) ~[tomcat-embed-core-8.5.11.jar:8.5.11]
+	at javax.servlet.ServletResponseWrapper.getWriter(ServletResponseWrapper.java:109) ~[tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.springframework.security.web.util.OnCommittedResponseWrapper.getWriter(OnCommittedResponseWrapper.java:149) ~[spring-security-web-4.2.2.RELEASE.jar:4.2.2.RELEASE]
+	at org.thymeleaf.spring4.view.ThymeleafView.renderFragment(ThymeleafView.java:335) ~[thymeleaf-spring4-2.1.5.RELEASE.jar:2.1.5.RELEASE]
+	at org.thymeleaf.spring4.view.ThymeleafView.render(ThymeleafView.java:190) ~[thymeleaf-spring4-2.1.5.RELEASE.jar:2.1.5.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.render(DispatcherServlet.java:1282) ~[spring-webmvc-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.processDispatchResult(DispatcherServlet.java:1037) ~[spring-webmvc-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:980) ~[spring-webmvc-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:897) ~[spring-webmvc-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:970) ~[spring-webmvc-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:872) ~[spring-webmvc-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:648) ~[tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:846) ~[spring-webmvc-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:729) ~[tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:230) ~[tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165) ~[tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:317) ~[spring-security-web-4.2.2.RELEASE.jar:4.2.2.RELEASE]
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:116) ~[spring-security-web-4.2.2.RELEASE.jar:4.2.2.RELEASE]
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:91) ~[spring-security-web-4.2.2.RELEASE.jar:4.2.2.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:331) ~[spring-security-web-4.2.2.RELEASE.jar:4.2.2.RELEASE]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:114) ~[spring-security-web-4.2.2.RELEASE.jar:4.2.2.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:331) ~[spring-security-web-4.2.2.RELEASE.jar:4.2.2.RELEASE]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:84) ~[spring-security-web-4.2.2.RELEASE.jar:4.2.2.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:331) ~[spring-security-web-4.2.2.RELEASE.jar:4.2.2.RELEASE]
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:111) ~[spring-security-web-4.2.2.RELEASE.jar:4.2.2.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:331) ~[spring-security-web-4.2.2.RELEASE.jar:4.2.2.RELEASE]
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:170) ~[spring-security-web-4.2.2.RELEASE.jar:4.2.2.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:331) ~[spring-security-web-4.2.2.RELEASE.jar:4.2.2.RELEASE]
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63) ~[spring-security-web-4.2.2.RELEASE.jar:4.2.2.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:331) ~[spring-security-web-4.2.2.RELEASE.jar:4.2.2.RELEASE]
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:200) ~[spring-security-web-4.2.2.RELEASE.jar:4.2.2.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:331) ~[spring-security-web-4.2.2.RELEASE.jar:4.2.2.RELEASE]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:116) ~[spring-security-web-4.2.2.RELEASE.jar:4.2.2.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:331) ~[spring-security-web-4.2.2.RELEASE.jar:4.2.2.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101) ~[spring-web-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:331) ~[spring-security-web-4.2.2.RELEASE.jar:4.2.2.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101) ~[spring-web-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:331) ~[spring-security-web-4.2.2.RELEASE.jar:4.2.2.RELEASE]
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:105) ~[spring-security-web-4.2.2.RELEASE.jar:4.2.2.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:331) ~[spring-security-web-4.2.2.RELEASE.jar:4.2.2.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101) ~[spring-web-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:331) ~[spring-security-web-4.2.2.RELEASE.jar:4.2.2.RELEASE]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:214) ~[spring-security-web-4.2.2.RELEASE.jar:4.2.2.RELEASE]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:177) ~[spring-security-web-4.2.2.RELEASE.jar:4.2.2.RELEASE]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:346) ~[spring-web-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:262) ~[spring-web-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:192) ~[tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165) ~[tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99) ~[spring-web-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:192) ~[tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165) ~[tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101) ~[spring-web-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:192) ~[tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165) ~[tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101) ~[spring-web-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:192) ~[tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165) ~[tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101) ~[spring-web-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:192) ~[tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165) ~[tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:726) [tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.apache.catalina.core.ApplicationDispatcher.doInclude(ApplicationDispatcher.java:592) [tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.apache.catalina.core.ApplicationDispatcher.include(ApplicationDispatcher.java:526) [tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.apache.catalina.core.StandardHostValve.custom(StandardHostValve.java:389) [tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.apache.catalina.core.StandardHostValve.status(StandardHostValve.java:254) [tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.apache.catalina.core.StandardHostValve.throwable(StandardHostValve.java:349) [tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:175) [tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:79) [tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:87) [tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:349) [tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:783) [tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66) [tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:798) [tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1434) [tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) [tomcat-embed-core-8.5.11.jar:8.5.11]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source) [na:1.8.0_131]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source) [na:1.8.0_131]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-8.5.11.jar:8.5.11]
+	at java.lang.Thread.run(Unknown Source) [na:1.8.0_131]
+
+2017-06-15 13:34:55.811 ERROR 1540 --- [http-nio-8080-exec-7] o.a.c.c.C.[Tomcat].[localhost]           : Exception Processing ErrorPage[errorCode=0, location=/error]
+
+org.springframework.web.util.NestedServletException: Request processing failed; nested exception is java.lang.IllegalStateException: getOutputStream() has already been called for this response
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:982) ~[spring-webmvc-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:872) ~[spring-webmvc-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:648) ~[tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:846) ~[spring-webmvc-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:729) ~[tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:230) ~[tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165) ~[tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:317) ~[spring-security-web-4.2.2.RELEASE.jar:4.2.2.RELEASE]
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:116) ~[spring-security-web-4.2.2.RELEASE.jar:4.2.2.RELEASE]
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:91) ~[spring-security-web-4.2.2.RELEASE.jar:4.2.2.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:331) ~[spring-security-web-4.2.2.RELEASE.jar:4.2.2.RELEASE]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:114) ~[spring-security-web-4.2.2.RELEASE.jar:4.2.2.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:331) ~[spring-security-web-4.2.2.RELEASE.jar:4.2.2.RELEASE]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:84) ~[spring-security-web-4.2.2.RELEASE.jar:4.2.2.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:331) ~[spring-security-web-4.2.2.RELEASE.jar:4.2.2.RELEASE]
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:111) ~[spring-security-web-4.2.2.RELEASE.jar:4.2.2.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:331) ~[spring-security-web-4.2.2.RELEASE.jar:4.2.2.RELEASE]
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:170) ~[spring-security-web-4.2.2.RELEASE.jar:4.2.2.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:331) ~[spring-security-web-4.2.2.RELEASE.jar:4.2.2.RELEASE]
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63) ~[spring-security-web-4.2.2.RELEASE.jar:4.2.2.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:331) ~[spring-security-web-4.2.2.RELEASE.jar:4.2.2.RELEASE]
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:200) ~[spring-security-web-4.2.2.RELEASE.jar:4.2.2.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:331) ~[spring-security-web-4.2.2.RELEASE.jar:4.2.2.RELEASE]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:116) ~[spring-security-web-4.2.2.RELEASE.jar:4.2.2.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:331) ~[spring-security-web-4.2.2.RELEASE.jar:4.2.2.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101) ~[spring-web-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:331) ~[spring-security-web-4.2.2.RELEASE.jar:4.2.2.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101) ~[spring-web-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:331) ~[spring-security-web-4.2.2.RELEASE.jar:4.2.2.RELEASE]
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:105) ~[spring-security-web-4.2.2.RELEASE.jar:4.2.2.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:331) ~[spring-security-web-4.2.2.RELEASE.jar:4.2.2.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101) ~[spring-web-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:331) ~[spring-security-web-4.2.2.RELEASE.jar:4.2.2.RELEASE]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:214) ~[spring-security-web-4.2.2.RELEASE.jar:4.2.2.RELEASE]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:177) ~[spring-security-web-4.2.2.RELEASE.jar:4.2.2.RELEASE]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:346) ~[spring-web-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:262) ~[spring-web-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:192) ~[tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165) ~[tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99) ~[spring-web-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:192) ~[tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165) ~[tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101) ~[spring-web-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:192) ~[tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165) ~[tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101) ~[spring-web-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:192) ~[tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165) ~[tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101) ~[spring-web-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:192) ~[tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165) ~[tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:726) ~[tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.apache.catalina.core.ApplicationDispatcher.doInclude(ApplicationDispatcher.java:592) ~[tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.apache.catalina.core.ApplicationDispatcher.include(ApplicationDispatcher.java:526) ~[tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.apache.catalina.core.StandardHostValve.custom(StandardHostValve.java:389) [tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.apache.catalina.core.StandardHostValve.status(StandardHostValve.java:254) [tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.apache.catalina.core.StandardHostValve.throwable(StandardHostValve.java:349) [tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:175) [tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:79) [tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:87) [tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:349) [tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:783) [tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66) [tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:798) [tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1434) [tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) [tomcat-embed-core-8.5.11.jar:8.5.11]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source) [na:1.8.0_131]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source) [na:1.8.0_131]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-8.5.11.jar:8.5.11]
+	at java.lang.Thread.run(Unknown Source) [na:1.8.0_131]
+Caused by: java.lang.IllegalStateException: getOutputStream() has already been called for this response
+	at org.apache.catalina.connector.Response.getWriter(Response.java:609) ~[tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.apache.catalina.connector.ResponseFacade.getWriter(ResponseFacade.java:211) ~[tomcat-embed-core-8.5.11.jar:8.5.11]
+	at javax.servlet.ServletResponseWrapper.getWriter(ServletResponseWrapper.java:109) ~[tomcat-embed-core-8.5.11.jar:8.5.11]
+	at javax.servlet.ServletResponseWrapper.getWriter(ServletResponseWrapper.java:109) ~[tomcat-embed-core-8.5.11.jar:8.5.11]
+	at javax.servlet.ServletResponseWrapper.getWriter(ServletResponseWrapper.java:109) ~[tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.springframework.security.web.util.OnCommittedResponseWrapper.getWriter(OnCommittedResponseWrapper.java:149) ~[spring-security-web-4.2.2.RELEASE.jar:4.2.2.RELEASE]
+	at org.thymeleaf.spring4.view.ThymeleafView.renderFragment(ThymeleafView.java:335) ~[thymeleaf-spring4-2.1.5.RELEASE.jar:2.1.5.RELEASE]
+	at org.thymeleaf.spring4.view.ThymeleafView.render(ThymeleafView.java:190) ~[thymeleaf-spring4-2.1.5.RELEASE.jar:2.1.5.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.render(DispatcherServlet.java:1282) ~[spring-webmvc-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.processDispatchResult(DispatcherServlet.java:1037) ~[spring-webmvc-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:980) ~[spring-webmvc-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:897) ~[spring-webmvc-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:970) ~[spring-webmvc-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	... 70 common frames omitted
+
